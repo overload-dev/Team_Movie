@@ -1,3 +1,116 @@
 beom Commit Test
 hyo commit test 
 commit last test
+
+
+--movie 테이블 생성
+drop table tmovie;
+
+create table tmovie( 
+	mnum number primary key, --고유번호
+	mname varchar2(4000) not null, --컨텐츠 이름
+	mgenre varchar2(4000) not null, --영화 장르
+	mdir varchar2(4000) not null, --감독
+	mpro varchar2(4000) not null, --연출
+	mactor varchar2(4000) not null, --주연
+	msup varchar2(4000), --조연
+	mage number not null, --관람 연령
+	mele number not null, --영화 요소
+	mrdate date not null, --개봉일
+	midate date not null, --업로드일
+	mrcount number not null, --조회수
+	mlike number not null, --추천수
+	murl varchar2(4000) not null, --영상 링크
+	mrepo varchar2(4000) not null, --영상 저장소 링크
+	mwcon number not null -- 관람 회원 등급
+);
+
+drop sequence tmovie_seq;
+create sequence tmovie_seq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 100000
+  nocache;
+
+--user 테이블 생성
+drop table tuser;
+
+create table tuser( 
+	unum number primary key, --고유번호
+	usid varchar2(4000) not null, --회원 아이디
+	uname varchar2(4000) not null, --회원 닉네임
+	upw varchar2(4000) not null, --회원 비밀번호
+	udate date not null,  --가입일
+	ubirth date not null, --생년월일
+	ugrade number not null, --회원 등급
+	uupstart date, --스페셜 회원 시작
+	uupend date, --스페셜 회원 끝
+	ugenre varchar2(4000) not null -- 선호 장르
+);
+
+drop sequence tuser_seq;
+create sequence tuser_seq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 100000
+  nocache;
+
+--favorite 테이블 생성
+drop table favorite;
+
+create table favorite( 
+	fnum number primary key, --고유번호
+	funum number not null, --회원 고유 번호
+	fmnum number not null -- 즐겨찾기 대상 영화
+);
+
+drop sequence favorite_seq;
+create sequence favorite_seq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 100000
+  nocache;
+  
+--genre 테이블 생성
+drop table genre;
+
+create table genre( 
+	gnum number primary key, --고유번호
+	gname varchar2(4000) not null -- 장르명
+);
+
+drop sequence genre_seq;
+create sequence genre_seq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 100000
+  nocache;
+
+--mboard 테이블 생성
+drop table mboard;
+
+create table mboard( 
+	bnum number primary key, --고유번호
+	btype number not null, --게시글 타입
+	bmnum number not null, --영화 고유번호
+	bunum number not null, --작성자 고유번호
+	bsubject varchar2(4000) not null, --공지 제목
+	bcon varchar2(4000) not null, --뎃글(공지) 내용
+	bref number not null, -- 댓글 그룹
+	brestep number not null, --댓글 순번
+	brelevel number not null, --댓글 단계
+	ddate date not null -- 작성일
+);
+
+drop sequence mboard_seq;
+create sequence mboard_seq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 100000
+  nocache;
+
