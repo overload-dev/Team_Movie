@@ -3,28 +3,33 @@ package team_movie.model;
 import java.sql.Timestamp;
 
 public class MovieBean {
-	private int mnum;
-	private String mname;
-	private String mgenre;
-	private String mdir;
-	private String mpro;
-	private String mactor;
-	private String msup;
-	private int mage;
-	private int mele;
-	private Timestamp mrdate;
-	private Timestamp midate;
-	private int mrcount;
-	private String murl;
-	private String mrepo;
-	private int mwcon;
+	private int mnum; // 고유 번호, 게시글테이블의 그룹 넘버로 활용
+	private String mname; // 영화 이름
+	private String mgenre; // 영화 장르
+	private String mdir; // 감독
+	private String mpro; // 연출
+	private String mactor; // 주연
+	private String msup; // 조연
+	private int mage; // 관람 연령 , 0: 전체 이용 / 1: 12세 이용가 / 2: 15세 이용가 / 3: 18세 이용가
+	private String mele; // 영화 요소 0: 없음 / 1: 폭력성 / 2: 선정성 / 3: 약물 / 4: 공포 / 5:
+							// 범죄 / 6: 사행성 / 7: 언어의 부적절성
+
+	private Timestamp mrdate; // 영화 개봉일
+	private Timestamp midate; // 업로드 일
+	private int mrcount; // 조회수
+	private String murl; // 영상 링크
+	private String mrepo; // 영상 저장소 링크
+	private int mwcon; // 관람 회원 등급
+	private String mimg; // 섬네일 이미지
+	private String msynop; // 시놉시스
 
 	public MovieBean() {
 
 	}
 
 	public MovieBean(int mnum, String mname, String mgenre, String mdir, String mpro, String mactor, String msup,
-			int mage, int mele, Timestamp mrdate, Timestamp midate, int mrcount, String murl, String mrepo, int mwcon) {
+			int mage, String mele, Timestamp mrdate, Timestamp midate, int mrcount, String murl, String mrepo,
+			int mwcon, String mimg, String msynop) {
 		super();
 		this.mnum = mnum;
 		this.mname = mname;
@@ -41,6 +46,8 @@ public class MovieBean {
 		this.murl = murl;
 		this.mrepo = mrepo;
 		this.mwcon = mwcon;
+		this.mimg = mimg;
+		this.msynop = msynop;
 	}
 
 	public int getMnum() {
@@ -107,11 +114,11 @@ public class MovieBean {
 		this.mage = mage;
 	}
 
-	public int getMele() {
+	public String getMele() {
 		return mele;
 	}
 
-	public void setMele(int mele) {
+	public void setMele(String mele) {
 		this.mele = mele;
 	}
 
@@ -161,6 +168,22 @@ public class MovieBean {
 
 	public void setMwcon(int mwcon) {
 		this.mwcon = mwcon;
+	}
+
+	public String getMimg() {
+		return mimg;
+	}
+
+	public void setMimg(String mimg) {
+		this.mimg = mimg;
+	}
+
+	public String getMsynop() {
+		return msynop;
+	}
+
+	public void setMsynop(String msynop) {
+		this.msynop = msynop;
 	}
 
 }

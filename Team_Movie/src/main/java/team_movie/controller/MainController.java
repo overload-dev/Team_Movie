@@ -1,7 +1,9 @@
 package team_movie.controller;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 
 @Controller
 public class MainController {
@@ -11,7 +13,12 @@ public class MainController {
 	@RequestMapping(value=command)
 	public String doActionGet() {
 		System.out.println("컨트롤러 진입");
+		
+		
 		return getPage;
 	}
+	
+	
+	
 	
 }
