@@ -2,7 +2,6 @@ beom Commit Test
 hyo commit test 
 commit last test
 
-
 --movie 테이블 생성
 drop table tmovie;
 
