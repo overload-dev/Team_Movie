@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<% 	
+	String viewPage = request.getContextPath() + "/main.tm"; 
+	response.sendRedirect(viewPage) ;
+%>
 </body>
 </html>
