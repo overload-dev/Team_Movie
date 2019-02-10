@@ -42,7 +42,9 @@
   <div>
   <c:choose>
   	<c:when test="${ugrade == null}"><!-- none acount -->
-  		<input type="button" class="btn btn-info" name="login" value="Login">
+  		<input type="button" class="btn btn-info" value="Login">
+  		<input type="button" class="btn btn-info" value="Sign Up" onclick="location.href='userInsert.tm'">
+		
   	</c:when>
   	<c:when test="${ugrade == '0'}"><!-- admin acount -->
   		<a href="">Welcome! ${usid} (${uname})</a>
