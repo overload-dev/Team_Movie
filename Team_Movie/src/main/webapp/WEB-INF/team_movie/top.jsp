@@ -9,12 +9,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 
-<title>Insert title here</title>
+<title>Palnet Ark</title>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Palnet Ark</a>
+  <a class="navbar-brand" href="main.tm">Palnet Ark</a>
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
     <span class="navbar-toggler-icon"></span>
   </button>
