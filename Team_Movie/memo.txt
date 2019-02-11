@@ -6,6 +6,7 @@ commit last test
 drop table tmovie;
 
 create table tmovie( 
+<<<<<<< HEAD
 	mnum number primary key, --å ì™ì˜™å ì™ì˜™å ì™ì˜™í˜¸
 	mname varchar2(4000) not null, --å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹±ëªŒì˜™
 	mgenre varchar2(4000) not null, --å ì™ì˜™í™” å ì²ë¥´
@@ -22,6 +23,26 @@ create table tmovie(
 	murl varchar2(4000) not null, --å ì™ì˜™å ì™ì˜™ å ì™ì˜™í¬
 	mrepo varchar2(4000) not null, --å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ï¿½ å ì™ì˜™í¬
 	mwcon number not null -- å ì™ì˜™å ì™ì˜™ íšŒå ì™ì˜™ å ì™ì˜™å ï¿½
+=======
+   mnum number primary key, --°íÀ¯¹øÈ£
+   mname varchar2(4000) not null, --ÄÁÅÙÃ÷ ÀÌ¸§
+   mgenre varchar2(4000) not null, --¿µÈ­ Àå¸£
+   mdir varchar2(4000) not null, --°¨µ¶
+   mpro varchar2(4000) not null, --¿¬Ãâ
+   mactor varchar2(4000) not null, --ÁÖ¿¬
+   msup varchar2(4000), --Á¶¿¬
+   mage number not null, --°ü¶÷ ¿¬·É
+   mele number not null, --¿µÈ­ ¿ä¼Ò
+   mrdate date not null, --°³ºÀÀÏ
+   midate date not null, --¾÷·ÎµåÀÏ
+   mrcount number not null, --Á¶È¸¼ö
+   mlike number not null, --ÃßÃµ¼ö
+   mwcon number not null, -- °ü¶÷ È¸¿ø µî±Þ
+   murl varchar2(4000) not null, --¿µ»ó ¸µÅ©
+   mrepo varchar2(4000) not null, --¿µ»ó ÀúÀå¼Ò ¸µÅ©
+   mimg varchar2(4000) not null, --¼¶³×ÀÏ ÀÌ¹ÌÁö
+   msynop varchar2(4000) not null --ÁÙ°Å¸®  
+>>>>>>> refs/remotes/origin/master
 );
 
 drop sequence tmovie_seq;
@@ -114,6 +135,7 @@ create sequence mboard_seq
   nocache;
 
 
+<<<<<<< HEAD
 --tmovie ï¿½ê¶«ï¿½ì—¯ï¿½ì‚ï¿½ì £
 insert into tmovie values(tmovie_seq.nextval,'æ´¹ë±ë¸³ï§žê³¸ë¾½','è‚„ë¶¾ï¿½ëªƒëµ’','ï¿½ì” è¹‚ë¬“ë¿„','ï¿½ì” è¹‚ë¬“ë¿„','ç‘œì„ë“…çŒ·ï¿½,ï¿½ì” ï¿½ë¸¯ï¿½ë’³','ï§žê¾©ê½‘æ´¹ï¿½,ï¿½ì” ï¿½ë£žï¿½ì¶',2,0,'2019-01-23',sysdate,0,0,1,'a','b','c','d');
 insert into tmovie values(tmovie_seq.nextval,'ï§ë¬ì»²','è¸°ë¶¿ì¦²,ï¿½ë¸¸ï¿½ë€¡','ï¿½ë¸³ä»¥ï¿½ï¿½ì”—','ï¿½ë¸³ä»¥ï¿½ï¿½ì”—','æ€¨ë“¯ìŠšï§žï¿½,ç‘œì„ï¿½ï¿½ì ¹,è­°ê³—ì ™ï¿½ê½','ï¿½ë¿¼ï¿½ì ™ï¿½ë¸˜,ï¿½ìŸ¾ï¿½ì‚™ï§žï¿½',2,5,'2019-01-30',sysdate,0,0,1,'a','b','c','d');
@@ -134,3 +156,22 @@ insert into genre values(genre_seq.nextval,'ë©œë¡œ');
 
 commit;
 
+=======
+--tmovie »ðÀÔ¿¹Á¦
+insert into tmovie values(tmovie_seq.nextval,'±ØÇÑÁ÷¾÷','ÄÚ¹Ìµð','ÀÌº´Çå','ÀÌº´Çå','·ù½Â·æ,ÀÌÇÏ´Ì','Áø¼±±Ô,ÀÌµ¿ÈÖ',2,0,'2019-01-23',sysdate,0,0,1,'a','b','c','d');
+insert into tmovie values(tmovie_seq.nextval,'»±¹Ý','¹üÁË,¾×¼Ç','ÇÑÁØÈñ','ÇÑÁØÈñ','°øÈ¿Áø,·ùÁØ·Ä,Á¶Á¤¼®','¿°Á¤¾Æ,ÀüÇýÁø',2,5,'2019-01-30',sysdate,0,0,1,'a','b','c','d');
+insert into tmovie values(tmovie_seq.nextval,'¸»¸ðÀÌ','µå¶ó¸¶','¾öÀ¯³ª','¾öÀ¯³ª','À¯ÇØÁø,À±°è»ó,±èÈ«ÆÄ','¿ìÇö,±èÅÂÈÆ',2,0,'2019-01-30',sysdate,0,0,1,'a','b','c','d');
+
+--tuser »ðÀÔ¿¹Á¦
+insert into tuser values(tuser_seq.nextval,'admin','admin','1234',sysdate,'2019-01-01',0,null,null,'a');
+insert into tuser values(tuser_seq.nextval,'a1234','aaa','1234',sysdate,'2019-01-01',1,null,null,'ÄÚ¹Ìµð');
+
+--genre »ðÀÔ¿¹Á¦
+insert into genre values(genre_seq.nextval,'ÄÚ¹Ìµð');
+insert into genre values(genre_seq.nextval,'¾×¼Ç');
+insert into genre values(genre_seq.nextval,'¹üÁË');
+insert into genre values(genre_seq.nextval,'½º¸±·¯');
+insert into genre values(genre_seq.nextval,'°øÆ÷');
+insert into genre values(genre_seq.nextval,'µå¶ó¸¶');
+insert into genre values(genre_seq.nextval,'¸á·Î');
+>>>>>>> refs/remotes/origin/master
