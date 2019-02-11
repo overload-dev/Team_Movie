@@ -6,12 +6,13 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="MyMovie" type="team_movie.model.MovieBean" />
-<!-- 		<typeAlias alias="MyUser" type="team_movie.model.UserBean" /> -->
+		<typeAlias alias="MyGenre" type="team_movie.model.GenreBean"/>
+
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="team_movie/mybatis/movie.xml" />
-<!-- 		<mapper resource="mybatis/user.xml" /> -->
+		<mapper resource="team_movie/mybatis/genre.xml" />
 	</mappers>
 
 </configuration>

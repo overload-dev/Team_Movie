@@ -2,26 +2,26 @@ beom Commit Test
 hyo commit test 
 commit last test
 
---movie ���̺� ����
+--movie 占쏙옙占싱븝옙 占쏙옙占쏙옙
 drop table tmovie;
 
 create table tmovie( 
-	mnum number primary key, --������ȣ
-	mname varchar2(4000) not null, --������ �̸�
-	mgenre varchar2(4000) not null, --��ȭ �帣
-	mdir varchar2(4000) not null, --����
-	mpro varchar2(4000) not null, --����
-	mactor varchar2(4000) not null, --�ֿ�
-	msup varchar2(4000), --����
-	mage number not null, --���� ����
-	mele number not null, --��ȭ ���
-	mrdate date not null, --������
-	midate date not null, --���ε���
-	mrcount number not null, --��ȸ��
-	mlike number not null, --��õ��
-	murl varchar2(4000) not null, --���� ��ũ
-	mrepo varchar2(4000) not null, --���� ����� ��ũ
-	mwcon number not null -- ���� ȸ�� ���
+	mnum number primary key, --占쏙옙占쏙옙占쏙옙호
+	mname varchar2(4000) not null, --占쏙옙占쏙옙占쏙옙 占싱몌옙
+	mgenre varchar2(4000) not null, --占쏙옙화 占썲르
+	mdir varchar2(4000) not null, --占쏙옙占쏙옙
+	mpro varchar2(4000) not null, --占쏙옙占쏙옙
+	mactor varchar2(4000) not null, --占쌍울옙
+	msup varchar2(4000), --占쏙옙占쏙옙
+	mage number not null, --占쏙옙占쏙옙 占쏙옙占쏙옙
+	mele number not null, --占쏙옙화 占쏙옙占�
+	mrdate date not null, --占쏙옙占쏙옙占쏙옙
+	midate date not null, --占쏙옙占싸듸옙占쏙옙
+	mrcount number not null, --占쏙옙회占쏙옙
+	mlike number not null, --占쏙옙천占쏙옙
+	murl varchar2(4000) not null, --占쏙옙占쏙옙 占쏙옙크
+	mrepo varchar2(4000) not null, --占쏙옙占쏙옙 占쏙옙占쏙옙占� 占쏙옙크
+	mwcon number not null -- 占쏙옙占쏙옙 회占쏙옙 占쏙옙占�
 );
 
 drop sequence tmovie_seq;
@@ -32,20 +32,20 @@ create sequence tmovie_seq
   maxvalue 100000
   nocache;
 
---user ���̺� ����
+--user 占쏙옙占싱븝옙 占쏙옙占쏙옙
 drop table tuser;
 
 create table tuser( 
-	unum number primary key, --������ȣ
-	usid varchar2(4000) not null, --ȸ�� ���̵�
-	uname varchar2(4000) not null, --ȸ�� �г���
-	upw varchar2(4000) not null, --ȸ�� ��й�ȣ
-	udate date not null,  --������
-	ubirth date not null, --�������
-	ugrade number not null, --ȸ�� ���
-	uupstart date, --����� ȸ�� ����
-	uupend date, --����� ȸ�� ��
-	ugenre varchar2(4000) not null -- ��ȣ �帣
+	unum number primary key, --占쏙옙占쏙옙占쏙옙호
+	usid varchar2(4000) not null, --회占쏙옙 占쏙옙占싱듸옙
+	uname varchar2(4000) not null, --회占쏙옙 占싻놂옙占쏙옙
+	upw varchar2(4000) not null, --회占쏙옙 占쏙옙橘占싫�
+	udate date not null,  --占쏙옙占쏙옙占쏙옙
+	ubirth date not null, --占쏙옙占쏙옙占쏙옙占�
+	ugrade number not null, --회占쏙옙 占쏙옙占�
+	uupstart date, --占쏙옙占쏙옙占� 회占쏙옙 占쏙옙占쏙옙
+	uupend date, --占쏙옙占쏙옙占� 회占쏙옙 占쏙옙
+	ugenre varchar2(4000) not null -- 占쏙옙호 占썲르
 );
 
 drop sequence tuser_seq;
@@ -56,13 +56,13 @@ create sequence tuser_seq
   maxvalue 100000
   nocache;
 
---favorite ���̺� ����
+--favorite 占쏙옙占싱븝옙 占쏙옙占쏙옙
 drop table favorite;
 
 create table favorite( 
-	fnum number primary key, --������ȣ
-	funum number not null, --ȸ�� ���� ��ȣ
-	fmnum number not null -- ���ã�� ��� ��ȭ
+	fnum number primary key, --占쏙옙占쏙옙占쏙옙호
+	funum number not null, --회占쏙옙 占쏙옙占쏙옙 占쏙옙호
+	fmnum number not null -- 占쏙옙占시ｏ옙占� 占쏙옙占� 占쏙옙화
 );
 
 drop sequence favorite_seq;
@@ -73,12 +73,12 @@ create sequence favorite_seq
   maxvalue 100000
   nocache;
   
---genre ���̺� ����
+--genre 占쏙옙占싱븝옙 占쏙옙占쏙옙
 drop table genre;
 
 create table genre( 
-	gnum number primary key, --������ȣ
-	gname varchar2(4000) not null -- �帣��
+	gnum number primary key, --占쏙옙占쏙옙占쏙옙호
+	gname varchar2(4000) not null -- 占썲르占쏙옙
 );
 
 drop sequence genre_seq;
@@ -89,20 +89,20 @@ create sequence genre_seq
   maxvalue 100000
   nocache;
 
---mboard ���̺� ����
+--mboard 占쏙옙占싱븝옙 占쏙옙占쏙옙
 drop table mboard;
 
 create table mboard( 
-	bnum number primary key, --������ȣ
-	btype number not null, --�Խñ� Ÿ��
-	bmnum number not null, --��ȭ ������ȣ
-	bunum number not null, --�ۼ��� ������ȣ
-	bsubject varchar2(4000) not null, --���� ����
-	bcon varchar2(4000) not null, --����(����) ����
-	bref number not null, -- ��� �׷�
-	brestep number not null, --��� ����
-	brelevel number not null, --��� �ܰ�
-	ddate date not null -- �ۼ���
+	bnum number primary key, --占쏙옙占쏙옙占쏙옙호
+	btype number not null, --占쌉시깍옙 타占쏙옙
+	bmnum number not null, --占쏙옙화 占쏙옙占쏙옙占쏙옙호
+	bunum number not null, --占쌜쇽옙占쏙옙 占쏙옙占쏙옙占쏙옙호
+	bsubject varchar2(4000) not null, --占쏙옙占쏙옙 占쏙옙占쏙옙
+	bcon varchar2(4000) not null, --占쏙옙占쏙옙(占쏙옙占쏙옙) 占쏙옙占쏙옙
+	bref number not null, -- 占쏙옙占� 占쌓뤄옙
+	brestep number not null, --占쏙옙占� 占쏙옙占쏙옙
+	brelevel number not null, --占쏙옙占� 占쌤곤옙
+	ddate date not null -- 占쌜쇽옙占쏙옙
 );
 
 drop sequence mboard_seq;
@@ -114,16 +114,16 @@ create sequence mboard_seq
   nocache;
 
 
---tmovie 삽입예제
-insert into tmovie values(tmovie_seq.nextval,'극한직업','코미디','이병헌','이병헌','류승룡,이하늬','진선규,이동휘',2,0,'2019-01-23',sysdate,0,0,1,'a','b','c','d');
-insert into tmovie values(tmovie_seq.nextval,'뺑반','범죄,액션','한준희','한준희','공효진,류준렬,조정석','염정아,전혜진',2,5,'2019-01-30',sysdate,0,0,1,'a','b','c','d');
-insert into tmovie values(tmovie_seq.nextval,'말모이','드라마','엄유나','엄유나','유해진,윤계상,김홍파','우현,김태훈',2,0,'2019-01-30',sysdate,0,0,1,'a','b','c','d');
+--tmovie �궫�엯�삁�젣
+insert into tmovie values(tmovie_seq.nextval,'洹뱁븳吏곸뾽','肄붾�몃뵒','�씠蹂묓뿄','�씠蹂묓뿄','瑜섏듅猷�,�씠�븯�뒳','吏꾩꽑洹�,�씠�룞�쐶',2,0,'2019-01-23',sysdate,0,0,1,'a','b','c','d');
+insert into tmovie values(tmovie_seq.nextval,'類묐컲','踰붿즲,�븸�뀡','�븳以��씗','�븳以��씗','怨듯슚吏�,瑜섏��젹,議곗젙�꽍','�뿼�젙�븘,�쟾�삙吏�',2,5,'2019-01-30',sysdate,0,0,1,'a','b','c','d');
+insert into tmovie values(tmovie_seq.nextval,'留먮え�씠','�뱶�씪留�','�뾼�쑀�굹','�뾼�쑀�굹','�쑀�빐吏�,�쑄怨꾩긽,源��솉�뙆','�슦�쁽,源��깭�썕',2,0,'2019-01-30',sysdate,0,0,1,'a','b','c','d');
 
---tuser 삽입예제
+--tuser �궫�엯�삁�젣
 insert into tuser values(tuser_seq.nextval,'admin','admin','1234',sysdate,'2019-01-01',0,null,null,'a');
-insert into tuser values(tuser_seq.nextval,'a1234','aaa','1234',sysdate,'2019-01-01',1,null,null,'코미디');
+insert into tuser values(tuser_seq.nextval,'a1234','aaa','1234',sysdate,'2019-01-01',1,null,null,'肄붾�몃뵒');
 
---genre 삽입예제
+--genre �궫�엯�삁�젣
 insert into genre values(genre_seq.nextval,'코미디');
 insert into genre values(genre_seq.nextval,'액션');
 insert into genre values(genre_seq.nextval,'범죄');
