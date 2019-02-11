@@ -4,8 +4,14 @@
 
 
 <mapper namespace="team_movie.model.MovieBean">
-<!-- 	<select id="getMovieLists" resultType="MyMovie" parameterType="hashmap">
-		
-	</select> -->
-
+ 	<select id="GetMovieList" resultType="MyMovie" parameterType="hashmap">
+		select * from tmovie
+	</select>
+	
+ 	<select id="GetMovieListByGenre" resultType="MyMovie" parameterType="hashmap">
+		select * from tmovie
+		where mgenre like '%'||#{genre}||'%'
+		order by mrcount
+	</select>
+	
 </mapper>
