@@ -30,6 +30,7 @@ public class MovieListController {
 	public String doActionGet(){
 		
 		System.out.println("컨트롤러 진입");
+		
 		getGenreList();
 		
 		return "/body/" + gotoPage;

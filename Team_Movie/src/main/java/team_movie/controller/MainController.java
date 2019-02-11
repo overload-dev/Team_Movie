@@ -1,4 +1,4 @@
-package team_movie.controller;
+/*package team_movie.controller;
 
 
 import java.util.HashMap;
@@ -89,3 +89,4 @@ public class MainController {
 	
 	
 }
+*/
