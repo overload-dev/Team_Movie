@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class UserInsertController {
 	
 	private static final String command = "userInsert.tm";
-	private static final String gotoPage = "body/userInsert";
-	
+	private static final String getPage = "body/userInsert";
+	private static final String gotoPage ="redirect:/main.tm";
 	
 	//userInsert.jsp page switching
 	@RequestMapping(value=command, method = RequestMethod.GET)
 	public String doActionGet(){
-		return gotoPage;
+		return getPage;
 	}
 	
 	
