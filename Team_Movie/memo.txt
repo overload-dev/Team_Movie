@@ -2,26 +2,26 @@ beom Commit Test
 hyo commit test 
 commit last test
 
---movie Å×ÀÌºí »ı¼º
+--movie ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½
 drop table tmovie;
 
 create table tmovie( 
-	mnum number primary key, --°íÀ¯¹øÈ£
-	mname varchar2(4000) not null, --ÄÁÅÙÃ÷ ÀÌ¸§
-	mgenre varchar2(4000) not null, --¿µÈ­ Àå¸£
-	mdir varchar2(4000) not null, --°¨µ¶
-	mpro varchar2(4000) not null, --¿¬Ãâ
-	mactor varchar2(4000) not null, --ÁÖ¿¬
-	msup varchar2(4000), --Á¶¿¬
-	mage number not null, --°ü¶÷ ¿¬·É
-	mele number not null, --¿µÈ­ ¿ä¼Ò
-	mrdate date not null, --°³ºÀÀÏ
-	midate date not null, --¾÷·ÎµåÀÏ
-	mrcount number not null, --Á¶È¸¼ö
-	mlike number not null, --ÃßÃµ¼ö
-	murl varchar2(4000) not null, --¿µ»ó ¸µÅ©
-	mrepo varchar2(4000) not null, --¿µ»ó ÀúÀå¼Ò ¸µÅ©
-	mwcon number not null -- °ü¶÷ È¸¿ø µî±Ş
+	mnum number primary key, --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	mname varchar2(4000) not null, --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
+	mgenre varchar2(4000) not null, --ï¿½ï¿½È­ ï¿½å¸£
+	mdir varchar2(4000) not null, --ï¿½ï¿½ï¿½ï¿½
+	mpro varchar2(4000) not null, --ï¿½ï¿½ï¿½ï¿½
+	mactor varchar2(4000) not null, --ï¿½Ö¿ï¿½
+	msup varchar2(4000), --ï¿½ï¿½ï¿½ï¿½
+	mage number not null, --ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	mele number not null, --ï¿½ï¿½È­ ï¿½ï¿½ï¿½
+	mrdate date not null, --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	midate date not null, --ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½
+	mrcount number not null, --ï¿½ï¿½È¸ï¿½ï¿½
+	mlike number not null, --ï¿½ï¿½Ãµï¿½ï¿½
+	murl varchar2(4000) not null, --ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©
+	mrepo varchar2(4000) not null, --ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©
+	mwcon number not null -- ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½
 );
 
 drop sequence tmovie_seq;
@@ -32,20 +32,20 @@ create sequence tmovie_seq
   maxvalue 100000
   nocache;
 
---user Å×ÀÌºí »ı¼º
+--user ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½
 drop table tuser;
 
 create table tuser( 
-	unum number primary key, --°íÀ¯¹øÈ£
-	usid varchar2(4000) not null, --È¸¿ø ¾ÆÀÌµğ
-	uname varchar2(4000) not null, --È¸¿ø ´Ğ³×ÀÓ
-	upw varchar2(4000) not null, --È¸¿ø ºñ¹Ğ¹øÈ£
-	udate date not null,  --°¡ÀÔÀÏ
-	ubirth date not null, --»ı³â¿ùÀÏ
-	ugrade number not null, --È¸¿ø µî±Ş
-	uupstart date, --½ºÆä¼È È¸¿ø ½ÃÀÛ
-	uupend date, --½ºÆä¼È È¸¿ø ³¡
-	ugenre varchar2(4000) not null -- ¼±È£ Àå¸£
+	unum number primary key, --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	usid varchar2(4000) not null, --È¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
+	uname varchar2(4000) not null, --È¸ï¿½ï¿½ ï¿½Ğ³ï¿½ï¿½ï¿½
+	upw varchar2(4000) not null, --È¸ï¿½ï¿½ ï¿½ï¿½Ğ¹ï¿½È£
+	udate date not null,  --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	ubirth date not null, --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	ugrade number not null, --È¸ï¿½ï¿½ ï¿½ï¿½ï¿½
+	uupstart date, --ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	uupend date, --ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½
+	ugenre varchar2(4000) not null -- ï¿½ï¿½È£ ï¿½å¸£
 );
 
 drop sequence tuser_seq;
@@ -56,13 +56,13 @@ create sequence tuser_seq
   maxvalue 100000
   nocache;
 
---favorite Å×ÀÌºí »ı¼º
+--favorite ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½
 drop table favorite;
 
 create table favorite( 
-	fnum number primary key, --°íÀ¯¹øÈ£
-	funum number not null, --È¸¿ø °íÀ¯ ¹øÈ£
-	fmnum number not null -- Áñ°ÜÃ£±â ´ë»ó ¿µÈ­
+	fnum number primary key, --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	funum number not null, --È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+	fmnum number not null -- ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È­
 );
 
 drop sequence favorite_seq;
@@ -73,12 +73,12 @@ create sequence favorite_seq
   maxvalue 100000
   nocache;
   
---genre Å×ÀÌºí »ı¼º
+--genre ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½
 drop table genre;
 
 create table genre( 
-	gnum number primary key, --°íÀ¯¹øÈ£
-	gname varchar2(4000) not null -- Àå¸£¸í
+	gnum number primary key, --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	gname varchar2(4000) not null -- ï¿½å¸£ï¿½ï¿½
 );
 
 drop sequence genre_seq;
@@ -89,20 +89,20 @@ create sequence genre_seq
   maxvalue 100000
   nocache;
 
---mboard Å×ÀÌºí »ı¼º
+--mboard ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½
 drop table mboard;
 
 create table mboard( 
-	bnum number primary key, --°íÀ¯¹øÈ£
-	btype number not null, --°Ô½Ã±Û Å¸ÀÔ
-	bmnum number not null, --¿µÈ­ °íÀ¯¹øÈ£
-	bunum number not null, --ÀÛ¼ºÀÚ °íÀ¯¹øÈ£
-	bsubject varchar2(4000) not null, --°øÁö Á¦¸ñ
-	bcon varchar2(4000) not null, --µ«±Û(°øÁö) ³»¿ë
-	bref number not null, -- ´ñ±Û ±×·ì
-	brestep number not null, --´ñ±Û ¼ø¹ø
-	brelevel number not null, --´ñ±Û ´Ü°è
-	ddate date not null -- ÀÛ¼ºÀÏ
+	bnum number primary key, --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	btype number not null, --ï¿½Ô½Ã±ï¿½ Å¸ï¿½ï¿½
+	bmnum number not null, --ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	bunum number not null, --ï¿½Û¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	bsubject varchar2(4000) not null, --ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	bcon varchar2(4000) not null, --ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½
+	bref number not null, -- ï¿½ï¿½ï¿½ ï¿½×·ï¿½
+	brestep number not null, --ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	brelevel number not null, --ï¿½ï¿½ï¿½ ï¿½Ü°ï¿½
+	ddate date not null -- ï¿½Û¼ï¿½ï¿½ï¿½
 );
 
 drop sequence mboard_seq;
@@ -112,4 +112,25 @@ create sequence mboard_seq
   minvalue 1
   maxvalue 100000
   nocache;
+
+
+--tmovie ì‚½ì…ì˜ˆì œ
+insert into tmovie values(tmovie_seq.nextval,'ê·¹í•œì§ì—…','ì½”ë¯¸ë””','ì´ë³‘í—Œ','ì´ë³‘í—Œ','ë¥˜ìŠ¹ë£¡,ì´í•˜ëŠ¬','ì§„ì„ ê·œ,ì´ë™íœ˜',2,0,'2019-01-23',sysdate,0,0,1,'a','b','c','d');
+insert into tmovie values(tmovie_seq.nextval,'ëº‘ë°˜','ë²”ì£„,ì•¡ì…˜','í•œì¤€í¬','í•œì¤€í¬','ê³µíš¨ì§„,ë¥˜ì¤€ë ¬,ì¡°ì •ì„','ì—¼ì •ì•„,ì „í˜œì§„',2,5,'2019-01-30',sysdate,0,0,1,'a','b','c','d');
+insert into tmovie values(tmovie_seq.nextval,'ë§ëª¨ì´','ë“œë¼ë§ˆ','ì—„ìœ ë‚˜','ì—„ìœ ë‚˜','ìœ í•´ì§„,ìœ¤ê³„ìƒ,ê¹€í™íŒŒ','ìš°í˜„,ê¹€íƒœí›ˆ',2,0,'2019-01-30',sysdate,0,0,1,'a','b','c','d');
+
+--tuser ì‚½ì…ì˜ˆì œ
+insert into tuser values(tuser_seq.nextval,'admin','admin','1234',sysdate,'2019-01-01',0,null,null,'a');
+insert into tuser values(tuser_seq.nextval,'a1234','aaa','1234',sysdate,'2019-01-01',1,null,null,'ì½”ë¯¸ë””');
+
+--genre ì‚½ì…ì˜ˆì œ
+insert into genre values(genre_seq.nextval,'ì½”ë¯¸ë””');
+insert into genre values(genre_seq.nextval,'ì•¡ì…˜');
+insert into genre values(genre_seq.nextval,'ë²”ì£„');
+insert into genre values(genre_seq.nextval,'ìŠ¤ë¦´ëŸ¬');
+insert into genre values(genre_seq.nextval,'ê³µí¬');
+insert into genre values(genre_seq.nextval,'ë“œë¼ë§ˆ');
+insert into genre values(genre_seq.nextval,'ë©œë¡œ');
+
+commit;
 

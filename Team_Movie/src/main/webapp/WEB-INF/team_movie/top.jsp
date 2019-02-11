@@ -12,20 +12,43 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 
+<!-- jquery plugin -->
+<script src="/lib/jquery-1.12.2.min.js"></script>
+
+
+
+
 <title>Palnet Ark</title>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="main.tm">Palnet Ark</a>
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-    <form class="form-inline my-4 my-lg-0">
-      <input class="form-control mr-lg-4" type="text" placeholder="Search">
-      <button class="btn btn-success my-2 my-sm-0" type="button">Search</button>
-    </form>
 
+<div class="col-sm-4">
+	<div class="input-group">
+	  <input type="text" class="form-control" placeholder="Search">
+	  <div class="input-group-append">
+	    <input type="submit" class="btn btn-success" value="Search">
+	  </div>
+	</div>
+</div>
+
+<div class="dropdown">
+    <button class="btn btn-info dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+    	장르
+    </button>
+    
+    <ul class="dropdown-menu" >
+      <li ><a href="#">코미디</a></li>
+      <li ><a href="#">범죄</a></li>
+      <li ><a  href="#">스릴러</a></li>
+      <li ><a  href="#">공포</a></li>
+      <li ><a  href="#">드라마</a></li>
+      <li ><a  href="#">멜로</a></li>
+    </ul>
+  </div>
+  
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
@@ -39,11 +62,13 @@
       </li>
     </ul>
   </div>
+  
+  
   <div>
   <c:choose>
   	<c:when test="${ugrade == null}"><!-- none acount -->
   		<input type="button" class="btn btn-info" value="Login">
-  		<input type="button" class="btn btn-info" value="Sign Up" onclick="location.href='userInsert.tm'">
+  		<input type="button" class="btn btn-info" value ="Sign Up" onclick="location.href='userInsert.tm'">
 		
   	</c:when>
   	<c:when test="${ugrade == '0'}"><!-- admin acount -->
