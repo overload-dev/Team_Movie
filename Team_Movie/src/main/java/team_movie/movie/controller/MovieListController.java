@@ -91,19 +91,26 @@ public class MovieListController {
 		mav.setViewName(getPage);
 		
 		//GenreData Get
-		getGenreList();
+		List<GenreBean> genreList = null;
+		genreList = getGenreList();
+		
+		mav.addObject("genreList", genreList);
 		
 		return mav;
 	}
 	
 	
 	//장르 정보를 획득
-	public void getGenreList(){
+	public List<GenreBean> getGenreList(){
 		List<GenreBean> genreList = new ArrayList<GenreBean>();
 		genreList = genreDao.getGenreList();
-		ModelAndView mav = new ModelAndView();
+
+		/*private int gnum; // 고유번호
+		private String gname; // 장르 명
+*/
+		System.out.println("genreList.get(1).getGname()" + genreList.get(1).getGname());
 		
-		mav.addObject("genreList", genreList);
+		return genreList;
 	}
 	
 }

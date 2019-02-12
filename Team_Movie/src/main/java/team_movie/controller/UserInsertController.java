@@ -18,5 +18,10 @@ public class UserInsertController {
 	}
 	
 	
+	@RequestMapping(value=command , method= RequestMethod.POST)
+	public String doActionPost(){
+		
+		return gotoPage;
+	}
 	
 }
