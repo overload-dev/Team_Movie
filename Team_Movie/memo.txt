@@ -1,48 +1,25 @@
-beom Commit Test
-hyo commit test 
-commit last test
-
---movie 占쏙옙占싱븝옙 占쏙옙占쏙옙
+--movie 테이블 생성
 drop table tmovie;
 
 create table tmovie( 
-<<<<<<< HEAD
-	mnum number primary key, --占쏙옙占쏙옙占쏙옙호
-	mname varchar2(4000) not null, --占쏙옙占쏙옙占쏙옙 占싱몌옙
-	mgenre varchar2(4000) not null, --占쏙옙화 占썲르
-	mdir varchar2(4000) not null, --占쏙옙占쏙옙
-	mpro varchar2(4000) not null, --占쏙옙占쏙옙
-	mactor varchar2(4000) not null, --占쌍울옙
-	msup varchar2(4000), --占쏙옙占쏙옙
-	mage number not null, --占쏙옙占쏙옙 占쏙옙占쏙옙
-	mele number not null, --占쏙옙화 占쏙옙占�
-	mrdate date not null, --占쏙옙占쏙옙占쏙옙
-	midate date not null, --占쏙옙占싸듸옙占쏙옙
-	mrcount number not null, --占쏙옙회占쏙옙
-	mlike number not null, --占쏙옙천占쏙옙
-	murl varchar2(4000) not null, --占쏙옙占쏙옙 占쏙옙크
-	mrepo varchar2(4000) not null, --占쏙옙占쏙옙 占쏙옙占쏙옙占� 占쏙옙크
-	mwcon number not null -- 占쏙옙占쏙옙 회占쏙옙 占쏙옙占�
-=======
-   mnum number primary key, --������ȣ
-   mname varchar2(4000) not null, --������ �̸�
-   mgenre varchar2(4000) not null, --��ȭ �帣
-   mdir varchar2(4000) not null, --����
-   mpro varchar2(4000) not null, --����
-   mactor varchar2(4000) not null, --�ֿ�
-   msup varchar2(4000), --����
-   mage number not null, --���� ����
-   mele number not null, --��ȭ ���
-   mrdate date not null, --������
-   midate date not null, --���ε���
-   mrcount number not null, --��ȸ��
-   mlike number not null, --��õ��
-   mwcon number not null, -- ���� ȸ�� ���
-   murl varchar2(4000) not null, --���� ��ũ
-   mrepo varchar2(4000) not null, --���� ����� ��ũ
-   mimg varchar2(4000) not null, --������ �̹���
-   msynop varchar2(4000) not null --�ٰŸ�  
->>>>>>> refs/remotes/origin/master
+   mnum number primary key, --고유번호
+   mname varchar2(4000) not null, --컨텐츠 이름
+   mgenre varchar2(4000) not null, --영화 장르
+   mdir varchar2(4000) not null, --감독
+   mpro varchar2(4000) not null, --연출
+   mactor varchar2(4000) not null, --주연
+   msup varchar2(4000), --조연
+   mage number not null, --관람 연령
+   mele number not null, --영화 요소
+   mrdate date not null, --개봉일
+   midate date not null, --업로드일
+   mrcount number not null, --조회수
+   mlike number not null, --추천수
+   mwcon number not null, -- 관람 회원 등급
+   murl varchar2(4000) not null, --영상 링크
+   mrepo varchar2(4000) not null, --영상 저장소 링크
+   mimg varchar2(4000) not null, --섬네일 이미지
+   msynop varchar2(4000) not null --줄거리  
 );
 
 drop sequence tmovie_seq;
@@ -53,20 +30,20 @@ create sequence tmovie_seq
   maxvalue 100000
   nocache;
 
---user 占쏙옙占싱븝옙 占쏙옙占쏙옙
+--user 테이블 생성
 drop table tuser;
 
 create table tuser( 
-	unum number primary key, --占쏙옙占쏙옙占쏙옙호
-	usid varchar2(4000) not null, --회占쏙옙 占쏙옙占싱듸옙
-	uname varchar2(4000) not null, --회占쏙옙 占싻놂옙占쏙옙
-	upw varchar2(4000) not null, --회占쏙옙 占쏙옙橘占싫�
-	udate date not null,  --占쏙옙占쏙옙占쏙옙
-	ubirth date not null, --占쏙옙占쏙옙占쏙옙占�
-	ugrade number not null, --회占쏙옙 占쏙옙占�
-	uupstart date, --占쏙옙占쏙옙占� 회占쏙옙 占쏙옙占쏙옙
-	uupend date, --占쏙옙占쏙옙占� 회占쏙옙 占쏙옙
-	ugenre varchar2(4000) not null -- 占쏙옙호 占썲르
+	unum number primary key, --고유번호
+	usid varchar2(4000) not null, --회원 아이디
+	uname varchar2(4000) not null, --회원 닉네임
+	upw varchar2(4000) not null, --회원 비밀번호
+	udate date not null,  --가입일
+	ubirth date not null, --생년월일
+	ugrade number not null, --회원 등급
+	uupstart date, --스페셜 회원 시작
+	uupend date, --스페셜 회원 끝
+	ugenre varchar2(4000) not null -- 선호 장르
 );
 
 drop sequence tuser_seq;
@@ -77,13 +54,13 @@ create sequence tuser_seq
   maxvalue 100000
   nocache;
 
---favorite 占쏙옙占싱븝옙 占쏙옙占쏙옙
+--favorite 테이블 생성
 drop table favorite;
 
 create table favorite( 
-	fnum number primary key, --占쏙옙占쏙옙占쏙옙호
-	funum number not null, --회占쏙옙 占쏙옙占쏙옙 占쏙옙호
-	fmnum number not null -- 占쏙옙占시ｏ옙占� 占쏙옙占� 占쏙옙화
+	fnum number primary key, --고유번호
+	funum number not null, --회원 고유 번호
+	fmnum number not null -- 즐겨찾기 대상 영화
 );
 
 drop sequence favorite_seq;
@@ -94,12 +71,12 @@ create sequence favorite_seq
   maxvalue 100000
   nocache;
   
---genre 占쏙옙占싱븝옙 占쏙옙占쏙옙
+--genre 테이블 생성
 drop table genre;
 
 create table genre( 
-	gnum number primary key, --占쏙옙占쏙옙占쏙옙호
-	gname varchar2(4000) not null -- 占썲르占쏙옙
+	gnum number primary key, --고유번호
+	gname varchar2(4000) not null -- 장르명
 );
 
 drop sequence genre_seq;
@@ -110,20 +87,20 @@ create sequence genre_seq
   maxvalue 100000
   nocache;
 
---mboard 占쏙옙占싱븝옙 占쏙옙占쏙옙
+--mboard 테이블 생성
 drop table mboard;
 
 create table mboard( 
-	bnum number primary key, --占쏙옙占쏙옙占쏙옙호
-	btype number not null, --占쌉시깍옙 타占쏙옙
-	bmnum number not null, --占쏙옙화 占쏙옙占쏙옙占쏙옙호
-	bunum number not null, --占쌜쇽옙占쏙옙 占쏙옙占쏙옙占쏙옙호
-	bsubject varchar2(4000) not null, --占쏙옙占쏙옙 占쏙옙占쏙옙
-	bcon varchar2(4000) not null, --占쏙옙占쏙옙(占쏙옙占쏙옙) 占쏙옙占쏙옙
-	bref number not null, -- 占쏙옙占� 占쌓뤄옙
-	brestep number not null, --占쏙옙占� 占쏙옙占쏙옙
-	brelevel number not null, --占쏙옙占� 占쌤곤옙
-	ddate date not null -- 占쌜쇽옙占쏙옙
+	bnum number primary key, --고유번호
+	btype number not null, --게시글 타입
+	bmnum number not null, --영화 고유번호
+	bunum number not null, --작성자 고유번호
+	bsubject varchar2(4000) not null, --공지 제목
+	bcon varchar2(4000) not null, --뎃글(공지) 내용
+	bref number not null, -- 댓글 그룹
+	brestep number not null, --댓글 순번
+	brelevel number not null, --댓글 단계
+	ddate date not null -- 작성일
 );
 
 drop sequence mboard_seq;
@@ -135,17 +112,16 @@ create sequence mboard_seq
   nocache;
 
 
-<<<<<<< HEAD
---tmovie �궫�엯�삁�젣
-insert into tmovie values(tmovie_seq.nextval,'洹뱁븳吏곸뾽','肄붾�몃뵒','�씠蹂묓뿄','�씠蹂묓뿄','瑜섏듅猷�,�씠�븯�뒳','吏꾩꽑洹�,�씠�룞�쐶',2,0,'2019-01-23',sysdate,0,0,1,'a','b','c','d');
-insert into tmovie values(tmovie_seq.nextval,'類묐컲','踰붿즲,�븸�뀡','�븳以��씗','�븳以��씗','怨듯슚吏�,瑜섏��젹,議곗젙�꽍','�뿼�젙�븘,�쟾�삙吏�',2,5,'2019-01-30',sysdate,0,0,1,'a','b','c','d');
-insert into tmovie values(tmovie_seq.nextval,'留먮え�씠','�뱶�씪留�','�뾼�쑀�굹','�뾼�쑀�굹','�쑀�빐吏�,�쑄怨꾩긽,源��솉�뙆','�슦�쁽,源��깭�썕',2,0,'2019-01-30',sysdate,0,0,1,'a','b','c','d');
+--tmovie 삽입예제
+insert into tmovie values(tmovie_seq.nextval,'극한직업','코미디','이병헌','이병헌','류승룡,이하늬','진선규,이동휘',2,0,'2019-01-23',sysdate,0,0,1,'a','b','c','d');
+insert into tmovie values(tmovie_seq.nextval,'뺑반','범죄,액션','한준희','한준희','공효진,류준렬,조정석','염정아,전혜진',2,5,'2019-01-30',sysdate,0,0,1,'a','b','c','d');
+insert into tmovie values(tmovie_seq.nextval,'말모이','드라마','엄유나','엄유나','유해진,윤계상,김홍파','우현,김태훈',2,0,'2019-01-30',sysdate,0,0,1,'a','b','c','d');
 
---tuser �궫�엯�삁�젣
+--tuser 삽입예제
 insert into tuser values(tuser_seq.nextval,'admin','admin','1234',sysdate,'2019-01-01',0,null,null,'a');
-insert into tuser values(tuser_seq.nextval,'a1234','aaa','1234',sysdate,'2019-01-01',1,null,null,'肄붾�몃뵒');
+insert into tuser values(tuser_seq.nextval,'a1234','aaa','1234',sysdate,'2019-01-01',1,null,null,'코미디');
 
---genre �궫�엯�삁�젣
+--genre 삽입예제
 insert into genre values(genre_seq.nextval,'코미디');
 insert into genre values(genre_seq.nextval,'액션');
 insert into genre values(genre_seq.nextval,'범죄');
@@ -153,25 +129,3 @@ insert into genre values(genre_seq.nextval,'스릴러');
 insert into genre values(genre_seq.nextval,'공포');
 insert into genre values(genre_seq.nextval,'드라마');
 insert into genre values(genre_seq.nextval,'멜로');
-
-commit;
-
-=======
---tmovie ���Կ���
-insert into tmovie values(tmovie_seq.nextval,'��������','�ڹ̵�','�̺���','�̺���','���·�,���ϴ�','������,�̵���',2,0,'2019-01-23',sysdate,0,0,1,'a','b','c','d');
-insert into tmovie values(tmovie_seq.nextval,'����','����,�׼�','������','������','��ȿ��,���ط�,������','������,������',2,5,'2019-01-30',sysdate,0,0,1,'a','b','c','d');
-insert into tmovie values(tmovie_seq.nextval,'������','���','������','������','������,�����,��ȫ��','����,������',2,0,'2019-01-30',sysdate,0,0,1,'a','b','c','d');
-
---tuser ���Կ���
-insert into tuser values(tuser_seq.nextval,'admin','admin','1234',sysdate,'2019-01-01',0,null,null,'a');
-insert into tuser values(tuser_seq.nextval,'a1234','aaa','1234',sysdate,'2019-01-01',1,null,null,'�ڹ̵�');
-
---genre ���Կ���
-insert into genre values(genre_seq.nextval,'�ڹ̵�');
-insert into genre values(genre_seq.nextval,'�׼�');
-insert into genre values(genre_seq.nextval,'����');
-insert into genre values(genre_seq.nextval,'������');
-insert into genre values(genre_seq.nextval,'����');
-insert into genre values(genre_seq.nextval,'���');
-insert into genre values(genre_seq.nextval,'���');
->>>>>>> refs/remotes/origin/master

@@ -35,6 +35,7 @@
 </head>
 <body>
 
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<a class="navbar-brand" href="main.tm">Palnet Ark</a>
 
@@ -53,7 +54,7 @@
 	    </button>
 		<ul class="dropdown-menu" >
 		<c:forEach var="list" items="${genreList }">
-			<li ><a href="#">${list.gname} ${list.gnum} </a></li>
+			<li ><a href="genreView.tm?gname=${list.gname}">${list.gname} ${list.gnum} </a></li>
 		</c:forEach>
 		</ul>
 	</div>

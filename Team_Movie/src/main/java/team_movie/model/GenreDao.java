@@ -11,8 +11,6 @@ import org.springframework.stereotype.Component;
 
 @Component("myGenreDao")
 public class GenreDao {
-	
-	
 	public static final String namespace="team_movie.model.GenreBean";
 	
 	@Autowired
@@ -28,5 +26,4 @@ public class GenreDao {
 		
 		return genreList;
 	}
-	
 }

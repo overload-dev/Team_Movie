@@ -1,7 +1,5 @@
 package team_movie.movie.controller;
 
-import java.util.ArrayList;
-
 import java.util.List;
 
 
@@ -24,11 +22,14 @@ public class MovieListController {
 	private static final String command ="/main.tm";
 	
 	@Autowired
+	MovieDao movieDao;
+	
+	
+	// for get GenreData
+	@Autowired
 	@Qualifier("myGenreDao")
 	GenreDao genreDao;
 	
-	@Autowired
-	MovieDao movieDao;
 	
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public ModelAndView doActionGet(){
@@ -92,25 +93,9 @@ public class MovieListController {
 		
 		//GenreData Get
 		List<GenreBean> genreList = null;
-		genreList = getGenreList();
-		
+		genreList = genreDao.getGenreList();
 		mav.addObject("genreList", genreList);
 		
 		return mav;
 	}
-	
-	
-	//장르 정보를 획득
-	public List<GenreBean> getGenreList(){
-		List<GenreBean> genreList = new ArrayList<GenreBean>();
-		genreList = genreDao.getGenreList();
-
-		/*private int gnum; // 고유번호
-		private String gname; // 장르 명
-*/
-		System.out.println("genreList.get(1).getGname()" + genreList.get(1).getGname());
-		
-		return genreList;
-	}
-	
 }
