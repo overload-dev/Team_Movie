@@ -1,8 +1,8 @@
 package team_movie.model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
-public class UserBean {
+public class UserBean { 
 
 	private int unum; // 고유번호
 	private String usid; // 회원 아이디

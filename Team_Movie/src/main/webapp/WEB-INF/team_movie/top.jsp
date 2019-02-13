@@ -29,8 +29,7 @@
 <!-- // jQuery UI 라이브러리 js파일 -->
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
-
-
+로그인 한 회원정보 : <%=session.getAttribute("loginfo")%>
 <title>Palnet Ark</title>
 </head>
 <body>
@@ -76,7 +75,8 @@
 	<div>
 	<c:choose>
 		<c:when test="${ugrade == null}"><!-- none acount -->
-			<input type="button" class="btn btn-info" value="Login">
+		
+			<input type="button" class="btn btn-info" value="Login" onclick="location.href='userLogin.tm'">
 			<input type="button" class="btn btn-info" value ="Sign Up" onclick="location.href='userInsert.tm'">
 			
 		</c:when>

@@ -9,10 +9,10 @@
 	<bean id ="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value ="oracle.jdbc.driver.OracleDriver"/>
 		<property name="url" value ="jdbc:oracle:thin:@localhost:1521:xe"/>
-		<property name="username" value="jspid"/>
+		<property name="username" value="jspid2"/>
 		<property name="password" value="jsppw"/>
 	</bean>
-	
+	 
 	<!-- Mybatis 설정 -->
 	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
