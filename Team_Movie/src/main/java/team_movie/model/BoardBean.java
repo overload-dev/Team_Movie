@@ -1,15 +1,15 @@
 package team_movie.model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class BoardBean {
 	
-	private int bnum; //°íÀ¯ ¹øÈ£
-	private int btype; // °Ô½Ã±Û Å¸ÀÔ 0: °øÁö, 1: ´ñ±Û
-	private int bmnum; // °¢ ¿µÈ­ °íÀ¯ ¹øÈ£
-	private int bunum; // ÀÛ¼ºÀÚ °íÀ¯ ¹øÈ£
-	private String bsubject; // °øÁö Á¦¸ñ (btypeÀÌ 0ÀÏ¶§¸¸ »ç¿ë)
-	private String bcon; // ´ñ±Û(°øÁö) ³»¿ë (³»¿ëÀÌ nullÀÏ °æ¿ì, '°Ô½Ã±Û »èÁ¦~' Ãâ·Â
+	private int bnum; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+	private int btype; // ï¿½Ô½Ã±ï¿½ Å¸ï¿½ï¿½ 0: ï¿½ï¿½ï¿½ï¿½, 1: ï¿½ï¿½ï¿½
+	private int bmnum; // ï¿½ï¿½ ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+	private int bunum; // ï¿½Û¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+	private String bsubject; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (btypeï¿½ï¿½ 0ï¿½Ï¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½)
+	private String bcon; // ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ nullï¿½ï¿½ ï¿½ï¿½ï¿½, 'ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½~' ï¿½ï¿½ï¿½
 	private int bref;
 	private int brestep;
 	private int brelevel;
