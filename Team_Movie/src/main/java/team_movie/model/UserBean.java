@@ -2,7 +2,7 @@ package team_movie.model;
 
 import java.sql.Timestamp;
 
-public class UserBean {
+public class UserBean { 
 
 	private int unum; // ������ȣ
 	private String usid; // ȸ�� ���̵�

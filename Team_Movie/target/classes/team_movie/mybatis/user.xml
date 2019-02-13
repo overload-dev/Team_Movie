@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="team_movie.model.UserBean">
+	
+	 <insert id="userInsert">
+	 insert into tuser values(tuser_seq.nextval,#{usid},#{uname},#{upw},sysdate,'2019-01-01',#{ugrade},null,null,#{ugenre})
+	</insert>
+	
+	<select id="GetData" resultType="MyUser">
+		select * from tuser where usid=#{usid}
+	</select>
+	
+	<select id="GetIdData" resultType="MyUser">
+		select * from tuser where uname=#{uname} and ubirth=#{ubirth}
+	</select>
+</mapper>
+ 
