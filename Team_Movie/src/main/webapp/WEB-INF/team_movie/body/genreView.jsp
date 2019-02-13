@@ -8,6 +8,14 @@
 <%@include file="../top.jsp"%>
 <%@include file="./../../common/common.jsp"%>
 
+<script type="text/javascript">
+	function movie_description(){
+		
+		$("#desc").show();
+	}
+	
+</script>
+
 </head>
 <body>
 	<div class="container">
@@ -24,7 +32,16 @@
 				<div class="row">
 					<c:forEach var="mlist" items="${movielist}">
 						<div class="col-sm-3">
-							<img src="//s3.namuwikiusercontent.com/s/5673b412996accb9ce935c3378c8d1493ea74f53cb6f692ee27ceed2c0b6ea2aed0b4cfcb49b387abab676557d156ef2f5a54dbf820089708d6cc6568690b8289a21bfc39a73f3702f1000356f5d85b90b25cae3d483b159e8a5349d562fb69e" width="80%">	
+							<div style="position: relative;" onclick="#"style="cursor:pointer" onmouseover="movie_description()">
+								
+									<img src="//s3.namuwikiusercontent.com/s/5673b412996accb9ce935c3378c8d1493ea74f53cb6f692ee27ceed2c0b6ea2aed0b4cfcb49b387abab676557d156ef2f5a54dbf820089708d6cc6568690b8289d29501a651b4e30ee9eb4d08fb6d765dbe1b5755d3a8b89900e1c09028c3726" width="80%">
+								
+								 	<span id="desc" style="display:none; background-color:black; opacity: 0.5; position: absolute; left:0; top: 0; width: 80%; height: 100%" >
+										<b>aaszzzzzzzzzzzzzzzzzzd</b>
+										<b>aaszzzzzzzzzzzzzzzzzzd</b>
+										<b>aaszzzzzzzzzzzzzzzzzzd</b>
+									</span>
+							</div>
 							<br>
 							<b class="text-info"> ${mlist.mname }</b>
 						</div>
