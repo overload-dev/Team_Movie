@@ -74,20 +74,20 @@
 	
 	<div>
 	<c:choose>
-		<c:when test="${ugrade == null}"><!-- none acount -->
+		<c:when test="${sessionScope.ugrade == null}"><!-- none acount -->
 		
 			<input type="button" class="btn btn-info" value="Login" onclick="location.href='userLogin.tm'">
 			<input type="button" class="btn btn-info" value ="Sign Up" onclick="location.href='userInsert.tm'">
 			
 		</c:when>
-		<c:when test="${ugrade == '0'}"><!-- admin acount -->
-			<a href="">Welcome! ${usid} (${uname})</a>
+		<c:when test="${sessionScope.ugrade == '0'}"><!-- admin acount -->
+			<a href="adminPage.tm">Welcome! ${sessionScope.usid} (${sessionScope.uname})</a>
 		</c:when>
-		<c:when test="${ugrade == '1'}"><!-- normal acount -->
-			<a href="">Welcome! ${usid} (${uname})</a>
+		<c:when test="${sessionScope.ugrade == '1'}"><!-- normal acount -->
+			<a href="">Welcome! ${sessionScope.usid} (${sessionScope.uname})</a>
 		</c:when>
-		<c:when test="${ugrade == '2'}"><!-- special acount -->
-			<a href="">Welcome! ${usid} (${uname})</a>
+		<c:when test="${sessionScope.ugrade == '2'}"><!-- special acount -->
+			<a href="">Welcome! ${sessionScope.usid} (${sessionScope.uname})</a>
 		</c:when>
 	</c:choose>  	
 	</div>

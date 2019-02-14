@@ -61,7 +61,10 @@ public class UserLoginContoller {
 		}else{
 			if(userBean.getUsid().equals(login.getUsid())&& userBean.getUpw().equals(login.getUpw()))
 			{
-				session.setAttribute("loginfo", login.getUname());
+				session.setAttribute("usid", login.getUsid());
+				session.setAttribute("uname", login.getUname());
+				session.setAttribute("ugrade", login.getUgrade());
+				
 				mav.setViewName(gotoPage);// 로그인 성공 메인페이지
 				
 			}else{
