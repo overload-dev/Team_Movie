@@ -1,20 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="../../top.jsp" %>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>FINDIDFORM</title>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- 
-   <!--Bootstrap ¹× css Ãß°¡ÇÑ ºÎºÐ -->
+<meta charset="UTF-8">
    <!--Bootsrap4-->
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   
-   <!-- ÀÌ ºÎºÐÀº ÆùÆ®ÇÏ°í ÀÌ¹ÌÁö¸µÅ©ÀÔ´Ï´Ù.  -->
+   <!-- ì´ ë¶€ë¶„ì€ í°íŠ¸í•˜ê³  ì´ë¯¸ì§€ë§í¬ìž…ë‹ˆë‹¤.  -->
     <!--Fontawesome CDN-->
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
    
@@ -25,21 +17,21 @@ FindIdForm.jsp
    <div class="d-flex justify-content-center h-100">
       <div class="card">
          <div class="card-header">
-            ¾ÆÀÌµð¸¦ ÀØÀ¸¼Ì³ª¿ä?
+            ì•„ì´ë””ë¥¼ ìžŠìœ¼ì…¨ë‚˜ìš”?
          </div>
          <div class="card-body">
-            <form method="POST" action="findId.tm"><!-- ÀÌ¸§°ú »ý³â¿ùÀÏÀÌ °°Àº ¾ÆÀÌµð°¡ ÀÖ´Ù¸é ¾ÆÀÌµðÃ£±âcontroller·Î ÀÌµ¿  -->
-            <!-- ÀÌ¸§ ÀÔ·Â ºÎºÐ  -->
+            <form method="POST" action="findId.tm"><!-- ì´ë¦„ê³¼ ìƒë…„ì›”ì¼ì´ ê°™ì€ ì•„ì´ë””ê°€ ìžˆë‹¤ë©´ ì•„ì´ë””ì°¾ê¸°controllerë¡œ ì´ë™  -->
+            <!-- ì´ë¦„ ìž…ë ¥ ë¶€ë¶„  -->
                <div class="input-group form-group">
                   <div class="input-group-prepend">
                      <span class="input-group-text">
                         <i class="fas fa-user"></i>
                      </span>
                   </div>
-                  <input type="text" name="uname" class="form-control" placeholder="ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä.">
+                  <input type="text" name="uname" class="form-control" placeholder="ì´ë¦„ì„ ìž…ë ¥í•˜ì„¸ìš”.">
                </div>
                
-            <!-- »ý³â¿ùÀÏ ÀÔ·ÂºÎºÐ  -->
+            <!-- ìƒë…„ì›”ì¼ ìž…ë ¥ë¶€ë¶„  -->
                <div class="input-group form-group">
                   <div class="input-group-prepend">
                      <span class="input-group-text"><i class="fas fa-key"></i></span>
@@ -68,21 +60,21 @@ FindIdForm.jsp
                   </select> 
                </div>
             
-            <!-- ¾ÆÀÌµð ¹× ºñ¹Ð¹øÈ£ Ã£±â¹öÆ° ºÎºÐ  -->
+            <!-- ì•„ì´ë”” ë° ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°ë²„íŠ¼ ë¶€ë¶„  -->
                <div class="form-group" align="right">
-                  <input type="submit" value="¾ÆÀÌµðÃ£±â" class="btn login_btn">
+                  <input type="submit" value="ì•„ì´ë””ì°¾ê¸°" class="btn login_btn">
                </div> 
             </form> 
          </div>
-         <!-- È¸¿ø°¡ÀÔ ¹×  PW Ã£±â  -->
+         <!-- íšŒì›ê°€ìž… ë°  PW ì°¾ê¸°  -->
          
          <div class="card-footer">
              
             <div class="d-flex">
-               <a href="usertInsert.tm">¾ÆÁ÷ È¸¿ø°¡ÀÔÀ» ¾ÈÇÏ¼Ì³ª¿ä??</a><!--È¸¿ø°¡ÀÔ ÆûÀ¸·Î ÀÌµ¿  -->
+               <a href="userInsert.tm">ì•„ì§ íšŒì›ê°€ìž…ì„ ì•ˆí•˜ì…¨ë‚˜ìš”??</a><!--íšŒì›ê°€ìž… í¼ìœ¼ë¡œ ì´ë™  -->
             </div>
             <div class="d-flex">
-               <a href="#">PASSWORD¸¦ ÀØÀ¸¼Ì³ª¿ä??</a><!--PASSWORDÃ£±â ÆûÀ¸·Î ÀÌµ¿  -->
+               <a href="findPw.tm">PASSWORDë¥¼ ìžŠìœ¼ì…¨ë‚˜ìš”??</a><!--PASSWORDì°¾ê¸° í¼ìœ¼ë¡œ ì´ë™  -->
             </div>
          </div>
       </div> 
