@@ -2,6 +2,10 @@ package team_movie.controller;
 
 
 
+import java.sql.Date;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,8 +33,17 @@ public class UserInsertController {
 	
 	@RequestMapping(value=command , method= RequestMethod.POST)
 	public String doActionPost(
-			UserBean userBean
+			UserBean userBean,
+			HttpServletRequest request
 			){
+			
+			String insertubirth=request.getParameter("insertubirth");		
+			Date ubirth = Date.valueOf(insertubirth);
+			
+			System.out.println(ubirth);
+			
+			userBean.setUbirth(ubirth);
+		
 		System.out.println("userBean.getUgrade()="+userBean.getUgrade());
 		System.out.println("userBean.getUsid()=" +userBean.getUsid());
 		System.out.println("userBean.getUname()="+userBean.getUname());
@@ -38,9 +51,9 @@ public class UserInsertController {
 		System.out.println("userBean.getUbirth()="+userBean.getUbirth());
 		System.out.println("userBean.getUgenre()="+userBean.getUgenre());
 		
+		
 		int cnt =0;
 		cnt = userDao.userInsert(userBean);
-		
 		return gotoPage;
 	}
 	

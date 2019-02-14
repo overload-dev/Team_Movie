@@ -12,13 +12,13 @@
 		<property name="username" value="jspid"/>
 		<property name="password" value="jsppw"/>
 	</bean>
-	 
+	  
 	<!-- Mybatis 설정 -->
 	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="configLocation" value="classpath:/team_movie/mybatis/SqlMapConfig.xml"/>
 	</bean>
-	<!-- 
+	<!--  
 	dataSource:
 		데이터 베이스의 출처, 데이터 소스
 	configLocation :
@@ -31,3 +31,4 @@
 	 	<constructor-arg ref="sqlSessionFactoryBean"/>
 	</bean>	
 </beans>
+

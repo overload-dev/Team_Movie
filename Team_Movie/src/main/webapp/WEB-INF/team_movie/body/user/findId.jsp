@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,8 +44,29 @@ FindIdForm.jsp
                   <div class="input-group-prepend">
                      <span class="input-group-text"><i class="fas fa-key"></i></span>
                   </div>
-                  <!-- name 추가 할 것 name="ubirth"  -->
-                  <input type="text" class="form-control" placeholder="생년월일 8자리 입력하세요.">
+                  <!-- name 추가 할 것 name="ubirth" 
+                  <input type="text" class="form-control" name="ubirth" placeholder="생년월일 8자리 입력하세요."> -->
+                  <select name="yy">
+                  		<c:forEach var="y" begin="1950" end="2019">
+                  			<option>
+                  				${y}
+                  			</option>
+                  		</c:forEach>
+                  </select> -
+                  <select name="mm">
+                  		<c:forEach var="m" begin="1" end="12">
+                  			<option>
+                  				${m}
+                  			</option>
+                  		</c:forEach>
+                  </select> -
+                  <select name="dd">
+                  		<c:forEach var="d" begin="1" end="31">
+                  			<option>
+                  				${d}
+                  			</option>
+                  		</c:forEach>
+                  </select> 
                </div>
             
             <!-- 아이디 및 비밀번호 찾기버튼 부분  -->

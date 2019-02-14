@@ -19,7 +19,7 @@ create table tmovie(
    murl varchar2(4000) not null, --영상 링크
    mrepo varchar2(4000) not null, --영상 저장소 링크
    mimg varchar2(4000) not null, --섬네일 이미지
-   msynop varchar2(4000) not null --줄거리
+   msynop varchar2(4000) not null, --줄거리
    mruntime varchar2(4000) not null-- 런닝타임  
 );
 

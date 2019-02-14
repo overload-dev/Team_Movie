@@ -2,8 +2,11 @@ package team_movie.controller;
 
 
 
-import java.sql.Timestamp;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Date;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,28 +36,60 @@ public class UserFindIdController {
 	
 	//findId.jsp에서 아이디찾기 버튼을 클릭 했을 때
 	@RequestMapping(value=command , method= RequestMethod.POST)
-	public String doActionPost(
+	public ModelAndView doActionPost(
 						UserBean userBean,
-						HttpServletResponse response){
+						HttpServletResponse response,
+						HttpServletRequest request) throws IOException{
 		System.out.println("findId.jsp에서 아이디찾기 버튼을 클릭");
+		 
+		String yy= request.getParameter("yy");
+		String mm=request.getParameter("mm");
+		String dd=request.getParameter("dd");
+		String date = yy+"-"+mm+"-"+dd;
+		Date ubirth = Date.valueOf(date);
+		userBean.setUbirth(ubirth);
 		
-		//임의로 삽입 ubirth 삽입 회원가입에서 삽입하는 문제 해결되면 바뀔 부분
-		String text = "2019-01-01";
-		Timestamp ts = Timestamp.valueOf(text);
-		System.out.println(ts); 
-		userBean.setUbirth(ts);
 		System.out.println("userBean.getUname() :"+userBean.getUname());
 		System.out.println("userBean.getUbirth() :"+userBean.getUbirth());
-		
 		
 		ModelAndView mav = new ModelAndView();
 		UserBean findId = this.userDao.GetIdData(userBean);
 		
-		System.out.println("findId.getUname() :"+findId.getUname());
-		System.out.println("findId.getUbirth() :"+findId.getUbirth());
-		  
+		PrintWriter writer;
+		response.setContentType("text/html;charset=UTF-8"); 
+		writer = response.getWriter();
+
+		if( findId == null ){
+			writer.println("<script type='text/javascript'>");
+			writer.println("alert('입력하신 이름은 존재하지 않습니다.');");
+			writer.println("history.back();"); 
+			writer.println("</script>");
+			writer.flush(); 
+			return new ModelAndView( getPage ) ;
+
+		}else{
+			if(userBean.getUsid().equals(findId.getUsid())&& userBean.getUpw().equals(findId.getUpw()))
+			{
+				writer = response.getWriter();
+				writer.println("<script type='text/javascript'>");
+				writer.println("alert('찾으시는 아이디는"+findId.getUsid()+"입니다.');");
+				writer.println("history.back();"); 
+				writer.println("</script>");
+				mav.setViewName(gotoPage);// 로그인 성공 메인페이지
+				 
+			}else{
+				writer = response.getWriter();
+				writer.println("<script type='text/javascript'>");
+				writer.println("alert('입력하신 생일이 잘못되었습니다.');");
+				writer.println("history.back();"); 
+				writer.println("</script>");
+				writer.flush();
+				
+				return new ModelAndView( getPage );//로그인 실패 userLogin.jsp
+			}
+		}
 		
-		return gotoPage;
+		return mav;
 	}
 	
 }

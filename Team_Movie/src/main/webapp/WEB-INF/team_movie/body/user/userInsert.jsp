@@ -19,7 +19,8 @@ $(function() {
     	changeMonth: true, 
         changeYear: true,
         nextText: '다음 달',
-        prevText: '이전 달' 
+        prevText: '이전 달',
+        dateFormat: 'yy-mm-dd'
     });
 });
 </script>
@@ -62,15 +63,15 @@ userInsert.jsp<br>
 				</div>
 			</div>
 			  
-      		<!-- 생년 월일   
+      		<!-- 생년 월일   --> 
 			
 			<div class="form-group">
 				<label class="col-sm-12 control-label">생년월일</label>   
 				<div class="col-sm-8">
-					<input type="text" id="testDatepicker" name="ubirth" class="form-control"> 
+					<input type="text" id="testDatepicker" name="insertubirth" class="form-control"> 
 				</div>
 			</div>
-			  --> 
+			  
 			<!-- 선호 장르 선택  -->     
 			<div class="form-group">
 				<label class="control-label col-sm-12">선호 장르</label>

@@ -6,7 +6,7 @@
 <mapper namespace="team_movie.model.UserBean">
 	
 	 <insert id="userInsert">
-	 insert into tuser values(tuser_seq.nextval,#{usid},#{uname},#{upw},sysdate,'2019-01-01',#{ugrade},null,null,#{ugenre})
+	 insert into tuser values(tuser_seq.nextval,#{usid},#{uname},#{upw},sysdate,#{ubirth},#{ugrade},null,null,#{ugenre})
 	</insert>
 	
 	<select id="GetData" resultType="MyUser">
@@ -17,4 +17,5 @@
 		select * from tuser where uname=#{uname} and ubirth=#{ubirth}
 	</select>
 </mapper>
+
  

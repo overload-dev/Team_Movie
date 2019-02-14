@@ -30,6 +30,7 @@
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
 로그인 한 회원정보 : <%=session.getAttribute("loginfo")%>
+<input type="button" value="logout" onclick="location.href='userLogout.tm'">
 <title>Palnet Ark</title>
 </head>
 <body>
