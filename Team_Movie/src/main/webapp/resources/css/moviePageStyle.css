@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+/* Previous button  */
+.media-carousel .carousel-control.left 
+{
+  left: -10px;
+  width : 30px;
+}
+/* Next button  */
+.media-carousel .carousel-control.right 
+{
+  right: -10px !important;
+  width : 30px;
+}
