@@ -44,8 +44,7 @@ FindIdForm.jsp
                   <div class="input-group-prepend">
                      <span class="input-group-text"><i class="fas fa-key"></i></span>
                   </div>
-                  <!-- name 추가 할 것 name="ubirth" 
-                  <input type="text" class="form-control" name="ubirth" placeholder="생년월일 8자리 입력하세요."> -->
+                  
                   <select name="yy">
                   		<c:forEach var="y" begin="1950" end="2019">
                   			<option>

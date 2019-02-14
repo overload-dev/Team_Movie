@@ -14,7 +14,10 @@
 	</select>
 	
 	<select id="GetIdData" resultType="MyUser">
-		select * from tuser where uname=#{uname} and ubirth=#{ubirth}
+		select * from tuser where uname=#{uname}
+	</select>
+	<select id="GetPwData" resultType="MyUser">
+		select * from tuser where usid=#{usid}
 	</select>
 </mapper>
 

@@ -38,4 +38,12 @@ public class UserDao {
 		findId = sqlSessionTemplate.selectOne(namespace+".GetIdData",userBean);
 		return findId;
 	}
+
+	public UserBean GetPwData(UserBean userBean) {
+		UserBean findPw=null; 
+		System.out.println("PW Ã£±â");
+		findPw = sqlSessionTemplate.selectOne(namespace+".GetPwData",userBean);
+		
+		return findPw;
+	}
 }

@@ -8,8 +8,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import team_movie.model.UserBean;
@@ -27,7 +29,12 @@ public class UserLoginContoller {
 	
 	//main에서 login 버튼을 클릭 했을 때
 	@RequestMapping(value=command, method = RequestMethod.GET)
-	public String doActionGet(){
+	public String doActionGet(
+			@RequestParam(value="usid",required=false) String usid,
+			Model model
+			){
+		model.addAttribute("usid", usid);
+	
 		return getPage;
 	}
 	
