@@ -35,29 +35,34 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<a class="navbar-brand" href="main.tm">Palnet Ark</a>
-
-	<div class="">
+	
+	
+	<div class="col-sm-2">
+	 <form class="form-inline">
 		<div class="input-group">
 		  <input type="text" class="form-control" placeholder="Search">
 		  <div class="input-group-append">
 		    <input type="submit" class="btn btn-success" value="Search">
 		  </div>
 		</div>
+	</form>
+	</div>
+	<div class="col-sm-1">
+			<div class="dropdown col-sm-2">
+			    <button class="btn btn-info dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+			    	장르 카테고리
+			    </button>
+				<ul class="dropdown-menu" >
+				<c:forEach var="list" items="${genreList }">
+					<li ><a href="genreView.tm?gname=${list.gname}">${list.gname} ${list.gnum} </a></li>
+				</c:forEach>
+				</ul>
+			</div>
+	
 	</div>
 	
-	<div class="dropdown">
-	    <button class="btn btn-info dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
-	    	장르 카테고리
-	    </button>
-		<ul class="dropdown-menu" >
-		<c:forEach var="list" items="${genreList }">
-			<li ><a href="genreView.tm?gname=${list.gname}">${list.gname} ${list.gnum} </a></li>
-		</c:forEach>
-		</ul>
-	</div>
-	
-	<div class="collapse navbar-collapse">
-		<ul class="navbar-nav mr-auto">
+	<div class="col-sm-4">
+		<ul class="navbar-nav">
 			<c:if test="${sessionScope.usid != null }">
 				<li class="nav-item">
 					<a class="nav-link" href="#">Feeling</a>
@@ -69,7 +74,8 @@
 		</ul>
 	</div>
 	
-	<div>
+
+	<div class="col-sm-4" >
 	<c:choose>
 		<c:when test="${sessionScope.ugrade == null}"><!-- none acount -->
 		
@@ -77,13 +83,15 @@
 			<input type="button" class="btn btn-info" value ="Sign Up" onclick="location.href='userInsert.tm'">
 			
 		</c:when>
+		
+		
 		<c:when test="${sessionScope.ugrade == '0'}"><!-- admin acount -->
 			<a href="adminUserEdit.tm">
 				<font style="color: white; font-weight: bold; font-size: medium;">
 					환영합니다. ${sessionScope.usid} (${sessionScope.uname}) 님
 				</font>
 			</a>
-			<div class="btn-group">
+
 				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">내 정보</button>
 				<div class="dropdown-menu">
 					<a class="dropitem" href="#">공지사항</a><br>
@@ -93,8 +101,12 @@
 				</div>
 
 				<input type="button" class="btn btn-danger" value="logout" onclick="location.href='userLogout.tm'">
-			</div>
+
 		</c:when>
+		
+		
+		
+		
 		<c:when test="${sessionScope.ugrade == '1'}"><!-- normal acount -->
 			<a href="">
 				<font style="color: white; font-weight: bold; font-size: medium;">
@@ -103,13 +115,15 @@
 			</a>
 			<input type="button" class="btn btn-danger" value="logout" onclick="location.href='userLogout.tm'">
 		</c:when>
+		
+		
+		
 		<c:when test="${sessionScope.ugrade == '2'}"><!-- special acount -->
 			<a href="">
 				<font style="color: white; font-weight: bold; font-size: medium;">
 					환영합니다. ${sessionScope.usid} (${sessionScope.uname}) 님
 				</font>
 			</a>
-
 			<input type="button" class="btn btn-danger" value="logout" onclick="location.href='userLogout.tm'">
 		</c:when>
 	</c:choose>  	
