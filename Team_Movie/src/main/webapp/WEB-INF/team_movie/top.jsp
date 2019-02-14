@@ -29,8 +29,6 @@
 <!-- // jQuery UI 라이브러리 js파일 -->
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
-로그인 한 회원정보 : <%=session.getAttribute("loginfo")%>
-<input type="button" value="logout" onclick="location.href='userLogout.tm'">
 <title>Palnet Ark</title>
 </head>
 <body>
@@ -39,7 +37,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<a class="navbar-brand" href="main.tm">Palnet Ark</a>
 
-	<div class="col-sm-4">
+	<div class="">
 		<div class="input-group">
 		  <input type="text" class="form-control" placeholder="Search">
 		  <div class="input-group-append">
@@ -61,15 +59,14 @@
 	
 	<div class="collapse navbar-collapse">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item">
-				<a class="nav-link" href="#">Link</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">Link</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link disabled" href="#">Disabled</a>
-			</li>
+			<c:if test="${sessionScope.usid != null }">
+				<li class="nav-item">
+					<a class="nav-link" href="#">Feeling</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Link</a>
+				</li>
+			</c:if>
 		</ul>
 	</div>
 	
@@ -82,13 +79,39 @@
 			
 		</c:when>
 		<c:when test="${sessionScope.ugrade == '0'}"><!-- admin acount -->
-			<a href="adminPage.tm">Welcome! ${sessionScope.usid} (${sessionScope.uname})</a>
+			<a href="adminUserEdit.tm">
+				<font style="color: white; font-weight: bold; font-size: medium;">
+					환영합니다. ${sessionScope.usid} (${sessionScope.uname}) 님
+				</font>
+			</a>
+			<div class="btn-group">
+				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">내 정보</button>
+				<div class="dropdown-menu">
+					<a class="dropitem" href="#">공지사항</a><br>
+					<a class="dropitem" href="adminUserEdit.tm">회원 관리</a><br>
+					<a class="dropitem" href="#">작품 관리</a><br>
+					<a class="dropitem" href="#">이벤트</a><br>
+				</div>
+
+				<input type="button" class="btn btn-danger" value="logout" onclick="location.href='userLogout.tm'">
+			</div>
 		</c:when>
 		<c:when test="${sessionScope.ugrade == '1'}"><!-- normal acount -->
-			<a href="">Welcome! ${sessionScope.usid} (${sessionScope.uname})</a>
+			<a href="">
+				<font style="color: white; font-weight: bold; font-size: medium;">
+					환영합니다. ${sessionScope.usid} (${sessionScope.uname}) 님
+				</font>
+			</a>
+			<input type="button" class="btn btn-danger" value="logout" onclick="location.href='userLogout.tm'">
 		</c:when>
 		<c:when test="${sessionScope.ugrade == '2'}"><!-- special acount -->
-			<a href="">Welcome! ${sessionScope.usid} (${sessionScope.uname})</a>
+			<a href="">
+				<font style="color: white; font-weight: bold; font-size: medium;">
+					환영합니다. ${sessionScope.usid} (${sessionScope.uname}) 님
+				</font>
+			</a>
+
+			<input type="button" class="btn btn-danger" value="logout" onclick="location.href='userLogout.tm'">
 		</c:when>
 	</c:choose>  	
 	</div>

@@ -5,8 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
+<%@include file="../../top.jsp"%>
+<%@include file="./../../../common/common.jsp"%>
+
 </head>
 <body>
-adminPage.jsp
+adminUserEdit.jsp
 </body>
 </html>
