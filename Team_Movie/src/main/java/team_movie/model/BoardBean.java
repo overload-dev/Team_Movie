@@ -5,11 +5,11 @@ import java.sql.Timestamp;
 public class BoardBean {
 	
 	private int bnum; //���� ��ȣ
-	private int btype; // �Խñ� Ÿ�� 0: ����, 1: ���
+	private int btype; // �Խñ� Ÿ�� 0: ����, 1: ���?
 	private int bmnum; // �� ��ȭ ���� ��ȣ
 	private int bunum; // �ۼ��� ���� ��ȣ
-	private String bsubject; // ���� ���� (btype�� 0�϶��� ���)
-	private String bcon; // ���(����) ���� (������ null�� ���, '�Խñ� ����~' ���
+	private String bsubject; // ���� ���� (btype�� 0�϶��� ���?)
+	private String bcon; // ���?(����) ���� (������ null�� ���?, '�Խñ� ����~' ���?
 	private int bref;
 	private int brestep;
 	private int brelevel;

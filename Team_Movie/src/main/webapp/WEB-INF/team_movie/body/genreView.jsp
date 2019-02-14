@@ -17,7 +17,6 @@
 			$("span." + mnum).hide();		
 		}
 	}
-	
 </script>
 
 </head>

@@ -4,14 +4,29 @@
 
 
 <mapper namespace="team_movie.model.MovieBean">
- 	<select id="GetMovieList" resultType="MyMovie" parameterType="hashmap">
+ 	<select id="GetMovieList" resultType="MyMovie">
 		select * from tmovie
+		order by mlike
 	</select>
 	
- 	<select id="GetMovieListByGenre" resultType="MyMovie" parameterType="hashmap">
+	<select id="GetMovieListByGenre" resultType="MyMovie">
 		select * from tmovie
 		where mgenre like '%'||#{genre}||'%'
-		order by mrcount
+		order by mlike
 	</select>
 	
+	<select id="GetTotalCount" resultType="int">
+		select count(*) from tmovie
+	</select>
+	
+ 	<select id="GetMovieByNum" resultType="MyMovie">
+		select * from tmovie
+		where mnum = #{mnum}
+	</select>
+	
+	<update id="MovieLikeUpdate">
+		update tmovie
+		set mlike = mlike + 1
+		where mnum = #{mnum}
+	</update>
 </mapper>

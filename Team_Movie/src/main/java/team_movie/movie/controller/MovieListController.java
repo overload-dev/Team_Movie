@@ -1,7 +1,9 @@
 package team_movie.movie.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -72,24 +74,25 @@ public class MovieListController {
 		
 		String[] genre = genres.split("/");
 		
+		Map<String, List<MovieBean>> map = new HashMap<String, List<MovieBean>>();
+
+		
 		for (int i=0; i<genre.length; i++) {
 			System.out.println("genre["+i+"]" + genre[i]);
+			List<MovieBean> movieByGenre = movieDao.GetMovieListByGenre(genre[i]);
+			map.put(genre[i], movieByGenre);
 		}
-
+		
 		ModelAndView mav = new ModelAndView();
 
-		List<MovieBean> movie = movieDao.GetMovieList();	
-		List<MovieBean> movieByGenre1 = movieDao.GetMovieListByGenre(genre[0]);	
-		List<MovieBean> movieByGenre2 = movieDao.GetMovieListByGenre(genre[1]);	
-		List<MovieBean> movieByGenre3 = movieDao.GetMovieListByGenre(genre[2]);	
 		
+		List<MovieBean> movie = movieDao.GetMovieList();	
+
+		int totalCount = movieDao.GetTotalCount();
+		
+		mav.addObject("totalCount", totalCount);
 		mav.addObject("movie", movie);
-		mav.addObject("movieByGenre1", movieByGenre1);
-		mav.addObject("movieByGenre2", movieByGenre2);
-		mav.addObject("movieByGenre3", movieByGenre3);
-		mav.addObject("genre1", genre[0]);
-		mav.addObject("genre2", genre[1]);
-		mav.addObject("genre3", genre[2]);
+		mav.addObject("map", map);
 		mav.setViewName(getPage);
 		
 		//GenreData Get
@@ -99,4 +102,5 @@ public class MovieListController {
 		
 		return mav;
 	}
+
 }
