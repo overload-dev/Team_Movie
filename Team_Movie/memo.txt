@@ -113,6 +113,24 @@ create sequence mboard_seq
   nocache;
 
 
+
+drop table mmembership;
+create table mmembership(
+    mbsnum number primary key,
+    mbsname varchar2(4000),
+    mbsperiod number,
+    mbsprice number
+);
+
+drop sequence mmembership_seq;
+create sequence mmembership_seq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 100000
+  nocache;
+  
+
 --tmovie 삽입예제
 insert into tmovie values(tmovie_seq.nextval,'극한직업','코미디','이병헌','이병헌','류승룡,이하늬','진선규,이동휘',2,0,'2019-01-23',sysdate,0,0,1,'a','b','c','d','0:0:0');
 insert into tmovie values(tmovie_seq.nextval,'뺑반','범죄,액션','한준희','한준희','공효진,류준렬,조정석','염정아,전혜진',2,5,'2019-01-30',sysdate,0,0,1,'a','b','c','d','0:0:0');
@@ -130,5 +148,10 @@ insert into genre values(genre_seq.nextval,'스릴러');
 insert into genre values(genre_seq.nextval,'공포');
 insert into genre values(genre_seq.nextval,'드라마');
 insert into genre values(genre_seq.nextval,'멜로');
+
+-- mmembership 삽입 예제
+insert into mmembership values(mmembership_seq.nextval,'브론즈',30,5000);
+insert into mmembership values(mmembership_seq.nextval,'실버',180,25000);
+insert into mmembership values(mmembership_seq.nextval,'골드',365,37500);
 
 commit;
