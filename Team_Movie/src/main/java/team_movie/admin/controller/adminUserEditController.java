@@ -1,4 +1,4 @@
-package team_movie.movie.controller;
+package team_movie.admin.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

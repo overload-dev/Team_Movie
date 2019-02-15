@@ -34,8 +34,12 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	<a class="navbar-brand" href="main.tm">Palnet Ark</a>
-	
+	<c:if test="${usid == null }">
+		<a class="navbar-brand" href="main.tm">Palnet Ark</a>
+	</c:if>
+	<c:if test="${usid != null }">
+		<a class="navbar-brand" href="main.tm?usid=${usid }">Palnet Ark</a>
+	</c:if>
 	
 	<div class="col-sm-2">
 	 <form class="form-inline">

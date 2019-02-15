@@ -1,4 +1,4 @@
-package team_movie.controller;
+package team_movie.user.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -72,7 +72,7 @@ public class UserLoginContoller {
 				session.setAttribute("uname", login.getUname());
 				session.setAttribute("ugrade", login.getUgrade());
 				
-				mav.setViewName(gotoPage);// 로그인 성공 메인페이지
+				mav.setViewName(gotoPage + "?usid=" + login.getUsid());// 로그인 성공 메인페이지
 				
 			}else{
 				writer = response.getWriter();

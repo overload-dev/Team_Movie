@@ -1,4 +1,4 @@
-package team_movie.controller;
+package team_movie.user.controller;
 
 
 

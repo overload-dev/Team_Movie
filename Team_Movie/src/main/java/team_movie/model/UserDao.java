@@ -38,12 +38,27 @@ public class UserDao {
 		findId = sqlSessionTemplate.selectOne(namespace+".GetIdData",userBean);
 		return findId;
 	}
-
+	
 	public UserBean GetPwData(UserBean userBean) {
 		UserBean findPw=null; 
 		System.out.println("PW Ã£±â");
 		findPw = sqlSessionTemplate.selectOne(namespace+".GetPwData",userBean);
 		
 		return findPw;
+	}
+	
+	public List<UserBean> GetAllUserList(){
+		System.out.println("GetAllUserList");
+		List<UserBean> userList = new ArrayList<UserBean>();
+		userList = sqlSessionTemplate.selectList(namespace + ".GetAllUserData");
+
+		return userList;
+	}
+	
+	public int DelUser(int unum){
+		System.out.println("DelUser");
+		int num = 0;
+		num =  sqlSessionTemplate.delete(namespace + ".DelUser",unum);
+		return num;
 	}
 }

@@ -19,6 +19,28 @@
 	<select id="GetPwData" resultType="MyUser">
 		select * from tuser where usid=#{usid}
 	</select>
+	
+	<select id="GetUserGenre" resultType="String">
+		select ugenre from tuser where usid=#{usid}
+	</select>
+	
+	<select id="GetUserById" resultType="MyUser">
+		select * from tuser where usid=#{usid}
+	</select>
+	
+	
+	<select id="GetAllUserData" resultType="MyUser">
+		select * from tuser order by unum asc
+	</select>
+	<delete id="DelUser">
+		delete from tuser where unum= #{unum}
+	</delete>
+	<select id="GetAllUserData" resultType="MyUser">
+		select * from tuser order by unum asc
+	</select>
+	<delete id="DelUser">
+		delete from tuser where unum= #{unum}
+	</delete>
 </mapper>
 
  

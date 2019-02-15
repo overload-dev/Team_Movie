@@ -27,6 +27,7 @@ public class MovieGenreViewController {
 	GenreDao genreDao;
 	
 	@Autowired
+	@Qualifier("MyMovieDao")
 	MovieDao movieDao;
 			
 	@RequestMapping(value=command, method=RequestMethod.GET)

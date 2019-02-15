@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+</script>
 <title>Insert title here</title>
 <%@include file="../top.jsp"%>
 <%@include file="./../../common/common.jsp"%>
@@ -11,16 +13,21 @@
 </head>
 <body>
 	<div class="container">
-		<img src="http://placehold.it/1170x400" alt="">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<font style="font-size: 40px;">${movie.mname }</font>
+			</div>
+			<div class="panel-body">
+				<iframe class="embed-responsive-item" src="//www.youtube.com/embed/80lNjkcp6gI" width="100%" height="400%" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div>
 	</div>
-	<br><br>
-	
 	<div class="container">
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<font style="font-size: 20px;">${movie.mname }</font>
 				<div class="pull-right">
-					<a href="#">
+					<a href="#comment">
           				<span class="glyphicon glyphicon-pencil" style="font-size:18px;" title="댓글쓰기"></span>
         			</a>
         			&nbsp;&nbsp;
@@ -115,7 +122,7 @@
 										<c:forEach items="${map.value }" var="movie" varStatus="status">
 										<c:set var="col" value="${col + 1 }" />
 											<div class="col-md-3">
-												<a href="movieContent.tm?mnum=${movie.mnum }">
+												<a href="movieContent.tm?mnum=${movie.mnum }&usid=${usid }">
 													<img src="//s3.namuwikiusercontent.com/s/5673b412996accb9ce935c3378c8d1493ea74f53cb6f692ee27ceed2c0b6ea2aed0b4cfcb49b387abab676557d156ef2f5a54dbf820089708d6cc6568690b8289a21bfc39a73f3702f1000356f5d85b90b25cae3d483b159e8a5349d562fb69e" width="80%"><br>
 													${movie.mimg }<br>
 													${movie.mname }<br>
@@ -132,9 +139,6 @@
 										</div>
 									</div>
 									<!--.carousel-inner-->
-									
-									
-									
 									<a data-slide="prev" href="#Carousel${pg }" class="left carousel-control"><i class="glyphicon glyphicon-chevron-left"></i></a> 
 									<a data-slide="next" href="#Carousel${pg }" class="right carousel-control"><i class="glyphicon glyphicon-chevron-right"></i></a>
 								</div>
@@ -146,5 +150,49 @@
 			</div>
 		</div>
 	</c:forEach>
+	
+	<div class="container" id="comment">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<font style="font-size: 20px;">댓글</font>
+			</div>
+			<div class="panel-body">
+				<div class="col-md-12">
+					<div class="row">
+						<form method="POST" action="commentMovie.tm" id="commentForm">
+							<input type="hidden" name="unum" value="${user.unum }">
+							<div class="col-md-12">
+								${user.usid }
+							</div>
+							<div class="col-md-12">
+								<label class="col-sm-12">제목</label>
+								<div class="col-md-12">
+									<input type="text" name="bsubject" class="form-control" placeholder="제목을 입력하세요.">
+								</div>
+								<label class="col-sm-12">내용</label>
+								<div class="col-md-12">
+									<textarea name="bcon" rows="8" cols="100" style="resize:none;" class="form-control" placeholder="내용을 입력하세요."></textarea>
+								</div>
+								<div class="form-group" align="right">
+									<input type="submit" value="등록" class="btn login_btn">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<font style="font-size: 20px;">댓글 목록</font>
+			</div>
+			<div class="panel-body" id="commentReply">
+			</div>
+		</div>
+	</div>
+	
 </body>
 </html>

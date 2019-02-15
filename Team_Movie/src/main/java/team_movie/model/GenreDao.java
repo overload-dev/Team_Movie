@@ -21,7 +21,7 @@ public class GenreDao {
 		System.out.println("getGenreList Enter");
 		List<GenreBean> genreList = new ArrayList<GenreBean>();
 		
-		genreList = sqlSessionTemplate.selectList(namespace + ".getGenreList");
+		genreList = sqlSessionTemplate.selectList(namespace + ".GetGenreList");
 		System.out.println("genreList: " + genreList);
 		
 		return genreList;

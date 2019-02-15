@@ -10,7 +10,5 @@
 	
 	<select id="getGenreList" resultType="MyGenre">
 		select * from genre
-		
 	</select>
-
 </mapper>

@@ -16,23 +16,30 @@ import team_movie.model.GenreBean;
 import team_movie.model.GenreDao;
 import team_movie.model.MovieBean;
 import team_movie.model.MovieDao;
+import team_movie.model.UserBean;
+import team_movie.model.UserDao;
 
 @Controller
 public class MovieContentViewController {
 	
-	private static final String getPage ="body/movieContent";
+	private final static String getPage ="body/movieContent";
 	private final static String command = "/movieContent.tm";
 	
 	@Autowired
+	@Qualifier("MyMovieDao")
 	MovieDao movieDao;
 	
 	@Autowired
 	@Qualifier("myGenreDao")
 	GenreDao genreDao;
 	
+	@Autowired
+	UserDao userDao;
+	
 	@RequestMapping(value=command)
 	public String doAcitionGet(	
 				@RequestParam(value="mnum", required=true) int mnum,
+				@RequestParam(value="usid", required=false) String usid,
 				Model model
 			) {
 		
@@ -62,6 +69,9 @@ public class MovieContentViewController {
 		genreList = genreDao.getGenreList();
 		model.addAttribute("genreList", genreList);
 		
+		UserBean user = userDao.GetUserById(usid);
+		
+		model.addAttribute("user", user);
 		return getPage;
 	}
 }
