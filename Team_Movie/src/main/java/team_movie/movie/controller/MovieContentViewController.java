@@ -22,7 +22,7 @@ public class MovieContentViewController {
 	
 	private static final String getPage ="body/movieContent";
 	private final static String command = "/movieContent.tm";
-	
+	 
 	@Autowired
 	@Qualifier("MyMovieDao")
 	MovieDao movieDao;
