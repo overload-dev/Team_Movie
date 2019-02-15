@@ -114,9 +114,9 @@ create sequence mboard_seq
 
 
 --tmovie 삽입예제
-insert into tmovie values(tmovie_seq.nextval,'극한직업','코미디','이병헌','이병헌','류승룡,이하늬','진선규,이동휘',2,0,'2019-01-23',sysdate,0,0,1,'a','b','c','d');
-insert into tmovie values(tmovie_seq.nextval,'뺑반','범죄,액션','한준희','한준희','공효진,류준렬,조정석','염정아,전혜진',2,5,'2019-01-30',sysdate,0,0,1,'a','b','c','d');
-insert into tmovie values(tmovie_seq.nextval,'말모이','드라마','엄유나','엄유나','유해진,윤계상,김홍파','우현,김태훈',2,0,'2019-01-30',sysdate,0,0,1,'a','b','c','d');
+insert into tmovie values(tmovie_seq.nextval,'극한직업','코미디','이병헌','이병헌','류승룡,이하늬','진선규,이동휘',2,0,'2019-01-23',sysdate,0,0,1,'a','b','c','d','0:0:0');
+insert into tmovie values(tmovie_seq.nextval,'뺑반','범죄,액션','한준희','한준희','공효진,류준렬,조정석','염정아,전혜진',2,5,'2019-01-30',sysdate,0,0,1,'a','b','c','d','0:0:0');
+insert into tmovie values(tmovie_seq.nextval,'말모이','드라마','엄유나','엄유나','유해진,윤계상,김홍파','우현,김태훈',2,0,'2019-01-30',sysdate,0,0,1,'a','b','c','d','0:0:0');
 
 --tuser 삽입예제
 insert into tuser values(tuser_seq.nextval,'admin','admin','1234',sysdate,'2019-01-01',0,null,null,'a');
@@ -130,3 +130,5 @@ insert into genre values(genre_seq.nextval,'스릴러');
 insert into genre values(genre_seq.nextval,'공포');
 insert into genre values(genre_seq.nextval,'드라마');
 insert into genre values(genre_seq.nextval,'멜로');
+
+commit;
