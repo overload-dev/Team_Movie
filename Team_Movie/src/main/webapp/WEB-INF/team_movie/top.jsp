@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
@@ -28,6 +29,7 @@
 <!-- jQuery UI 라이브러리 js파일 -->
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
+  
 <title>Palnet Ark</title>
 </head>
 <body>
@@ -78,12 +80,9 @@
 	<div class="col-sm-4" >
 	<c:choose>
 		<c:when test="${sessionScope.ugrade == null}"><!-- none acount -->
-		
 			<input type="button" class="btn btn-info" value="Login" onclick="location.href='userLogin.tm'">
 			<input type="button" class="btn btn-info" value ="Sign Up" onclick="location.href='userInsert.tm'">
-			
 		</c:when>
-		
 		
 		<c:when test="${sessionScope.ugrade == '0'}"><!-- admin acount -->
 			<a href="adminUserEdit.tm">
