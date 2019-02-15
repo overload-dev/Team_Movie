@@ -24,6 +24,7 @@ public class MovieListController {
 	private static final String command ="/main.tm";
 	
 	@Autowired
+	@Qualifier("MyMovieDao")
 	MovieDao movieDao;
 	
 	

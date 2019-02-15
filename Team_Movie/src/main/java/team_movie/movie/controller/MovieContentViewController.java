@@ -24,6 +24,7 @@ public class MovieContentViewController {
 	private final static String command = "/movieContent.tm";
 	
 	@Autowired
+	@Qualifier("MyMovieDao")
 	MovieDao movieDao;
 	
 	@Autowired

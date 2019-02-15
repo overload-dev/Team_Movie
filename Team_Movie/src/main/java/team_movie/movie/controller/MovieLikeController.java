@@ -1,6 +1,7 @@
 package team_movie.movie.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ public class MovieLikeController {
 	private static final String command = "/movieLike.tm";
 	
 	@Autowired
+	@Qualifier("MyMovieDao")
 	MovieDao movieDao;
 	
 	@RequestMapping(value=command, method = RequestMethod.GET) 

@@ -1,12 +1,14 @@
-package team_movie.controller;
+package team_movie.user.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import team_movie.model.GenreBean;
+import team_movie.model.GenreDao;
 import team_movie.model.UserBean;
 import team_movie.model.UserDao;
 
@@ -25,6 +29,11 @@ public class UserLoginContoller {
 	private static final String gotoPage ="redirect:/main.tm";
 	
 	@Autowired
+	@Qualifier("myGenreDao")
+	GenreDao genreDao;
+	
+	@Autowired
+	@Qualifier("myUserDao")
 	UserDao userDao;
 	
 	//main에서 login 버튼을 클릭 했을 때
@@ -34,7 +43,12 @@ public class UserLoginContoller {
 			Model model
 			){
 		model.addAttribute("usid", usid);
-	
+		//GenreData Get
+		List<GenreBean> genreList = null;
+		genreList = genreDao.getGenreList();
+		model.addAttribute("genreList", genreList);
+		
+		
 		return getPage;
 	}
 	
@@ -85,6 +99,7 @@ public class UserLoginContoller {
 				return new ModelAndView( getPage );//로그인 실패 userLogin.jsp
 			}
 		}
+				
 		return mav;
 	}
 }

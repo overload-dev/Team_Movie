@@ -4,11 +4,7 @@
 
 
 <mapper namespace="team_movie.model.GenreBean">
-	<select id="getCount" resultType="int">
-		select count(*) from genre
-	</select>
-	
-	<select id="getGenreList" resultType="MyGenre">
+	<select id="GetGenreList" resultType="MyGenre">
 		select * from genre
 		
 	</select>
