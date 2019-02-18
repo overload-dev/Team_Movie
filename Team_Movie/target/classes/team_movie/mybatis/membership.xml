@@ -14,5 +14,7 @@
 	<delete id="DeleteMembership">
 		delete from mmembership where mbsnum =#{mbsnum}
 	</delete>
-	
+	<insert id="AddMemebership" parameterType="MyMembership">
+		insert into mmembership values(mmembership_seq.nextval, #{mbsname}, #{mbsperiod}, #{mbsprice})
+	</insert>
 </mapper>

@@ -37,4 +37,11 @@ public class MembershipDao {
 		cnt = sqlSessionTemplate.delete(namespace+".DeleteMembership", mbsnum);
 		return cnt;
 	}
+	
+	//membership Add
+	public int AddMemebership(MembershipBean membershipBean){
+		int cnt = -1;
+		cnt = sqlSessionTemplate.insert(namespace + ".AddMemebership", membershipBean);
+		return cnt;
+	}
 }
