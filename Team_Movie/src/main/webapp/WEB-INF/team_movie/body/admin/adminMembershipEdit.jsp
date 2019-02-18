@@ -69,7 +69,7 @@
 										<div class="collapse multi-collapse" id="editMembership${membership.mbsnum }">
 									      <div class="card card-body">
 									      <h2 class="text-primary">Change Membership</h2>
-									        <table>
+									        <table width="100%">
 									        	<tr>
 									        		<th>멤버십 명</th>
 									        		<td>
@@ -96,7 +96,6 @@
 									        </table>
 									      </div>
 									    </div>
-									
 									</td>
 								</tr>
 							</c:forEach>
