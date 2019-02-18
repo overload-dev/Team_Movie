@@ -21,7 +21,7 @@
 							<a href="#" class="list-group-item list-group-item-action active">
 								개인 정보 관리  
 							</a> 
-							<a href="#" class="list-group-item list-group-item-action">
+							<a href="mShipBuyForm.tm" class="list-group-item list-group-item-action">
 								멤버십
 							</a>
 							<a href="userDelete.tm" class="list-group-item list-group-item-action">

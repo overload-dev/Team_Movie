@@ -66,6 +66,17 @@ public class UserDao {
 		int cnt =-1;
 		
 		cnt = sqlSessionTemplate.update(namespace+".UserUpdate",userBean);
-		return 0;
+		return cnt;
+	}
+
+	public int UpdateMembership(UserBean userBean) {
+		int cnt = -1;
+		System.out.println("userBean.getUsid(): "+userBean.getUsid());
+		System.out.println("userBean.getUsid(): "+userBean.getUupend());
+		System.out.println("userBean.getUsid(): "+userBean.getUupstart());
+		System.out.println("userBean.getUsid(): "+userBean.getUgrade());
+		cnt =sqlSessionTemplate.update(namespace+".UpdateMembership",userBean);
+		return cnt;
 	}
 }
+ 

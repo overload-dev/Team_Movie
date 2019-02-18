@@ -16,7 +16,7 @@ public class userDeleteController {
 	
 	private final String command="userDelete.tm";
 	private final String getPage="body/user/userDeleteForm";
-	private final String gotoPage="redirect:/main.tm";
+	private final String gotoPage="redirect:/userLogout.tm";
 	
 	@Autowired 
 	UserDao userDao;
@@ -37,8 +37,8 @@ public class userDeleteController {
 	public String doActionPost(
 			@RequestParam(value="unum" ,required=true) int unum
 			){
-		System.out.println("userDeleteForm");
 		int cnt =userDao.DelUser(unum);
+		
 		return gotoPage;
 	}
 }

@@ -23,6 +23,9 @@
 							<a href="adminUserEdit.tm" class="list-group-item list-group-item-action">
 								회원 관리
 							</a>
+							<a href="adminContentsEdit.tm" class="list-group-item list-group-item-action">
+								컨텐츠 관리
+							</a>
 							<a href="#" class="list-group-item list-group-item-action">
 								이벤트
 							</a>
@@ -57,35 +60,30 @@
 										<a class="btn btn-info" 
 										   data-toggle="collapse"
 										   href="#editMembership${membership.mbsnum }"
-										   role="button" aria-expanded="false" aria-controls="multiCollapseExample1">변경</a>
-										<input type="button" class="btn btn-danger" value="삭제">
+										   role="button" aria-expanded="false">변경</a>
+										<input type="button" class="btn btn-danger" value="삭제" onclick="deleteMembershipEdit(${membership.mbsnum},'${membership.mbsname}')">
 									</td>									
 								</tr>
 								<tr>
 									<td colspan="5">
 										<div class="collapse multi-collapse" id="editMembership${membership.mbsnum }">
 									      <div class="card card-body">
+									      <h2 class="text-primary">Change Membership</h2>
 									        <table>
 									        	<tr>
-									        		<td align="right">
-									        			<h4 class="text-primary">멤버십 명</h4>
-									        		</td>
+									        		<th>멤버십 명</th>
 									        		<td>
-									        			<input class="form-control" type="text" placeholder="멤버십 명" name="c_mbsname${membership.mbsnum}" value="${membership.mbsname}">
+									        			${membership.mbsname}
 									        		</td>
 									        	</tr>
 									        	<tr>
-									        		<td align="right">
-									        			<h4 class="text-primary">적용 기간</h4>
-									        		</td>
+									        		<th>적용 기간</th>
 									        		<td>
 									        			<input class="form-control" type="text" placeholder="적용 기간(일 단위)" name="c_mbsperiod${membership.mbsnum}" value="${membership.mbsperiod}">
 									        		</td>
 									        	</tr>
 									        	<tr>
-									        		<td align="right">
-									        			<h4 class="text-primary">가격</h4>
-									        		</td>
+									        		<th>가격</th>
 									        		<td>
 									        			<input class="form-control" type="text" placeholder="가격" name="c_mbsprice${membership.mbsnum}" value="${membership.mbsprice}">
 									        		</td>
@@ -103,11 +101,45 @@
 								</tr>
 							</c:forEach>
 						</table>  
-						
-						
 					</div>
-					<div class="panel-footer" align="right">
-						<input type="button" class="btn btn-primary" value="신규 멤버십 추가">
+					<div class="panel-footer" align="center">
+						
+						<a class="btn btn-info" 
+							data-toggle="collapse"
+							href="#newMembership"
+							role="button" aria-expanded="false">신규 멤버십 추가</a>
+						<hr>
+						
+						<div class="collapse multi-collapse" id="newMembership">
+							<div class="card card-body" align="left">
+								<h2 class="text-primary">New Membership</h2>
+								<table class="table" cellspacing="0" width="100%">
+									<tr>
+										<th>멤버십 명</th>
+										<td>
+											<input class="form-control" type="text" placeholder="멤버십 명" name="n_mbsname">
+										</td>
+									</tr>
+									<tr>
+										<th>적용 기간</th>
+										<td>
+											<input class="form-control" type="text" placeholder="적용 기간(일 단위)" name="n_mbsperiod">
+										</td>
+									</tr>
+									<tr>
+										<th>가격</th>
+										<td>
+											<input class="form-control" type="text" placeholder="가격" name="n_mbsprice">
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2" align="center">
+											<input class="btn btn-primary" type="button" value="추가" onclick="addMembershipEdit()">
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

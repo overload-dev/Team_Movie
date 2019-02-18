@@ -38,8 +38,7 @@ userDeleteForm.jsp
 							<div class="panel-body">			
 								<h4 class="text-primary">${sessionScope.uname} 님 회원 탈퇴 하시겠습니까?</h4>
 								<input type="hidden" name="unum" value="${userInfo.unum }">
-								<input type="submit" value="탈퇴하기">
-								
+								<input type="submit" value="탈퇴하기">	
 							</div>
 							</form> 
 					</div> 

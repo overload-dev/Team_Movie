@@ -108,7 +108,7 @@
 		
 		
 		
-		<c:when test="${sessionScope.ugrade == '1'}"><!-- normal acount -->
+		<c:when test="${sessionScope.ugrade == '1'}"><!-- nomal acount -->
 			<a href="">
 				<font style="color: white; font-weight: bold; font-size: medium;">
 					환영합니다. ${sessionScope.usid} (${sessionScope.uname}) 님
@@ -120,7 +120,7 @@
 		
 		
 		
-		<c:when test="${sessionScope.ugrade == '2'}"><!-- special acount -->
+		<c:when test="${sessionScope.ugrade == '2'}"><!-- sp acount -->
 			<a href="">
 				<font style="color: white; font-weight: bold; font-size: medium;">
 					환영합니다. ${sessionScope.usid} (${sessionScope.uname}) 님
@@ -129,13 +129,11 @@
 			<input type="button" class="btn btn-danger" value="회원정보관리" onclick="location.href='userDetail.tm'">
 			<input type="button" class="btn btn-danger" value="logout" onclick="location.href='userLogout.tm'">
 		</c:when>
+		
+		
 	</c:choose>  	
 	</div>
 </nav>
-
-
-
-
 </body>
 </html>
 
