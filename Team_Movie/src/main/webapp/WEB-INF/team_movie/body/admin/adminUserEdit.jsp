@@ -81,8 +81,6 @@ function myFunction() {
 									
 										<input class="form-control"type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
 									</div>
-									
-									
 								</div>
 							<hr>
 					<b>가입 멤버 : ${fn:length(userList) } 명</b>

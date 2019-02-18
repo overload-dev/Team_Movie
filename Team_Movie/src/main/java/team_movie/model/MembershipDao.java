@@ -23,4 +23,12 @@ public class MembershipDao {
 		
 	}
 	
+	public int UpdateMembership(MembershipBean membershipBean){
+		int cnt = -1;
+		
+		cnt = sqlSessionTemplate.update(namespace + ".UpdateMembership",membershipBean);
+		
+		
+		return cnt;
+	}
 }

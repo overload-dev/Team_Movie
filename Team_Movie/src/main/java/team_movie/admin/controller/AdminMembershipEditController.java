@@ -23,16 +23,12 @@ public class AdminMembershipEditController {
 	@Qualifier("myMembership")
 	MembershipDao membershipDao;
 	
-	
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public String doActionGet(Model model){
 		
 		List<MembershipBean> membershipList = new ArrayList<MembershipBean>();
-		
 		membershipList = membershipDao.GetMemberShipList();
-		
-		model.addAttribute("membershipList",membershipList);		
-		
+		model.addAttribute("membershipList",membershipList);
 		return gotoPage;
 	}
 }

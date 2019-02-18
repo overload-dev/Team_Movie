@@ -6,6 +6,10 @@
 	<select id="GetMembershipList" resultType="MyMembership">
 		select * from mmembership order by mbsnum asc
 	</select>
-
-
+	
+	<select id="UpdateMembership" parameterType="MyMembership">
+		update mmembership set mbsname=#{mbsname}, mbsperiod =#{mbsperiod},mbsprice=#{mbsprice} where mbsnum =#{mbsnum}
+		
+	</select>
+	
 </mapper>

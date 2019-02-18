@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,7 +8,66 @@
 </head>
 <%@include file="../../top.jsp"%>
 <%@include file="./../../../common/common.jsp"%>
+<script>
+	function changeMembershipEdit(mbsnum){
+		
+		//변경할 이름
+		c_mbsname = $('input[name = c_mbsname' + mbsnum + ']').val();
+		
+		if(c_mbsname ==''){
+			alert("멤버십 이름을 입력하세요.");
+			return false;
+		}
 
+		//변경할 적용 기간
+		c_mbsperiod = $('input[name = c_mbsperiod' + mbsnum + ']').val();
+
+		if(c_mbsperiod ==''){
+			alert("적용 기간을 입력하세요.");
+			return false;
+		}
+		if(isNaN(c_mbsperiod)){
+			alert("적용 기간은 숫자로만 입력하세요.");
+			return false;
+		}
+		
+		// 변경할 가격
+		c_mbsprice = $('input[name = c_mbsprice' + mbsnum + ']').val();
+		
+		if(c_mbsprice ==''){
+			alert("가격을 입력하세요.");
+			return false;
+		}
+		if(isNaN(c_mbsprice)){
+			alert("가격은 숫자로만 입력하세요.");
+			return false;
+		}
+		
+		var allData = {
+				"mbsnum" : mbsnum,
+				"c_mbsname" : c_mbsname,
+				"c_mbsperiod" : c_mbsperiod,
+				"c_mbsprice" : c_mbsprice
+		}
+		
+ 		$.ajax({
+			url:"changeMembershipEdit.tm",
+			type:"GET",
+			data: allData,
+			success:function(result){
+				if(result > -1){
+					alert('변경');
+					location.reload();
+				}
+				
+			},
+			 error:function(jqXHR, textStatus, errorThrown){
+		            alert("Error \n" + textStatus + " : " + errorThrown);
+		            self.close();
+		        }
+		});
+	}
+</script>
 <body>
 	<div class="container">
 		<h2 class="text-primary">멤버십 관리</h2>
@@ -30,9 +89,7 @@
 						</div>
 			      	</div>
 			    </div>
-				
 			</div>
-			
 			<div class="col-sm-9">
 				<div class="panel panel-info">
 					<div class="panel-heading">Membership Sell List</div>
@@ -54,31 +111,57 @@
 									<td align="center">${membership.mbsperiod}일</td>
 									<td>&#8361; <fmt:formatNumber value="${membership.mbsprice }" pattern="###,###"/></td>
 									<td align="center">
-										<input type="button" class="btn btn-info" data-toggle="collapse" data-parent="#accordion" value="변경" onclick="location.href='#collapse'3">
+										<a class="btn btn-info" 
+										   data-toggle="collapse"
+										   href="#editMembership${membership.mbsnum }"
+										   role="button" aria-expanded="false" aria-controls="multiCollapseExample1">변경</a>
 										<input type="button" class="btn btn-danger" value="삭제">
-									</td>
-									<td>
+									</td>									
+								</tr>
+								<tr>
+									<td colspan="5">
+										<div class="collapse multi-collapse" id="editMembership${membership.mbsnum }">
+									      <div class="card card-body">
+									        <table>
+									        	<tr>
+									        		<td align="right">
+									        			<h4 class="text-primary">멤버십 명</h4>
+									        		</td>
+									        		<td>
+									        			<input class="form-control" type="text" placeholder="멤버십 명" name="c_mbsname${membership.mbsnum}" value="${membership.mbsname}">
+									        		</td>
+									        	</tr>
+									        	<tr>
+									        		<td align="right">
+									        			<h4 class="text-primary">적용 기간</h4>
+									        		</td>
+									        		<td>
+									        			<input class="form-control" type="text" placeholder="적용 기간(일 단위)" name="c_mbsperiod${membership.mbsnum}" value="${membership.mbsperiod}">
+									        		</td>
+									        	</tr>
+									        	<tr>
+									        		<td align="right">
+									        			<h4 class="text-primary">가격</h4>
+									        		</td>
+									        		<td>
+									        			<input class="form-control" type="text" placeholder="가격" name="c_mbsprice${membership.mbsnum}" value="${membership.mbsprice}">
+									        		</td>
+									        	</tr>
+									        	<tr>
+									        		<td colspan="2" align="center">
+									        			<input class="btn btn-primary" type="button" value="변경사항 적용" onclick="changeMembershipEdit(${membership.mbsnum})">
+									        		</td>
+									        	</tr>
+									        </table>
+									      </div>
+									    </div>
 									
 									</td>
 								</tr>
 							</c:forEach>
-						</table>
+						</table>  
 						
-						<div class="panel panel-default">
-						    <div class="panel-heading">
-						      <h4 class="panel-title">
-						        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-						        Collapsible Group 3</a>
-						      </h4>
-						    </div>
-						    <div id="collapse3" class="panel-collapse collapse">
-						      <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-						      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-						      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-						      commodo consequat.</div>
-						    </div>
-						  </div>
-  
+						
 					</div>
 					<div class="panel-footer" align="right">
 						<input type="button" class="btn btn-primary" value="신규 멤버십 추가">
@@ -87,5 +170,6 @@
 			</div>
 		</div>
 	</div>
+	
 </body>
 </html>
