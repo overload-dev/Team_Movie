@@ -100,6 +100,7 @@
 					<a class="dropitem" href="#">이벤트</a><br>
 				</div>
 
+				<input type="button" class="btn btn-danger" value="회원정보관리" onclick="location.href='userDetail.tm'">
 				<input type="button" class="btn btn-danger" value="logout" onclick="location.href='userLogout.tm'">
 
 		</c:when>
@@ -113,6 +114,7 @@
 					환영합니다. ${sessionScope.usid} (${sessionScope.uname}) 님
 				</font>
 			</a>
+			<input type="button" class="btn btn-danger" value="회원정보관리" onclick="location.href='userDetail.tm'">
 			<input type="button" class="btn btn-danger" value="logout" onclick="location.href='userLogout.tm'">
 		</c:when>
 		
@@ -124,6 +126,7 @@
 					환영합니다. ${sessionScope.usid} (${sessionScope.uname}) 님
 				</font>
 			</a>
+			<input type="button" class="btn btn-danger" value="회원정보관리" onclick="location.href='userDetail.tm'">
 			<input type="button" class="btn btn-danger" value="logout" onclick="location.href='userLogout.tm'">
 		</c:when>
 	</c:choose>  	

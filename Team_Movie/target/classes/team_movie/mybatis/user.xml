@@ -25,6 +25,10 @@
 	<delete id="DelUser">
 		delete from tuser where unum= #{unum}
 	</delete>
+	
+	<update id="UserUpdate" parameterType="MyUser">
+		update tuser set usid=#{usid},upw=#{upw},ugenre=#{ugenre} where unum=#{unum}
+	</update>
 </mapper>
 
  

@@ -61,4 +61,11 @@ public class UserDao {
 		num =  sqlSessionTemplate.delete(namespace + ".DelUser",unum);
 		return num;
 	}
+
+	public int UserUpdate(UserBean userBean) {
+		int cnt =-1;
+		
+		cnt = sqlSessionTemplate.update(namespace+".UserUpdate",userBean);
+		return 0;
+	}
 }
