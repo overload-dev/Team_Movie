@@ -1,6 +1,5 @@
 package team_movie.admin.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,18 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import team_movie.model.GenreBean;
 import team_movie.model.GenreDao;
-import team_movie.model.MembershipBean;
-import team_movie.model.MembershipDao;
 
 @Controller
-public class AdminMembershipEditController {
+public class AdminContentsEditController {
 	
-	private static final String command ="adminMembershipEdit.tm";
-	private static final String gotoPage ="body/admin/adminMembershipEdit";
-	
-	@Autowired
-	@Qualifier("myMembership")
-	MembershipDao membershipDao;
+	private static final String command="adminContentsEdit.tm";
+	private static final String gotoPage ="body/admin/adminContentsEdit";
 	
 	@Autowired
 	@Qualifier("myGenreDao")
@@ -32,15 +25,11 @@ public class AdminMembershipEditController {
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public String doActionGet(Model model){
 		
-		List<MembershipBean> membershipList = new ArrayList<MembershipBean>();
-		membershipList = membershipDao.GetMemberShipList();
-		model.addAttribute("membershipList",membershipList);
-		
 		//GenreData Get
 		List<GenreBean> genreList = null;
 		genreList = genreDao.getGenreList();
 		model.addAttribute("genreList", genreList);
-				
+		
 		return gotoPage;
 	}
 }

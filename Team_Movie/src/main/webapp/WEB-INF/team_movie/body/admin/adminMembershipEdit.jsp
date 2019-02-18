@@ -73,7 +73,7 @@
 									        	<tr>
 									        		<th>멤버십 명</th>
 									        		<td>
-									        			${membership.mbsname}
+									        			<input class="form-control" type="text" placeholder="멤버십 명" name="c_mbsname${membership.mbsnum}" value="${membership.mbsname}">
 									        		</td>
 									        	</tr>
 									        	<tr>

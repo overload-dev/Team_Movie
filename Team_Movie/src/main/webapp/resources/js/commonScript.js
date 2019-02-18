@@ -1,6 +1,7 @@
 /**
  * 
  */
+// 멤버십변경 스크립트
 function changeMembershipEdit(mbsnum) {
 
 	// 변경할 이름
@@ -58,4 +59,78 @@ function changeMembershipEdit(mbsnum) {
 			self.close();
 		}
 	});
+}
+
+function deleteMembershipEdit(mbsnum, mbsname) {
+
+	var answer = confirm("[선택 항목]\n멤버십 명 : " + mbsname);
+
+	if (answer) {
+		$.ajax({
+			url : "deleteMembershipEdit.tm",
+			type : "GET",
+			data : {
+				"mbsnum" : mbsnum
+			},
+			success : function(result) {
+				alert(mbsname + " : 삭제 성공");
+				location.reload();
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert("Error \n" + textStatus + " : " + errorThrown);
+				self.close();
+			}
+		});
+
+	}
+
+}
+
+function addMembershipEdit() {
+	var n_mbsname, n_mbsperiod, n_mbsprice;
+	n_mbsname = $('input[name = n_mbsname]').val();
+	n_mbsperiod = $('input[name = n_mbsperiod]').val();
+	n_mbsprice = $('input[name = n_mbsprice]').val();
+
+	if (n_mbsname == '') {
+		alert("멤버십명을 입력하세요.");
+		return false;
+	}
+
+	if (n_mbsperiod == '') {
+		alert("적용 기간을 입력하세요.");
+		return false;
+	}
+	if (isNaN(n_mbsperiod)) {
+		alert("적용 기간은 숫자로만 입력하세요.");
+		return false;
+	}
+
+	if (n_mbsprice == '') {
+		alert("가격을 입력하세요.");
+		return false;
+	}
+	if (isNaN(n_mbsprice)) {
+		alert("가격은 숫자로만 입력하세요.");
+		return false;
+	}
+
+	$.ajax({
+		url : "addMembershipEdit.tm",
+		type : "GET",
+		data : {
+			"n_mbsname" : n_mbsname,
+			"n_mbsperiod" : n_mbsperiod,
+			"n_mbsprice" : n_mbsprice
+		},
+		success : function(result) {
+				alert("등록 성공");
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert("Error \n" + textStatus + " : " + errorThrown);
+			self.close();
+		}
+
+	});
+
 }
