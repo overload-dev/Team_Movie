@@ -58,7 +58,7 @@
 										   data-toggle="collapse"
 										   href="#editMembership${membership.mbsnum }"
 										   role="button" aria-expanded="false" aria-controls="multiCollapseExample1">변경</a>
-										<input type="button" class="btn btn-danger" value="삭제">
+										<input type="button" class="btn btn-danger" value="삭제" onclick="deleteMembershipEdit(${membership.mbsnum},'${membership.mbsname}')">
 									</td>									
 								</tr>
 								<tr>

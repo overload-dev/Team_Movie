@@ -15,6 +15,7 @@ public class MembershipDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
+	//membership List
 	public List<MembershipBean>GetMemberShipList(){
 		System.out.println("GetMemberShipList");
 		List<MembershipBean> membershipList = new ArrayList<MembershipBean>();
@@ -23,12 +24,17 @@ public class MembershipDao {
 		
 	}
 	
+	//membership Update
 	public int UpdateMembership(MembershipBean membershipBean){
 		int cnt = -1;
-		
 		cnt = sqlSessionTemplate.update(namespace + ".UpdateMembership",membershipBean);
-		
-		
+		return cnt;
+	}
+	
+	//membership Delete
+	public int DeleteMembership(int mbsnum){
+		int cnt = -1;
+		cnt = sqlSessionTemplate.delete(namespace+".DeleteMembership", mbsnum);
 		return cnt;
 	}
 }

@@ -1,6 +1,7 @@
 /**
  * 
  */
+//멤버십변경 스크립트
 function changeMembershipEdit(mbsnum) {
 
 	// 변경할 이름
@@ -58,4 +59,28 @@ function changeMembershipEdit(mbsnum) {
 			self.close();
 		}
 	});
+}
+
+function deleteMembershipEdit(mbsnum, mbsname){
+	
+	var answer = confirm("[선택 항목]\n멤버십 명 : " + mbsname);
+	
+	if(answer){
+		$.ajax({
+			url:"deleteMembershipEdit.tm",
+			type:"GET",
+			data: {"mbsnum": mbsnum},
+			success: function(result){
+				alert(mbsname + " : 삭제 성공");
+				location.reload();
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert("Error \n" + textStatus + " : " + errorThrown);
+				self.close();
+			}
+		});
+		
+		
+	}
+	
 }

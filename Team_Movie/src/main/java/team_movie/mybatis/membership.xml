@@ -9,7 +9,10 @@
 	
 	<select id="UpdateMembership" parameterType="MyMembership">
 		update mmembership set mbsname=#{mbsname}, mbsperiod =#{mbsperiod},mbsprice=#{mbsprice} where mbsnum =#{mbsnum}
-		
 	</select>
+	
+	<delete id="DeleteMembership">
+		delete from mmembership where mbsnum =#{mbsnum}
+	</delete>
 	
 </mapper>
