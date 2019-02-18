@@ -36,7 +36,6 @@ public class AdminUserEditController {
 		List<UserBean> userList = new ArrayList<UserBean>();
 		userList = userDao.GetAllUserList();
 		
-		
 		//GenreData Get
 		List<GenreBean> genreList = null;
 		genreList = genreDao.getGenreList();

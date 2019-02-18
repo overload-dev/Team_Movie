@@ -50,6 +50,9 @@ function myFunction() {
 						<a href="adminUserEdit.tm" class="list-group-item list-group-item-action active">
 							회원 관리
 						</a>
+						<a href="adminContentsEdit.tm" class="list-group-item list-group-item-action">
+							컨텐츠 관리
+						</a>
 						<a href="#" class="list-group-item list-group-item-action">
 							이벤트
 						</a>
