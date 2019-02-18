@@ -125,6 +125,7 @@ function addMembershipEdit() {
 		},
 		success : function(result) {
 				alert("등록 성공");
+				location.reload();
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert("Error \n" + textStatus + " : " + errorThrown);
