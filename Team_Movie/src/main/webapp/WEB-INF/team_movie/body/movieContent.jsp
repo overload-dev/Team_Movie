@@ -5,6 +5,89 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
+/*
+ * 댓글 등록하기(Ajax)
+ */
+function fn_insertComment(){
+	
+	mnum = $('#mnum').val();
+	unum = $('#unum').val();
+	bcon = $('#bcon').val();
+	bsubject = $('#bsubject').val();
+	
+	var allData = { 
+			"mnum": mnum, 
+			"unum": unum, 
+			"bcon": bcon,
+			"bsubject": bsubject 
+			};
+	
+	alert("등록");
+	if($("input[name=bsubject]").val() == ""){
+		alert("제목을 입력하세요.");
+		$("input[name=bsubject]").val().focus();
+		return false;
+	}
+	else if($("input[name=bcon]").val() == ""){
+		alert("내용을 입력하세요.");
+		$("input[name=bcon]").val().focus();
+		return false;
+	} 
+	else {
+	    $.ajax({
+	        url :"commentInsert.tm",
+	        type:'GET',
+	        data:allData,
+	        success : function(result) {
+	        	if (result > -1) {
+		        	alert("댓글 작성 완료");
+		        	location.reload();
+	        	}
+	        },
+	        error : function(jqXHR, textStatus, errorThrown) {
+				alert("Error \n" + textStatus + " : " + errorThrown);
+				self.close();
+			}
+	    })
+	}
+}
+
+function fn_UpdateCommentForm(bnum) {
+	alert(bnum);
+	var allData = { 
+			"bnum": bnum 
+		}
+	$.ajax({
+        url : "commentUpdateList.tm",
+        type: 'GET',
+        data: allData,
+        success : function(result) {
+        	if (result != null) {
+	        	alert("댓글 수정 폼");
+	        	document.getElementById("sub").style.display = "none";
+	        	document.getElementById("upSub").style.display = "";
+	        	document.getElementById("con").style.display = "none";
+	        	document.getElementById("upCon").style.display = "";
+	        	document.getElementById("replyBtn").style.display = "none";
+	        	document.getElementById("deleteBtn").style.display = "";
+	        	document.getElementById("comfirmBtn").style.display = "";
+	        	document.getElementById("updateBtn").style.display = "none";
+        	}
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+			alert("Error \n" + textStatus + " : " + errorThrown);
+			self.close();
+		}
+    })
+}
+
+function fn_UpdateComment() {
+	alert("확인");
+	upSub = $('#upSub').val();
+	upCon = $('#upCon').val();
+	alert("제목 : " + upSub);
+	alert("내용 : " + upCon);
+}
 </script>
 <title>Insert title here</title>
 <%@include file="../top.jsp"%>
@@ -159,25 +242,31 @@
 			<div class="panel-body">
 				<div class="col-md-12">
 					<div class="row">
-						<form method="POST" action="commentMovie.tm" id="commentForm">
-							<input type="hidden" name="unum" value="${user.unum }">
+						<c:if test="${user.usid == null }">
+							<div class="col-md-12">
+									<textarea name="bcon" rows="3" cols="100" style="resize:none;" class="form-control" placeholder="로그인 후 댓글 달기." readonly></textarea>
+							</div>
+						</c:if>
+						<c:if test="${user.usid != null }">
 							<div class="col-md-12">
 								${user.usid }
 							</div>
-							<div class="col-md-12">
+							<form id="commentForm" name="commentForm" method="post">
+								<input type="hidden" name="mnum" id="mnum" value="${movie.mnum }">
+								<input type="hidden" name="unum" id="unum" value="${user.unum }">
 								<label class="col-sm-12">제목</label>
 								<div class="col-md-12">
-									<input type="text" name="bsubject" class="form-control" placeholder="제목을 입력하세요.">
+									<input type="text" name="bsubject" id="bsubject" class="form-control" placeholder="제목을 입력하세요." >
 								</div>
 								<label class="col-sm-12">내용</label>
 								<div class="col-md-12">
-									<textarea name="bcon" rows="8" cols="100" style="resize:none;" class="form-control" placeholder="내용을 입력하세요."></textarea>
+									<textarea name="bcon" id="bcon" rows="4" cols="100" style="resize:none;" class="form-control" placeholder="내용을 입력하세요."></textarea>
 								</div>
 								<div class="form-group" align="right">
-									<input type="submit" value="등록" class="btn login_btn">
+									<input type="button" value="등록" class="btn login_btn" onclick="fn_insertComment()">
 								</div>
-							</div>
-						</form>
+							</form>
+						</c:if>
 					</div>
 				</div>
 			</div>
@@ -190,9 +279,48 @@
 				<font style="font-size: 20px;">댓글 목록</font>
 			</div>
 			<div class="panel-body" id="commentReply">
+				<c:forEach items="${commentList }" var="commentList">
+					<div class="form-group">
+						<form id="commentUpdateForm" name="commentUpdateForm" method="post">
+							<div class="col-md-12">
+								<label class="col-sm-2">제목</label>
+								<div class="col-sm-5">
+									<span id="sub">${commentList.bsubject }</span>
+									<span style="display:none" id="upSub">
+										<input type="text" name="upSub" id="upSub" class="form-control" placeholder="제목을 입력하세요." value="${commentList.bcon }">
+									</span>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<label class="col-sm-2">내용</label>
+								<div class="col-sm-5">
+									<span id="con">${commentList.bcon }</span>
+									<span style="display:none" id="upCon">
+										<textarea name="upCon" id="upCon" rows="4" cols="100" style="resize:none;" class="form-control" placeholder="내용을 입력하세요.">${commentList.bcon }</textarea>
+									</span>
+								</div>
+							</div>
+							<div class="col-sm-12" align="right">
+								<span id="replyBtn">
+									<input type="button" value="답글" class="btn login_btn" onclick="fn_ReplyComment()">
+								</span>
+								<span style="display:none" id="deleteBtn">
+									<input type="button" value="삭제" class="btn login_btn" onclick="fn_DeleteComment()">
+								</span>
+								<span style="display:none" id="comfirmBtn">
+									<input type="button" value="확인" class="btn login_btn" onclick="fn_UpdateComment()">
+								</span>
+								<c:if test="${user.unum == commentList.bunum }">
+									<span id="updateBtn">
+										<input type="button" value="수정" class="btn login_btn" onclick="fn_UpdateCommentForm(${commentList.bnum})">
+									</span>
+								</c:if>
+							</div>
+						</form>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
-	
 </body>
 </html>

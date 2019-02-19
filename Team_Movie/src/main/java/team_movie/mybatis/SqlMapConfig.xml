@@ -8,6 +8,7 @@
 		<typeAlias alias="MyMovie" type="team_movie.model.MovieBean" />
 		<typeAlias alias="MyGenre" type="team_movie.model.GenreBean"/>
 		<typeAlias alias="MyUser" type="team_movie.model.UserBean"/>
+		<typeAlias alias="MyBoard" type="team_movie.model.BoardBean"/>
 		<typeAlias alias="MyMembership" type="team_movie.model.MembershipBean"/>
 	</typeAliases>
 	
@@ -15,6 +16,7 @@
 		<mapper resource="team_movie/mybatis/movie.xml" />
 		<mapper resource="team_movie/mybatis/genre.xml" />
 		<mapper resource="team_movie/mybatis/user.xml" />
+		<mapper resource="team_movie/mybatis/board.xml" />
 		<mapper resource="team_movie/mybatis/membership.xml" />
 	</mappers>
 

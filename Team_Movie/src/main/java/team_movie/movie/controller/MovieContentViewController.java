@@ -12,28 +12,38 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import team_movie.model.BoardBean;
+import team_movie.model.BoardDao;
 import team_movie.model.GenreBean;
 import team_movie.model.GenreDao;
 import team_movie.model.MovieBean;
 import team_movie.model.MovieDao;
+import team_movie.model.UserBean;
+import team_movie.model.UserDao;
 
 @Controller
 public class MovieContentViewController {
 	
-	private static final String getPage ="body/movieContent";
+	private final static String getPage ="body/movieContent";
 	private final static String command = "/movieContent.tm";
-	 
+	
 	@Autowired
-	@Qualifier("MyMovieDao")
 	MovieDao movieDao;
 	
 	@Autowired
 	@Qualifier("myGenreDao")
 	GenreDao genreDao;
 	
+	@Autowired
+	UserDao userDao;
+	
+	@Autowired
+	BoardDao boardDao;
+	
 	@RequestMapping(value=command)
 	public String doAcitionGet(	
 				@RequestParam(value="mnum", required=true) int mnum,
+				@RequestParam(value="usid", required=false) String usid,
 				Model model
 			) {
 		
@@ -62,6 +72,14 @@ public class MovieContentViewController {
 		List<GenreBean> genreList = null;
 		genreList = genreDao.getGenreList();
 		model.addAttribute("genreList", genreList);
+		
+		UserBean user = userDao.GetUserById(usid);
+		
+		model.addAttribute("user", user);
+		
+		List<BoardBean> commentList = boardDao.getCommentListByMnum(mnum);
+		
+		model.addAttribute("commentList", commentList);
 		
 		return getPage;
 	}

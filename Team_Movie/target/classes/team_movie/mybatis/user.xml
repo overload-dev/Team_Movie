@@ -33,6 +33,10 @@
 	<update id="UpdateMembership" parameterType="MyUser">
 		update tuser set ugrade=#{ugrade},uupend=#{uupend},uupstart=#{uupstart} where usid=#{usid}
 	</update>
+	
+	<select id="GetUserById" resultType="MyUser">
+		select * from tuser where usid=#{usid}
+	</select>
 </mapper>
 
  

@@ -78,5 +78,11 @@ public class UserDao {
 		cnt =sqlSessionTemplate.update(namespace+".UpdateMembership",userBean);
 		return cnt;
 	}
+	
+	public UserBean GetUserById(String usid) {
+		UserBean user = new UserBean();
+		user = sqlSessionTemplate.selectOne(namespace + ".GetUserById", usid);
+		return user;
+	}
 }
  
