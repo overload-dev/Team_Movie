@@ -12,24 +12,7 @@ userDeleteForm.jsp
 <div class="container">
 		<h2 class="text-primary">회원 정보 관리</h2>
 		<div class="row">
-			<div class="col-sm-3" >
-				<div class="panel panel-info">
-					<div class="panel-heading">Menu</div>
-						<div class="panel-body" align="center">
-						<div class="list-group">
-							<a href="userDetail.tm" class="list-group-item list-group-item-action ">
-								개인 정보 관리  
-							</a> 
-							<a href="#" class="list-group-item list-group-item-action">
-								멤버십
-							</a>
-							<a href="userDelete.tm" class="list-group-item list-group-item-action active">
-								회원 탈퇴
-							</a> 
-						</div>
-		      		</div>
-		 	   </div>
-			</div>
+				<%@ include file="userMenu.jsp" %>
 			<div class="col-sm-9">
 					<div class="panel panel-info">
 					

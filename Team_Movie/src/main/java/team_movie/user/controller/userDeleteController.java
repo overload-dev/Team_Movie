@@ -25,12 +25,16 @@ public class userDeleteController {
 	public ModelAndView doActionGet(
 			HttpSession session
 			){
-		 System.out.println("userDeleteForm");
+		/*메뉴바 active변경되도록하는 세션*/
+		session.setAttribute("number", 3);
+		 
+		System.out.println("userDeleteForm");
 		 String usid = (String)session.getAttribute("usid");
 		 ModelAndView mav =new ModelAndView();
 		 UserBean userInfo=userDao.GetData(usid);
 		 mav.addObject("userInfo",userInfo);
 		 mav.setViewName(getPage);
+		 
 		 return mav;
 	}
 	@RequestMapping(value=command, method=RequestMethod.POST)

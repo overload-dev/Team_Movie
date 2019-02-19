@@ -25,26 +25,35 @@ public class UserUpdateController {
 	@RequestMapping(value=commandD, method=RequestMethod.GET)
 	public ModelAndView doActionGet(
 			HttpSession session
+	
 			){
+		/*메뉴바 active변경되도록하는 세션*/
+		session.setAttribute("number", 1);
+		
 		ModelAndView mav = new ModelAndView();
 		String usid=(String)session.getAttribute("usid");
 
 		UserBean userInfo = userDao.GetData(usid);
-
+		
 		mav.addObject("userInfo",userInfo);
 		mav.setViewName(getPage);
 		return mav;
 	}
 	 
+	
 	@RequestMapping(value=commandE, method=RequestMethod.GET)
 	public ModelAndView doActionGetEdit(
-			@RequestParam(value="usid",required=true ) String usid
+			@RequestParam(value="usid",required=true ) String usid,
+			HttpSession session
 			){
+		
+		/*메뉴바 active변경되도록하는 세션*/
+		session.setAttribute("number", 4);
+		
 		ModelAndView mav = new ModelAndView();
 		System.out.println("usid :" +usid);
 
 		UserBean userInfo = userDao.GetData(usid);
-
 		mav.addObject("userInfo",userInfo);
 		mav.setViewName(gotoPage);
 		return mav;

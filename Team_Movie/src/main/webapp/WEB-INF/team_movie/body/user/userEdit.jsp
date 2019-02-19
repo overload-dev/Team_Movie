@@ -15,24 +15,7 @@
 	<div class="container">
 		<h2 class="text-primary">회원 정보 관리</h2>
 		<div class="row">
-			<div class="col-sm-3" >
-				<div class="panel panel-info">
-					<div class="panel-heading">Menu</div>
-						<div class="panel-body" align="center">
-						<div class="list-group">
-							<a href="#" class="list-group-item list-group-item-action active">
-								개인 정보 관리  
-							</a> 
-							<a href="#" class="list-group-item list-group-item-action">
-								멤버십
-							</a>
-							<a href="userDelete.tm" class="list-group-item list-group-item-action">
-								회원 탈퇴
-							</a> 
-						</div>
-		      		</div>
-		 	   </div>
-			</div>
+			<%@ include file="userMenu.jsp" %>
 			<div class="col-sm-9">
 				<form action="userEdit.tm" method="POST">
 					<div class="panel panel-info">
@@ -58,7 +41,11 @@
 									<input type="checkBox" name="ugenre" value="드라마" <c:if test="${fn:contains(userInfo.ugenre,'드라마') }">checked</c:if>	>드라마
 									<input type="checkBox" name="ugenre" value="멜로" <c:if test="${fn:contains(userInfo.ugenre,'멜로') }">checked</c:if>		>멜로
 									<br>
-							멤버 등급 : ${userInfo.ugrade} <button type="button" onclick="#">멤버쉽 등록</button><br>
+							멤버 등급 : ${userInfo.ugrade} <br>
+				
+							<c:if test="${userInfo.ugrade==1 }">
+								<button type="button" onclick="location.href='mShipBuyForm.tm'">멤버쉽 등록 하러가기</button><br>
+							</c:if>
 							
 							가입일자 : ${userInfo.udate}<br>
 						</div> 
