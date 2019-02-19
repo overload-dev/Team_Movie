@@ -29,8 +29,10 @@ public class userDeleteController {
 		 String usid = (String)session.getAttribute("usid");
 		 ModelAndView mav =new ModelAndView();
 		 UserBean userInfo=userDao.GetData(usid);
+		 session.setAttribute("mnum", 3);
 		 mav.addObject("userInfo",userInfo);
 		 mav.setViewName(getPage);
+		 
 		 return mav;
 	}
 	@RequestMapping(value=command, method=RequestMethod.POST)

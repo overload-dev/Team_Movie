@@ -25,26 +25,29 @@ public class UserUpdateController {
 	@RequestMapping(value=commandD, method=RequestMethod.GET)
 	public ModelAndView doActionGet(
 			HttpSession session
+	
 			){
 		ModelAndView mav = new ModelAndView();
 		String usid=(String)session.getAttribute("usid");
 
 		UserBean userInfo = userDao.GetData(usid);
-
+		session.setAttribute("mnum", 1);
 		mav.addObject("userInfo",userInfo);
 		mav.setViewName(getPage);
 		return mav;
 	}
 	 
+	
 	@RequestMapping(value=commandE, method=RequestMethod.GET)
 	public ModelAndView doActionGetEdit(
-			@RequestParam(value="usid",required=true ) String usid
+			@RequestParam(value="usid",required=true ) String usid,
+			HttpSession session
 			){
 		ModelAndView mav = new ModelAndView();
 		System.out.println("usid :" +usid);
 
 		UserBean userInfo = userDao.GetData(usid);
-
+		session.setAttribute("mnum", 4);
 		mav.addObject("userInfo",userInfo);
 		mav.setViewName(gotoPage);
 		return mav;

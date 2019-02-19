@@ -9,8 +9,14 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function membershipBuy(mbsnum){
-		
-		location.href="mShipBuy.tm?mbsnum="+mbsnum
+		var cf = confirm( '정말 구매 하시겠습니까?' );
+	    
+		if(cf==true){
+			location.href="mShipBuy.tm?mbsnum="+mbsnum
+		}else{
+			alert("구매취소되었습니다.");
+			location.href="mShipBuyForm.tm"
+		}
 	}
 </script>
 </head>
@@ -19,20 +25,8 @@
 	<div class="container">
 		<h2 class="text-primary">회원 정보 관리</h2>
 		<div class="row">
-			<div class="col-sm-3">
-				<div class="panel panel-info">
-					<div class="panel-heading">Menu</div>
-					<div class="panel-body" align="center">
-						<div class="list-group">
-							<a href="userUpdate.tm" class="list-group-item list-group-item-action"> 개인 정보 관리 </a> 
-							<a href="#" class="list-group-item list-group-item-action active"> 멤버십 </a>
-							<a href="userDelete.tm" class="list-group-item list-group-item-action"> 회원 탈퇴 </a>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-sm-9">
+			<%@ include file="userMenu.jsp" %>
+		<div class="col-sm-9">
 				<div class="panel panel-info">
 					<div class="panel-heading">Membership List</div>
 					<div class="panel-body" align="center">

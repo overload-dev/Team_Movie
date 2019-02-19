@@ -1,11 +1,14 @@
 package team_movie.user.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,20 +37,21 @@ public class UserMembershipBuyController {
 	UserDao userDao;
 	
 	@RequestMapping(value=command ,method=RequestMethod.GET)
-	public String doActionGet(Model model){
+	public String doActionGet(Model model,HttpSession session){
 		System.out.println("멤버쉽폼");
 		List<MembershipBean> membershipList = new ArrayList<MembershipBean>();
 		membershipList = membershipDao.GetMemberShipList();
 		model.addAttribute("membershipList",membershipList);
-		
+		session.setAttribute("mnum", 2);
 		return getPage;
 	} 
 	
 	@RequestMapping(value=command2 ,method=RequestMethod.GET)
 	public String doActionGet(
 			@RequestParam(value="mbsnum",required=true) int mbsnum,
-			HttpSession session
-			){
+			HttpSession session,
+			HttpServletResponse response
+			) throws IOException{
 		System.out.println("mbsnum : "+ mbsnum);
 		System.out.println("usid : "+ session.getAttribute("usid"));
 		String usid =(String)session.getAttribute("usid");
@@ -57,8 +61,7 @@ public class UserMembershipBuyController {
 		System.out.println(msBean.getMbsname());
 		System.out.println(msBean.getMbsperiod());
 		System.out.println(msBean.getMbsprice());
-		
-		
+			
 		UserBean userBean = new UserBean();
 	    Timestamp nowTime = new Timestamp(System.currentTimeMillis()); 
 		Calendar cal = Calendar.getInstance(); 
@@ -68,6 +71,9 @@ public class UserMembershipBuyController {
 		
 		System.out.println("nowTime :" +nowTime);
 		System.out.println("afterTime :"+afterTime);
+		PrintWriter writer;
+		response.setContentType("text/html;charset=UTF-8"); 
+		writer = response.getWriter();
 		
 		if(msBean.getMbsnum()!=0){
 			System.out.println("msBean.getMbsnum()!=0");
@@ -80,7 +86,13 @@ public class UserMembershipBuyController {
 			
 			int cnt =0;
 			cnt =userDao.UpdateMembership(userBean);
-		
+			
+			writer.println("<script type='text/javascript'>");
+			writer.println("alert('구매 완료 되었습니다.');");
+			writer.println("history.back();"); 
+			writer.println("</script>");
+			writer.flush(); 
+			return getPage;
 		}
 		
 		return getPage;
