@@ -50,8 +50,6 @@ adminContentsEdit.jsp
 									<div class="progress-bar progress-bar-striped" style="width:${(count / fn:length(movieList))*100}%">${genre.gname}(${count})</div>
 								</div>
 							</c:if>
-							
-							
 						</c:forEach>
 						<table class="table">
 							<thead class="thead">
@@ -84,7 +82,7 @@ adminContentsEdit.jsp
 									<td><fmt:formatDate value="${movie.midate}" pattern="yyyy-MM-dd"/></td>
 									<td>${movie.mwcon }</td>
 									<td>
-										<input type="button" class="btn btn-info" value="View">
+										<input type="button" class="btn btn-info" value="View" onclick="location.href='adminContentsView.tm?mnum=${movie.mnum}'">
 									</td>
 								</tr>
 								
