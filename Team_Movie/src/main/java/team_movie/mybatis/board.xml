@@ -18,6 +18,17 @@
 		select * from mboard
 		where bnum = #{bnum}
 	</select>
+	
+	<update id="UpdateComment">
+		update mboard
+		set bsubject = #{bsubject}, bcon = #{bcon}
+		where bnum = #{bnum} 
+	</update>
+	
+	<delete id="DeleteComment">
+		delete from mboard
+		where bnum = #{bnum}
+	</delete>
 </mapper>
 
  

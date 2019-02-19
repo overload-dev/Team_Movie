@@ -31,4 +31,16 @@ public class BoardDao {
 		board = sqlSessionTemplate.selectOne(namespace + ".getCommentBynum", bnum);
 		return board;
 	}
+	
+	public int UpdateComment(BoardBean board) {
+		int cnt = sqlSessionTemplate.update(namespace + ".UpdateComment", board);
+		return cnt;
+	}
+	
+	public int DeleteComment(int bnum) {
+		int cnt = sqlSessionTemplate.delete(namespace + ".DeleteComment", bnum);
+		return cnt;
+	}
+	
+	
 }

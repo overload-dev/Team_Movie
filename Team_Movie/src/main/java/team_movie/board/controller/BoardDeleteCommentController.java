@@ -12,8 +12,8 @@ import team_movie.model.BoardBean;
 import team_movie.model.BoardDao;
 
 @Controller
-public class BoardUpdateCommentController {
-private final static String command = "/commentUpdate.tm";
+public class BoardDeleteCommentController {
+	private final static String command = "/commentDelete.tm";
 	
 	@Autowired
 	@Qualifier("myBoard")
@@ -21,32 +21,12 @@ private final static String command = "/commentUpdate.tm";
 	
 	@RequestMapping(value=command, method = RequestMethod.GET)
 	@ResponseBody
-	public BoardBean doAcitonGet(
+	public int doAcitonGet(
 				@RequestParam(value="bnum", required=true) int bnum
 			) {
 		
-		BoardBean board =  boardDao.getCommentBynum(bnum);
-		
-		return board;
-	}
-	
-	@RequestMapping(value=command, method = RequestMethod.POST)
-	@ResponseBody
-	public int doAcitonPost(
-			@RequestParam(value="upSubText", required=true) String upSubText,
-			@RequestParam(value="upConText", required=true) String upConText,
-			@RequestParam(value="bnum", required=true) int bnum
-			) {
-		
-		BoardBean board = new BoardBean();
-		
-		board.setBsubject(upSubText);
-		board.setBcon(upConText);
-		board.setBnum(bnum);
-		
 		int cnt = -1;
-				
-		cnt = boardDao.UpdateComment(board);
+		cnt =  boardDao.DeleteComment(bnum);
 		
 		return cnt;
 	}
