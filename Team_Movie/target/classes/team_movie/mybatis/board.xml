@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="team_movie.model.BoardBean">
+	<insert id="InsertComment">
+		insert into mboard 
+		values(mboard_seq.nextval, 1, #{bmnum}, #{bunum}, #{bsubject}, #{bcon}, mboard_seq.currval, 0, 0, sysdate)
+	</insert>
+	
+	<select id="getCommentListByMnum" resultType="MyBoard">
+		select * from mboard
+		where bmnum = #{mnum}
+	</select>
+	
+	<select id="getCommentBynum" resultType="MyBoard">
+		select * from mboard
+		where bnum = #{bnum}
+	</select>
+</mapper>
+
+ 
