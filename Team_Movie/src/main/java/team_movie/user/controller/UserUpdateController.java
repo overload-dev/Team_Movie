@@ -27,11 +27,14 @@ public class UserUpdateController {
 			HttpSession session
 	
 			){
+		/*메뉴바 active변경되도록하는 세션*/
+		session.setAttribute("number", 1);
+		
 		ModelAndView mav = new ModelAndView();
 		String usid=(String)session.getAttribute("usid");
 
 		UserBean userInfo = userDao.GetData(usid);
-		session.setAttribute("mnum", 1);
+		
 		mav.addObject("userInfo",userInfo);
 		mav.setViewName(getPage);
 		return mav;
@@ -43,11 +46,14 @@ public class UserUpdateController {
 			@RequestParam(value="usid",required=true ) String usid,
 			HttpSession session
 			){
+		
+		/*메뉴바 active변경되도록하는 세션*/
+		session.setAttribute("number", 4);
+		
 		ModelAndView mav = new ModelAndView();
 		System.out.println("usid :" +usid);
 
 		UserBean userInfo = userDao.GetData(usid);
-		session.setAttribute("mnum", 4);
 		mav.addObject("userInfo",userInfo);
 		mav.setViewName(gotoPage);
 		return mav;

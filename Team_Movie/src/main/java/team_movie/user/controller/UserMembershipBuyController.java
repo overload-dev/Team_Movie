@@ -38,11 +38,15 @@ public class UserMembershipBuyController {
 	
 	@RequestMapping(value=command ,method=RequestMethod.GET)
 	public String doActionGet(Model model,HttpSession session){
+		
+		/*메뉴바 active변경되도록하는 세션*/
+		session.setAttribute("number", 2);
+		
 		System.out.println("멤버쉽폼");
 		List<MembershipBean> membershipList = new ArrayList<MembershipBean>();
 		membershipList = membershipDao.GetMemberShipList();
 		model.addAttribute("membershipList",membershipList);
-		session.setAttribute("mnum", 2);
+	
 		return getPage;
 	} 
 	
