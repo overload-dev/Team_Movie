@@ -1,15 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<%@include file="../../top.jsp"%>
 
-adminContentsEdit.jsp
+<%@include file="../../top.jsp"%>
 	<div class="container">
 		<h2 class="text-primary">컨텐츠 관리</h2>
 		<div class="row">
@@ -34,7 +26,6 @@ adminContentsEdit.jsp
 			      	</div>
 			    </div>
 			</div>
-			<div class="col-sm-9">
 				<div class="panel panel-info">
 					<div class="panel-heading">Contents List</div>
 					<div class="panel-body" align="center">
@@ -92,6 +83,3 @@ adminContentsEdit.jsp
 				</div>
 			</div>
 		</div>
-	</div>
-</body>
-</html>

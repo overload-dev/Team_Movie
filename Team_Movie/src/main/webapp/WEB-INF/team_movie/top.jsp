@@ -17,7 +17,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
 
-  
 <!-- jQuery UI CSS파일  -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 
@@ -30,8 +29,6 @@
 <title>Palnet Ark</title>
 </head>
 <body>
-
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<c:if test="${usid == null }">
 		<a class="navbar-brand" href="main.tm">Palnet Ark</a>
@@ -61,9 +58,7 @@
 				</c:forEach>
 				</ul>
 			</div>
-	
 	</div>
-	
 	<div class="col-sm-4">
 		<ul class="navbar-nav">
 			<c:if test="${sessionScope.usid != null }">
@@ -76,8 +71,6 @@
 			</c:if>
 		</ul>
 	</div>
-	
-
 	<div class="col-sm-4" >
 	<c:choose>
 		<c:when test="${sessionScope.ugrade == null}"><!-- none acount -->
@@ -95,8 +88,9 @@
 				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">내 정보</button>
 				<div class="dropdown-menu">
 					<a class="dropitem" href="#">공지사항</a><br>
-					<a class="dropitem" href="adminUserEdit.tm">회원 관리</a><br>
-					<a class="dropitem" href="#">작품 관리</a><br>
+ 					<a class="dropitem" href="adminUserEdit.tm">회원 관리</a><br>
+
+					<a class="dropitem" href="adminContentsEdit.tm">작품 관리</a><br>
 					<a class="dropitem" href="#">이벤트</a><br>
 				</div>
 
@@ -104,10 +98,6 @@
 				<input type="button" class="btn btn-danger" value="logout" onclick="location.href='userLogout.tm'">
 
 		</c:when>
-		
-		
-		
-		
 		<c:when test="${sessionScope.ugrade == '1'}"><!-- nomal acount -->
 			<a href="">
 				<font style="color: white; font-weight: bold; font-size: medium;">
@@ -118,8 +108,6 @@
 			<input type="button" class="btn btn-danger" value="logout" onclick="location.href='userLogout.tm'">
 		</c:when>
 		
-		
-		
 		<c:when test="${sessionScope.ugrade == '2'}"><!-- sp acount -->
 			<a href="">
 				<font style="color: white; font-weight: bold; font-size: medium;">
@@ -129,7 +117,6 @@
 			<input type="button" class="btn btn-danger" value="회원정보관리" onclick="location.href='userDetail.tm'">
 			<input type="button" class="btn btn-danger" value="logout" onclick="location.href='userLogout.tm'">
 		</c:when>
-		
 		
 	</c:choose>  	
 	</div>

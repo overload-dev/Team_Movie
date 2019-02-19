@@ -19,7 +19,7 @@ import team_movie.model.UserDao;
 public class AdminUserEditController {
 	
 	private static final String command ="adminUserEdit.tm";
-	private static final String getPage = "body/admin/adminUserEdit";
+	private static final String getPage = "body/admin/adminEdit";
 	
 	@Autowired
 	@Qualifier("myGenreDao")
@@ -42,8 +42,8 @@ public class AdminUserEditController {
 		mav.addObject("genreList", genreList);
 				
 		mav.addObject("userList", userList);
+		mav.addObject("Selpage","adminEditUser");
 		mav.setViewName(getPage);
-		
 		
 		return mav;
 	}

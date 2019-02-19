@@ -24,10 +24,8 @@ public class AdminMembershipDelController {
 	public int doActionGet(
 			@RequestParam("mbsnum") int mbsnum
 			){
-		System.out.println("a");
 		int cnt = -1;
 		cnt = membershipDao.DeleteMembership(mbsnum);
 		return cnt;
 	}
-	
 }

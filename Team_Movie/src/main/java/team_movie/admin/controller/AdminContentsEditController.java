@@ -18,7 +18,7 @@ import team_movie.model.MovieDao;
 public class AdminContentsEditController {
 	
 	private static final String command="adminContentsEdit.tm";
-	private static final String gotoPage ="body/admin/adminContentsEdit";
+	private static final String gotoPage ="body/admin/adminEdit";
 	
 	@Autowired
 	@Qualifier("MyMovieDao")
@@ -39,7 +39,7 @@ public class AdminContentsEditController {
 		List<GenreBean> genreList = null;
 		genreList = genreDao.getGenreList();
 		model.addAttribute("genreList", genreList);
-		
+		model.addAttribute("Selpage","adminEditContents");
 		return gotoPage;
 	}
 }

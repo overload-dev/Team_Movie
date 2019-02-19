@@ -19,7 +19,7 @@ import team_movie.model.MembershipDao;
 public class AdminMembershipEditController {
 	
 	private static final String command ="adminMembershipEdit.tm";
-	private static final String gotoPage ="body/admin/adminMembershipEdit";
+	private static final String gotoPage ="body/admin/adminEdit";
 	
 	@Autowired
 	@Qualifier("myMembership")
@@ -31,7 +31,6 @@ public class AdminMembershipEditController {
 	
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public String doActionGet(Model model){
-		
 		List<MembershipBean> membershipList = new ArrayList<MembershipBean>();
 		membershipList = membershipDao.GetMemberShipList();
 		model.addAttribute("membershipList",membershipList);
@@ -40,7 +39,8 @@ public class AdminMembershipEditController {
 		List<GenreBean> genreList = null;
 		genreList = genreDao.getGenreList();
 		model.addAttribute("genreList", genreList);
-				
+		model.addAttribute("Selpage", "adminEditMembership");
+		
 		return gotoPage;
 	}
 }
