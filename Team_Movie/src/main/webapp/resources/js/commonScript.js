@@ -136,7 +136,7 @@ function addMembershipEdit() {
 
 }
 
-function myFunction() {
+function searchUserData() {
 	  var input, filter, table, tr, td, i, txtValue, searchAt;
 	  input = document.getElementById("myInput");
 	  filter = input.value.toUpperCase();

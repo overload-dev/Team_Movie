@@ -20,7 +20,7 @@
 				</select>
 			</div>
 			<div class="col-xs-6">
-				<input class="form-control"type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+				<input class="form-control"type="text" id="myInput" onkeyup="searchUserData()" placeholder="Search for names.." title="Type in a name">
 			</div>
 		</div>
 		<hr>
