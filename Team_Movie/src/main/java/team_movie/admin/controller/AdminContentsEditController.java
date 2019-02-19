@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import team_movie.model.GenreBean;
 import team_movie.model.GenreDao;
+import team_movie.model.MovieBean;
+import team_movie.model.MovieDao;
 
 @Controller
 public class AdminContentsEditController {
@@ -19,11 +21,19 @@ public class AdminContentsEditController {
 	private static final String gotoPage ="body/admin/adminContentsEdit";
 	
 	@Autowired
+	@Qualifier("MyMovieDao")
+	MovieDao movieDao;
+	
+	@Autowired
 	@Qualifier("myGenreDao")
 	GenreDao genreDao;
 	
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public String doActionGet(Model model){
+		
+		//MovieList Get
+		List<MovieBean> movieList = movieDao.GetMovieList();
+		model.addAttribute("movieList",movieList);
 		
 		//GenreData Get
 		List<GenreBean> genreList = null;
