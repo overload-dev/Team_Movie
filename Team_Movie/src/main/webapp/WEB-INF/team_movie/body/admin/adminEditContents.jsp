@@ -6,7 +6,7 @@
 
 <div class="panel panel-info">
 	<div class="panel-heading">Contents List</div>
-	<div class="panel-body" align="center">
+	<div class="panel-body" align="right">
 		<c:forEach var="genre" items="${genreList}">
 			<c:set var="count" value="0" />
 			<c:forEach var="movie" items="${movieList }">
@@ -22,6 +22,7 @@
 			</c:if>
 		</c:forEach>
 		<hr>
+		<input type="button" class="btn btn-primary" value="신규 컨텐츠 추가" onclick="location.href='addContentsEdit.tm'">
 		<table class="table">
 			<thead class="thead">
 				<tr>
