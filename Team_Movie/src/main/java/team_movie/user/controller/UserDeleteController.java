@@ -12,7 +12,7 @@ import team_movie.model.UserBean;
 import team_movie.model.UserDao;
 
 @Controller
-public class userDeleteController {
+public class UserDeleteController {
 	
 	private final String command="userDelete.tm";
 	private final String getPage="body/user/userDeleteForm";

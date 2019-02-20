@@ -13,6 +13,8 @@
 <%@include file="../../top.jsp"%>
 <script src="<c:url value='/resources/js/commonScript.js'/>"></script>
 
+
+
 </head> 
 <body>
 	<div class="container">
@@ -30,6 +32,8 @@
 							<label class="col-sm-12">아이디</label>
 							<div class="col-sm-12">    
 								<input type="text" name="usid" placeholder="사용 할 ID를 입력하세요." class="form-control" >
+								<input type="button" value="중복확인 " class="btn login_btn" name="id_check" >
+								<span id="idmessage" style="display:none;">idmessage</span>
 							</div>
 						</div>
 						<!-- 닉네임 입력  --> 
@@ -80,7 +84,7 @@
 						</div>
 						<center>
 						<c:set var="ugrade" value="0"/>
-							<input type="button" value="가입하기 " class="btn login_btn" onclick="Validation(${ugrade})">
+							<input type="button" value="가입하기 " id="check" class="btn login_btn" onclick="Validation(${ugrade})">
 						</center>
 					
 					</form>

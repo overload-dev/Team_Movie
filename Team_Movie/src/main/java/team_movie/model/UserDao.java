@@ -1,10 +1,7 @@
 package team_movie.model;
 
-import java.util.List;
-import java.security.Timestamp;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,6 +80,26 @@ public class UserDao {
 		UserBean user = new UserBean();
 		user = sqlSessionTemplate.selectOne(namespace + ".GetUserById", usid);
 		return user;
+	}
+
+	//중복체크
+	public boolean SearchID(String usid) {
+		boolean flag =false;
+		int cnt = -1;
+		List<UserBean> array  =new ArrayList<UserBean>();
+		
+		array= sqlSessionTemplate.selectList(namespace+".SearchID",usid);
+		System.out.println("array.size():"+array.size());
+		if(array.size()==0 && usid!=null){
+			flag =true;//아이디생성가능
+			System.out.println("flag="+flag);
+		
+		}else{
+			
+			flag=false;//아이디중복
+			System.out.println("flag="+flag);
+		}
+		return flag;
 	}
 }
  

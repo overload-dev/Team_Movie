@@ -37,6 +37,10 @@
 	<select id="GetUserById" resultType="MyUser">
 		select * from tuser where usid=#{usid}
 	</select>
+	
+	<select id="SearchID" resultType="MyUser">
+		select usid from tuser where usid=#{usid}
+	</select>
 </mapper>
 
  

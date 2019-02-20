@@ -170,6 +170,53 @@ $(function() {
         dateFormat: 'yy-mm-dd'
     });
 });
+var isCheck=false;
+var isChange=false;
+//중복체크
+$(document).ready(function(){
+	
+	var use;
+	var isBlank=false;
+	
+	$("input[name=usid]").keydown(function(){//키보드가 눌렸을 때 span영역 을 다시 안보이게끔
+		isChange=true;
+		use="";
+		$("#idmessage").css("display","none");
+	})
+	$("input[name=id_check]").click(function(){
+		isCheck=true;
+		isChange =false;
+		isBlank =false;
+		
+		if($('input[name=usid]').val()==""){
+			alert("사용 할 아이디를 입력하세요.");
+			isBlank=true;
+			return false;
+		}
+		
+		$.ajax({
+			url:"idCheck.tm",
+			data :({
+				"usid":$("input[name=usid]").val()
+			}),
+			success:function(data){		
+				if(jQuery.trim(data)=='YES'){
+					 $('#idmessage').html("<font color=blue>사용 가능합니다.</font>");
+					$('#idmessage').show();//display:none인걸 보이게끔 바꾸어줌 
+					//alert("아이디 사용가능합니다.");
+					use="possible";
+				}else{
+					 $('#idmessage').html("<font color=red>이미 사용중인 아이디 입니다.</font>");
+					$('#idmessage').show();
+					//alert("아이디가 중복되었습니다.");
+					use="impossible";
+				} 
+			}
+		});//ajax()의 끝
+	})
+	
+	
+})
 
 //회원가입 유효성검사 
 function Validation(ugrade){
@@ -183,9 +230,14 @@ function Validation(ugrade){
 	var ugenre = $('input[name=ugenre]');	
 	
 	
+	if(isCheck==false|| isChange==true){
+		alert("중복체크를 하세요.");
+		return false;
+	}
+	
+	
 	if(usid.val()=="") {
 		alert("사용 할 아이디를 입력하세요.");
-		
 		usid.focus();	
 		return false;
 	}
@@ -253,7 +305,8 @@ function Validation(ugrade){
         success : function(result) {
         	if (result > -1) {
 	        	alert("회원 가입되었습니다.");
-	        	location.reload();
+	        	
+	        	location.href="userLogin.tm";
         	}
         },
         error : function(jqXHR, textStatus, errorThrown) {
