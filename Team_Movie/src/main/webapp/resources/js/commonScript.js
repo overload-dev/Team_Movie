@@ -81,10 +81,9 @@ function deleteMembershipEdit(mbsnum, mbsname) {
 				self.close();
 			}
 		});
-
 	}
-
 }
+
 
 function addMembershipEdit() {
 	var n_mbsname, n_mbsperiod, n_mbsprice;
@@ -160,3 +159,109 @@ function searchUserData() {
 	    }       
 	  }
 	}
+
+// 회원가입 달력
+$(function() {
+    $( "#testDatepicker" ).datepicker({
+    	changeMonth: true, 
+        changeYear: true,
+        nextText: '다음 달',
+        prevText: '이전 달',
+        dateFormat: 'yy-mm-dd'
+    });
+});
+
+//회원가입 유효성검사 
+function Validation(ugrade){
+	
+	
+	var usid = $('input[name=usid]');
+	var uname = $('input[name=uname]');
+	var upw = $('input[name=upw]');
+	var upwCheck = $('input[name=upwCheck]');	
+	var ubirth = $('input[name=ubirth]');	
+	var ugenre = $('input[name=ugenre]');	
+	
+	
+	if(usid.val()=="") {
+		alert("사용 할 아이디를 입력하세요.");
+		
+		usid.focus();	
+		return false;
+	}
+	else if(uname.val() == "") {
+		alert("사용 할 닉네임을 입력하세요.");
+		
+		uname.focus();
+		return false; 
+	}
+	else if(upw.val()=="") {
+		alert("사용 할 비밀번호를 입력하세요.");
+		
+		upw.focus();
+		return false;
+	}
+	
+	else if (upwCheck.val()=="") {
+		alert("사용 할 비밀번호를 한 번 더 입력하세요.");
+		
+		upwCheck.focus();
+		return false;
+	}
+	
+	else if(upw.val()!=upwCheck.val()){
+		alert("입력한 비밀번호와 다릅니다.");
+		upwCheck.focus();
+		return false;
+	}
+	
+	else if(ubirth.val()=="") {
+		alert("생년월일을 입력하세요.");
+		
+		ubirth.focus();
+		return false;
+	}
+	 
+	else if(!ugenre.is(':checked')){
+		 
+		alert("선호 장르 한가지 이상 선택하세요.");	
+		
+		return false;
+	}else{
+		var ugenres = "";
+		
+		for(i=0;i<ugenre.length;i++) {
+			
+			if (ugenre[i].checked){
+		    	ugenres += ugenre[i].value+"/";
+		    } 
+		}
+		alert(ugenres);
+		
+		$.ajax({
+        url :"userInsert.tm",
+        type:'POST',
+        data:
+        	{
+        	"ugrade" :ugrade,
+        	"usid" : usid.val(),
+        	"uname":uname.val(),
+        	"upw":upw.val(),
+        	"ubirth":ubirth.val(),
+        	"ugenre":ugenres 
+        	},
+        success : function(result) {
+        	if (result > -1) {
+	        	alert("회원 가입되었습니다.");
+	        	location.reload();
+        	}
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+			alert("Error \n" + textStatus + " : " + errorThrown);
+			self.close();
+		}
+    })
+	}
+	
+	
+}

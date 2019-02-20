@@ -22,7 +22,7 @@
 		$('a[id=adminEditUser]').removeClass('active');
 		$('a[id=adminEditUser]').addClass('active');
 	}
-	
+	 
 }); */
 </script>
 <div class="panel panel-info">

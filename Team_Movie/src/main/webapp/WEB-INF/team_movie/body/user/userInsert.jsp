@@ -11,19 +11,7 @@
 <title>Insert title here</title>
 
 <%@include file="../../top.jsp"%>
-<%@include file="./../../../common/common.jsp"%>
-
-<script type="text/javascript">
-$(function() {
-    $( "#testDatepicker" ).datepicker({
-    	changeMonth: true, 
-        changeYear: true,
-        nextText: '다음 달',
-        prevText: '이전 달',
-        dateFormat: 'yy-mm-dd'
-    });
-});
-</script>
+<script src="<c:url value='/resources/js/commonScript.js'/>"></script>
 
 </head> 
 <body>
@@ -34,47 +22,44 @@ $(function() {
 					<h2>회원 가입</h2> 
          		</div>
          		<div class="card-body">
-					<form  method="POST" action="userInsert.tm">
+						<form method="POST" name="userInsert" id="userInsert" >
 						<!-- 가입일자와 회원등급을 controller로 보내줌  -->
 						<input type="hidden" name="ugrade" value="1">
 						<!-- 아이디 입력  --> 
 						<div class="form-group">
 							<label class="col-sm-12">아이디</label>
 							<div class="col-sm-12">    
-								<input type="text" name="usid" placeholder="사용 할 ID를 입력하세요." class="form-control" autofocus>
+								<input type="text" name="usid" placeholder="사용 할 ID를 입력하세요." class="form-control" >
 							</div>
 						</div>
 						<!-- 닉네임 입력  --> 
 						<div class="form-group"> 
 							<label class="col-sm-12">닉네임</label>
 							<div class="col-sm-12">
-								<input type="text" name="uname" placeholder="사용 할 닉네임을 입력하세요." class="form-control" autofocus>
+								<input type="text" name="uname" placeholder="사용 할 닉네임을 입력하세요." class="form-control" >
 			 				</div>
 						</div>
 						<!-- 비밀번호 입력  -->
 						<div class="form-group">
 							<label class="col-sm-12">비밀 번호</label>
 							<div class="col-sm-12">
-								<input type="password" name="upw" placeholder="비밀번호를 입력하세요." class="form-control" autofocus>
+								<input type="password" name="upw" placeholder="비밀번호를 입력하세요." class="form-control" >
 							</div>
 						</div>
 						<!-- 비밀번호 확인  -->
 						<div class="form-group">
 							<label for="password"  class="col-sm-12">비밀 번호 확인</label>
 							<div class="col-sm-12">
-								<input type="password" placeholder="비밀번호를 확인해주세요." class="form-control">
+								<input type="password" name="upwCheck" placeholder="비밀번호를 확인해주세요." class="form-control">
 							</div>
-						</div>
-						  
+						</div>  
 			      		<!-- 생년 월일   --> 
-						
 						<div class="form-group">
 							<label class="col-sm-12 control-label">생년월일</label>   
 							<div class="col-sm-12">
-								<input type="text" id="testDatepicker" name="insertubirth" class="form-control"> 
+								<input type="text" id="testDatepicker" name="ubirth" class="form-control"> 
 							</div>
-						</div>
-						  
+						</div>  
 						<!-- 선호 장르 선택  -->     
 						<div class="form-group">
 							<label class="control-label col-sm-12">선호 장르</label>
@@ -94,11 +79,13 @@ $(function() {
 							</div>
 						</div>
 						<center>
-							<input type="submit" value="회원가입" class="btn login_btn">
+						<c:set var="ugrade" value="0"/>
+							<input type="button" value="가입하기 " class="btn login_btn" onclick="Validation(${ugrade})">
 						</center>
-					</form>	
+					
+					</form>
 					<!-- /form -->
-				</div>
+				</div> 
 			</div>
 		</div>
 	</div>

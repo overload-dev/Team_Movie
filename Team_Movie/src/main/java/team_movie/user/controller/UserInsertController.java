@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import team_movie.model.GenreBean;
 import team_movie.model.GenreDao;
@@ -48,29 +50,38 @@ public class UserInsertController {
 	
 	
 	@RequestMapping(value=command , method= RequestMethod.POST)
-	public String doActionPost(
-			UserBean userBean,
-			HttpServletRequest request
-			){
-			
-			String insertubirth=request.getParameter("insertubirth");		
+	@ResponseBody
+	public int doActionPost(
+			@RequestParam(value="ugrade", required=true) String ugrade,
+			@RequestParam(value="usid", required=true) String usid,
+			@RequestParam(value="uname", required=true) String uname,
+			@RequestParam(value="upw", required=true) String upw,
+			@RequestParam(value="ugenre", required=true) String ugenre,
+			@RequestParam(value="ubirth", required=true) String insertubirth
+			){ 
+			System.out.println("유저인서트");
+			UserBean userBean= new UserBean();	
 			Date ubirth = Date.valueOf(insertubirth);
 			
+			System.out.println(ugrade);
 			System.out.println(ubirth);
+			System.out.println(usid);
+			System.out.println(uname);
+			System.out.println(upw);
+			System.out.println(ugenre);
 			
+			userBean.setUgrade(ugrade);
+			userBean.setUsid(usid);
+			userBean.setUname(uname);
+			userBean.setUpw(upw);
 			userBean.setUbirth(ubirth);
-		
-		System.out.println("userBean.getUgrade()="+userBean.getUgrade());
-		System.out.println("userBean.getUsid()=" +userBean.getUsid());
-		System.out.println("userBean.getUname()="+userBean.getUname());
-		System.out.println("userBean.getUpw()="+userBean.getUpw());
-		System.out.println("userBean.getUbirth()="+userBean.getUbirth());
-		System.out.println("userBean.getUgenre()="+userBean.getUgenre());
+			userBean.setUgenre(ugenre);
 		
 		
-		int cnt =0;
+		
+		int cnt =-1;
 		cnt = userDao.userInsert(userBean);
-		return gotoPage;
+		return cnt;
 	}
 	
 }
