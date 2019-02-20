@@ -9,5 +9,12 @@
 <%@include file="../../top.jsp"%>
 <body>
 adminContentsView.jsp
+<div class="container">
+	<h2></h2>
+	
+	
+</div>
+
+
 </body>
 </html>

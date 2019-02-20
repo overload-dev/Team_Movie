@@ -9,6 +9,8 @@
 		<!-- 유효성 검사 -->
 		<mvc:annotation-driven/>
 		<mvc:resources mapping="/resources/**" location="/resources/"/>
+		<mvc:resources mapping="/resources/img/**" location="/resources/"/>
+		
 		<context:component-scan base-package="team_movie" />
 		
 			<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 

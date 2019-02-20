@@ -38,15 +38,34 @@
 			<c:forEach var="movie" items="${movieList}">
 				<tr>
 					<td>${movie.mnum }</td>
-					<td><img src="${movie.mimg }" width="80px"> <img
+					<td><%-- <img src="${movie.mimg }" width="80px"> --%>
+					<img
 						src="//s3.namuwikiusercontent.com/s/5673b412996accb9ce935c3378c8d1493ea74f53cb6f692ee27ceed2c0b6ea2aed0b4cfcb49b387abab676557d156ef2f5a54dbf820089708d6cc6568690b8289a21bfc39a73f3702f1000356f5d85b90b25cae3d483b159e8a5349d562fb69e"
 						width="80px"></td>
 					<td>${movie.mname }</td>
 					<td>${movie.mgenre }</td>
-					<td>${movie.mage }</td>
+					<td width="10%">
+						<c:choose>
+							<c:when test="${movie.mage == 0}"><font color="green">전체</font></c:when>
+							<c:when test="${movie.mage == 1}"><font color="blue">12세</font></c:when>
+							<c:when test="${movie.mage == 2}"><font color="orange">15세</font></c:when>
+							<c:otherwise><font color="red">18세</font></c:otherwise>
+						</c:choose>
+						<br>
+						<%-- <img width="80%" src="<c:url value='/resources/img/classification/${movie.mage}.png'/>"/> --%>
+					</td>
 					<td><fmt:formatDate value="${movie.mrdate}" pattern="yyyy-MM-dd" /></td>
 					<td><fmt:formatDate value="${movie.midate}" pattern="yyyy-MM-dd" /></td>
-					<td>${movie.mwcon }</td>
+					<td>
+					<c:choose>
+						<c:when test="${movie.mwcon == 1}">
+							무료 관람
+						</c:when>
+						<c:otherwise>
+							스페셜
+						</c:otherwise>
+					</c:choose>				
+					</td>
 					<td><input type="button" class="btn btn-info" value="View"
 						onclick="location.href='adminContentsView.tm?mnum=${movie.mnum}'">
 					</td>
