@@ -22,7 +22,6 @@ function fn_insertComment(){
 			"bsubject": bsubject 
 			};
 	
-	alert("등록");
 	if($("input[name=bsubject]").val() == ""){
 		alert("제목을 입력하세요.");
 		$("input[name=bsubject]").val().focus();
@@ -63,12 +62,11 @@ function fn_UpdateCommentForm(bnum) {
         data: allData,
         success : function(result) {
         	if (result != null) {
-	        	alert("댓글 수정 폼");
 	        	document.getElementById("sub" + bnum).style.display = "none";
 	        	document.getElementById("upSub" + bnum).style.display = "";
 	        	document.getElementById("con" + bnum).style.display = "none";
 	        	document.getElementById("upCon" + bnum).style.display = "";
-	        	document.getElementById("replyBtn" + bnum).style.display = "none";
+	        	document.getElementById("replyShowBtn" + bnum).style.display = "none";
 	        	document.getElementById("deleteBtn" + bnum).style.display = "";
 	        	document.getElementById("comfirmBtn" + bnum).style.display = "";
 	        	document.getElementById("updateBtn" + bnum).style.display = "none";
@@ -82,17 +80,13 @@ function fn_UpdateCommentForm(bnum) {
 }
 
 function fn_UpdateComment(bnum) {
-	alert("확인");
 	upSubText = $('#upSubText' + bnum).val();
 	upConText = $('#upConText' + bnum).val();
-	alert("댓글번호 : " + bnum)
-	alert("제목 : " + upSubText);
-	alert("내용 : " + upConText);
 	
 	var allData = { 
 			"bnum": bnum,
 			"upSubText": upSubText, 
-			"upConText": upConText, 
+			"upConText": upConText 
 			};
 	
 	if($("#upSubText").val() == ""){
@@ -123,8 +117,67 @@ function fn_UpdateComment(bnum) {
 	    })
 	}
 }
-function fn_ReplyComment(bref) {
-	alert(bref);
+
+function fn_ReplyCommentFormShow(bnum) {
+	alert("bnum : " + bnum);
+	document.getElementById("replyForm" + bnum).style.display = "";
+	document.getElementById("replyShowBtn" + bnum).style.display = "none";
+	document.getElementById("replyHideBtn" + bnum).style.display = "";
+}
+
+function fn_ReplyCommentFormHide(bnum) {
+	alert("bnum : " + bnum);
+	document.getElementById("replyForm" + bnum).style.display = "none";
+	document.getElementById("replyShowBtn" + bnum).style.display = "";
+	document.getElementById("replyHideBtn" + bnum).style.display = "none";
+}
+
+function fn_insertReply(bref) {
+	alert("bref : " + bref);
+	replyUnum = $('#replyUnum' + bref).val();
+	replyMnum = $('#replyMnum' + bref).val();
+	replySub = $('#replySub' + bref).val();
+	replyCon = $('#replyCon' + bref).val();
+	alert("replyUnum : " + replyUnum);
+	alert("replyMnum : " + replyMnum);
+	alert("replySub : " + replySub);
+	alert("replyCon : " + replyCon);
+	
+	var allData = { 
+			"bref" : bref,
+			"replyUnum" : replyUnum, 
+			"replyMnum" : replyMnum, 
+			"replySub" : replySub, 
+			"replyCon" : replyCon 
+			};
+	
+	if($("#replySub").val() == ""){
+		alert("제목을 입력하세요.");
+		$("#replySub").val().focus();
+		return false;
+	}
+	else if($("#replyCon").val() == ""){
+		alert("내용을 입력하세요.");
+		$("#replyCon").val().focus();
+		return false;
+	} 
+ 	else {
+	   $.ajax({
+	        url :"commentInsert.tm",
+	        type:'POST',
+	        data:allData,
+	        success : function(result) {
+	        	if (result > -1) {
+		        	alert("댓글의 답글 삽입 완료");
+		        	location.reload();
+	        	}
+	        },
+	        error : function(jqXHR, textStatus, errorThrown) {
+				alert("Error \n" + textStatus + " : " + errorThrown);
+				self.close();
+			}
+	    })
+	}
 }
 function fn_DeleteComment(bnum) {
 	alert(bnum);
@@ -307,18 +360,18 @@ function fn_DeleteComment(bnum) {
 							</div>
 						</c:if>
 						<c:if test="${user.usid != null }">
-							<div class="col-md-12">
+							<label class="col-md-12" style="font-size: 18px;">
 								${user.usid }
-							</div>
+							</label>
 							<form id="commentForm" name="commentForm" method="get">
 								<input type="hidden" name="mnum" id="mnum" value="${movie.mnum }">
 								<input type="hidden" name="unum" id="unum" value="${user.unum }">
-								<label class="col-sm-12">제목</label>
-								<div class="col-md-12">
+								<label class="col-sm-1">제목</label>
+								<div class="col-sm-11">
 									<input type="text" name="bsubject" id="bsubject" class="form-control" placeholder="제목을 입력하세요." >
 								</div>
-								<label class="col-sm-12">내용</label>
-								<div class="col-md-12">
+								<label class="col-sm-1">내용</label>
+								<div class="col-sm-11">
 									<textarea name="bcon" id="bcon" rows="4" cols="100" style="resize:none;" class="form-control" placeholder="내용을 입력하세요."></textarea>
 								</div>
 								<div class="form-group" align="right">
@@ -339,44 +392,93 @@ function fn_DeleteComment(bnum) {
 			</div>
 			<div class="panel-body" id="commentReply">
 				<c:forEach items="${commentList }" var="commentList">
-					<form id="commentUpdateForm" name="commentUpdateForm" method="post">
-						<div class="form-group">
-							<div class="col-md-12">
-								<label class="col-sm-2">제목</label>
-								<div class="col-sm-5">
-									<span id="sub${commentList.bnum }">${commentList.bsubject }</span>
-									<span style="display:none" id="upSub${commentList.bnum }">
-										<input type="text" name="upSubText${commentList.bnum }" id="upSubText${commentList.bnum }" class="form-control" placeholder="제목을 입력하세요." value="${commentList.bcon }">
+					<div class="form-group">
+						<form id="commentUpdateForm" name="commentUpdateForm" method="post">
+							<c:if test="${commentList.brestep == 0 }">
+								<div class="col-md-12">
+									<label class="col-sm-1">제목</label>
+									<div class="col-sm-11">
+										<span id="sub${commentList.bnum }">${commentList.bsubject }</span>
+										<span style="display:none" id="upSub${commentList.bnum }">
+											<input type="text" name="upSubText${commentList.bnum }" id="upSubText${commentList.bnum }" class="form-control" placeholder="제목을 입력하세요." value="${commentList.bsubject }">
+										</span>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<label class="col-sm-1">내용</label>
+									<div class="col-sm-11">
+										<span id="con${commentList.bnum }">${commentList.bcon }</span>
+										<span style="display:none" id="upCon${commentList.bnum }">
+											<textarea name="upConText${commentList.bnum }" id="upConText${commentList.bnum }" rows="4" cols="100" style="resize:none;" class="form-control" placeholder="내용을 입력하세요.">${commentList.bcon }</textarea>
+										</span>
+									</div>
+								</div>
+							</c:if>
+							<c:if test="${commentList.brestep > 0 }">
+								<div class="col-sm-12">
+									<label class="col-sm-1" align="right">ㄴ</label>
+									<label class="col-sm-1">제목</label>
+									<div class="col-sm-10">
+										<span id="sub${commentList.bnum }">${commentList.bsubject }</span>
+										<span style="display:none" id="upSub${commentList.bnum }">
+											<input type="text" name="upSubText${commentList.bnum }" id="upSubText${commentList.bnum }" class="form-control" placeholder="제목을 입력하세요." value="${commentList.bsubject }">
+										</span>
+									</div>
+								</div>
+		
+								<div class="col-sm-12">
+									<label class="col-sm-1"></label>
+									<label class="col-sm-1">내용</label>
+									<div class="col-sm-10">
+										<span id="con${commentList.bnum }">${commentList.bcon }</span>
+										<span style="display:none" id="upCon${commentList.bnum }">
+											<textarea name="upConText${commentList.bnum }" id="upConText${commentList.bnum }" rows="4" cols="100" style="resize:none;" class="form-control" placeholder="내용을 입력하세요.">${commentList.bcon }</textarea>
+										</span>
+									</div>
+								</div>
+							</c:if>
+							<c:if test="${user.usid != null }">
+								<div class="col-sm-12" align="right">
+									<span id="replyShowBtn${commentList.bnum }">
+										<input type="button" value="답글" class="btn login_btn" onclick="fn_ReplyCommentFormShow(${commentList.bnum})">
 									</span>
+									<span style="display:none" id="replyHideBtn${commentList.bnum }">
+										<input type="button" value="답글" class="btn login_btn" onclick="fn_ReplyCommentFormHide(${commentList.bnum})">
+									</span>
+									<span style="display:none" id="deleteBtn${commentList.bnum }">
+										<input type="button" value="삭제" class="btn login_btn" onclick="fn_DeleteComment(${commentList.bnum})">
+									</span>
+									<span style="display:none" id="comfirmBtn${commentList.bnum }">
+										<input type="button" value="확인" class="btn login_btn" onclick="fn_UpdateComment(${commentList.bnum})">
+									</span>
+									<c:if test="${user.unum == commentList.bunum }">
+										<span id="updateBtn${commentList.bnum }">
+											<input type="button" value="수정" class="btn login_btn" onclick="fn_UpdateCommentForm(${commentList.bnum})">
+										</span>
+									</c:if>
+								</div>
+							</c:if>
+						</form>
+						<form id="commentReplyInsertForm" name="commentReplyInsertForm" method="get">
+							<div class="col-md-12" style="display:none" id="replyForm${commentList.bnum }">
+								<input type="hidden" name="replyMnum${commentList.bnum }" id="replyMnum${commentList.bnum }" value="${movie.mnum }">
+								<input type="hidden" name="replyUnum${commentList.bnum }" id="replyUnum${commentList.bnum }" value="${user.unum }">
+								<label class="col-sm-1" align="right">ㄴ</label>
+								<label class="col-sm-1">제목</label>
+								<div class="col-sm-10">
+									<input type="text" name="replySub${commentList.bnum }" id="replySub${commentList.bnum }" class="form-control" placeholder="제목을 입력하세요." >
+								</div>
+								<label class="col-sm-1"></label>
+								<label class="col-sm-1">내용</label>
+								<div class="col-sm-10">
+									<textarea name="replyCon${commentList.bnum }" id="replyCon${commentList.bnum }" rows="4" cols="100" style="resize:none;" class="form-control" placeholder="내용을 입력하세요."></textarea>
+								</div>
+								<div class="form-group" align="right">
+									<input type="button" value="등록" class="btn login_btn" onclick="fn_insertReply(${commentList.bref })">
 								</div>
 							</div>
-							<div class="col-md-12">
-								<label class="col-sm-2">내용</label>
-								<div class="col-sm-5">
-									<span id="con${commentList.bnum }">${commentList.bcon }</span>
-									<span style="display:none" id="upCon${commentList.bnum }">
-										<textarea name="upConText${commentList.bnum }" id="upConText${commentList.bnum }" rows="4" cols="100" style="resize:none;" class="form-control" placeholder="내용을 입력하세요.">${commentList.bcon }</textarea>
-									</span>
-								</div>
-							</div>
-							<div class="col-sm-12" align="right">
-								<span id="replyBtn${commentList.bnum }">
-									<input type="button" value="답글" class="btn login_btn" onclick="fn_ReplyComment(${commentList.bref})">
-								</span>
-								<span style="display:none" id="deleteBtn${commentList.bnum }">
-									<input type="button" value="삭제" class="btn login_btn" onclick="fn_DeleteComment(${commentList.bnum})">
-								</span>
-								<span style="display:none" id="comfirmBtn${commentList.bnum }">
-									<input type="button" value="확인" class="btn login_btn" onclick="fn_UpdateComment(${commentList.bnum})">
-								</span>
-								<c:if test="${user.unum == commentList.bunum }">
-									<span id="updateBtn${commentList.bnum }">
-										<input type="button" value="수정" class="btn login_btn" onclick="fn_UpdateCommentForm(${commentList.bnum})">
-									</span>
-								</c:if>
-							</div>
-						</div>
-					</form>
+						</form>
+					</div>
 				</c:forEach>
 			</div>
 		</div>

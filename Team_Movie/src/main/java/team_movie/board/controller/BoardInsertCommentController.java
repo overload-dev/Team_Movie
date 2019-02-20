@@ -48,4 +48,36 @@ public class BoardInsertCommentController {
 		
 		return cnt;
 	}
+	
+	@RequestMapping(value=command, method = RequestMethod.POST)
+	@ResponseBody
+	public int doAcitonPost(
+			@RequestParam(value="bref", required=true) int bref,
+			@RequestParam(value="replySub", required=true) String replySub,
+			@RequestParam(value="replyCon", required=true) String replyCon,
+			@RequestParam(value="replyUnum", required=true) int replyUnum,
+			@RequestParam(value="replyMnum", required=true) int replyMnum
+			
+			) {
+		System.out.println("insertComment Get");
+		System.out.println("bref : " + bref);
+		System.out.println("replyMnum : " + replyMnum);
+		System.out.println("replyUnum : " + replyUnum);
+		System.out.println("replySub : " + replySub);
+		System.out.println("replyCon : " + replyCon);
+		
+		BoardBean board = new BoardBean();
+		
+		board.setBref(bref);
+		board.setBmnum(replyMnum);
+		board.setBunum(replyUnum);
+		board.setBsubject(replySub);
+		board.setBcon(replyCon);
+		
+		int cnt = -1;
+		cnt = boardDao.UpdateReplyComment(board);
+		cnt = boardDao.InsertReplyComment(board);
+		
+		return cnt;
+	}
 }

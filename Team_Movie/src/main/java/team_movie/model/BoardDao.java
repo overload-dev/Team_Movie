@@ -42,5 +42,13 @@ public class BoardDao {
 		return cnt;
 	}
 	
+	public int UpdateReplyComment(BoardBean board) {
+		int cnt = sqlSessionTemplate.update(namespace + ".UpdateReplyComment", board);
+		return cnt;
+	}
 	
+	public int InsertReplyComment(BoardBean board) {
+		int cnt = sqlSessionTemplate.update(namespace + ".InsertReplyComment", board);
+		return cnt;
+	}
 }

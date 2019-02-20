@@ -9,9 +9,37 @@
 		values(mboard_seq.nextval, 1, #{bmnum}, #{bunum}, #{bsubject}, #{bcon}, mboard_seq.currval, 0, 0, sysdate)
 	</insert>
 	
+<!-- 
+	<resultMap type="MyBoard" id="boardMap">
+		<id column="bnum" property="bnum" />
+		<result column="bmnum" property="bmnum" />
+		<result column="bunum" property="bunum" />
+		<result column="bsubject" property="bsubject" />
+		<result column="bcon" property="bcon" />
+		<result column="bref" property="bref" />
+		<result column="brestep" property="brestep" />
+		<result column="brelevel" property="brelevel" />
+		<result column="ddate" property="ddate" />
+		
+		1 : 다 관계의 경우 데이터 매핑시켜준다. 
+			association => 1 : 1 관계 
+			collection => 1 : 다 관계 (한명의 유저가 작성한 글 목록)
+			일반 컬럼과 pk 구분 가능 pk 칼럼에게는 result 아닌 id 사용
+		
+		<association javaType="MyUser" property="MyUser">
+			<id column="unum" property="unum"/>
+			<result column="usid" property="usid"/>
+			<result column="uname" property="uname"/>
+		</association>
+	</resultMap>
+	 -->
+	 
 	<select id="getCommentListByMnum" resultType="MyBoard">
-		select * from mboard
-		where bmnum = #{mnum}
+		select u.usid usid, u.uname uname, b.bnum bnum, b.bmnum bmnum, b.bunum bunum, b.bsubject bsubject, b.bcon bcon, b.bref bref, b.brestep brestep, b.brelevel brelevel, b.ddate ddate 
+		from mboard b, tuser u 
+		where b.bunum = u.unum
+		and bmnum = #{mnum}
+		order by bref desc, brestep asc
 	</select>
 	
 	<select id="getCommentBynum" resultType="MyBoard">
@@ -29,6 +57,18 @@
 		delete from mboard
 		where bnum = #{bnum}
 	</delete>
+	
+	<update id="UpdateReplyComment">
+		update mboard
+		set brestep = brestep + 1 
+		where bref = #{bref} 
+		and brestep > 0
+	</update>
+	
+	<insert id="InsertReplyComment">
+		insert into mboard 
+		values(mboard_seq.nextval, 1, #{bmnum}, #{bunum}, #{bsubject}, #{bcon}, #{bref}, 1, 1, sysdate)
+	</insert>
 </mapper>
 
  
