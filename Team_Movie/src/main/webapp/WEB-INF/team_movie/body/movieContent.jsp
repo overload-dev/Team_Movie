@@ -119,29 +119,22 @@ function fn_UpdateComment(bnum) {
 }
 
 function fn_ReplyCommentFormShow(bnum) {
-	alert("bnum : " + bnum);
 	document.getElementById("replyForm" + bnum).style.display = "";
 	document.getElementById("replyShowBtn" + bnum).style.display = "none";
 	document.getElementById("replyHideBtn" + bnum).style.display = "";
 }
 
 function fn_ReplyCommentFormHide(bnum) {
-	alert("bnum : " + bnum);
 	document.getElementById("replyForm" + bnum).style.display = "none";
 	document.getElementById("replyShowBtn" + bnum).style.display = "";
 	document.getElementById("replyHideBtn" + bnum).style.display = "none";
 }
 
 function fn_insertReply(bref) {
-	alert("bref : " + bref);
 	replyUnum = $('#replyUnum' + bref).val();
 	replyMnum = $('#replyMnum' + bref).val();
 	replySub = $('#replySub' + bref).val();
 	replyCon = $('#replyCon' + bref).val();
-	alert("replyUnum : " + replyUnum);
-	alert("replyMnum : " + replyMnum);
-	alert("replySub : " + replySub);
-	alert("replyCon : " + replyCon);
 	
 	var allData = { 
 			"bref" : bref,
@@ -180,7 +173,6 @@ function fn_insertReply(bref) {
 	}
 }
 function fn_DeleteComment(bnum) {
-	alert(bnum);
 	var allData = { 
 			"bnum": bnum 
 		}
@@ -202,8 +194,6 @@ function fn_DeleteComment(bnum) {
 }
 
 function movieLike(mnum, unum) {
-	alert("mnum : " + mnum);
-	alert("unum : " + unum);
 	
 	var allData = {
 			"mnum": mnum,
@@ -235,8 +225,6 @@ function movieLike(mnum, unum) {
 }
 
 function movieUnLike(mnum, unum) {
-	alert("mnum : " + mnum);
-	alert("unum : " + unum);
 	
 	var allData = {
 			"mnum": mnum,
@@ -262,8 +250,6 @@ function movieUnLike(mnum, unum) {
 }
 
 function movieBookmark(mnum, unum) {
-	alert("mnum : " + mnum);
-	alert("unum : " + unum);
 	
 	var allData = {
 			"mnum": mnum,
@@ -295,8 +281,6 @@ function movieBookmark(mnum, unum) {
 }
 
 function movieUnBookmark(mnum, unum) {
-	alert("mnum : " + mnum);
-	alert("unum : " + unum);
 	
 	var allData = {
 			"mnum": mnum,
