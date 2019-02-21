@@ -1,6 +1,6 @@
 package team_movie.model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class MovieBean {
 	private int mnum; // 고유 번호, 게시글테이블의 그룹 넘버로 활용
@@ -14,8 +14,8 @@ public class MovieBean {
 	private String mele; // 영화 요소 0: 없음 / 1: 폭력성 / 2: 선정성 / 3: 약물 / 4: 공포 / 5:
 							// 범죄 / 6: 사행성 / 7: 언어의 부적절성
 
-	private Date mrdate; // 영화 개봉일
-	private Date midate; // 업로드 일
+	private Timestamp mrdate; // 영화 개봉일
+	private Timestamp midate; // 업로드 일
 	private int mrcount; // 조회수
 	private String murl; // 영상 링크
 	private String mrepo; // 영상 저장소 링크
@@ -31,7 +31,7 @@ public class MovieBean {
 	
 
 	public MovieBean(int mnum, String mname, String mgenre, String mdir, String mpro, String mactor, String msup,
-			int mage, String mele, Date mrdate, Date midate, int mrcount, String murl, String mrepo,
+			int mage, String mele, Timestamp mrdate, Timestamp midate, int mrcount, String murl, String mrepo,
 			int mwcon, String mimg, String msynop, String mruntime) {
 		super();
 		this.mnum = mnum;
@@ -128,19 +128,19 @@ public class MovieBean {
 		this.mele = mele;
 	}
 
-	public Date getMrdate() {
+	public Timestamp getMrdate() {
 		return mrdate;
 	}
 
-	public void setMrdate(Date mrdate) {
+	public void setMrdate(Timestamp mrdate) {
 		this.mrdate = mrdate;
 	}
 
-	public Date getMidate() {
+	public Timestamp getMidate() {
 		return midate;
 	}
 
-	public void setMidate(Date midate) {
+	public void setMidate(Timestamp midate) {
 		this.midate = midate;
 	}
 

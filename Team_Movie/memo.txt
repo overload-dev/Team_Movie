@@ -61,8 +61,7 @@ drop table favorite;
 create table favorite( 
 	fnum number primary key, --고유번호
 	funum number not null, --회원 고유 번호
-	fmnum number not null, -- 즐겨찾기 대상 영화
-	ftype number not null -- 좋아요 / 즐겨찾기 여부
+	fmnum number not null -- 즐겨찾기 대상 영화
 );
 
 drop sequence favorite_seq;
