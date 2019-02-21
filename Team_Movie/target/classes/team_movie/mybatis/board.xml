@@ -35,10 +35,11 @@
 	 -->
 	 
 	<select id="getCommentListByMnum" resultType="MyBoard">
-		select u.usid usid, u.uname uname, b.bnum bnum, b.bmnum bmnum, b.bunum bunum, b.bsubject bsubject, b.bcon bcon, b.bref bref, b.brestep brestep, b.brelevel brelevel, b.ddate ddate 
+		select u.usid busid, u.uname buname, b.bnum bnum, b.bmnum bmnum, b.bunum bunum, b.bsubject bsubject, b.bcon bcon, b.bref bref, b.brestep brestep, b.brelevel brelevel, b.bdate bdate 
 		from mboard b, tuser u 
 		where b.bunum = u.unum
 		and bmnum = #{mnum}
+		and btype = 1
 		order by bref desc, brestep asc
 	</select>
 	

@@ -200,6 +200,10 @@ function fn_DeleteComment(bnum) {
 		}
     })
 }
+
+function movieLike() {
+	alert("좋아요");
+}
 </script>
 <title>Insert title here</title>
 <%@include file="../top.jsp"%>
@@ -226,7 +230,8 @@ function fn_DeleteComment(bnum) {
           				<span class="glyphicon glyphicon-pencil" style="font-size:18px;" title="댓글쓰기"></span>
         			</a>
         			&nbsp;&nbsp;
-        			<a href="movieLike.tm?mnum=${movie.mnum }">
+        			<%-- <a href="movieLike.tm?mnum=${movie.mnum }"> --%>
+        			<a href="#" onclick="movieLike(${movie.mnum })">
           				<span class="glyphicon glyphicon-heart" style="font-size:18px;" title="좋아요"></span>
         			</a>
         			&nbsp;&nbsp;
@@ -395,6 +400,9 @@ function fn_DeleteComment(bnum) {
 					<div class="form-group">
 						<form id="commentUpdateForm" name="commentUpdateForm" method="post">
 							<c:if test="${commentList.brestep == 0 }">
+								<div class="col-md-12" style="font-size: 18px;">
+									${commentList.busid }(${commentList.buname })
+								</div>
 								<div class="col-md-12">
 									<label class="col-sm-1">제목</label>
 									<div class="col-sm-11">
@@ -417,11 +425,17 @@ function fn_DeleteComment(bnum) {
 							<c:if test="${commentList.brestep > 0 }">
 								<div class="col-sm-12">
 									<label class="col-sm-1" align="right">ㄴ</label>
+									<div class="col-sm-11" style="font-size: 18px;">
+										${commentList.busid }(${commentList.buname })
+									</div>
+								</div>
+								<div class="col-sm-12">
+									<label class="col-sm-1"></label>
 									<label class="col-sm-1">제목</label>
 									<div class="col-sm-10">
 										<span id="sub${commentList.bnum }">${commentList.bsubject }</span>
 										<span style="display:none" id="upSub${commentList.bnum }">
-											<input type="text" name="upSubText${commentList.bnum }" id="upSubText${commentList.bnum }" class="form-control" placeholder="제목을 입력하세요." value="${commentList.bsubject }">
+												<input type="text" name="upSubText${commentList.bnum }" id="upSubText${commentList.bnum }" class="form-control" placeholder="제목을 입력하세요." value="${commentList.bsubject }">
 										</span>
 									</div>
 								</div>

@@ -101,7 +101,7 @@ create table mboard(
 	bref number not null, -- 댓글 그룹
 	brestep number not null, --댓글 순번
 	brelevel number not null, --댓글 단계
-	ddate date not null -- 작성일
+	bdate date not null -- 작성일
 );
 
 drop sequence mboard_seq;

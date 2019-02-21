@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 
 public class BoardBean {
 	
+	private String busid; // user ¿Í joinÀ» ÇÏ±âÀ§ÇÑ user id
+	private String buname; // user ¿Í joinÀ» ÇÏ±âÀ§ÇÑ user name
 	private int bnum; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
 	private int btype; // ï¿½Ô½Ã±ï¿½ Å¸ï¿½ï¿½ 0: ï¿½ï¿½ï¿½ï¿½, 1: ï¿½ï¿½ï¿?
 	private int bmnum; // ï¿½ï¿½ ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
@@ -19,6 +21,22 @@ public class BoardBean {
 		
 	}
 	
+	public String getBusid() {
+		return busid;
+	}
+
+	public void setBusid(String busid) {
+		this.busid = busid;
+	}
+
+	public String getBuname() {
+		return buname;
+	}
+
+	public void setBuname(String buname) {
+		this.buname = buname;
+	}
+
 	public BoardBean(int bnum, int btype, int bmnum, int bunum, String bsubject, String bcon, int bref, int brestep,
 			int brelevel, Timestamp bdate) {
 		super();
