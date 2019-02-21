@@ -47,4 +47,9 @@ public class MovieDao {
 		int cnt = sqlSessionTemplate.update(namespace + ".MovieLikeUpdate", mnum);
 		return cnt;
 	}
+	
+	public int MovieUnLikeUpdate(int mnum) {
+		int cnt = sqlSessionTemplate.update(namespace + ".MovieUnLikeUpdate", mnum);
+		return cnt;
+	}
 }

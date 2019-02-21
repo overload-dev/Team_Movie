@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="team_movie.model.FavoriteBean">
+	<insert id="MovieLikeInsert">
+		insert into favorite
+		values (favorite_seq.nextval, #{funum}, #{fmnum}, 0)
+	</insert>
+	
+	<delete id="MovieLikeDelete">
+		delete from favorite
+		where funum = #{funum}
+		and fmnum = #{fmnum}
+		and ftype = 0
+	</delete>
+	
+	<insert id="MovieBookmarkInsert">
+		insert into favorite
+		values (favorite_seq.nextval, #{funum}, #{fmnum}, 1)
+	</insert>
+	
+	<delete id="MovieBookmarkDelete">
+		delete from favorite
+		where funum = #{funum}
+		and fmnum = #{fmnum}
+		and ftype = 1
+	</delete>
+	
+	<select id="GetLikeCount" resultType="int">
+		select count(*)
+		from favorite
+		where funum = #{funum}
+		and fmnum = #{fmnum}
+		and ftype = 0
+	</select>
+	
+	<select id="GetBookmarkCount" resultType="int">
+		select count(*)
+		from favorite
+		where funum = #{funum}
+		and fmnum = #{fmnum}
+		and ftype = 1
+	</select>
+</mapper>
+
+ 

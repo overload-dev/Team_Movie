@@ -10,6 +10,7 @@
 		<typeAlias alias="MyUser" type="team_movie.model.UserBean"/>
 		<typeAlias alias="MyBoard" type="team_movie.model.BoardBean"/>
 		<typeAlias alias="MyMembership" type="team_movie.model.MembershipBean"/>
+		<typeAlias alias="MyFavorite" type="team_movie.model.FavoriteBean"/>
 	</typeAliases>
 	
 	<mappers>
@@ -18,6 +19,7 @@
 		<mapper resource="team_movie/mybatis/user.xml" />
 		<mapper resource="team_movie/mybatis/board.xml" />
 		<mapper resource="team_movie/mybatis/membership.xml" />
+		<mapper resource="team_movie/mybatis/favorite.xml" />
 	</mappers>
 
 </configuration>

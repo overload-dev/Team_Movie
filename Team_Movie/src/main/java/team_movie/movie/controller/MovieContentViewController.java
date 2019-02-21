@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import team_movie.model.BoardBean;
 import team_movie.model.BoardDao;
+import team_movie.model.FavoriteBean;
+import team_movie.model.FavoriteDao;
 import team_movie.model.GenreBean;
 import team_movie.model.GenreDao;
 import team_movie.model.MovieBean;
@@ -40,12 +42,17 @@ public class MovieContentViewController {
 	@Autowired
 	BoardDao boardDao;
 	
+	@Autowired
+	@Qualifier("MyFavorite")
+	FavoriteDao favoriteDao;
+	
 	@RequestMapping(value=command)
 	public String doAcitionGet(	
 				@RequestParam(value="mnum", required=true) int mnum,
 				@RequestParam(value="usid", required=false) String usid,
 				Model model
 			) {
+		System.out.println("로그인 usid : " + usid);
 		
 		MovieBean movie = movieDao.GetMovieByNum(mnum);
 		model.addAttribute("movie", movie);
@@ -80,6 +87,27 @@ public class MovieContentViewController {
 		List<BoardBean> commentList = boardDao.getCommentListByMnum(mnum);
 		
 		model.addAttribute("commentList", commentList);
+		
+		FavoriteBean favor = new FavoriteBean();
+		
+		int likeCount = 0;
+		int bookmarkCount = 0;
+		
+		if (usid.equals("")) {
+			System.out.println("로그인 필요");
+			model.addAttribute("likeCount", likeCount);
+			model.addAttribute("bookmarkCount", bookmarkCount);
+		}
+		else if (!usid.equals("")) {
+			favor.setFmnum(mnum);
+			favor.setFunum(user.getUnum());
+			likeCount = favoriteDao.GetLikeCount(favor);
+			bookmarkCount = favoriteDao.GetBookmarkCount(favor);
+			System.out.println("likeCount : " + likeCount);
+			System.out.println("bookmarkCount : " + bookmarkCount);
+			model.addAttribute("likeCount", likeCount);
+			model.addAttribute("bookmarkCount", bookmarkCount);
+		}
 		
 		return getPage;
 	}
