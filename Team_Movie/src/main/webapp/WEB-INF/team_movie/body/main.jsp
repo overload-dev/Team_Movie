@@ -89,7 +89,7 @@
 										<c:forEach items="${map.value }" var="movie" varStatus="status">
 										<c:set var="col" value="${col + 1 }" />
 											<div class="col-md-3">
-												<a href="movieContent.tm?mnum=${movie.mnum }&usid=${usid }">
+												<a href="movieContent.tm?mnum=${movie.mnum }&usid=${sessionScope.usid }">
 													<img src="//s3.namuwikiusercontent.com/s/5673b412996accb9ce935c3378c8d1493ea74f53cb6f692ee27ceed2c0b6ea2aed0b4cfcb49b387abab676557d156ef2f5a54dbf820089708d6cc6568690b8289a21bfc39a73f3702f1000356f5d85b90b25cae3d483b159e8a5349d562fb69e" width="80%"><br>
 													${movie.mimg }<br>
 													${movie.mname }<br>
@@ -150,7 +150,7 @@
 								<c:if test="${not more}">
 									<c:set var="col" value="${col + 1 }" />
 									<div class="col-md-3">
-										<a href="movieContent.tm?mnum=${movie.mnum }&usid=${usid }">
+										<a href="movieContent.tm?mnum=${movie.mnum }&usid=${sessionScope.usid }">
 											<img src="//s3.namuwikiusercontent.com/s/5673b412996accb9ce935c3378c8d1493ea74f53cb6f692ee27ceed2c0b6ea2aed0b4cfcb49b387abab676557d156ef2f5a54dbf820089708d6cc6568690b8289a21bfc39a73f3702f1000356f5d85b90b25cae3d483b159e8a5349d562fb69e" width="80%"><br>
 											${movie.mimg }<br>
 											${movie.mname }<br>

@@ -201,8 +201,124 @@ function fn_DeleteComment(bnum) {
     })
 }
 
-function movieLike() {
-	alert("좋아요");
+function movieLike(mnum, unum) {
+	alert("mnum : " + mnum);
+	alert("unum : " + unum);
+	
+	var allData = {
+			"mnum": mnum,
+			"unum": unum
+		};
+	
+	if (unum == null) {
+		alert("로그인 후 이용 가능합니다.");
+	}
+ 	else {
+		$.ajax({
+			url : "movieLike.tm",
+			type: 'GET',
+			data: allData,
+			success : function(result) {
+			if (result > -1) {
+				alert("좋아요 성공");
+				document.getElementById("like").style.display = "none";
+				document.getElementById("unLike").style.display = "";
+				document.getElementById("unLike").style.fontsize = "18px";
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert("Error \n" + textStatus + " : " + errorThrown);
+				self.close();
+			}
+		})
+ 	}
+}
+
+function movieUnLike(mnum, unum) {
+	alert("mnum : " + mnum);
+	alert("unum : " + unum);
+	
+	var allData = {
+			"mnum": mnum,
+			"unum": unum
+		};
+	$.ajax({
+		url : "movieLike.tm",
+		type: 'POST',
+		data: allData,
+		success : function(result) {
+		if (result > -1) {
+			alert("좋아요 취소");
+			document.getElementById("like").style.display = "";
+			document.getElementById("like").style.fontsize = "18px";
+			document.getElementById("unLike").style.display = "none";
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert("Error \n" + textStatus + " : " + errorThrown);
+			self.close();
+		}
+	})
+}
+
+function movieBookmark(mnum, unum) {
+	alert("mnum : " + mnum);
+	alert("unum : " + unum);
+	
+	var allData = {
+			"mnum": mnum,
+			"unum": unum
+		};
+	
+	if (unum == null) {
+		alert("로그인 후 이용 가능합니다.");
+	}
+ 	else {
+		$.ajax({
+			url : "movieBookmark.tm",
+			type: 'GET',
+			data: allData,
+			success : function(result) {
+			if (result > -1) {
+				alert("즐겨찾기 성공");
+				document.getElementById("bookmark").style.display = "none";
+				document.getElementById("unBookmark").style.display = "";
+				document.getElementById("unBookmark").style.fontsize = "18px";
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert("Error \n" + textStatus + " : " + errorThrown);
+				self.close();
+			}
+		})
+ 	}
+}
+
+function movieUnBookmark(mnum, unum) {
+	alert("mnum : " + mnum);
+	alert("unum : " + unum);
+	
+	var allData = {
+			"mnum": mnum,
+			"unum": unum
+		};
+	$.ajax({
+		url : "movieBookmark.tm",
+		type: 'POST',
+		data: allData,
+		success : function(result) {
+		if (result > -1) {
+			alert("즐겨찾기 취소");
+			document.getElementById("bookmark").style.display = "";
+			document.getElementById("bookmark").style.fontsize = "18px";
+			document.getElementById("unBookmark").style.display = "none";
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert("Error \n" + textStatus + " : " + errorThrown);
+			self.close();
+		}
+	})
 }
 </script>
 <title>Insert title here</title>
@@ -230,14 +346,35 @@ function movieLike() {
           				<span class="glyphicon glyphicon-pencil" style="font-size:18px;" title="댓글쓰기"></span>
         			</a>
         			&nbsp;&nbsp;
-        			<%-- <a href="movieLike.tm?mnum=${movie.mnum }"> --%>
-        			<a href="#" onclick="movieLike(${movie.mnum })">
-          				<span class="glyphicon glyphicon-heart" style="font-size:18px;" title="좋아요"></span>
-        			</a>
-        			&nbsp;&nbsp;
-        			<a href="#">
-          				<span class="glyphicon glyphicon-bookmark" style="font-size:18px;" title="즐겨찾기"></span>
-        			</a>
+        			
+        			
+        			<c:if test="${likeCount == 0 }">
+        			<a href="#" onclick="movieLike(${movie.mnum }, ${user.unum })">
+    	      			<span id="like" class="glyphicon glyphicon-heart-empty" style="font-size:18px;" title="좋아요"></span>
+    	      			<span style="display:none" id="unLike" class="glyphicon glyphicon-heart" style="font-size:18px;" title="좋아요 취소"></span>
+	        		</a>
+	        		</c:if>
+	        		<c:if test="${likeCount == 1 }">
+        			<a href="#" onclick="movieUnLike(${movie.mnum }, ${user.unum })">
+    	      			<span style="display:none" id="like" class="glyphicon glyphicon-heart-empty" style="font-size:18px;" title="좋아요"></span>
+    	      			<span id="unLike" class="glyphicon glyphicon-heart" style="font-size:18px;" title="좋아요 취소"></span>
+	        		</a>
+	        		</c:if>
+	        		&nbsp;&nbsp;
+	        		
+	        		
+	        		<c:if test="${bookmarkCount == 0 }">
+        			<a href="#" onclick="movieBookmark(${movie.mnum }, ${user.unum })">
+    	      			<span id="bookmark" class="glyphicon glyphicon-star-empty" style="font-size:18px;" title="즐겨찾기"></span>
+    	      			<span style="display:none" id="unBookmark" class="glyphicon glyphicon-star" style="font-size:18px;" title="즐겨찾기 취소"></span>
+	        		</a>
+	        		</c:if>
+	        		<c:if test="${bookmarkCount == 1 }">
+        			<a href="#" onclick="movieUnBookmark(${movie.mnum }, ${user.unum })">
+        				<span style="display:none" id="bookmark" class="glyphicon glyphicon-star-empty" style="font-size:18px;" title="즐겨찾기"></span>
+    	      			<span id="unBookmark" class="glyphicon glyphicon-star" style="font-size:18px;" title="즐겨찾기 취소"></span>
+	        		</a>
+	        		</c:if>
 				</div>
 			</div>
 			<div class="panel-body">
@@ -359,14 +496,14 @@ function movieLike() {
 			<div class="panel-body">
 				<div class="col-md-12">
 					<div class="row">
-						<c:if test="${user.usid == null }">
+						<c:if test="${sessionScope.usid == null }">
 							<div class="col-md-12">
 									<textarea name="bcon" rows="3" cols="100" style="resize:none;" class="form-control" placeholder="로그인 후 댓글 달기." readonly></textarea>
 							</div>
 						</c:if>
-						<c:if test="${user.usid != null }">
+						<c:if test="${sessionScope.usid != null }">
 							<label class="col-md-12" style="font-size: 18px;">
-								${user.usid }
+								${sessionScope.usid }
 							</label>
 							<form id="commentForm" name="commentForm" method="get">
 								<input type="hidden" name="mnum" id="mnum" value="${movie.mnum }">
@@ -451,7 +588,7 @@ function movieLike() {
 									</div>
 								</div>
 							</c:if>
-							<c:if test="${user.usid != null }">
+							<c:if test="${sessionScope.usid != null }">
 								<div class="col-sm-12" align="right">
 									<span id="replyShowBtn${commentList.bnum }">
 										<input type="button" value="답글" class="btn login_btn" onclick="fn_ReplyCommentFormShow(${commentList.bnum})">

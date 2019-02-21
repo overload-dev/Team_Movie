@@ -29,4 +29,10 @@
 		set mlike = mlike + 1
 		where mnum = #{mnum}
 	</update>
+	
+	<update id="MovieUnLikeUpdate">
+		update tmovie
+		set mlike = mlike - 1
+		where mnum = #{mnum}
+	</update>
 </mapper>
