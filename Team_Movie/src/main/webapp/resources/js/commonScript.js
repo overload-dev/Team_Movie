@@ -229,16 +229,17 @@ function Validation(ugrade){
 	var ubirth = $('input[name=ubirth]');	
 	var ugenre = $('input[name=ugenre]');	
 	
+	if(usid.val()=="") {
+		alert("사용 할 아이디를 입력하세요.");
+		usid.focus();	
+		return false;
+	} 
+	
 	if(isCheck==false|| isChange==true){
 		alert("중복체크를 하세요.");
 		return false;
 	}
 	
-	if(usid.val()=="") {
-		alert("사용 할 아이디를 입력하세요.");
-		usid.focus();	
-		return false;
-	}
 	else if(uname.val() == "") {
 		alert("사용 할 닉네임을 입력하세요.");
 		
