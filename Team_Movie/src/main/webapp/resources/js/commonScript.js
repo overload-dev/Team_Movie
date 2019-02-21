@@ -229,12 +229,10 @@ function Validation(ugrade){
 	var ubirth = $('input[name=ubirth]');	
 	var ugenre = $('input[name=ugenre]');	
 	
-	
 	if(isCheck==false|| isChange==true){
 		alert("중복체크를 하세요.");
 		return false;
 	}
-	
 	
 	if(usid.val()=="") {
 		alert("사용 할 아이디를 입력하세요.");
@@ -288,6 +286,7 @@ function Validation(ugrade){
 		    	ugenres += ugenre[i].value+"/";
 		    } 
 		}
+		
 		alert(ugenres);
 		
 		$.ajax({
@@ -315,6 +314,4 @@ function Validation(ugrade){
 		}
     })
 	}
-	
-	
 }

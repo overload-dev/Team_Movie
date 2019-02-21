@@ -13,8 +13,6 @@
 <%@include file="../../top.jsp"%>
 <script src="<c:url value='/resources/js/commonScript.js'/>"></script>
 
-
-
 </head> 
 <body>
 	<div class="container">
@@ -34,7 +32,7 @@
 								<input type="text" name="usid" placeholder="사용 할 ID를 입력하세요." class="form-control" >
 								<input type="button" value="중복확인 " class="btn login_btn" name="id_check" >
 								<span id="idmessage" style="display:none;">idmessage</span>
-							</div>
+		 					</div>
 						</div>
 						<!-- 닉네임 입력  --> 
 						<div class="form-group"> 
@@ -77,13 +75,13 @@
 											<input type="checkbox" name="ugenre" value="공포">공포 &nbsp;&nbsp;
 											<input type="checkbox" name="ugenre" value="드라마">드라마 &nbsp;&nbsp;
 											<input type="checkbox" name="ugenre" value="멜로">멜로 &nbsp;&nbsp;
-										  </label>
+										 </label>
 									</div>
 								</div>
 							</div>
 						</div>
 						<center>
-						<c:set var="ugrade" value="0"/>
+						<c:set var="ugrade" value="1"/>
 							<input type="button" value="가입하기 " id="check" class="btn login_btn" onclick="Validation(${ugrade})">
 						</center>
 					

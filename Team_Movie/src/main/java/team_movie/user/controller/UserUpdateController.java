@@ -14,52 +14,31 @@ import team_movie.model.UserDao;
 @Controller
 public class UserUpdateController {
 
-	private final String commandD = "userDetail.tm";
-	private final String commandE = "userEdit.tm";
-	private final String getPage = "body/user/userDetail";
-	private final String gotoPage = "body/user/userEdit";
+	
+	private final String command = "userUpdate.tm";
+	private final String getPage = "body/user/userEdit";
 
 	@Autowired 
 	UserDao userDao;
 
-	@RequestMapping(value=commandD, method=RequestMethod.GET)
-	public ModelAndView doActionGet(
-			HttpSession session
-	
-			){
-		/*메뉴바 active변경되도록하는 세션*/
-		session.setAttribute("number", 1);
-		
-		ModelAndView mav = new ModelAndView();
-		String usid=(String)session.getAttribute("usid");
-
-		UserBean userInfo = userDao.GetData(usid);
-		
-		mav.addObject("userInfo",userInfo);
-		mav.setViewName(getPage);
-		return mav;
-	}
-	 
-	
-	@RequestMapping(value=commandE, method=RequestMethod.GET)
+	@RequestMapping(value=command, method=RequestMethod.GET)
 	public ModelAndView doActionGetEdit(
-			@RequestParam(value="usid",required=true ) String usid,
 			HttpSession session
 			){
-		
-		/*메뉴바 active변경되도록하는 세션*/
-		session.setAttribute("number", 4);
+		System.out.println("UserUpdateController");
+		String usid=(String)session.getAttribute("usid");
 		
 		ModelAndView mav = new ModelAndView();
 		System.out.println("usid :" +usid);
 
 		UserBean userInfo = userDao.GetData(usid);
+		mav.addObject("page","userUpdateForm");
 		mav.addObject("userInfo",userInfo);
-		mav.setViewName(gotoPage);
+		mav.setViewName(getPage);
 		return mav;
 	}
 
-	@RequestMapping(value=commandE, method=RequestMethod.POST)
+	@RequestMapping(value=command, method=RequestMethod.POST)
 	public String doActionPost(
 			UserBean userBean
 			){ 
@@ -75,6 +54,6 @@ public class UserUpdateController {
 			System.out.println("cnt : "+ cnt);
 			
 			
-			return "redirect:/userDetail.tm?usid="+userBean.getUsid();
+			return "redirect:/userDetail.tm";
 	}
 } 
