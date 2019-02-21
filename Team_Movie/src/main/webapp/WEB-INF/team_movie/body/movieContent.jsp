@@ -223,7 +223,7 @@ function movieLike(mnum, unum) {
 				alert("좋아요 성공");
 				document.getElementById("like").style.display = "none";
 				document.getElementById("unLike").style.display = "";
-				document.getElementById("unLike").style.fontsize = "18px";
+				location.reload();
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
@@ -250,8 +250,8 @@ function movieUnLike(mnum, unum) {
 		if (result > -1) {
 			alert("좋아요 취소");
 			document.getElementById("like").style.display = "";
-			document.getElementById("like").style.fontsize = "18px";
 			document.getElementById("unLike").style.display = "none";
+			location.reload();
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -283,7 +283,7 @@ function movieBookmark(mnum, unum) {
 				alert("즐겨찾기 성공");
 				document.getElementById("bookmark").style.display = "none";
 				document.getElementById("unBookmark").style.display = "";
-				document.getElementById("unBookmark").style.fontsize = "18px";
+				location.reload();
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
@@ -310,8 +310,8 @@ function movieUnBookmark(mnum, unum) {
 		if (result > -1) {
 			alert("즐겨찾기 취소");
 			document.getElementById("bookmark").style.display = "";
-			document.getElementById("bookmark").style.fontsize = "18px";
 			document.getElementById("unBookmark").style.display = "none";
+			location.reload();
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
