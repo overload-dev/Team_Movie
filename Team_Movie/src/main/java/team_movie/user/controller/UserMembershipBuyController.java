@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import team_movie.model.MembershipBean;
 import team_movie.model.MembershipDao;
@@ -28,7 +29,7 @@ import team_movie.model.UserDao;
 public class UserMembershipBuyController {
 	private final String command="mShipBuyForm.tm";
 	private final String command2="mShipBuy.tm";
-	private final String getPage="body/user/MShipBuyForm";
+	private final String getPage="body/user/userEdit";
 	@Autowired
 	@Qualifier("myMembership")
 	MembershipDao membershipDao;
@@ -37,35 +38,29 @@ public class UserMembershipBuyController {
 	UserDao userDao;
 	
 	@RequestMapping(value=command ,method=RequestMethod.GET)
-	public String doActionGet(Model model,HttpSession session){
-		
-		/*메뉴바 active변경되도록하는 세션*/
-		session.setAttribute("number", 2);
-		
+	public ModelAndView doActionGet(HttpSession session){
+		ModelAndView mav = new ModelAndView();
 		System.out.println("멤버쉽폼");
 		List<MembershipBean> membershipList = new ArrayList<MembershipBean>();
 		membershipList = membershipDao.GetMemberShipList();
-		model.addAttribute("membershipList",membershipList);
-	
-		return getPage;
+		
+		mav.addObject("membershipList",membershipList);
+		mav.addObject("page","MShipBuyForm");
+		mav.setViewName(getPage);
+		return mav;
 	} 
 	
 	@RequestMapping(value=command2 ,method=RequestMethod.GET)
-	public String doActionGet(
+	public ModelAndView doActionGet(
 			@RequestParam(value="mbsnum",required=true) int mbsnum,
 			HttpSession session,
 			HttpServletResponse response
 			) throws IOException{
-		System.out.println("mbsnum : "+ mbsnum);
-		System.out.println("usid : "+ session.getAttribute("usid"));
+		ModelAndView mav =new ModelAndView();
 		String usid =(String)session.getAttribute("usid");
+		
 		MembershipBean msBean= membershipDao.GetMemberShip(mbsnum);
 		
-		System.out.println(msBean.getMbsnum());
-		System.out.println(msBean.getMbsname());
-		System.out.println(msBean.getMbsperiod());
-		System.out.println(msBean.getMbsprice());
-			
 		UserBean userBean = new UserBean();
 	    Timestamp nowTime = new Timestamp(System.currentTimeMillis()); 
 		Calendar cal = Calendar.getInstance(); 
@@ -96,9 +91,9 @@ public class UserMembershipBuyController {
 			writer.println("history.back();"); 
 			writer.println("</script>");
 			writer.flush(); 
-			return getPage;
+			mav.addObject("page","MShipBuyForm");
+			mav.setViewName(getPage);
 		}
-		
-		return getPage;
+		return mav;
 	}
 }

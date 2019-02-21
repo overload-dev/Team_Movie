@@ -14,8 +14,10 @@ import team_movie.model.UserDao;
 @Controller
 public class UserDeleteController {
 	
-	private final String command="userDelete.tm";
-	private final String getPage="body/user/userDeleteForm";
+	private final String command="userDeleteForm.tm";
+	private final String command2="userDelete.tm";
+	
+	private final String getPage="body/user/userEdit";
 	private final String gotoPage="redirect:/userLogout.tm";
 	
 	@Autowired 
@@ -25,24 +27,23 @@ public class UserDeleteController {
 	public ModelAndView doActionGet(
 			HttpSession session
 			){
-		/*메뉴바 active변경되도록하는 세션*/
-		session.setAttribute("number", 3);
+		ModelAndView mav =new ModelAndView();
 		 
-		System.out.println("userDeleteForm");
+		 System.out.println("userDeleteForm");
 		 String usid = (String)session.getAttribute("usid");
-		 ModelAndView mav =new ModelAndView();
 		 UserBean userInfo=userDao.GetData(usid);
 		 mav.addObject("userInfo",userInfo);
+		 mav.addObject("page","userDeleteForm");
 		 mav.setViewName(getPage);
 		 
 		 return mav;
 	}
-	@RequestMapping(value=command, method=RequestMethod.POST)
+	@RequestMapping(value=command2, method=RequestMethod.GET)
 	public String doActionPost(
 			@RequestParam(value="unum" ,required=true) int unum
 			){
 		int cnt =userDao.DelUser(unum);
-		
+		 
 		return gotoPage;
 	}
 }
