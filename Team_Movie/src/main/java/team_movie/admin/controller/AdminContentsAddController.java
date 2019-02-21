@@ -1,6 +1,14 @@
 package team_movie.admin.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
+import java.util.concurrent.SynchronousQueue;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -8,38 +16,136 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import team_movie.model.GenreBean;
 import team_movie.model.GenreDao;
+import team_movie.model.MovieBean;
 import team_movie.model.MovieDao;
 
 @Controller
 public class AdminContentsAddController {
 
 	private static final String command = "addContentsEdit.tm";
-	private static final String gotoPage ="body/admin/adminContentsAdd";
-	private static final String getPage ="";
-	
+	private static final String gotoPage = "body/admin/adminContentsAdd";
+	private static final String getPage = "";
+
 	@Autowired
 	@Qualifier("myGenreDao")
 	GenreDao genreDao;
-	
-	//new movieContents Add
-	@RequestMapping(value=command, method=RequestMethod.GET)
-	public String doActionGet(Model model){
-		
-		//GenreData Get
+
+	@Autowired
+	@Qualifier("MyMovieDao")
+	MovieDao movieDao;
+
+	// new movieContents Add
+	@RequestMapping(value = command, method = RequestMethod.GET)
+	public String doActionGet(Model model) {
+
+		// GenreData Get
 		List<GenreBean> genreList = null;
 		genreList = genreDao.getGenreList();
 		model.addAttribute("genreList", genreList);
-		
+
 		return gotoPage;
 	}
-	
-	
-	public String doActionPost(
-			MovieDao movieDao
-			){
+
+	@RequestMapping(value = command, method = RequestMethod.POST)
+	public String doActionPost(HttpServletRequest request, MovieBean movieBean,
+			@RequestParam("thumbnail") MultipartFile thumbnail,
+			@RequestParam(value = "f_mrepo", required = false) MultipartFile f_mrepo) {
+		System.out.println("##############################################");
+		System.out.println("name :" + movieBean.getMname());
+		System.out.println("rdate:" + movieBean.getMrdate());
+		System.out.println("genre :" + movieBean.getMgenre());
+		System.out.println("dir" + movieBean.getMdir());
+		System.out.println("pro" + movieBean.getMpro());
+		System.out.println("actor" + movieBean.getMactor());
+		System.out.println("sup" + movieBean.getMsup());
+		System.out.println("##########################################");
+		System.out.println(thumbnail.getName());
+		if(f_mrepo != null){
+			System.out.println(f_mrepo.getName());
+		}else{
+			System.out.println(movieBean.getMurl());
+		}
+		System.out.println("##############################################");
+
+		// ��ü�� �Ѿ�������� bean setter�� ����
+
+		// ������
+		movieBean.setMimg(thumbnail.getOriginalFilename());
+		// ���� �̸�
+		if(f_mrepo != null){
+			movieBean.setMrepo(f_mrepo.getOriginalFilename());
+		}
+
+		// DB �Է� ���� ������ �� ���
+		int getIndex = movieDao.AddMovie(movieBean);
+
+		System.out.println("getIndex : " + getIndex);
+
+		// C����̺꿡 1�� ���� ����
+		String root_path = "/saveMovieDB";
+
+		File file_f = new File(root_path);
+		File file_s = new File(root_path + "/" + getIndex);
+		
+		// 1차 경로
+		if (file_f.exists()) {// 기존 폴더가 있을 경우
+			file_f.mkdir();
+			System.out.println("폴더 생성");
+			System.out.println(file_f.getPath());
+			// 2차 경로(최종)
+			file_s.mkdir();
+		} else {// 1차 경로가 있을 경우
+			deleteFile(file_s);
+		}
+		
+		File thumbnail_f = new File(file_s.getPath()+ "/" + thumbnail.getOriginalFilename());
+		
+		File f_mrepo_f = null;
+		if(f_mrepo != null){
+			f_mrepo_f = new File(file_s.getPath()+ "/" + f_mrepo.getOriginalFilename());
+		}
+		
+		try {
+			OutputStream thumbnail_out = new FileOutputStream(thumbnail_f);
+			byte[] bytes = thumbnail.getBytes(); //바이트 정보
+			thumbnail_out.write(bytes);
+			
+			
+			if(f_mrepo != null){
+				OutputStream f_mrepo_f_out = new FileOutputStream(f_mrepo_f);
+				bytes = f_mrepo.getBytes(); //바이트 정보
+				f_mrepo_f_out.write(bytes);
+				f_mrepo_f_out.close();
+			}
+			
+			thumbnail_out.close();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		return null;
 	}
+	
+	
+	public void deleteFile(File file_s){
+		// 폴더 내부를 순회하며 모든 파일을 지운다.
+		File[] del_f = file_s.listFiles();
+		for (int i = 0; i < del_f.length; i++) {
+			del_f[i].delete();
+		}
+	}
+	
+	
 }

@@ -316,3 +316,110 @@ function Validation(ugrade){
     })
 	}
 }
+//영화 추가 시, 이미지 미리보기
+function handleImgFileSelect(e){
+	var files= e.target.files;
+	var filesArr = Array.prototype.slice.call(files);
+	
+	filesArr.forEach(function(f){
+		if(!f.type.match("image.*")){
+			alert(f.type);
+			alert("이미지 파일만 올려주세요.");
+			return;
+		}
+		
+		var reader = new FileReader();
+		reader.onload = function(e){
+			$('img[name=preview_img]').attr("src",e.target.result);
+		}
+		reader.readAsDataURL(f);
+	});
+}
+
+//영화 업로드 형태 체크(URL, FILE)
+function uploadChk(sel){
+	//url
+	if(sel == 0){
+		$('span[id="url"]').show();
+		$('input[name=f_murl]').prop('disabled', false);
+
+		$('span[id="file"]').hide();
+		$('input[name=f_mrepo]').prop('disabled', true);
+	//file
+	}else{
+		$('span[id="file"]').show();
+		$('input[name=f_mrepo]').prop('disabled', false);
+		
+		$('span[id="url"]').hide();
+		$('input[name=f_murl]').prop('disabled', true);			
+	}
+}
+
+function addMovieDataChk(){
+
+	var mname = $('input[name=mname]').val();
+	var mrdate= $('input[name=mrdate]').val();
+	var mgenrelen = $('input[name=mgenre]:checked').length;
+	var mdir = $('input[name=mdir]').val();
+	var mpro = $('input[name=mpro]').val();
+	var mactor = $('input[name=mactor]').val();
+	var msup = $('input[name=msup]').val();
+	var msynop = $('textarea[name=msynop]').val();
+	var thumbnail = $('input[name=thumbnail]').val();
+	var murl = $('input[name=mur]').val();
+	var mrepo = $('input[name=f_mrepo]').val();
+	
+	if(mname ==''){
+		alert("영화 이름 누락");
+		return false;
+	}
+	if(midate ==''){
+		alert("개봉일 누락");
+		return false;
+	}
+	if(mgenrelen <=0){
+		alert("1개 이상의 장르를 선택하세요.");
+		return false;
+	}
+	if(mdir ==''){
+		alert("영화의 감독을 입력하세요.");
+		return false;
+	}
+	if(mactor ==''){
+		alert("출연 배우를 입력하세요.");
+		return false;
+	}
+	if(msup ==''){
+		alert("조연 배우를 입력하세요.");
+		return false;
+	}
+	if(msynop ==''){
+		alert("시놉시스를 입력하세요.");
+		return false;
+	}
+	
+	if(thumbnail == ''){
+		alert("섬네일 이미지를 삽입하세요.");
+	}
+
+	if(murl == '' || mrepo ==''){
+		alert("영상 URL 혹은 파일을 삽입하세요.");
+	}
+	
+	alert("mname :" + mname + "\n" +
+			"mrdate :" + mrdate + "\n +" +
+			"mgenrelen :" + mgenrelen + "\n +" +
+			"mdir :" + mdir + "\n +" +
+			"mpro :" + mpro + "\n +" +
+			"mactor :" + mactor + "\n +" +
+			"msup :" + msup + "\n +" +
+			"mactor :" + mactor + "\n +" +
+			"msynop :" + msynop
+	);
+	
+	alert("thumbnail :" + thumbnail + "\n" +
+			"murl :" + murl + "\n" +
+			"mrepo :" + mrepo
+	);
+
+}

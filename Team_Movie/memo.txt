@@ -10,14 +10,13 @@ create table tmovie(
    mactor varchar2(4000) not null, --주연
    msup varchar2(4000), --조연
    mage number not null, --관람 연령
-   mele number not null, --영화 요소
    mrdate date not null, --개봉일
    midate date not null, --업로드일
    mrcount number not null, --조회수
    mlike number not null, --추천수
    mwcon number not null, -- 관람 회원 등급
-   murl varchar2(4000) not null, --영상 링크
-   mrepo varchar2(4000) not null, --영상 저장소 링크
+   murl varchar2(4000), --영상 링크
+   mrepo varchar2(4000), --영상 저장소 링크
    mimg varchar2(4000) not null, --섬네일 이미지
    msynop varchar2(4000) not null, --줄거리
    mruntime varchar2(4000) not null-- 런닝타임  
@@ -133,9 +132,9 @@ create sequence mmembership_seq
   
 
 --tmovie 삽입예제
-insert into tmovie values(tmovie_seq.nextval,'극한직업','코미디','이병헌','이병헌','류승룡,이하늬','진선규,이동휘',2,0,'2019-01-23',sysdate,0,0,1,'a','b','c','d','0:0:0');
-insert into tmovie values(tmovie_seq.nextval,'뺑반','범죄,액션','한준희','한준희','공효진,류준렬,조정석','염정아,전혜진',2,5,'2019-01-30',sysdate,0,0,1,'a','b','c','d','0:0:0');
-insert into tmovie values(tmovie_seq.nextval,'말모이','드라마','엄유나','엄유나','유해진,윤계상,김홍파','우현,김태훈',2,0,'2019-01-30',sysdate,0,0,1,'a','b','c','d','0:0:0');
+insert into tmovie values(tmovie_seq.nextval,'극한직업','코미디','이병헌','이병헌','류승룡,이하늬','진선규,이동휘',2,'2019-01-23',sysdate,0,0,1,'a',null,'c','d','0:0:0');
+insert into tmovie values(tmovie_seq.nextval,'뺑반','범죄,액션','한준희','한준희','공효진,류준렬,조정석','염정아,전혜진',2,'2019-01-30',sysdate,0,0,1,'a',null,'c','d','0:0:0');
+insert into tmovie values(tmovie_seq.nextval,'말모이','드라마','엄유나','엄유나','유해진,윤계상,김홍파','우현,김태훈',2,'2019-01-30',sysdate,0,0,1,'a',null,'c','d','0:0:0');
 
 --tuser 삽입예제
 insert into tuser values(tuser_seq.nextval,'admin','admin','1234',sysdate,'2019-01-01',0,null,null,'a');

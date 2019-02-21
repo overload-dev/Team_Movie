@@ -30,9 +30,57 @@
 		where mnum = #{mnum}
 	</update>
 	
+
+	<insert id="AddMovie" parameterType="MyMovie">
+		insert into tmovie(mnum,
+							mname,
+							mgenre,
+							mdir,
+							mpro,
+							mactor,
+							msup,
+							mage,
+							mrdate,
+							midate,
+							mrcount,
+							mlike,
+							mwcon,
+							murl,
+							mrepo,
+							mimg,
+							msynop,
+							mruntime
+		)
+		values(tmovie_seq.nextval,
+				#{mname},
+				#{mgenre},
+				#{mdir},
+				#{mpro},
+				#{mactor},
+				#{msup},
+				#{mage},
+				#{mrdate},
+				sysdate,
+				0,
+				0,
+				#{mwcon},
+				#{murl},
+				#{mrepo},
+				#{mimg},
+				#{msynop},
+				'0:0:0'
+		)
+	</insert>
+	
+	<select id="GetLasttMovie_seq" resultType="int">
+	 select max(mnum) from tmovie
+	</select>
+	
+
 	<update id="MovieUnLikeUpdate">
 		update tmovie
 		set mlike = mlike - 1
 		where mnum = #{mnum}
 	</update>
+
 </mapper>
