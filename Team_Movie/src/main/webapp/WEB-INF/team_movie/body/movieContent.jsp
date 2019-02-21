@@ -9,7 +9,6 @@
  * 댓글 등록하기(Ajax)
  */
 function fn_insertComment(){
-	
 	mnum = $('#mnum').val();
 	unum = $('#unum').val();
 	bcon = $('#bcon').val();
@@ -22,14 +21,14 @@ function fn_insertComment(){
 			"bsubject": bsubject 
 			};
 	
-	if($("input[name=bsubject]").val() == ""){
+	if(bsubject == ""){
 		alert("제목을 입력하세요.");
 		$("input[name=bsubject]").val().focus();
 		return false;
 	}
-	else if($("input[name=bcon]").val() == ""){
+	if(bcon == ""){
 		alert("내용을 입력하세요.");
-		$("input[name=bcon]").val().focus();
+		$("input[textarea=bcon]").val().focus();
 		return false;
 	} 
 	else {
@@ -52,7 +51,6 @@ function fn_insertComment(){
 }
 
 function fn_UpdateCommentForm(bnum) {
-	alert(bnum);
 	var allData = { 
 			"bnum": bnum 
 		}
@@ -89,14 +87,14 @@ function fn_UpdateComment(bnum) {
 			"upConText": upConText 
 			};
 	
-	if($("#upSubText").val() == ""){
+	if(upSubText == ""){
 		alert("제목을 입력하세요.");
-		$("#upSubText").val().focus();
+		upSubText.focus();
 		return false;
 	}
-	else if($("#upConText").val() == ""){
+	if(upConText == ""){
 		alert("내용을 입력하세요.");
-		$("#upConText").val().focus();
+		upConText.focus();
 		return false;
 	} 
 	else {
@@ -119,29 +117,22 @@ function fn_UpdateComment(bnum) {
 }
 
 function fn_ReplyCommentFormShow(bnum) {
-	alert("bnum : " + bnum);
 	document.getElementById("replyForm" + bnum).style.display = "";
 	document.getElementById("replyShowBtn" + bnum).style.display = "none";
 	document.getElementById("replyHideBtn" + bnum).style.display = "";
 }
 
 function fn_ReplyCommentFormHide(bnum) {
-	alert("bnum : " + bnum);
 	document.getElementById("replyForm" + bnum).style.display = "none";
 	document.getElementById("replyShowBtn" + bnum).style.display = "";
 	document.getElementById("replyHideBtn" + bnum).style.display = "none";
 }
 
 function fn_insertReply(bref) {
-	alert("bref : " + bref);
 	replyUnum = $('#replyUnum' + bref).val();
 	replyMnum = $('#replyMnum' + bref).val();
 	replySub = $('#replySub' + bref).val();
 	replyCon = $('#replyCon' + bref).val();
-	alert("replyUnum : " + replyUnum);
-	alert("replyMnum : " + replyMnum);
-	alert("replySub : " + replySub);
-	alert("replyCon : " + replyCon);
 	
 	var allData = { 
 			"bref" : bref,
@@ -151,14 +142,14 @@ function fn_insertReply(bref) {
 			"replyCon" : replyCon 
 			};
 	
-	if($("#replySub").val() == ""){
+	if(replySub == ""){
 		alert("제목을 입력하세요.");
-		$("#replySub").val().focus();
+		replySub.focus();
 		return false;
 	}
-	else if($("#replyCon").val() == ""){
+	if(replyCon == ""){
 		alert("내용을 입력하세요.");
-		$("#replyCon").val().focus();
+		replyCon.focus();
 		return false;
 	} 
  	else {
@@ -354,7 +345,7 @@ function movieUnBookmark(mnum, unum) {
     	      			<span style="display:none" id="unLike" class="glyphicon glyphicon-heart" style="font-size:18px;" title="좋아요 취소"></span>
 	        		</a>
 	        		</c:if>
-	        		<c:if test="${likeCount == 1 }">
+	        		<c:if test="${likeCount >= 1 }">
         			<a href="#" onclick="movieUnLike(${movie.mnum }, ${user.unum })">
     	      			<span style="display:none" id="like" class="glyphicon glyphicon-heart-empty" style="font-size:18px;" title="좋아요"></span>
     	      			<span id="unLike" class="glyphicon glyphicon-heart" style="font-size:18px;" title="좋아요 취소"></span>
@@ -369,7 +360,7 @@ function movieUnBookmark(mnum, unum) {
     	      			<span style="display:none" id="unBookmark" class="glyphicon glyphicon-star" style="font-size:18px;" title="즐겨찾기 취소"></span>
 	        		</a>
 	        		</c:if>
-	        		<c:if test="${bookmarkCount == 1 }">
+	        		<c:if test="${bookmarkCount >= 1 }">
         			<a href="#" onclick="movieUnBookmark(${movie.mnum }, ${user.unum })">
         				<span style="display:none" id="bookmark" class="glyphicon glyphicon-star-empty" style="font-size:18px;" title="즐겨찾기"></span>
     	      			<span id="unBookmark" class="glyphicon glyphicon-star" style="font-size:18px;" title="즐겨찾기 취소"></span>
