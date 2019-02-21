@@ -43,8 +43,7 @@ public class UserInsertController {
 		//GenreData Get
 		List<GenreBean> genreList = null;
 		genreList = genreDao.getGenreList();
-		model.addAttribute("genreList", genreList);
-				
+		model.addAttribute("genreList", genreList);	
 		return getPage;
 	}
 	

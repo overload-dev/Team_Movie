@@ -69,12 +69,9 @@
 								<div class="row">
 									<div class="col-sm-12">
 								 		<label>
-											<input type="checkbox" name="ugenre" value="코미디">코미디 &nbsp;&nbsp;
-											<input type="checkbox" name="ugenre" value="범죄">범죄 &nbsp;&nbsp;
-											<input type="checkbox" name="ugenre" value="스릴러">스릴러 &nbsp;&nbsp;
-											<input type="checkbox" name="ugenre" value="공포">공포 &nbsp;&nbsp;
-											<input type="checkbox" name="ugenre" value="드라마">드라마 &nbsp;&nbsp;
-											<input type="checkbox" name="ugenre" value="멜로">멜로 &nbsp;&nbsp;
+								 			<c:forEach var="genre" items="${genreList}">
+								 				<input type="checkbox" name="ugenre" value="${genre.gname }">${genre.gname}&nbsp;&nbsp;
+								 			</c:forEach>
 										 </label>
 									</div>
 								</div>
