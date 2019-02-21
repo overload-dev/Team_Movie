@@ -29,12 +29,10 @@
 							
 							생년월일 : ${userInfo.ubirth } <br>
 							
-							선호장르 :<input type="checkBox" name="ugenre" value="코미디" <c:if test="${fn:contains(userInfo.ugenre,'코미디') }">checked</c:if>	>코미디 
-									<input type="checkBox" name="ugenre" value="범죄" <c:if test="${fn:contains(userInfo.ugenre,'범죄') }">checked</c:if>		>범죄
-									<input type="checkBox" name="ugenre" value="스릴러" <c:if test="${fn:contains(userInfo.ugenre,'스릴러') }">checked</c:if>	>스릴러
-									<input type="checkBox" name="ugenre" value="공포" <c:if test="${fn:contains(userInfo.ugenre,'공포') }">checked</c:if>		>공포
-									<input type="checkBox" name="ugenre" value="드라마" <c:if test="${fn:contains(userInfo.ugenre,'드라마') }">checked</c:if>	>드라마
-									<input type="checkBox" name="ugenre" value="멜로" <c:if test="${fn:contains(userInfo.ugenre,'멜로') }">checked</c:if>		>멜로
+							선호장르 :
+									<c:forEach var="genre" items="${genreList }">
+										<input type="checkBox" name="ugenre" value="${genre.gname }" <c:if test="${fn:contains(userInfo.ugenre,genre.gname) }">checked</c:if> >${genre.gname}
+									</c:forEach>
 									<br>
 							멤버 등급 : ${userInfo.ugrade} <br>
 				

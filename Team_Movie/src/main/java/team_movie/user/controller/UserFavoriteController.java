@@ -11,16 +11,18 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserFavoriteController {
 	
 	private final String command="userFavorite.tm";
-	private final String getPage="body/user/userEdit.tm";
+	private final String getPage="body/user/userEdit";
 	
 	@RequestMapping(value=command,method=RequestMethod.GET)
 	public ModelAndView doActionGet(
 		HttpSession session
 		){
+		System.out.println("Áñ°ÜÃ£±â Æû"); 
 		 
 		ModelAndView mav = new ModelAndView();
 		
 		session.getAttribute("usid");
+		
 		mav.addObject("page","userFavorite");
 		mav.setViewName(getPage);
 		return mav;

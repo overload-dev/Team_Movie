@@ -19,7 +19,7 @@
 						<jsp:include page="./userEditMenu.jsp"/>
 			      	</div>
 			    </div>
-			</div>
+			</div> 
 			<div class="col-sm-9">
   				<jsp:include page="./${page}.jsp"/>
 			</div>
