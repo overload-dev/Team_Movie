@@ -1,5 +1,8 @@
 package team_movie.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -39,5 +42,12 @@ public class FavoriteDao {
 	public int GetBookmarkCount(FavoriteBean favor) {
 		int count = sqlSessionTemplate.selectOne(namespace + ".GetBookmarkCount", favor);
 		return count;
+	}
+	//회원이선택한 즐겨찾기전부를 가져오는 메서드
+	public List<FavoriteBean> GetFavofiteAllData(Integer unum) {
+		List<FavoriteBean> Lists = new ArrayList<FavoriteBean>();
+		
+		Lists = sqlSessionTemplate.selectList(namespace+".GetFavofiteAllData",unum);
+		return Lists;
 	}
 }

@@ -43,6 +43,10 @@
 		and fmnum = #{fmnum}
 		and ftype = 1
 	</select>
+	
+	<select id="GetFavofiteAllData" resultType="MyFavorite">
+		select *from favorite where funum=#{unum} and ftype=1
+	</select>
 </mapper>
 
  

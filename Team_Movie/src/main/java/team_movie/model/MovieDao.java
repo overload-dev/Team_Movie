@@ -56,12 +56,20 @@ public class MovieDao {
 	public int AddMovie(MovieBean movieBean) {
 		int getnum = 0;
 
-		// DB삽입
+		// DB�궫�엯
 		sqlSessionTemplate.insert(namespace + ".AddMovie", movieBean);
 
-		// num 획득
+		// num �쉷�뱷
 		getnum = sqlSessionTemplate.selectOne(namespace + ".GetLasttMovie_seq");
 
 		return getnum;
+	}
+
+	public MovieBean GetFavoriteCon(int fmnum) {
+		System.out.println("DAO fmnum : "+fmnum);
+		MovieBean mBean = new MovieBean();
+		mBean = sqlSessionTemplate.selectOne(namespace+".GetFavoriteCon",fmnum);
+		
+		return mBean;
 	}
 }

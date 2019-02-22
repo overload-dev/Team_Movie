@@ -82,5 +82,9 @@
 		set mlike = mlike - 1
 		where mnum = #{mnum}
 	</update>
+	
+	<select id="GetFavoriteCon" resultType="MyMovie">
+		select * from tmovie where mnum=#{fmnum} 
+	</select>
 
 </mapper>

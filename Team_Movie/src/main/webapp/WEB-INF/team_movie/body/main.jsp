@@ -18,11 +18,9 @@
 				<div class="item active">
 					<img src="http://placehold.it/1170x400" alt="이미지1">
 				</div>
-
 				<div class="item">
 					<img src="http://placehold.it/1170x400" alt="이미지2">
 				</div>
-
 				<div class="item">
 					<img src="http://placehold.it/1170x400" alt="이미지3">
 				</div>
