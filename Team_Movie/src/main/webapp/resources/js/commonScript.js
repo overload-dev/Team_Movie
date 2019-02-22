@@ -325,6 +325,13 @@ function handleImgFileSelect(e){
 		if(!f.type.match("image.*")){
 			alert(f.type);
 			alert("이미지 파일만 올려주세요.");
+
+			if($.browser.msie){    //IE version
+				$('input[name=thumbnail]').replaceWith($('input[name=thumbnail]').clone(true) );
+			}else{    //other browser
+				$('input[name=thumbnail]').val("");
+			}
+			
 			return;
 		}
 		
@@ -373,7 +380,7 @@ function addMovieDataChk(){
 		alert("영화 이름 누락");
 		return false;
 	}
-	if(midate ==''){
+	if(mrdate ==''){
 		alert("개봉일 누락");
 		return false;
 	}
@@ -400,26 +407,16 @@ function addMovieDataChk(){
 	
 	if(thumbnail == ''){
 		alert("섬네일 이미지를 삽입하세요.");
+		return false;
 	}
 
 	if(murl == '' || mrepo ==''){
 		alert("영상 URL 혹은 파일을 삽입하세요.");
+		return false;
 	}
 	
-	alert("mname :" + mname + "\n" +
-			"mrdate :" + mrdate + "\n +" +
-			"mgenrelen :" + mgenrelen + "\n +" +
-			"mdir :" + mdir + "\n +" +
-			"mpro :" + mpro + "\n +" +
-			"mactor :" + mactor + "\n +" +
-			"msup :" + msup + "\n +" +
-			"mactor :" + mactor + "\n +" +
-			"msynop :" + msynop
-	);
-	
-	alert("thumbnail :" + thumbnail + "\n" +
-			"murl :" + murl + "\n" +
-			"mrepo :" + mrepo
-	);
+	if(murl == ''){
+		murl.val(null);
+	}
 
 }

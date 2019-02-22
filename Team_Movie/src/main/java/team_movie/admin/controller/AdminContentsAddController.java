@@ -52,28 +52,35 @@ public class AdminContentsAddController {
 		return gotoPage;
 	}
 
+	@SuppressWarnings("resource")
 	@RequestMapping(value = command, method = RequestMethod.POST)
 	public String doActionPost(HttpServletRequest request, MovieBean movieBean,
 			@RequestParam("thumbnail") MultipartFile thumbnail,
 			@RequestParam(value = "f_mrepo", required = false) MultipartFile f_mrepo) {
 		System.out.println("##############################################");
 		System.out.println("name :" + movieBean.getMname());
-		System.out.println("rdate:" + movieBean.getMrdate());
 		System.out.println("genre :" + movieBean.getMgenre());
-		System.out.println("dir" + movieBean.getMdir());
-		System.out.println("pro" + movieBean.getMpro());
-		System.out.println("actor" + movieBean.getMactor());
-		System.out.println("sup" + movieBean.getMsup());
+		System.out.println("dir :" + movieBean.getMdir());
+		System.out.println("pro :" + movieBean.getMpro());
+		System.out.println("actor :" + movieBean.getMactor());
+		System.out.println("sup :" + movieBean.getMsup());
+		System.out.println("age :" + movieBean.getMage());
+		System.out.println("rdate :" + movieBean.getMrdate());
+		System.out.println("wcon :" + movieBean.getMwcon());
+		
 		System.out.println("##########################################");
-		System.out.println(thumbnail.getName());
+		System.out.println("mimg :" + thumbnail.getName());
+		
+		
 		if(f_mrepo != null){
-			System.out.println(f_mrepo.getName());
+			System.out.println("url :" + f_mrepo.getName());
 		}else{
-			System.out.println(movieBean.getMurl());
+			movieBean.setMrepo("");
+			System.out.println("url :" +movieBean.getMurl());
 		}
+		
+		
 		System.out.println("##############################################");
-
-		// ��ü�� �Ѿ�������� bean setter�� ����
 
 		// ������
 		movieBean.setMimg(thumbnail.getOriginalFilename());
@@ -112,19 +119,15 @@ public class AdminContentsAddController {
 		}
 		
 		try {
-			OutputStream thumbnail_out = new FileOutputStream(thumbnail_f);
+			OutputStream out = new FileOutputStream(thumbnail_f);
 			byte[] bytes = thumbnail.getBytes(); //바이트 정보
-			thumbnail_out.write(bytes);
-			
-			
+			out.write(bytes);
 			if(f_mrepo != null){
-				OutputStream f_mrepo_f_out = new FileOutputStream(f_mrepo_f);
+				out = new FileOutputStream(f_mrepo_f);
 				bytes = f_mrepo.getBytes(); //바이트 정보
-				f_mrepo_f_out.write(bytes);
-				f_mrepo_f_out.close();
+				out.write(bytes);
 			}
-			
-			thumbnail_out.close();
+			out.close();
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
