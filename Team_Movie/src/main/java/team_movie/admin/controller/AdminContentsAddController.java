@@ -30,7 +30,7 @@ public class AdminContentsAddController {
 
 	private static final String command = "addContentsEdit.tm";
 	private static final String gotoPage = "body/admin/adminContentsAdd";
-	private static final String getPage = "";
+	private static final String getPage = "redirect:/adminContentsEdit.tm";
 
 	@Autowired
 	@Qualifier("myGenreDao")
@@ -138,9 +138,8 @@ public class AdminContentsAddController {
 		}
 		
 		
-		return null;
+		return getPage;
 	}
-	
 	
 	public void deleteFile(File file_s){
 		// 폴더 내부를 순회하며 모든 파일을 지운다.
