@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <%@include file="../top.jsp"%>
 <%@include file="./../../common/common.jsp"%>
+
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/moviePageStyle.css' />">
 </head>
 <body>

@@ -18,7 +18,7 @@ import team_movie.model.MovieDao;
 @Controller
 public class MovieGenreViewController {
 	
-	private static final String command = "/genreView.tm";
+	private static final String command = "genreView.tm";
 	private static final String getPage ="body/genreView";
 	
 	// for get GenreData
@@ -31,7 +31,10 @@ public class MovieGenreViewController {
 	MovieDao movieDao;
 			
 	@RequestMapping(value=command, method=RequestMethod.GET)
-	public ModelAndView doActionGet(String gname){
+	public ModelAndView doActionGet(
+			@RequestParam(value="gname", required=false) String gname
+			){
+		
 		System.out.println("genreView doAction Get enter");
 		System.out.println("gname: " + gname);
 		ModelAndView mav = new ModelAndView();

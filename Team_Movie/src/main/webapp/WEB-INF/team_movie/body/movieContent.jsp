@@ -428,18 +428,23 @@ function movieUnBookmark(mnum, unum) {
 	<!-- 랜덤으로 나온 인기장르 for carousel1-->
 	<c:forEach items="${map }" var="map" varStatus="status">
 		<div class="container">
-		<c:set var="pg" value="${pg + 1 }" />
+			<c:set var="pg" value="${pg + 1 }" />
+			
 			<div class="panel panel-info">
+				
 				<div class="panel-heading">
 					<font style="font-size: 20px;">${map.key } 인기 영화</font>
 				</div>
+				
 				<div class="panel-body">
+					
 					<c:if test="${fn:length(map.value) == 0 }">
 						<div class="jumbotron jumbotron-fluid" style="background-color: #DCDDE2;">
 	         				<h1 class="display-3 text-primary">No Contents</h1>
 	        		    	<p class="lead">${map.key } 장르의 컨텐츠가 없습니다.</p>
 	        			</div>
 					</c:if>
+					
 					<div class="row" style="text-align: center;">
 						<c:set var="col" value="0" />
 						<div class="col-md-12">
@@ -457,15 +462,15 @@ function movieUnBookmark(mnum, unum) {
 													${movie.mgenre }<br>
 												</a>
 											</div>
-										<c:if test="${col%4 == 0 }">
-										</div>
-									</div>
-									<div class="item">
-										<div class="row">
-										</c:if>
 										</c:forEach>
 										</div>
 									</div>
+									<c:if test="${col%4 == 0 }">
+										<div class="item">
+											<div class="row">
+											</div>
+										</div>
+									</c:if>
 									<!--.carousel-inner-->
 									<a data-slide="prev" href="#Carousel${pg }" class="left carousel-control"><i class="glyphicon glyphicon-chevron-left"></i></a> 
 									<a data-slide="next" href="#Carousel${pg }" class="right carousel-control"><i class="glyphicon glyphicon-chevron-right"></i></a>
@@ -477,6 +482,7 @@ function movieUnBookmark(mnum, unum) {
 					</div>
 				</div>
 			</div>
+			
 		</div>
 	</c:forEach>
 	
