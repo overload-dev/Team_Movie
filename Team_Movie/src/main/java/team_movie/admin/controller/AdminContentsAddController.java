@@ -8,7 +8,9 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.concurrent.SynchronousQueue;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
 
 import team_movie.model.GenreBean;
@@ -26,7 +29,7 @@ import team_movie.model.MovieBean;
 import team_movie.model.MovieDao;
 
 @Controller
-public class AdminContentsAddController {
+public class AdminContentsAddController{
 
 	private static final String command = "addContentsEdit.tm";
 	private static final String gotoPage = "body/admin/adminContentsAdd";
@@ -56,7 +59,9 @@ public class AdminContentsAddController {
 	@RequestMapping(value = command, method = RequestMethod.POST)
 	public String doActionPost(HttpServletRequest request, MovieBean movieBean,
 			@RequestParam("thumbnail") MultipartFile thumbnail,
-			@RequestParam(value = "f_mrepo", required = false) MultipartFile f_mrepo) {
+			@RequestParam(value = "f_mrepo", required = false) MultipartFile f_mrepo,
+			HttpSession session
+			) {
 		System.out.println("##############################################");
 		System.out.println("name :" + movieBean.getMname());
 		System.out.println("genre :" + movieBean.getMgenre());
@@ -95,20 +100,20 @@ public class AdminContentsAddController {
 		System.out.println("getIndex : " + getIndex);
 
 		// C����̺꿡 1�� ���� ����
-		String root_path = "/saveMovieDB";
-
+		;
+		
+		
+		String root_path = session.getServletContext().getRealPath("/resources/saveMovieDB");
+		System.out.println(root_path);
 		File file_f = new File(root_path);
 		File file_s = new File(root_path + "/" + getIndex);
 		
 		// 1차 경로
-		if (file_f.exists()) {// 기존 폴더가 있을 경우
-			file_f.mkdir();
-			System.out.println("폴더 생성");
-			System.out.println(file_f.getPath());
-			// 2차 경로(최종)
-			file_s.mkdir();
-		} else {// 1차 경로가 있을 경우
-			deleteFile(file_s);
+		if (!file_f.exists()) {// 기존 폴더가 없을 경우
+			file_f.mkdir(); //새로 만든다
+			//deleteFile(file_s);
+		}else{
+			file_s.mkdir(); //기존 경로가 있다면 2차 경로를 생성
 		}
 		
 		File thumbnail_f = new File(file_s.getPath()+ "/" + thumbnail.getOriginalFilename());
@@ -137,17 +142,20 @@ public class AdminContentsAddController {
 			e.printStackTrace();
 		}
 		
-		
 		return getPage;
 	}
 	
 	public void deleteFile(File file_s){
 		// 폴더 내부를 순회하며 모든 파일을 지운다.
 		File[] del_f = file_s.listFiles();
-		for (int i = 0; i < del_f.length; i++) {
-			del_f[i].delete();
+		if(del_f != null){
+			for (int i = 0; i < del_f.length; i++) {
+				del_f[i].delete();
+			}
 		}
 	}
+
+
 	
 	
 }

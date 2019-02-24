@@ -63,10 +63,10 @@
 					<td>
 					<c:choose>
 						<c:when test="${movie.mwcon == 1}">
-							무료 관람
+							전체 회원
 						</c:when>
 						<c:otherwise>
-							스페셜
+							스페셜 한정
 						</c:otherwise>
 					</c:choose>				
 					</td>

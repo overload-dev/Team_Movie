@@ -17,13 +17,10 @@
 	 		Movie Profile
 	 	</div>
 		<div class="card-body">
-		
+			
 			<div class="row">
 				<div class="col-sm-6" align="center">
-				
-					<img
-						src="//s3.namuwikiusercontent.com/s/5673b412996accb9ce935c3378c8d1493ea74f53cb6f692ee27ceed2c0b6ea2aed0b4cfcb49b387abab676557d156ef2f5a54dbf820089708d6cc6568690b8289a21bfc39a73f3702f1000356f5d85b90b25cae3d483b159e8a5349d562fb69e"
-						width="75%">
+				<img src="<c:url value="/resources/saveMovieDB/${movieBean.mnum }/${movieBean.mimg}"/>" width="75%">
 				</div>
 				<div class="col-sm-6">
 					<h2 class="text-primary">${movieBean.mname }</h2>
@@ -121,13 +118,25 @@
 					</table>
 				</div>
 				<!-- 세로 구분선 -->
-				<div class="col-sm-1" style="border-left: 1px solid lightgrey;"></div>
-				<div class="col-sm-5" >
-					
-					<input type="button" class="btn btn-info" value="상영 페이지">
-					<input type="button" class="btn btn-primary" value="수정">
-					<input type="button" class="btn btn-danger" value="삭제">
-					
+				<!-- <div class="col-sm-1" style="border-left: 0px solid lightgrey;"></div> -->
+				<div class="col-sm-6" style="border-left: 0px solid lightgrey;" align="center">
+					<ul class="list-group" width="100%" >
+						<li class="list-group-item">
+							<a href="">
+								상영 페이지
+							</a>
+						</li>
+						<li class="list-group-item">
+							<a href="updateContentsEdit.tm?mnum=${movieBean.mnum }">
+								정보 수정
+							</a>
+						</li>
+						<li class="list-group-item">
+							<a href="">
+								삭제
+							</a>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>

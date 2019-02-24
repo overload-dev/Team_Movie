@@ -72,4 +72,16 @@ public class MovieDao {
 		
 		return mBean;
 	}
+	
+	public void UpdateContents(MovieBean movieBean){
+		int chk = -1;
+		
+		chk = sqlSessionTemplate.update(namespace + ".UpdateContents", movieBean);
+		
+		if(chk > 0){
+			System.out.println("update clear");
+		}else{
+			System.out.println("update fail");
+		}
+	}
 }

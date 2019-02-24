@@ -36,6 +36,7 @@ public class AdminContentsViewController {
 		
 		System.out.println("a");
 		MovieBean movieBean = movieDao.GetMovieByNum(mnum);
+
 		model.addAttribute("movieBean", movieBean);
 		//GenreData Get
 		List<GenreBean> genreList = null;

@@ -84,7 +84,25 @@
 	</update>
 	
 	<select id="GetFavoriteCon" resultType="MyMovie">
-		select * from tmovie where mnum=#{fmnum} 
+		select * from tmovie where mnum=#{mnum} 
 	</select>
-
+	<update id="UpdateContents">
+		update tmovie
+		set mname = #{mname},
+			mgenre =#{mgenre},
+			mdir =#{mdir},
+			mpro =#{mpro},
+			mactor =#{mactor},
+			msup =#{msup},
+			mage =#{mage},
+			mrdate =#{mrdate},
+			mwcon =#{mwcon},
+			murl =#{murl},
+			mrepo =#{mrepo},
+			mimg =#{mimg},
+			msynop =#{msynop},
+			mruntime ='0:0:0'
+		where mnum=#{mnum}
+	</update>
+	
 </mapper>

@@ -410,7 +410,7 @@ function addMovieDataChk(){
 		return false;
 	}
 
-	if(murl == '' || mrepo ==''){
+	if(murl == '' && mrepo ==''){
 		alert("영상 URL 혹은 파일을 삽입하세요.");
 		return false;
 	}
@@ -419,4 +419,31 @@ function addMovieDataChk(){
 		murl.val(null);
 	}
 
+}
+
+function updateMovieDataChk(){
+
+	var mname = $('input[name=mname]').val();
+	var mrdate= $('input[name=mrdate]').val();
+	var mgenrelen = $('input[name=mgenre]:checked').length;
+	var mdir = $('input[name=mdir]').val();
+	var mpro = $('input[name=mpro]').val();
+	var mactor = $('input[name=mactor]').val();
+	var msup = $('input[name=msup]').val();
+	var msynop = $('textarea[name=msynop]').val();
+	var thumbnail = $('input[name=thumbnail]').val();
+	var murl = $('input[name=mur]').val();
+	var mrepo = $('input[name=f_mrepo]').val();
+	
+	if(mname ==''){alert("영화 이름 누락"); return false;}
+	if(mrdate ==''){alert("개봉일 누락"); return false;}
+	if(mgenrelen <=0){alert("1개 이상의 장르를 선택하세요."); return false;}
+	if(mdir ==''){alert("영화의 감독을 입력하세요.");return false;}
+	if(mactor ==''){alert("출연 배우를 입력하세요."); return false;}
+	if(msup ==''){ alert("조연 배우를 입력하세요."); return false;}
+	if(msynop ==''){alert("시놉시스를 입력하세요."); return false; }
+	
+	if(murl == ''){
+		murl.val(null);
+	}
 }
