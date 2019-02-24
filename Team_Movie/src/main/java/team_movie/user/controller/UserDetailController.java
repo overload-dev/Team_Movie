@@ -15,12 +15,11 @@ import team_movie.model.UserDao;
 public class UserDetailController {
 	private static final String command ="userDetail.tm";
 	private static final String getPage ="body/user/userEdit";
-	private static final String getPage2 ="body/admin/adminEdit";
 	
 	@Autowired
 	UserDao userDao;
 	
-	//user ï¿½Ñ¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¸Þ¼ï¿½ï¿½ï¿½
+	//user ÇÑ¸íÀÇ Á¤º¸¸¦ ´ã´Â¸Þ¼­µå
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public ModelAndView doActionGet(
 			HttpSession session
@@ -34,12 +33,7 @@ public class UserDetailController {
 		
 		mav.addObject("userInfo",userInfo);
 		mav.addObject("page","userDetail");
-		String ugrade =(String)session.getAttribute("ugrade");
-		if(ugrade.equals("0")){
-			mav.setViewName(getPage2);
-		}else{
-			mav.setViewName(getPage);
-		}
+		mav.setViewName(getPage);
 		return mav; 
 	}
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<div class="panel panel-info">
+<div class="panel panel-default">
 	<div class="list-group">
 		<a href="userDetail.tm" class="list-group-item list-group-item-action"> 회원정보관리 </a>
 		<a href="userFavorite.tm" class="list-group-item list-group-item-action"> 즐겨찾기 </a>

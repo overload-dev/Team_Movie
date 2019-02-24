@@ -12,4 +12,18 @@
   right: -10px !important;
   width : 30px;
 }
+body, html {
+  height: 100%;
+}
+.bg {
+  /* The image used */
+ /*  background-image : url("./bg_1.jpg"); */
+ background-color : #353535;
+  /* Full height */
+  height: 100%;
 
+  /* Center and scale the image nicely */
+  background-position: inherit;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

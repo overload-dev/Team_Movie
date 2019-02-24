@@ -8,24 +8,49 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-9">
-				<div class="panel panel-info">
-					<div class="panel-heading">개인정보관리</div>
-						<div class="panel-body">			
-							<h4 class="text-primary">${sessionScope.uname} 님의 정보</h4>
-							아이디 : ${userInfo.usid }<br>
-							이름 : ${userInfo.uname }<br>
-							생년월일 :${userInfo.ubirth } <br>
-							선호장르 : ${userInfo.ugenre }<br>
-							멤버 등급 : ${userInfo.ugrade}<br>
-							가입일자 : ${userInfo.udate}<br> 
-						</div> 
-					</div> 
-				<button type="button" onclick="location.href='userUpdate.tm'">정보 수정하기</button>
-			</div>
+
+<div class="container">    
+	<div class="row">
+		<div class="panel panel-default">
+			<div class="panel-heading"> <h4 >회원개인정보</h4></div>
+				<div class="panel-body">
+                    <div class="col-md-8 col-xs-8 col-sm-6 col-lg-10" >
+						<div class="container" > 
+							<h3><b>${sessionScope.uname}</b> 님의 정보</h3>  
+                    	</div>
+                    <br>
+                    <table class="table">
+                    	<tr>
+                    		<td width="20%">아이디</td>
+                    		<td>${userInfo.usid }</td>
+                    	</tr>
+                    	<tr>
+                    		<td>이름</td>
+                    		<td>${userInfo.uname }</td>
+                    	</tr>
+                    	<tr>
+                    		<td>생년월일</td>
+                    		<td>${userInfo.ubirth }</td>
+                    	</tr>
+                    	<tr>
+                    		<td>선호장르</td>
+                    		<td> ${userInfo.ugenre }</td>
+                    	</tr>
+                    	<tr>
+                    		<td>등급</td>
+                    		<td>${userInfo.ugrade}</td>
+                    	</tr>
+                    </table>
+                  
+					<hr> 
+						<div class="col-sm-5 col-xs-6 tital " ><p>Date Of Joining  : ${userInfo.udate}</p></div><br>
+					<hr>
+						<center><button class="btn" type="button" onclick="location.href='userUpdate.tm'" >회원 정보 수정</button></center>
+					</div>
+                </div>
 		</div>
 	</div>
+</div>
+	
 </body>
 </html>

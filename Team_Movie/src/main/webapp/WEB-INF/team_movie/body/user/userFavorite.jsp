@@ -11,7 +11,7 @@
 </head>
 <body> 
 	<div class="container">
-		<div class="panel panel-info">
+		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div class="row">
 					<div class="col-sm-10">
@@ -20,7 +20,7 @@
 					</div>
 					<div class="col-sm-2">
 						<a href="main.tm" > 
-							<font style="font-weight: bold; font-size: large; text-align:right;">다른 영화 보기</font>
+							<font style="font-weight: bold; color:black; font-size: large; text-align:right;">다른 영화 보기</font>
 						</a>
 					</div>
 				</div>

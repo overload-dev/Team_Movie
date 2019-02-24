@@ -10,7 +10,10 @@
 
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/moviePageStyle.css' />">
 </head>
-<body>
+
+
+<body class="bg">
+
 	<div class="container">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 
@@ -95,13 +98,13 @@
 													${movie.mgenre }<br>
 												</a>
 											</div>
-										<c:if test="${col%4 == 0 }">
-										</div>
-									</div>
-									<div class="item">
-										<div class="row">
-										</c:if>
-										</c:forEach>
+											<c:if test="${col%4 == 0 }">
+												<div class="item">
+													<div class="row">
+													</div>
+												</div>
+											</c:if>
+											</c:forEach>
 										</div>
 									</div>
 									<!--.carousel-inner-->
@@ -158,17 +161,18 @@
 									</div>
 									<c:if test="${col%4 == 0 }">
 										<c:set var="more" value="true" />
-						</div>
-						<div class="row">
+										<div class="row">
+										</div>
 									</c:if>
 								</c:if>
 							</c:forEach>
 						</div>
+						</div> 
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+
 	
 </body>
 </html>

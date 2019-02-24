@@ -10,11 +10,11 @@
 <script src="<c:url value='/resources/js/commonScript.js'/>"></script>
 <body>
 	<div class="container">
-		<h2 class="text-primary">회원정보 관리</h2>
+		<h2 class="text-primary" ><font color="black">회원정보 관리</font></h2>
 		<div class="row">
 			<div class="col-sm-3" >
-				<div class="panel panel-info">
-					<div class="panel-heading">Menu</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">회원공간</div>
 					<div class="panel-body" align="center">
 						<jsp:include page="./userEditMenu.jsp"/>
 			      	</div>
