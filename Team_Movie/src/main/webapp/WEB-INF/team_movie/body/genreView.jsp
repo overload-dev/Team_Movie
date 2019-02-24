@@ -37,8 +37,9 @@
 				<c:forEach var="mlist" items="${movielist}">
 					<div class="col-sm-3">
 						<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${mlist.mnum})" onmouseout="movie_description(1,${mlist.mnum})">
-							<img src="//s3.namuwikiusercontent.com/s/5673b412996accb9ce935c3378c8d1493ea74f53cb6f692ee27ceed2c0b6ea2aed0b4cfcb49b387abab676557d156ef2f5a54dbf820089708d6cc6568690b8289a21bfc39a73f3702f1000356f5d85b90b25cae3d483b159e8a5349d562fb69e" width="80%">
-							 	<span id="desc" class="${mlist.mnum}">
+						<a href="movieContent.tm?mnum=${mlist.mnum}">
+							<img src="<c:url value="/resources/saveMovieDB/${mlist.mnum }/${mlist.mimg}"/>" width="80%" >
+							 	<span id="desc" class="${mlist.mnum}" >
 									<b class="display-4" style="color: white;">
 										${mlist.mname }
 									</b>
@@ -52,6 +53,7 @@
 										상영 시간: ${mlist.mruntime}
 									</b>
 								</span>
+						</a>
 							</div>
 							<br>
 							<b class="text-info"> ${mlist.mname }</b>

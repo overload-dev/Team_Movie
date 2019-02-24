@@ -111,7 +111,7 @@ public class AdminContentsAddController{
 		// 1차 경로
 		if (!file_f.exists()) {// 기존 폴더가 없을 경우
 			file_f.mkdir(); //새로 만든다
-			//deleteFile(file_s);
+			file_s.mkdir(); //기존 경로가 있다면 2차 경로를 생성
 		}else{
 			file_s.mkdir(); //기존 경로가 있다면 2차 경로를 생성
 		}

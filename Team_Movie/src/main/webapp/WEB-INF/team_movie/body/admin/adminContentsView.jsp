@@ -132,7 +132,7 @@
 							</a>
 						</li>
 						<li class="list-group-item">
-							<a href="">
+							<a href="deleteContentsEdit.tm?mnum=${movieBean.mnum }">
 								삭제
 							</a>
 						</li>

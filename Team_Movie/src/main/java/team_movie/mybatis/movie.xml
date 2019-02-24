@@ -104,5 +104,7 @@
 			mruntime ='0:0:0'
 		where mnum=#{mnum}
 	</update>
-	
+	<delete id="DeleteContents">
+		delete from tmovie where mnum =#{mnum}
+	</delete>
 </mapper>

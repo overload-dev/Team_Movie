@@ -84,4 +84,15 @@ public class MovieDao {
 			System.out.println("update fail");
 		}
 	}
+	
+	public void DeleteContents(int mnum){
+		int chk = -1;
+		chk = sqlSessionTemplate.delete(namespace + ".DeleteContents", mnum);
+		
+		if(chk > 0){
+			System.out.println("delete clear");
+		}else{
+			System.out.println("delete fail");
+		}
+	}
 }

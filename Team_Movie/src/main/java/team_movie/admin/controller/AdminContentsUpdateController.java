@@ -83,15 +83,6 @@ public class AdminContentsUpdateController {
 		
 		String del_fname = mrepo;
 		
-		System.out.println(del_fname);
-		System.out.println(del_fname);
-		System.out.println(del_fname);
-		System.out.println(del_fname);
-		System.out.println(del_fname);
-		System.out.println(del_fname);
-		System.out.println(del_fname);
-		System.out.println(del_fname);
-		
 		String del_imgname = mimg;
 		System.out.println(thumbnail.getOriginalFilename());
 		if (thumbnail.getOriginalFilename() != "") {

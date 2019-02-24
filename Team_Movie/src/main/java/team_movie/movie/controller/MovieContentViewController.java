@@ -52,7 +52,7 @@ public class MovieContentViewController {
 				@RequestParam(value="usid", required=false) String usid,
 				Model model
 			) {
-		System.out.println("·Î±×ÀÎ usid : " + usid);
+		System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ usid : " + usid);
 		
 		MovieBean movie = movieDao.GetMovieByNum(mnum);
 		model.addAttribute("movie", movie);
@@ -94,7 +94,7 @@ public class MovieContentViewController {
 		int bookmarkCount = 0;
 		
 		if (usid.equals("")) {
-			System.out.println("·Î±×ÀÎ ÇÊ¿ä");
+			System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½");
 			model.addAttribute("likeCount", likeCount);
 			model.addAttribute("bookmarkCount", bookmarkCount);
 		}

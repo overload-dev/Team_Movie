@@ -29,11 +29,10 @@
 				<div class="row">
 					<div class="col-sm-5">
 						<div align="center">
-							<img name ="preview_img" width="50%" src =<c:url value="/saveMovieDB/${movieBean.mnum }/${movieBean.mimg}"/>/>
+						
+							<img name ="preview_img" width="50%" src ="<c:url value="/resources/saveMovieDB/${movieBean.mnum }/${movieBean.mimg}"/>"/>
 						</div>
 						<input class="form-control-file border" type="file" name="thumbnail">
-						${movieBean.mimg }
-						${movieBean.mrepo }
 						<input type="hidden" name="mimg" value=${movieBean.mimg }>
 						
 						<hr color="lightgrey" style="height: 1px">
