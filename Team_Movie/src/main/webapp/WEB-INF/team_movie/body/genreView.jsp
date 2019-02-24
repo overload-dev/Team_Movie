@@ -37,7 +37,7 @@
 				<c:forEach var="mlist" items="${movielist}">
 					<div class="col-sm-3">
 						<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${mlist.mnum})" onmouseout="movie_description(1,${mlist.mnum})">
-						<a href="movieContent.tm?mnum=${mlist.mnum}">
+						<a href="movieContent.tm?mnum=${mlist.mnum}&usid=${sessionScope.usid }">
 							<img src="<c:url value="/resources/saveMovieDB/${mlist.mnum }/${mlist.mimg}"/>" width="80%" >
 							 	<span id="desc" class="${mlist.mnum}" >
 									<b class="display-4" style="color: white;">
