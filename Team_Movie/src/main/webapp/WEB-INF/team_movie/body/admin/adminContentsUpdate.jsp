@@ -38,8 +38,9 @@
 						<hr color="lightgrey" style="height: 1px">
 						<h3 class="text-primary">Other Data</h3>
 						
-						<input type="hidden" name="murl" value=${movieBean.murl }>
+						<%-- <input type="hidden" name="murl" value=${movieBean.murl }> --%>
 						<input type="hidden" name="mrepo" value=${movieBean.mrepo }>
+						
 						
 						<div class="form-check-inline">
 						  <label class="form-check-label">
@@ -53,7 +54,7 @@
 						</div>
 						<br>
 						<span id="url" style=" <c:if test="${movieBean.murl == null }">display:none;</c:if> ">
-							<input class ="form-control" type="text" name ="f_murl" placeholder="Enter URL..." 
+							<input class ="form-control" type="text" name ="murl" placeholder="Enter URL..." 
 							<c:choose>
 								<c:when test="${movieBean.murl != null }">
 									value="${movieBean.murl }"

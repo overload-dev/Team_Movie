@@ -346,10 +346,9 @@ function handleImgFileSelect(e){
 //영화 업로드 형태 체크(URL, FILE)
 function uploadChk(sel){
 	//url
-	alert("a");
 	if(sel == 0){
 		$('span[id="url"]').show();
-		$('input[name=f_murl]').prop('disabled', false);
+		$('input[name=murl]').prop('disabled', false);
 
 		$('span[id="file"]').hide();
 		$('input[name=f_mrepo]').prop('disabled', true);
@@ -359,7 +358,7 @@ function uploadChk(sel){
 		$('input[name=f_mrepo]').prop('disabled', false);
 		
 		$('span[id="url"]').hide();
-		$('input[name=f_murl]').prop('disabled', true);			
+		$('input[name=murl]').prop('disabled', true);			
 	}
 }
 

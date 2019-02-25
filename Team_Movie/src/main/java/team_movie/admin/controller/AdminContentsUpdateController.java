@@ -54,76 +54,103 @@ public class AdminContentsUpdateController {
 	}
 
 	@RequestMapping(value = command, method = RequestMethod.POST)
-	public String doActionPost(HttpServletRequest request, MovieBean movieBean,
-			@RequestParam("mrepo") String mrepo,
-			@RequestParam("mimg") String mimg,
-			@RequestParam("thumbnail") MultipartFile thumbnail,
+	public String doActionPost(HttpServletRequest request, MovieBean movieBean, @RequestParam("mrepo") String mrepo,
+			@RequestParam("mimg") String mimg, @RequestParam("thumbnail") MultipartFile thumbnail,
 			@RequestParam(value = "f_mrepo", required = false) MultipartFile f_mrepo, HttpSession session) {
 
 		System.out.println("##############################################");
 		System.out.println("thumbnail" + thumbnail.getName());
 		System.out.println("thumbnail" + thumbnail.getOriginalFilename());
-		
+
 		System.out.println("name :" + movieBean.getMname());
 		System.out.println("genre :" + movieBean.getMgenre());
 		System.out.println("dir :" + movieBean.getMdir());
 		System.out.println("pro :" + movieBean.getMpro());
 		System.out.println("actor :" + movieBean.getMactor());
 		System.out.println("sup :" + movieBean.getMsup());
-	
+
 		System.out.println("age :" + movieBean.getMage());
 		System.out.println("rdate :" + movieBean.getMrdate());
 		System.out.println("wcon :" + movieBean.getMwcon());
 
 		System.out.println("##########################################");
-				
+
 		boolean newthum = false;
 		boolean newrepo = false;
-		// 업데이트 된 섬네일 정보 검사
-		
+		// �뾽�뜲�씠�듃 �맂 �꽟�꽕�씪 �젙蹂� 寃��궗
+
 		String del_fname = mrepo;
-		
+
 		String del_imgname = mimg;
 		System.out.println(thumbnail.getOriginalFilename());
 		if (thumbnail.getOriginalFilename() != "") {
-			newthum = true; // 새로운 이미지가 들어옴
-			System.out.println("이미지 정보 갱신");
-			movieBean.setMimg(thumbnail.getOriginalFilename()); // 새로 들어온 파일 이름을 저장
-		}else{
-			System.out.println("이미지 정보 갱신 안됨");
+			newthum = true; // �깉濡쒖슫 �씠誘몄�媛� �뱾�뼱�샂
+			System.out.println("�씠誘몄� �젙蹂� 媛깆떊");
+			movieBean.setMimg(thumbnail.getOriginalFilename()); // �깉濡� �뱾�뼱�삩
+																// �뙆�씪 �씠由꾩쓣
+																// ���옣
+		} else {
+			System.out.println("�씠誘몄� �젙蹂� 媛깆떊 �븞�맖");
 			System.out.println(movieBean.getMimg());
 		}
 
-		// 새로 올라온 파일이 있는지 검사(url이 아닌 파일이 들어옴)
-		if (f_mrepo.getOriginalFilename() != "" && movieBean.getMrepo() != null) {
+		// �깉濡� �삱�씪�삩 �뙆�씪�씠 �엳�뒗吏� 寃��궗(url�씠 �븘�땶 �뙆�씪�씠 �뱾�뼱�샂)
+		if (f_mrepo != null && movieBean.getMrepo() != null) {
 			newrepo = true;
-			movieBean.setMrepo(f_mrepo.getOriginalFilename()); // 새로 들어온 파일의 이름을 저장
+			movieBean.setMrepo(f_mrepo.getOriginalFilename()); // �깉濡� �뱾�뼱�삩
+																// �뙆�씪�쓽 �씠由꾩쓣
+																// ���옣
 			movieBean.setMurl("");
 		}
 
-		// db update===================
-		
-		movieDao.UpdateContents(movieBean);
-		
+		if (f_mrepo == null) {
+			movieBean.setMrepo("");
+		}
 		// db update===================
 
-		// 저장 위치
+		movieDao.UpdateContents(movieBean);
+
+		// db update===================
+
+		// ���옣 �쐞移�
 		String root_path = session.getServletContext().getRealPath("/resources/saveMovieDB/" + movieBean.getMnum());
 
-		// 섬네일이 갱신 되었다면
+		// delete file case by new uri
+		if (f_mrepo == null) {
+			deloldfile(root_path, del_fname);
+		}
+
+		// �꽟�꽕�씪�씠 媛깆떊 �릺�뿀�떎硫�
 		if (newthum == true) {
 			renewThumbnail(root_path, del_imgname, thumbnail);
 		}
-		// 파일이 갱신 되었다면
+		// �뙆�씪�씠 媛깆떊 �릺�뿀�떎硫�
 		if (newrepo == true) {
 			renwFile(root_path, del_fname, f_mrepo);
 		}
-		return getPage +"?mnum=" + movieBean.getMnum();
+		return getPage + "?mnum=" + movieBean.getMnum();
 	}
 
-	
-	
-	
+	private void deloldfile(String root_path, String del_fname) {
+		System.out.println(root_path + "/" + del_fname);
+		System.out.println(root_path + "/" + del_fname);
+		System.out.println(root_path + "/" + del_fname);
+		System.out.println(root_path + "/" + del_fname);
+		System.out.println(root_path + "/" + del_fname);
+
+		
+		File del_old_f = new File(root_path + "/" + del_fname);
+		if (del_old_f.exists()) {
+			if (del_old_f.delete()) {
+				System.out.println("old file deleted");
+			} else {
+				System.out.println("old file deleted faile");
+			}
+		} else {
+			System.out.println("no file");
+		}
+	}
+
 	private void renwFile(String root_path, String del_fname, MultipartFile f_mrepo) {
 		OutputStream out = null;
 		System.out.println(del_fname);
@@ -133,25 +160,24 @@ public class AdminContentsUpdateController {
 
 		System.out.println(root_path + "/" + del_fname);
 		System.out.println(root_path + "/" + del_fname);
-		// 기존 정보 삭제
+		// 湲곗〈 �젙蹂� �궘�젣
 		File del_thum_f = new File(root_path + "/" + del_fname);
 		if (del_thum_f.exists()) {
 			System.out.println(root_path + "/" + del_fname);
-			System.out.println("위 경로에 파일 존재");
-			if(del_thum_f.delete()){
-				System.out.println("기존 파일 삭제");				
-			}else{
-				System.out.println("삭제 실패");
+			System.out.println("�쐞 寃쎈줈�뿉 �뙆�씪 議댁옱");
+			if (del_thum_f.delete()) {
+				System.out.println("湲곗〈 �뙆�씪 �궘�젣");
+			} else {
+				System.out.println("�궘�젣 �떎�뙣");
 			}
-			
-			
+
 		}
 
-		// 파일 삽입
+		// �뙆�씪 �궫�엯
 		File new_movie_f = new File(root_path + "/" + f_mrepo.getOriginalFilename());
 		try {
 			out = new FileOutputStream(new_movie_f);
-			byte[] bytes = f_mrepo.getBytes(); // 바이트 정보
+			byte[] bytes = f_mrepo.getBytes(); // 諛붿씠�듃 �젙蹂�
 			out.write(bytes);
 
 		} catch (FileNotFoundException e) {
@@ -177,18 +203,18 @@ public class AdminContentsUpdateController {
 
 		OutputStream out = null;
 
-		// 기존 정보 삭제
+		// 湲곗〈 �젙蹂� �궘�젣
 		File del_thum_f = new File(root_path + "/" + del_imgname);
 		if (del_thum_f.exists()) {
 			del_thum_f.delete();
-			System.out.println("기존 섬네일 삭제");
+			System.out.println("湲곗〈 �꽟�꽕�씪 �궘�젣");
 		}
 
-		// 섬네일 삽입
+		// �꽟�꽕�씪 �궫�엯
 		File new_thum_f = new File(root_path + "/" + thumbnail.getOriginalFilename());
 		try {
 			out = new FileOutputStream(new_thum_f);
-			byte[] bytes = thumbnail.getBytes(); // 바이트 정보
+			byte[] bytes = thumbnail.getBytes(); // 諛붿씠�듃 �젙蹂�
 			out.write(bytes);
 
 		} catch (FileNotFoundException e) {
