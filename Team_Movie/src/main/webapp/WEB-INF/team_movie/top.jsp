@@ -107,8 +107,6 @@
 					
 				</ul>
 			</li>
-			
-			<li><a href="userDetail.tm">회원 정보 관리</a></li>
 			<li><a href="userLogout.tm">Logout</a></li>
 
 		</c:when>
