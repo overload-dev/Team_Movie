@@ -70,6 +70,10 @@
 		insert into mboard 
 		values(mboard_seq.nextval, 1, #{bmnum}, #{bunum}, #{bsubject}, #{bcon}, #{bref}, 1, 1, sysdate)
 	</insert>
+	
+	<select id="GetAllNoticeList" resultType="MyBoard">
+		select * from mboard where btype =1 order by bnum desc
+	</select>
 </mapper>
 
  

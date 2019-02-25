@@ -5,8 +5,10 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div class="panel panel-info">
-	<div class="panel-heading">Contents List</div>
+	<div class="panel-heading">Contents List (서비스 중인 컨텐츠 수: ${fn:length(movieList)})</div>
 	<div class="panel-body" align="right">
+		<h3 class="text-primary" align="left">장르 분포 현황</h3>
+		<hr>
 		<c:forEach var="genre" items="${genreList}">
 			<c:set var="count" value="0" />
 			<c:forEach var="movie" items="${movieList }">

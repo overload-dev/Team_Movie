@@ -53,7 +53,7 @@
 						</div>
 						<br>
 						<span id="url" style=" <c:if test="${movieBean.murl == null }">display:none;</c:if> ">
-							<input class ="form-control" type="text" name ="murl" placeholder="Enter URL..." 
+							<input class ="form-control" type="text" name ="f_murl" placeholder="Enter URL..." 
 							<c:choose>
 								<c:when test="${movieBean.murl != null }">
 									value="${movieBean.murl }"

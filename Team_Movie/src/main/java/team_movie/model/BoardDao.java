@@ -51,4 +51,10 @@ public class BoardDao {
 		int cnt = sqlSessionTemplate.update(namespace + ".InsertReplyComment", board);
 		return cnt;
 	}
+	
+	public List<BoardBean> GetAllNoticeList(){
+		List<BoardBean> boardList = new ArrayList<BoardBean>();
+		boardList = sqlSessionTemplate.selectList(namespace + ".GetAllNoticeList");
+		return boardList;
+	}
 }

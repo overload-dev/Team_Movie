@@ -23,8 +23,6 @@
 <body>
 	<div class="container">
 	<h2 class="text-primary">${gname } 장르 List</h2>	
-	
-	${pageContext.request.contextPath }/cssStyle/genrePageStyle.css
 	<c:choose>
 		<c:when test="${movielist.size() == 0}">
 			<div class="jumbotron jumbotron-fluid" style="background-color: #DCDDE2;">

@@ -346,6 +346,7 @@ function handleImgFileSelect(e){
 //영화 업로드 형태 체크(URL, FILE)
 function uploadChk(sel){
 	//url
+	alert("a");
 	if(sel == 0){
 		$('span[id="url"]').show();
 		$('input[name=f_murl]').prop('disabled', false);
