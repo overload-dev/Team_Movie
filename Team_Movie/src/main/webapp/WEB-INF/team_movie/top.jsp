@@ -63,6 +63,9 @@
 					</c:forEach>
 				</ul>
 		</li>
+		<li class="dropdown">
+			<a href="freeContents.tm">무료 전용관</a>
+		</li>
 	</ul>
 	<!-- 모르겠는 부분  -->
 	<%-- <div class="col-sm-4">

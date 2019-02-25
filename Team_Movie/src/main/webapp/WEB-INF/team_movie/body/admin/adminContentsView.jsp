@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <%@include file="../../top.jsp"%>
+<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet" />
+<script src="http://vjs.zencdn.net/c/video.js"></script>
+
 <body>
 <div class="container">
 	<h2></h2>
@@ -17,7 +20,6 @@
 	 		Movie Profile
 	 	</div>
 		<div class="card-body">
-			
 			<div class="row">
 				<div class="col-sm-6" align="center">
 				<img src="<c:url value="/resources/saveMovieDB/${movieBean.mnum }/${movieBean.mimg}"/>" width="75%">
@@ -27,7 +29,11 @@
 					<table width="100%">
 						<tr>
 							<th>영화 명</th>
-							<td>${movieBean.mname } | ${movieBean.mruntime}</td>
+							<td>${movieBean.mname }</td>
+						</tr>
+						<tr>
+							<th>장르</th>
+							<td>${movieBean.mgenre }</td>
 						</tr>
 						<tr>
 							<th>개봉일</th>
