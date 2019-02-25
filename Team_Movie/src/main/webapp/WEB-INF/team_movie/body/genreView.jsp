@@ -12,15 +12,17 @@
 <script type="text/javascript">
 	function movie_description(io,mnum){	
 		if(io == '0'){
-			$("span." + mnum).show();		
+			$("div." + mnum).show();		
 		}else{
-			$("span." + mnum).hide();		
+			$("div." + mnum).hide();		
 		}
 	}
 </script>
 
 </head>
 <body>
+
+
 	<div class="container">
 	<h2 class="text-primary">${gname } 장르 List</h2>	
 	<c:choose>
@@ -33,28 +35,43 @@
 		<c:otherwise>
 			<div class="row">
 				<c:forEach var="mlist" items="${movielist}">
-					<div class="col-sm-3">
-						<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${mlist.mnum})" onmouseout="movie_description(1,${mlist.mnum})">
-						<a href="movieContent.tm?mnum=${mlist.mnum}&usid=${sessionScope.usid }">
-							<img src="<c:url value="/resources/saveMovieDB/${mlist.mnum }/${mlist.mimg}"/>" width="80%" >
-							 	<span id="desc" class="${mlist.mnum}" >
-									<b class="display-4" style="color: white;">
-										${mlist.mname }
-									</b>
-									<br><br><br>
-									<b style="color: white;">
-										${mlist.msynop}
-									</b>
-										
-									<br><br><br>
-									<b style="color: white;">
-										상영 시간: ${mlist.mruntime}
-									</b>
-								</span>
-						</a>
+					<div class="col-sm-3" align="center">
+						<a class="contents-link" href="movieContent.tm?mnum=${mlist.mnum}&usid=${sessionScope.usid }">
+							<div class="contents-portrait" onmouseover="movie_description(0,${mlist.mnum})" onmouseout="movie_description(1,${mlist.mnum})">
+							    <img src="<c:url value="/resources/saveMovieDB/${mlist.mnum }/${mlist.mimg}"/>" width="100%" >
+								<div class="contents-desc-frame ${mlist.mnum}" >
+										<h3 >${mlist.mname }</h3><hr>
+									<div class="contents-desc">
+										${mlist.msynop }
+									</div>
+								</div>							
 							</div>
+							<h4 class="text-primary"> ${mlist.mname }</h4>
+							
+						</a>
+						
+
+						
+						
+						
+						
+						
+						
+				<%-- 		<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${mlist.mnum})" onmouseout="movie_description(1,${mlist.mnum})">
+							<img src="<c:url value="/resources/saveMovieDB/${mlist.mnum }/${mlist.mimg}"/>" width="80%" >
+							 	<div id="desc" class="${mlist.mnum}" class="display-4" style="color: white;">
+							 		<p style="float: inherit;;">
+							 			${mlist.mname }
+							 			${mlist.msynop}
+							 		</p>
+								</div>
+								<div>
+								${mlist.mname }
+							 			${mlist.msynop}
+								</div>
+							</div> --%>
+						
 							<br>
-							<b class="text-info"> ${mlist.mname }</b>
 						</div>
 					</c:forEach>
 				</div>
