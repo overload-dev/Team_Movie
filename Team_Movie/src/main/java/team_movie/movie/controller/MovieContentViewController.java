@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -106,6 +107,7 @@ public class MovieContentViewController {
 			model.addAttribute("bookmarkCount", bookmarkCount);
 		}
 		String extension = "";
+		String title = "";
 		
 		if (movie.getMurl() == null) {
 			int i = movie.getMrepo().lastIndexOf('.');
@@ -113,6 +115,8 @@ public class MovieContentViewController {
 			if (i > 0) {
 				extension = movie.getMrepo().substring(i+1);
 			    System.out.println("extension : " + extension);
+			    title = movie.getMrepo().substring(0, i);
+			    System.out.println("title : " + title);
 			    model.addAttribute("extension", extension);
 			}
 		}

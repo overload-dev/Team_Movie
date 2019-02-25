@@ -568,8 +568,10 @@ function movie_description(io,mnum){
 								<div class="col-md-12" style="font-size: 18px;">
 									${commentList.busid }(${commentList.buname })
 									<c:if test="${sessionScope.usid eq 'admin'}">
-										<div class="pull-right">
-											<input type="button" value="삭제" class="btn login_btn" onclick="fn_DeleteComment(${commentList.bnum})">
+										<div class="pull-right" style="font-size: 15px;">
+											<a href="#" onclick="fn_DeleteComment(${commentList.bnum})">
+         										<span class="glyphicon glyphicon-minus"></span>
+        									</a>
 										</div>
 									</c:if>
 								</div>
@@ -598,8 +600,10 @@ function movie_description(io,mnum){
 									<div class="col-sm-11" style="font-size: 18px;">
 										${commentList.busid }(${commentList.buname })
 										<c:if test="${sessionScope.usid eq 'admin'}">
-										<div class="pull-right">
-											<input type="button" value="삭제" class="btn login_btn" onclick="fn_DeleteComment(${commentList.bnum})">
+										<div class="pull-right" style="font-size: 15px;">
+											<a href="#" onclick="fn_DeleteComment(${commentList.bnum})">
+         										<span class="glyphicon glyphicon-minus"></span>
+        									</a>
 										</div>
 									</c:if>
 									</div>
