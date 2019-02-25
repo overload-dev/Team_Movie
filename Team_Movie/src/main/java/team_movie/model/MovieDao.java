@@ -95,4 +95,10 @@ public class MovieDao {
 			System.out.println("delete fail");
 		}
 	}
+
+	public List<MovieBean> GetMemberMovieList(int mwcon) {
+		
+		List<MovieBean> memMovie = sqlSessionTemplate.selectList(namespace+".GetMemberMovieList",mwcon);
+		return memMovie;
+	}
 }

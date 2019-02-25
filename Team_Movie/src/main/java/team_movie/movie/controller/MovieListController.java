@@ -88,9 +88,12 @@ public class MovieListController {
 
 		
 		List<MovieBean> movie = movieDao.GetMovieList();	
-
+		int mwcon =2;
+		List<MovieBean> memMovie = movieDao.GetMemberMovieList(mwcon);	
+		
 		int totalCount = movieDao.GetTotalCount();
 		
+		mav.addObject("memMovie",memMovie);
 		mav.addObject("totalCount", totalCount);
 		mav.addObject("movie", movie);
 		mav.addObject("map", map);

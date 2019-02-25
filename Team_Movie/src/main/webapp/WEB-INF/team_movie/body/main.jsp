@@ -16,6 +16,23 @@
 			$("span." + mnum).hide();		
 		}
 	}
+	function special(ugrade,mnum){	
+		
+		if(ugrade!=2){
+			var con=confirm("멤버등록한 회원만 시청가능합니다. 멤버 등록하시겠습니까?");
+				
+			if(con==false){
+				
+				return false;
+			}else{
+				location.href="mShipBuyForm.tm";
+			}
+			
+		}else{
+			
+			location.href="movieContent.tm?mnum="+mnum;
+		}
+	}
 </script>
 </head>
 <body>
@@ -72,7 +89,78 @@
 			</div>
 		</div>
 	</div>
-
+	<!-- 멤버별 영상 -->
+	
+		<div class="container">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+				<font style="font-size: 20px;">멤버 전용관</font>
+				</div>
+			<div class="panel-body">
+				<c:if test="${totalCount == 0 }">
+					<div class="jumbotron jumbotron-fluid" style="background-color: #DCDDE2;">
+         				<h1 class="display-3 text-primary">No Contents</h1>
+        		    	<p class="lead">컨텐츠가 없습니다.</p>
+        			</div>
+				</c:if>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="row" style="text-align: right;">
+							<div class="col-md-12">
+							<a href="#"> <font
+									style="font-weight: bold; font-size: large;">전체보기</font>
+							</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="row" style="text-align: center;">
+							<c:set var="col" value="0" />
+							<c:set var="more" value="false" />
+							
+							<c:forEach items="${memMovie }" var="movie" varStatus="status">
+								
+								<c:if test="${not more}">
+									<c:set var="col" value="${col + 1 }" />
+									<div class="col-md-3">
+										<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${movie.mnum})" onmouseout="movie_description(1,${movie.mnum})">
+											<a href="#" onclick="special(${sessionScope.ugrade},${movie.mnum})">
+												<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="80%" >
+												<span id="desc" class="${movie.mnum}" > 
+													<b class="display-4" style="color: white;">
+														${movie.mname }
+													</b>
+													<br><br><br>
+													<b style="color: white;">
+														${movie.msynop}
+													</b>
+													<br><br><br>
+													<b style="color: white;">
+														상영 시간: ${movie.mruntime}
+													</b>
+												</span>
+											</a>
+										</div>
+										<br>
+										<b class="text-info"> ${movie.mname }</b>
+									</div>
+									<c:if test="${col%4 == 0 }">
+										<c:set var="more" value="true" />
+										<div class="row">
+										</div>
+									</c:if>
+								</c:if>
+							</c:forEach>
+							</div>
+							
+							
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
 	<!-- 랜덤으로 나온 인기장르 for carousel1-->
 	<c:forEach items="${map }" var="map" varStatus="status">
 		<div class="container">
@@ -205,6 +293,7 @@
 			</div>
 		</div>
 	</div>
+	
 	
 </body>
 </html>

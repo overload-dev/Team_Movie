@@ -107,4 +107,9 @@
 	<delete id="DeleteContents">
 		delete from tmovie where mnum =#{mnum}
 	</delete>
+	
+	<select id ="GetMemberMovieList" resultType="MyMovie">
+	
+		select * from tmovie where mwcon=#{mwcon}
+	</select>
 </mapper>
