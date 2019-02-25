@@ -63,4 +63,14 @@ public class BoardDao {
 		chk = sqlSessionTemplate.insert(namespace + ".AddNotice", boardBean);
 		return 1;
 	}
+	
+	public int DeleteFirstComment(int mnum) {
+		int cnt = sqlSessionTemplate.update(namespace + ".DeleteFirstComment", mnum);
+		return cnt;
+	}
+	
+	public int totalCommentByNum(int mnum) {
+		int cnt = sqlSessionTemplate.selectOne(namespace + ".totalCommentByNum", mnum);
+		return cnt;
+	}
 }

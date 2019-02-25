@@ -172,25 +172,49 @@ function fn_insertReply(bref) {
 	    })
 	}
 }
-function fn_DeleteComment(bnum) {
-	var allData = { 
-			"bnum": bnum 
-		}
-	$.ajax({
-        url : "commentDelete.tm",
-        type: 'GET',
-        data: allData,
-        success : function(result) {
-        	if (result > -1) {
-	        	alert("댓글 삭제 완료");
-	        	location.reload();
-        	}
-        },
-        error : function(jqXHR, textStatus, errorThrown) {
-			alert("Error \n" + textStatus + " : " + errorThrown);
-			self.close();
-		}
-    })
+function fn_DeleteComment(bnum, brelevel) {
+	
+	alert("brelevel : " + brelevel);
+	if(brelevel == 1) {
+		var allData = { 
+				"bnum": bnum 
+			} 
+		$.ajax({
+	        url : "commentDelete.tm",
+	        type: 'GET',
+	        data: allData,
+	        success : function(result) {
+	        	if (result > -1) {
+		        	alert("댓글 삭제 완료");
+		        	location.reload();
+	        	}
+	        },
+	        error : function(jqXHR, textStatus, errorThrown) {
+				alert("Error \n" + textStatus + " : " + errorThrown);
+				self.close();
+			}
+	    })
+	}
+	if (brelevel == 0) {
+		var allData = { 
+				"bnum": bnum 
+			} 
+		$.ajax({
+	        url : "commentDelete.tm",
+	        type: 'POST',
+	        data: allData,
+	        success : function(result) {
+	        	if (result > -1) {
+		        	alert("댓글 삭제 완료");
+		        	location.reload();
+	        	}
+	        },
+	        error : function(jqXHR, textStatus, errorThrown) {
+				alert("Error \n" + textStatus + " : " + errorThrown);
+				self.close();
+			}
+	    })
+	}
 }
 
 function movieLike(mnum, unum) {
@@ -643,7 +667,7 @@ function movie_description(io,mnum){
 										<input type="button" value="답글" class="btn login_btn" onclick="fn_ReplyCommentFormHide(${commentList.bnum})">
 									</span>
 									<span style="display:none" id="deleteBtn${commentList.bnum }">
-										<input type="button" value="삭제" class="btn login_btn" onclick="fn_DeleteComment(${commentList.bnum})">
+										<input type="button" value="삭제" class="btn login_btn" onclick="fn_DeleteComment(${commentList.bnum}, ${commentList.brelevel})">
 									</span>
 									<span style="display:none" id="comfirmBtn${commentList.bnum }">
 										<input type="button" value="확인" class="btn login_btn" onclick="fn_UpdateComment(${commentList.bnum})">

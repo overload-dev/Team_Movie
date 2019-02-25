@@ -79,6 +79,18 @@
 		insert into mboard
 		values(mboard_seq.nextval,0, 0, #{bunum}, #{bsubject}, #{bcon},0,0,0,sysdate)
 	</insert>
+	
+	<update id="DeleteFirstComment">
+		update mboard
+		set bsubject = '삭제된 글', bcon = '원글이 삭제된 답글입니다.' 
+		where bnum = #{bnum} 
+	</update>
+	
+	<select id="totalCommentByNum" resultType="int">
+		select count(*)
+		from mboard
+		where bref = #{bnum}
+	</select>
 </mapper>
 
  

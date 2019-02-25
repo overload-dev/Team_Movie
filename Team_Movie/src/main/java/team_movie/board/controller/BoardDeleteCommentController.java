@@ -30,4 +30,27 @@ public class BoardDeleteCommentController {
 		
 		return cnt;
 	}
+	
+	@RequestMapping(value=command, method = RequestMethod.POST)
+	@ResponseBody
+	public int doAcitonPost(
+			@RequestParam(value="bnum", required=true) int bnum
+			) {
+		
+		int totalCommentByNum = boardDao.totalCommentByNum(bnum);
+		
+		int cnt = -1;
+		
+		if(totalCommentByNum == 1) {
+			cnt =  boardDao.DeleteComment(bnum);
+			
+			
+			
+		}
+		else {
+			cnt =  boardDao.DeleteFirstComment(bnum);
+		}
+		
+		return cnt;
+	}
 }
