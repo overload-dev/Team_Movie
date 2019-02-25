@@ -16,22 +16,23 @@
 			$("span." + mnum).hide();		
 		}
 	}
-	function special(ugrade,mnum){	
-		
-		if(ugrade!=2){
+	function special(ugrade,mnum,mwcon){	
+		alert("ugrade :"+ugrade)
+		if(ugrade==1 && mwcon==2 ){
 			var con=confirm("멤버등록한 회원만 시청가능합니다. 멤버 등록하시겠습니까?");
-				
-			if(con==false){
-				
-				return false;
-			}else{
-				location.href="mShipBuyForm.tm";
-			}
-			
-		}else{
-			
+					
+				if(con==false){
+					
+					return false;
+				}else{
+					location.href="mShipBuyForm.tm";
+				}
+			   
+		} 
+		if(ugrade == 2 || ugrade == 0 ||mwcon==1){  
 			location.href="movieContent.tm?mnum="+mnum;
 		}
+		
 	}
 </script>
 </head>
@@ -107,9 +108,9 @@
 					<div class="col-md-12">
 						<div class="row" style="text-align: right;">
 							<div class="col-md-12">
-							<a href="#"> <font
-									style="font-weight: bold; font-size: large;">전체보기</font>
-							</a>
+								<a href="memberContents.tm"> 
+									<font style="font-weight: bold; font-size:large;">전체보기</font>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -124,7 +125,7 @@
 									<c:set var="col" value="${col + 1 }" />
 									<div class="col-md-3">
 										<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${movie.mnum})" onmouseout="movie_description(1,${movie.mnum})">
-											<a href="#" onclick="special(${sessionScope.ugrade},${movie.mnum})">
+											<a href="#" onclick="special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })">
 												<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="80%" >
 												<span id="desc" class="${movie.mnum}" > 
 													<b class="display-4" style="color: white;">
@@ -187,7 +188,7 @@
 										<c:set var="col" value="${col + 1 }" />
 											<div class="col-md-3">
 												<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${movie.mnum})" onmouseout="movie_description(1,${movie.mnum})">
-													<a href="movieContent.tm?mnum=${movie.mnum}">
+													<a href="#" onclick="special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })" >
 														<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="80%" >
 														<span id="desc" class="${movie.mnum}" >
 															<b class="display-4" style="color: white;">
@@ -208,10 +209,10 @@
 												<b class="text-info"> ${movie.mname }</b>
 											</div>
 										<c:if test="${col%4 == 0 }">
-										</div>
-									</div>
 									<div class="item">
 										<div class="row">
+										</div>
+									</div>
 										</c:if>
 										</c:forEach>
 										</div>
@@ -245,7 +246,7 @@
 					<div class="col-md-12">
 						<div class="row" style="text-align: right;">
 							<div class="col-md-12">
-							<a href="#"> <font
+							<a href="allMovieView.tm"> <font
 									style="font-weight: bold; font-size: large;">전체보기</font>
 							</a>
 							</div>
@@ -282,8 +283,8 @@
 									</div>
 									<c:if test="${col%4 == 0 }">
 										<c:set var="more" value="true" />
-						</div>
-						<div class="row">
+									<div class="row">
+									</div>
 									</c:if>
 								</c:if>
 							</c:forEach>

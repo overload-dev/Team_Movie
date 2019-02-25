@@ -5,6 +5,7 @@ package team_movie.user.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import team_movie.model.GenreBean;
+import team_movie.model.GenreDao;
 import team_movie.model.UserBean;
 import team_movie.model.UserDao;
 
@@ -27,6 +30,8 @@ public class UserFindIdController {
 	
 	@Autowired 
 	UserDao userDao;
+	@Autowired
+	GenreDao genreDao;
 	
 	//login에서 아이디찾기 버튼을 클릭 했을 때
 	@RequestMapping(value=command, method = RequestMethod.GET)
@@ -40,6 +45,8 @@ public class UserFindIdController {
 						UserBean userBean,
 						HttpServletResponse response,
 						HttpServletRequest request) throws IOException{
+		
+		
 		System.out.println("findId.jsp에서 아이디찾기 버튼을 클릭");
 		 
 		String yy= request.getParameter("yy");
@@ -53,6 +60,12 @@ public class UserFindIdController {
 		System.out.println("userBean.getUbirth() :"+userBean.getUbirth());
 		
 		ModelAndView mav = new ModelAndView();
+		
+		//genre데이터
+		List<GenreBean> genreList = null;
+		genreList = genreDao.getGenreList();
+		mav.addObject("genreList", genreList);
+		
 		UserBean findId = this.userDao.GetIdData(userBean);
 		System.out.println("findId : "+ findId);
 		PrintWriter writer;

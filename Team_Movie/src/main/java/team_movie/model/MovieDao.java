@@ -101,4 +101,18 @@ public class MovieDao {
 		List<MovieBean> memMovie = sqlSessionTemplate.selectList(namespace+".GetMemberMovieList",mwcon);
 		return memMovie;
 	}
+
+	public List<MovieBean> GetGenreMemberMovieList(String gname) {
+		List<MovieBean> memGenreMovie = sqlSessionTemplate.selectList(namespace+".GetGenreMemberMovieList",gname);
+
+		return memGenreMovie;
+	}
+
+	public List<MovieBean> GetFreeMovie() {
+		List<MovieBean> freeMovie = sqlSessionTemplate.selectList(namespace+".GetFreeMovie");
+		
+		return freeMovie;
+	}
+
+	
 }

@@ -1,8 +1,6 @@
-package team_movie.user.controller;
+package team_movie.movie.controller;
 
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,39 +10,34 @@ import org.springframework.web.servlet.ModelAndView;
 
 import team_movie.model.GenreBean;
 import team_movie.model.GenreDao;
-import team_movie.model.UserBean;
-import team_movie.model.UserDao;
+import team_movie.model.MovieBean;
+import team_movie.model.MovieDao;	
 
 @Controller
-public class UserDetailController {
-	private static final String command ="userDetail.tm";
-	private static final String getPage ="body/user/userEdit";
+public class MovieAllContentViewController {
 
+	private final String command="allMovieView.tm";
+	private final String getPage="body/allMovieView";
 	@Autowired
-	UserDao userDao;
+	MovieDao movieDao;
+	
 	@Autowired
 	GenreDao genreDao;
-
-	//user 한명의 정보를 담는메서드
 	@RequestMapping(value=command, method=RequestMethod.GET)
-	public ModelAndView doActionGet(
-			HttpSession session
-			){
-
-		System.out.println("UserDetailController");
+	public ModelAndView doActionGet(){
+		System.out.println("allMovieView.tm");
 		ModelAndView mav = new ModelAndView();
-
-		String usid=(String)session.getAttribute("usid");
-		UserBean userInfo=userDao.GetData(usid);
+		
+		List<MovieBean> allMovie=movieDao.GetMovieList();
 		
 		//genre데이터
 		List<GenreBean> genreList = null;
 		genreList = genreDao.getGenreList();
 		mav.addObject("genreList", genreList);
 		
-		mav.addObject("userInfo",userInfo);
-		mav.addObject("page","userDetail");
+		mav.addObject("allMovie",allMovie);
 		mav.setViewName(getPage);
-		return mav; 
+		
+		return mav;
 	}
 }

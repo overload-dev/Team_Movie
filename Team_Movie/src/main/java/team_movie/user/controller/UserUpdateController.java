@@ -46,6 +46,7 @@ public class UserUpdateController {
 		mav.addObject("genreList", genreList);	
 		mav.addObject("page","userUpdateForm");
 		mav.addObject("userInfo",userInfo);
+		
 		mav.setViewName(getPage);
 		return mav;
 	}

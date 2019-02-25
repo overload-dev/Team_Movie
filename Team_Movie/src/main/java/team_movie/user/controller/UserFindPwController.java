@@ -3,6 +3,7 @@ package team_movie.user.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import team_movie.model.GenreBean;
+import team_movie.model.GenreDao;
 import team_movie.model.UserBean;
 import team_movie.model.UserDao;
 
@@ -26,7 +29,8 @@ public class UserFindPwController {
 
 	@Autowired 
 	UserDao userDao;
-
+	@Autowired
+	GenreDao genreDao;
 	//login에서 비밀번호 찾기 클릭했을때
 	@RequestMapping(value=command, method = RequestMethod.GET)
 	public String doActionGet(){
@@ -53,7 +57,11 @@ public class UserFindPwController {
 		System.out.println("userBean.getUbirth() :"+userBean.getUbirth());
 
 		ModelAndView mav = new ModelAndView();
-
+		//genre데이터
+		List<GenreBean> genreList = null;
+		genreList = genreDao.getGenreList();
+		mav.addObject("genreList", genreList);
+		
 		UserBean findPw = this.userDao.GetPwData(userBean);
 		System.out.println("findPw : "+ findPw);
 		PrintWriter writer;
@@ -95,7 +103,7 @@ public class UserFindPwController {
 				writer.flush();
 
 				return new ModelAndView( getPage );//로그인 실패 userLogin.jsp
-			
+
 			}
 		}
 		return mav;

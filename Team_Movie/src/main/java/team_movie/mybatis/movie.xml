@@ -11,10 +11,10 @@
 	
 	<select id="GetMovieListByGenre" resultType="MyMovie">
 		select * from tmovie
-		where mgenre like '%'||#{genre}||'%'
+		where mgenre like '%'||#{genre}||'%' 
 		order by mlike
 	</select>
-	
+	 
 	<select id="GetTotalCount" resultType="int">
 		select count(*) from tmovie
 	</select>
@@ -111,5 +111,13 @@
 	<select id ="GetMemberMovieList" resultType="MyMovie">
 	
 		select * from tmovie where mwcon=#{mwcon}
+	</select>
+	<select id ="GetGenreMemberMovieList" resultType="MyMovie">
+	
+		select * from tmovie where mgenre=#{gname} and mwcon=2
+	</select>
+	<select id ="GetFreeMovie" resultType="MyMovie">
+	
+		select * from tmovie where  mwcon=1
 	</select>
 </mapper>

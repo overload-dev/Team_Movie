@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import team_movie.model.FavoriteBean;
 import team_movie.model.FavoriteDao;
+import team_movie.model.GenreBean;
+import team_movie.model.GenreDao;
 import team_movie.model.MovieBean;
 import team_movie.model.MovieDao;
 import team_movie.model.UserDao;
@@ -32,6 +34,9 @@ public class UserFavoriteController {
 	
 	@Autowired
 	MovieDao movieDao;
+	
+	@Autowired
+	GenreDao genreDao;
 	@RequestMapping(value=command,method=RequestMethod.GET)
 	public ModelAndView doActionGet(
 		HttpSession session
@@ -61,6 +66,10 @@ public class UserFavoriteController {
 			mLists.add(mBean);
 		}
 		System.out.println("mLists.size():"+mLists.size());
+		//genreµ•¿Ã≈Õ
+		List<GenreBean> genreList = null;
+		genreList = genreDao.getGenreList();
+		mav.addObject("genreList", genreList);
 		
 		mav.addObject("mLists",mLists);
 		mav.addObject("page","userFavorite");

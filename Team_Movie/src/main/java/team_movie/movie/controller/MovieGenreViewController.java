@@ -46,8 +46,14 @@ public class MovieGenreViewController {
 		//지정 장르별 리스트
 		List<MovieBean> movielist = movieDao.GetMovieListByGenre(gname);
 		
+		//멤버쉽별 장르 리스트
+		List<MovieBean> memGenreMovie = movieDao.GetGenreMemberMovieList(gname);
+		
 		System.out.println("gname" + gname);
 		System.out.println("movielist" + movielist.size());
+		System.out.println("memGenreMovie :"+memGenreMovie.size());
+		
+		mav.addObject("mgMovie",memGenreMovie);
 		mav.addObject("movielist",movielist);
 		mav.addObject("gname", gname);
 		mav.addObject("gname", gname);
