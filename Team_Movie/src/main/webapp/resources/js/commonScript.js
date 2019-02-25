@@ -486,3 +486,25 @@ function addNewNotice(){
 		}
 	});
 }
+
+function deleteUser(unum){
+	alert(unum);
+	$.ajax({
+		url : 'adminUserDel.tm',
+		type : "GET",
+		data: {
+			"unum" : unum
+			},
+		success : function(result){
+			if(result){
+				alert("해당 유저가 탈퇴 되었습니다.");
+				location.reload();
+			}
+		},
+		
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert("Error \n" + textStatus + " : " + errorThrown);
+			self.close();
+		}
+	});
+}

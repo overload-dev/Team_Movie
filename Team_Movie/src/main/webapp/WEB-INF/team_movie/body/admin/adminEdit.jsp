@@ -10,7 +10,7 @@
 <script src="<c:url value='/resources/js/commonScript.js'/>"></script>
 <body>
 	<div class="container">
-		<h2 class="text-primary">Admin Tool</h2>
+		<h2 class="text-primary">컨텐츠 관리</h2>
 		<div class="row">
 			<div class="col-sm-3" >
 				<div class="panel panel-info">

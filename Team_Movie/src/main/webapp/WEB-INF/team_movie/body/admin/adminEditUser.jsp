@@ -84,7 +84,7 @@
 					</c:choose>
 				<td align="center">
 					<c:if test="${user.ugrade !='0'}">
-						<input type="button" class="btn btn-danger" value="Del" onclick="location.href='adminUserDel.tm?unum=${user.unum }'">
+						<input type="button" class="btn btn-danger" value="Del" onclick="deleteUser(${user.unum })">
 					</c:if>
 				</td>
 			</tr>
