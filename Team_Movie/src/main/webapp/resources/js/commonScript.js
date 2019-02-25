@@ -447,3 +447,42 @@ function updateMovieDataChk(){
 		murl.val(null);
 	}
 }
+
+function addNewNotice(){
+	
+	var bsubject = $('input[name=bsubject]').val();
+	var bcon = $('textarea[name=bcon]').val();
+	
+	alert(bsubject);
+	alert(bcon);
+	
+	if(bsubject ==''){
+		alert("제목을 입력하세요.");
+		return false;
+	}
+	
+	if(bcon ==''){
+		alert("내용을 입력하세요.");
+		return false;
+	}
+	
+	$.ajax({
+		url : 'addNoticeEdit.tm',
+		type : "GET",
+		data: {
+			"bsubject" : bsubject,
+			"bcon" : bcon
+			},
+		success : function(result){
+			if(result){
+				alert("작성되었습니다.");
+				location.reload();
+			}
+		},
+		
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert("Error \n" + textStatus + " : " + errorThrown);
+			self.close();
+		}
+	});
+}

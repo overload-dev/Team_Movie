@@ -335,7 +335,7 @@ function movie_description(io,mnum){
 				<c:if test="${movie.murl == null }">
 					<video width="100%" controls autoplay="autoplay">
 						<!-- C:\Spring_beom2\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\Team_Movie\resources\saveMovieDB\3 -->
-					  <source src="/resources/saveMovieDB/${movie.mnum }/${movie.mrepo }" type="video/${extension }">
+					  <source src="../resources/saveMovieDB/${movie.mnum }/${movie.mrepo }" type="video/${extension }">
 					</video>
 					${movie.mrepo }<br><br>
 					/resources/saveMovieDB/${movie.mnum }/${movie.mrepo }

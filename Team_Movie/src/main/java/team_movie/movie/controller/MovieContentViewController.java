@@ -90,7 +90,7 @@ public class MovieContentViewController {
 		int bookmarkCount = 0;
 		
 		if (usid == null) {
-			System.out.println("·Î±×ÀÎ ÇÊ¿ä");
+			System.out.println("로그인 필요");
 			model.addAttribute("likeCount", likeCount);
 			model.addAttribute("bookmarkCount", bookmarkCount);
 		}

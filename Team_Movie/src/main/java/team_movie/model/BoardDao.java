@@ -57,4 +57,10 @@ public class BoardDao {
 		boardList = sqlSessionTemplate.selectList(namespace + ".GetAllNoticeList");
 		return boardList;
 	}
+	
+	public int AddNotice(BoardBean boardBean){
+		int chk = -1;
+		chk = sqlSessionTemplate.insert(namespace + ".AddNotice", boardBean);
+		return 1;
+	}
 }
