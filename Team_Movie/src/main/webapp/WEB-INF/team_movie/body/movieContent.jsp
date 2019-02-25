@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,6 +9,7 @@
  * 댓글 등록하기(Ajax)
  */
 function fn_insertComment(){
+	
 	mnum = $('#mnum').val();
 	unum = $('#unum').val();
 	bcon = $('#bcon').val();
@@ -21,14 +22,14 @@ function fn_insertComment(){
 			"bsubject": bsubject 
 			};
 	
-	if(bsubject == ""){
+	if($("input[name=bsubject]").val() == ""){
 		alert("제목을 입력하세요.");
 		$("input[name=bsubject]").val().focus();
 		return false;
 	}
-	if(bcon == ""){
+	else if($("input[name=bcon]").val() == ""){
 		alert("내용을 입력하세요.");
-		$("input[textarea=bcon]").val().focus();
+		$("input[name=bcon]").val().focus();
 		return false;
 	} 
 	else {
@@ -51,6 +52,7 @@ function fn_insertComment(){
 }
 
 function fn_UpdateCommentForm(bnum) {
+	alert(bnum);
 	var allData = { 
 			"bnum": bnum 
 		}
@@ -87,14 +89,14 @@ function fn_UpdateComment(bnum) {
 			"upConText": upConText 
 			};
 	
-	if(upSubText == ""){
+	if($("#upSubText").val() == ""){
 		alert("제목을 입력하세요.");
-		upSubText.focus();
+		$("#upSubText").val().focus();
 		return false;
 	}
-	if(upConText == ""){
+	else if($("#upConText").val() == ""){
 		alert("내용을 입력하세요.");
-		upConText.focus();
+		$("#upConText").val().focus();
 		return false;
 	} 
 	else {
@@ -142,14 +144,14 @@ function fn_insertReply(bref) {
 			"replyCon" : replyCon 
 			};
 	
-	if(replySub == ""){
+	if($("#replySub").val() == ""){
 		alert("제목을 입력하세요.");
-		replySub.focus();
+		$("#replySub").val().focus();
 		return false;
 	}
-	if(replyCon == ""){
+	else if($("#replyCon").val() == ""){
 		alert("내용을 입력하세요.");
-		replyCon.focus();
+		$("#replyCon").val().focus();
 		return false;
 	} 
  	else {
@@ -171,7 +173,6 @@ function fn_insertReply(bref) {
 	}
 }
 function fn_DeleteComment(bnum) {
-	alert(bnum);
 	var allData = { 
 			"bnum": bnum 
 		}
@@ -193,8 +194,6 @@ function fn_DeleteComment(bnum) {
 }
 
 function movieLike(mnum, unum) {
-	alert("mnum : " + mnum);
-	alert("unum : " + unum);
 	
 	var allData = {
 			"mnum": mnum,
@@ -226,8 +225,6 @@ function movieLike(mnum, unum) {
 }
 
 function movieUnLike(mnum, unum) {
-	alert("mnum : " + mnum);
-	alert("unum : " + unum);
 	
 	var allData = {
 			"mnum": mnum,
@@ -253,8 +250,6 @@ function movieUnLike(mnum, unum) {
 }
 
 function movieBookmark(mnum, unum) {
-	alert("mnum : " + mnum);
-	alert("unum : " + unum);
 	
 	var allData = {
 			"mnum": mnum,
@@ -286,8 +281,6 @@ function movieBookmark(mnum, unum) {
 }
 
 function movieUnBookmark(mnum, unum) {
-	alert("mnum : " + mnum);
-	alert("unum : " + unum);
 	
 	var allData = {
 			"mnum": mnum,
@@ -311,11 +304,20 @@ function movieUnBookmark(mnum, unum) {
 		}
 	})
 }
+
+function movie_description(io,mnum){	
+	if(io == '0'){
+		$("span." + mnum).show();		
+	}else{
+		$("span." + mnum).hide();		
+	}
+}
 </script>
 <title>Insert title here</title>
 <%@include file="../top.jsp"%>
 <%@include file="./../../common/common.jsp"%>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/moviePageStyle.css' />">
+
 </head>
 <body>
 	<div class="container">
@@ -324,7 +326,20 @@ function movieUnBookmark(mnum, unum) {
 				<font style="font-size: 40px;">${movie.mname }</font>
 			</div>
 			<div class="panel-body">
-				<iframe class="embed-responsive-item" src="//www.youtube.com/embed/80lNjkcp6gI" width="100%" height="400%" frameborder="0" allowfullscreen></iframe>
+				<c:if test="${movie.mrepo == null }">
+					<div style="position:relative;height:0;padding-bottom:56.25%">
+						<iframe src="${movie.murl}" style="position:absolute;width:100%;height:100%;left:0" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+					</div>
+					${movie.murl }
+				</c:if>
+				<c:if test="${movie.murl == null }">
+					<video width="100%" controls autoplay="autoplay">
+						<!-- C:\Spring_beom2\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\Team_Movie\resources\saveMovieDB\3 -->
+					  <source src="/resources/saveMovieDB/${movie.mnum }/${movie.mrepo }" type="video/${extension }">
+					</video>
+					${movie.mrepo }<br><br>
+					/resources/saveMovieDB/${movie.mnum }/${movie.mrepo }
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -333,39 +348,42 @@ function movieUnBookmark(mnum, unum) {
 			<div class="panel-heading">
 				<font style="font-size: 20px;">${movie.mname }</font>
 				<div class="pull-right">
-					<a href="#comment">
-          				<span class="glyphicon glyphicon-pencil" style="font-size:18px;" title="댓글쓰기"></span>
-        			</a>
-        			&nbsp;&nbsp;
-        			
-        			
-        			<c:if test="${likeCount == 0 }">
-        			<a href="#" onclick="movieLike(${movie.mnum }, ${user.unum })">
-    	      			<span id="like" class="glyphicon glyphicon-heart-empty" style="font-size:18px;" title="좋아요"></span>
-    	      			<span style="display:none" id="unLike" class="glyphicon glyphicon-heart" style="font-size:18px;" title="좋아요 취소"></span>
-	        		</a>
-	        		</c:if>
-	        		<c:if test="${likeCount >= 1 }">
-        			<a href="#" onclick="movieUnLike(${movie.mnum }, ${user.unum })">
-    	      			<span style="display:none" id="like" class="glyphicon glyphicon-heart-empty" style="font-size:18px;" title="좋아요"></span>
-    	      			<span id="unLike" class="glyphicon glyphicon-heart" style="font-size:18px;" title="좋아요 취소"></span>
-	        		</a>
-	        		</c:if>
-	        		&nbsp;&nbsp;
-	        		
-	        		
-	        		<c:if test="${bookmarkCount == 0 }">
-        			<a href="#" onclick="movieBookmark(${movie.mnum }, ${user.unum })">
-    	      			<span id="bookmark" class="glyphicon glyphicon-star-empty" style="font-size:18px;" title="즐겨찾기"></span>
-    	      			<span style="display:none" id="unBookmark" class="glyphicon glyphicon-star" style="font-size:18px;" title="즐겨찾기 취소"></span>
-	        		</a>
-	        		</c:if>
-	        		<c:if test="${bookmarkCount >= 1 }">
-        			<a href="#" onclick="movieUnBookmark(${movie.mnum }, ${user.unum })">
-        				<span style="display:none" id="bookmark" class="glyphicon glyphicon-star-empty" style="font-size:18px;" title="즐겨찾기"></span>
-    	      			<span id="unBookmark" class="glyphicon glyphicon-star" style="font-size:18px;" title="즐겨찾기 취소"></span>
-	        		</a>
-	        		</c:if>
+					<c:if test="${sessionScope.usid eq null or sessionScope.usid ne 'admin' }">
+						<a href="#comment">
+	          				<span class="glyphicon glyphicon-pencil" style="font-size:18px;" title="댓글쓰기"></span>
+	        			</a>
+	        			&nbsp;&nbsp;
+	        			<c:if test="${likeCount == 0 }">
+	        			<a href="#" onclick="movieLike(${movie.mnum }, ${sessionScope.unum })">
+	    	      			<span id="like" class="glyphicon glyphicon-heart-empty" style="font-size:18px;" title="좋아요"></span>
+	    	      			<span style="display:none" id="unLike" class="glyphicon glyphicon-heart" style="font-size:18px;" title="좋아요 취소"></span>
+		        		</a>
+		        		</c:if>
+		        		<c:if test="${likeCount >= 1 }">
+	        			<a href="#" onclick="movieUnLike(${movie.mnum }, ${sessionScope.unum })">
+	    	      			<span style="display:none" id="like" class="glyphicon glyphicon-heart-empty" style="font-size:18px;" title="좋아요"></span>
+	    	      			<span id="unLike" class="glyphicon glyphicon-heart" style="font-size:18px;" title="좋아요 취소"></span>
+		        		</a>
+		        		</c:if>
+		        		&nbsp;&nbsp;
+		        		<c:if test="${bookmarkCount == 0 }">
+	        			<a href="#" onclick="movieBookmark(${movie.mnum }, ${sessionScope.unum })">
+	    	      			<span id="bookmark" class="glyphicon glyphicon-star-empty" style="font-size:18px;" title="즐겨찾기"></span>
+	    	      			<span style="display:none" id="unBookmark" class="glyphicon glyphicon-star" style="font-size:18px;" title="즐겨찾기 취소"></span>
+		        		</a>
+		        		</c:if>
+		        		<c:if test="${bookmarkCount >= 1 }">
+	        			<a href="#" onclick="movieUnBookmark(${movie.mnum }, ${sessionScope.unum })">
+	        				<span style="display:none" id="bookmark" class="glyphicon glyphicon-star-empty" style="font-size:18px;" title="즐겨찾기"></span>
+	    	      			<span id="unBookmark" class="glyphicon glyphicon-star" style="font-size:18px;" title="즐겨찾기 취소"></span>
+		        		</a>
+		        		</c:if>
+		        	</c:if>
+		        	<c:if test="${sessionScope.usid eq 'admin' and sessionScope.usid ne null}">
+		        		<a href="updateContentsEdit.tm?mnum=${movie.mnum }">
+         					<span class="glyphicon glyphicon-wrench" style="font-size:18px;" title="컨텐츠 수정"></span>
+        				</a>	
+		        	</c:if>
 				</div>
 			</div>
 			<div class="panel-body">
@@ -378,7 +396,12 @@ function movieUnBookmark(mnum, unum) {
 							분
 						</div>
 						<div class="col-md-3">
-							${movie.mage }세 이상 관람가
+							<c:if test="${movie.mage == 0}">
+								전체 관람가
+							</c:if>
+							<c:if test="${movie.mage != 0}">
+								${movie.mage }세 이상 관람가
+							</c:if>
 						</div>
 						<div class="col-md-3">
 							<b>개봉일</b> ${movie.mrdate }
@@ -428,23 +451,18 @@ function movieUnBookmark(mnum, unum) {
 	<!-- 랜덤으로 나온 인기장르 for carousel1-->
 	<c:forEach items="${map }" var="map" varStatus="status">
 		<div class="container">
-			<c:set var="pg" value="${pg + 1 }" />
-			
+		<c:set var="pg" value="${pg + 1 }" />
 			<div class="panel panel-info">
-				
 				<div class="panel-heading">
 					<font style="font-size: 20px;">${map.key } 인기 영화</font>
 				</div>
-				
 				<div class="panel-body">
-					
 					<c:if test="${fn:length(map.value) == 0 }">
 						<div class="jumbotron jumbotron-fluid" style="background-color: #DCDDE2;">
 	         				<h1 class="display-3 text-primary">No Contents</h1>
 	        		    	<p class="lead">${map.key } 장르의 컨텐츠가 없습니다.</p>
 	        			</div>
 					</c:if>
-					
 					<div class="row" style="text-align: center;">
 						<c:set var="col" value="0" />
 						<div class="col-md-12">
@@ -455,34 +473,46 @@ function movieUnBookmark(mnum, unum) {
 										<c:forEach items="${map.value }" var="movie" varStatus="status">
 										<c:set var="col" value="${col + 1 }" />
 											<div class="col-md-3">
-												<a href="movieContent.tm?mnum=${movie.mnum }&usid=${usid }">
-													<img src="//s3.namuwikiusercontent.com/s/5673b412996accb9ce935c3378c8d1493ea74f53cb6f692ee27ceed2c0b6ea2aed0b4cfcb49b387abab676557d156ef2f5a54dbf820089708d6cc6568690b8289a21bfc39a73f3702f1000356f5d85b90b25cae3d483b159e8a5349d562fb69e" width="80%"><br>
-													${movie.mimg }<br>
-													${movie.mname }<br>
-													${movie.mgenre }<br>
-												</a>
+												<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${movie.mnum})" onmouseout="movie_description(1,${movie.mnum})">
+													<a href="movieContent.tm?mnum=${movie.mnum}">
+														<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="80%" >
+														<span id="desc" class="${movie.mnum}" >
+															<b class="display-4" style="color: white;">
+																${movie.mname }
+															</b>
+															<br><br><br>
+															<b style="color: white;">
+																${movie.msynop}
+															</b>
+															<br><br><br>
+															<b style="color: white;">
+																상영 시간: ${movie.mruntime}
+															</b>
+														</span>
+													</a>
+												</div>
+												<br>
+												<b class="text-info"> ${movie.mname }</b>
 											</div>
+										<c:if test="${col%4 == 0 }">
+										</div>
+									</div>
+									<div class="item">
+										<div class="row">
+										</c:if>
 										</c:forEach>
 										</div>
 									</div>
-									<c:if test="${col%4 == 0 }">
-										<div class="item">
-											<div class="row">
-											</div>
-										</div>
-									</c:if>
 									<!--.carousel-inner-->
 									<a data-slide="prev" href="#Carousel${pg }" class="left carousel-control"><i class="glyphicon glyphicon-chevron-left"></i></a> 
 									<a data-slide="next" href="#Carousel${pg }" class="right carousel-control"><i class="glyphicon glyphicon-chevron-right"></i></a>
 								</div>
-								
 								<!--.Carousel-->
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			
 		</div>
 	</c:forEach>
 	
@@ -505,7 +535,7 @@ function movieUnBookmark(mnum, unum) {
 							</label>
 							<form id="commentForm" name="commentForm" method="get">
 								<input type="hidden" name="mnum" id="mnum" value="${movie.mnum }">
-								<input type="hidden" name="unum" id="unum" value="${user.unum }">
+								<input type="hidden" name="unum" id="unum" value="${sessionScope.unum }">
 								<label class="col-sm-1">제목</label>
 								<div class="col-sm-11">
 									<input type="text" name="bsubject" id="bsubject" class="form-control" placeholder="제목을 입력하세요." >
@@ -537,6 +567,11 @@ function movieUnBookmark(mnum, unum) {
 							<c:if test="${commentList.brestep == 0 }">
 								<div class="col-md-12" style="font-size: 18px;">
 									${commentList.busid }(${commentList.buname })
+									<c:if test="${sessionScope.usid eq 'admin'}">
+										<div class="pull-right">
+											<input type="button" value="삭제" class="btn login_btn" onclick="fn_DeleteComment(${commentList.bnum})">
+										</div>
+									</c:if>
 								</div>
 								<div class="col-md-12">
 									<label class="col-sm-1">제목</label>
@@ -562,6 +597,11 @@ function movieUnBookmark(mnum, unum) {
 									<label class="col-sm-1" align="right">ㄴ</label>
 									<div class="col-sm-11" style="font-size: 18px;">
 										${commentList.busid }(${commentList.buname })
+										<c:if test="${sessionScope.usid eq 'admin'}">
+										<div class="pull-right">
+											<input type="button" value="삭제" class="btn login_btn" onclick="fn_DeleteComment(${commentList.bnum})">
+										</div>
+									</c:if>
 									</div>
 								</div>
 								<div class="col-sm-12">
@@ -588,7 +628,11 @@ function movieUnBookmark(mnum, unum) {
 							</c:if>
 							<c:if test="${sessionScope.usid != null }">
 								<div class="col-sm-12" align="right">
-									<span id="replyShowBtn${commentList.bnum }">
+									<span id="replyShowBtn${commentList.bnum }"
+										<c:if test="${commentList.brelevel == 1 }">
+											style="display:none"
+										</c:if>
+									>
 										<input type="button" value="답글" class="btn login_btn" onclick="fn_ReplyCommentFormShow(${commentList.bnum})">
 									</span>
 									<span style="display:none" id="replyHideBtn${commentList.bnum }">
@@ -600,7 +644,7 @@ function movieUnBookmark(mnum, unum) {
 									<span style="display:none" id="comfirmBtn${commentList.bnum }">
 										<input type="button" value="확인" class="btn login_btn" onclick="fn_UpdateComment(${commentList.bnum})">
 									</span>
-									<c:if test="${user.unum == commentList.bunum }">
+									<c:if test="${sessionScope.unum == commentList.bunum }">
 										<span id="updateBtn${commentList.bnum }">
 											<input type="button" value="수정" class="btn login_btn" onclick="fn_UpdateCommentForm(${commentList.bnum})">
 										</span>
@@ -611,7 +655,7 @@ function movieUnBookmark(mnum, unum) {
 						<form id="commentReplyInsertForm" name="commentReplyInsertForm" method="get">
 							<div class="col-md-12" style="display:none" id="replyForm${commentList.bnum }">
 								<input type="hidden" name="replyMnum${commentList.bnum }" id="replyMnum${commentList.bnum }" value="${movie.mnum }">
-								<input type="hidden" name="replyUnum${commentList.bnum }" id="replyUnum${commentList.bnum }" value="${user.unum }">
+								<input type="hidden" name="replyUnum${commentList.bnum }" id="replyUnum${commentList.bnum }" value="${sessionScope.unum }">
 								<label class="col-sm-1" align="right">ㄴ</label>
 								<label class="col-sm-1">제목</label>
 								<div class="col-sm-10">

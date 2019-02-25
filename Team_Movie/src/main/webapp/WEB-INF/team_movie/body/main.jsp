@@ -7,13 +7,18 @@
 <title>Insert title here</title>
 <%@include file="../top.jsp"%>
 <%@include file="./../../common/common.jsp"%>
-
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/moviePageStyle.css' />">
+<script type="text/javascript">
+	function movie_description(io,mnum){	
+		if(io == '0'){
+			$("span." + mnum).show();		
+		}else{
+			$("span." + mnum).hide();		
+		}
+	}
+</script>
 </head>
-
-
-<body class="bg">
-
+<body>
 	<div class="container">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 
@@ -22,9 +27,11 @@
 				<div class="item active">
 					<img src="http://placehold.it/1170x400" alt="이미지1">
 				</div>
+
 				<div class="item">
 					<img src="http://placehold.it/1170x400" alt="이미지2">
 				</div>
+
 				<div class="item">
 					<img src="http://placehold.it/1170x400" alt="이미지3">
 				</div>
@@ -91,20 +98,34 @@
 										<c:forEach items="${map.value }" var="movie" varStatus="status">
 										<c:set var="col" value="${col + 1 }" />
 											<div class="col-md-3">
-												<a href="movieContent.tm?mnum=${movie.mnum }&usid=${sessionScope.usid }">
-													<img src="//s3.namuwikiusercontent.com/s/5673b412996accb9ce935c3378c8d1493ea74f53cb6f692ee27ceed2c0b6ea2aed0b4cfcb49b387abab676557d156ef2f5a54dbf820089708d6cc6568690b8289a21bfc39a73f3702f1000356f5d85b90b25cae3d483b159e8a5349d562fb69e" width="80%"><br>
-													${movie.mimg }<br>
-													${movie.mname }<br>
-													${movie.mgenre }<br>
-												</a>
-											</div>
-											<c:if test="${col%4 == 0 }">
-												<div class="item">
-													<div class="row">
-													</div>
+												<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${movie.mnum})" onmouseout="movie_description(1,${movie.mnum})">
+													<a href="movieContent.tm?mnum=${movie.mnum}">
+														<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="80%" >
+														<span id="desc" class="${movie.mnum}" >
+															<b class="display-4" style="color: white;">
+																${movie.mname }
+															</b>
+															<br><br><br>
+															<b style="color: white;">
+																${movie.msynop}
+															</b>
+															<br><br><br>
+															<b style="color: white;">
+																상영 시간: ${movie.mruntime}
+															</b>
+														</span>
+													</a>
 												</div>
-											</c:if>
-											</c:forEach>
+												<br>
+												<b class="text-info"> ${movie.mname }</b>
+											</div>
+										<c:if test="${col%4 == 0 }">
+										</div>
+									</div>
+									<div class="item">
+										<div class="row">
+										</c:if>
+										</c:forEach>
 										</div>
 									</div>
 									<!--.carousel-inner-->
@@ -126,14 +147,12 @@
 				<font style="font-size: 20px;">전체 영화</font>
 			</div>
 			<div class="panel-body">
-			<%-- 
 				<c:if test="${totalCount == 0 }">
 					<div class="jumbotron jumbotron-fluid" style="background-color: #DCDDE2;">
          				<h1 class="display-3 text-primary">No Contents</h1>
         		    	<p class="lead">컨텐츠가 없습니다.</p>
         			</div>
 				</c:if>
-				 --%>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="row" style="text-align: right;">
@@ -152,27 +171,40 @@
 								<c:if test="${not more}">
 									<c:set var="col" value="${col + 1 }" />
 									<div class="col-md-3">
-										<a href="movieContent.tm?mnum=${movie.mnum }&usid=${sessionScope.usid }">
-											<img src="//s3.namuwikiusercontent.com/s/5673b412996accb9ce935c3378c8d1493ea74f53cb6f692ee27ceed2c0b6ea2aed0b4cfcb49b387abab676557d156ef2f5a54dbf820089708d6cc6568690b8289a21bfc39a73f3702f1000356f5d85b90b25cae3d483b159e8a5349d562fb69e" width="80%"><br>
-											${movie.mimg }<br>
-											${movie.mname }<br>
-											${movie.mgenre }<br>										
-										</a>
+										<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${movie.mnum})" onmouseout="movie_description(1,${movie.mnum})">
+											<a href="movieContent.tm?mnum=${movie.mnum}">
+												<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="80%" >
+												<span id="desc" class="${movie.mnum}" >
+													<b class="display-4" style="color: white;">
+														${movie.mname }
+													</b>
+													<br><br><br>
+													<b style="color: white;">
+														${movie.msynop}
+													</b>
+													<br><br><br>
+													<b style="color: white;">
+														상영 시간: ${movie.mruntime}
+													</b>
+												</span>
+											</a>
+										</div>
+										<br>
+										<b class="text-info"> ${movie.mname }</b>
 									</div>
 									<c:if test="${col%4 == 0 }">
 										<c:set var="more" value="true" />
-										<div class="row">
-										</div>
+						</div>
+						<div class="row">
 									</c:if>
 								</c:if>
 							</c:forEach>
 						</div>
-						</div> 
 					</div>
 				</div>
 			</div>
 		</div>
-
+	</div>
 	
 </body>
 </html>

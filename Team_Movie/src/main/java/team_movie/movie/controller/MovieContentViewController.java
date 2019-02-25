@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -20,8 +22,6 @@ import team_movie.model.GenreBean;
 import team_movie.model.GenreDao;
 import team_movie.model.MovieBean;
 import team_movie.model.MovieDao;
-import team_movie.model.UserBean;
-import team_movie.model.UserDao;
 
 @Controller
 public class MovieContentViewController {
@@ -37,9 +37,6 @@ public class MovieContentViewController {
 	GenreDao genreDao;
 	
 	@Autowired
-	UserDao userDao;
-	
-	@Autowired
 	BoardDao boardDao;
 	
 	@Autowired
@@ -49,10 +46,13 @@ public class MovieContentViewController {
 	@RequestMapping(value=command)
 	public String doAcitionGet(	
 				@RequestParam(value="mnum", required=true) int mnum,
-				@RequestParam(value="usid", required=false) String usid,
-				Model model
+				Model model,
+				HttpSession session
 			) {
-		System.out.println("�α��� usid : " + usid);
+		
+		String usid = (String)session.getAttribute("usid");
+		
+		System.out.println("·Î±×ÀÎ usid : " + usid);
 		
 		MovieBean movie = movieDao.GetMovieByNum(mnum);
 		model.addAttribute("movie", movie);
@@ -80,10 +80,6 @@ public class MovieContentViewController {
 		genreList = genreDao.getGenreList();
 		model.addAttribute("genreList", genreList);
 		
-		UserBean user = userDao.GetUserById(usid);
-		
-		model.addAttribute("user", user);
-		
 		List<BoardBean> commentList = boardDao.getCommentListByMnum(mnum);
 		
 		model.addAttribute("commentList", commentList);
@@ -93,14 +89,15 @@ public class MovieContentViewController {
 		int likeCount = 0;
 		int bookmarkCount = 0;
 		
-		if (usid.equals("")) {
-			System.out.println("�α��� �ʿ�");
+		if (usid == null) {
+			System.out.println("·Î±×ÀÎ ÇÊ¿ä");
 			model.addAttribute("likeCount", likeCount);
 			model.addAttribute("bookmarkCount", bookmarkCount);
 		}
-		else if (!usid.equals("")) {
+		else if (usid != null) {
+			int unum = (Integer)session.getAttribute("unum");
 			favor.setFmnum(mnum);
-			favor.setFunum(user.getUnum());
+			favor.setFunum(unum);
 			likeCount = favoriteDao.GetLikeCount(favor);
 			bookmarkCount = favoriteDao.GetBookmarkCount(favor);
 			System.out.println("likeCount : " + likeCount);
@@ -108,7 +105,17 @@ public class MovieContentViewController {
 			model.addAttribute("likeCount", likeCount);
 			model.addAttribute("bookmarkCount", bookmarkCount);
 		}
+		String extension = "";
 		
+		if (movie.getMurl() == null) {
+			int i = movie.getMrepo().lastIndexOf('.');
+			System.out.println("i : " + i);
+			if (i > 0) {
+				extension = movie.getMrepo().substring(i+1);
+			    System.out.println("extension : " + extension);
+			    model.addAttribute("extension", extension);
+			}
+		}
 		return getPage;
 	}
 }
