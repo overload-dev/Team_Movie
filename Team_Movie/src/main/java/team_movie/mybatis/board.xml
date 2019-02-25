@@ -72,8 +72,13 @@
 	</insert>
 	
 	<select id="GetAllNoticeList" resultType="MyBoard">
-		select * from mboard where btype =1 order by bnum desc
+		select * from mboard where btype =0 order by bnum desc
 	</select>
+	
+	<insert id="AddNotice">
+		insert into mboard
+		values(mboard_seq.nextval,0, 0, #{bunum}, #{bsubject}, #{bcon},0,0,0,sysdate)
+	</insert>
 </mapper>
 
  

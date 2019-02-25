@@ -73,8 +73,10 @@
 					</c:choose>				
 					</td>
 					<td>
+					<div class="btn-group" role="group">
 						<input type="button" class="btn btn-info" value="View" onclick="location.href='adminContentsView.tm?mnum=${movie.mnum}'">
-						<input type="button" class="btn btn-danger" value="Del">
+						<input type="button" class="btn btn-danger" value="Del" onclick="location.href='deleteContentsEdit.tm?mnum=${movie.mnum}'">
+					</div>
 					</td>
 				</tr>		
 			</c:forEach>
