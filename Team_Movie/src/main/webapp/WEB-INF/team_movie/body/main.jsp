@@ -213,11 +213,16 @@
 										<br>
 										<b class="text-info"> ${movie.mname }</b>
 									</div>
-									<c:if test="${col%4 == 0 }">
-										<c:set var="more" value="true" />
-										<div class="row">
-										</div>
-									</c:if>
+									<c:choose>
+										<c:when test="${col%4 == 0 }">
+											<c:set var="more" value="true" />
+											<div class="row">
+										</c:when>
+										<c:otherwise>
+											</div>
+										</c:otherwise>
+									</c:choose>
+									
 								</c:if>
 							</c:forEach>
 							</div>
@@ -252,32 +257,35 @@
 										<c:set var="col" value="${col + 1 }" />
 											<div class="col-md-3" align="center">
 												<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${movie.mnum})" onmouseout="movie_description(1,${movie.mnum})">
-											<a class="contents-link" href="#" onclick=
-													
-												<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
-												<c:if test="${sessionScope.ugrade==null }">	
-													special(null,${movie.mnum},${movie.mwcon })
-												</c:if>>
-											
-												<div class="contents-portrait" onmouseover="movie_description(0,'${pg}-${col}-${movie.mnum}')" onmouseout="movie_description(1,'${pg}-${col}-${movie.mnum}')">
-													<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="100%" >
-													<div class="contents-desc-frame ${pg}-${col}-${movie.mnum}" >
-															<h3>${movie.mname }</h3><hr>
-														<div class="contents-desc">
-															${movie.msynop }
+													<a class="contents-link" href="#" onclick=
+														
+													<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
+													<c:if test="${sessionScope.ugrade==null }">	
+														special(null,${movie.mnum},${movie.mwcon })
+													</c:if>>
+												
+													<div class="contents-portrait" onmouseover="movie_description(0,'${pg}-${col}-${movie.mnum}')" onmouseout="movie_description(1,'${pg}-${col}-${movie.mnum}')">
+														<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="100%" >
+														<div class="contents-desc-frame ${pg}-${col}-${movie.mnum}" >
+																<h3>${movie.mname }</h3><hr>
+															<div class="contents-desc">
+																${movie.msynop }
+															</div>
 														</div>
 													</div>
-												</div>
-												<br>
-												<b class="text-info"> ${movie.mname }</b>
-											</a>
+													<h4 class="text-primary">
+														<c:if test="${movie.mwcon==2 }">
+															<img alt="멤버전용" src="resources/img/sub/mbs.png" class="memIcon">
+														</c:if> ${movie.mname }
+													</h4>
+												</a>
 												</div>
 											</div>
 										<c:if test="${col%4 == 0 }">
-									<div class="item">
-										<div class="row">
 										</div>
 									</div>
+									<div class="item">
+										<div class="row">
 										</c:if>
 										</c:forEach>
 										</div>
@@ -293,8 +301,7 @@
 				</div>
 			</div>
 		</div>
-	</c:forEach>	
-	
+	</c:forEach>
 </body>
 <%@include file="../footer.jsp"%>
 </html>
