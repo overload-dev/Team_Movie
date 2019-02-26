@@ -6,6 +6,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/moviePageStyle.css' />">
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -45,9 +47,10 @@
 												<c:set var="col" value="${col + 1 }" />
 														<div class="col-md-3">
 															<a href="movieContent.tm?mnum=${mLists.mnum }&usid=${sessionScope.usid }">
-															<img src="//s3.namuwikiusercontent.com/s/5673b412996accb9ce935c3378c8d1493ea74f53cb6f692ee27ceed2c0b6ea2aed0b4cfcb49b387abab676557d156ef2f5a54dbf820089708d6cc6568690b8289a21bfc39a73f3702f1000356f5d85b90b25cae3d483b159e8a5349d562fb69e" width="80%"><br>
+												<img src="<c:url value="/resources/saveMovieDB/${mLists.mnum }/${mLists.mimg}"/>" width="80%" >
+															<br>
 																${mLists.mimg }<br>
-																${mLists.mname }<br>
+																${mLists.mname }<br>  
 															${mLists.mgenre }<br>										
 										</a>
 									</div>
