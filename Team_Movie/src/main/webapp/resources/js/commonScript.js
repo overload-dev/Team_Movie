@@ -159,7 +159,7 @@ function searchUserData() {
 	}
 }
 
-// 회원가입 달력
+/*// 회원가입 달력
 $(function() {
 	$("#testDatepicker").datepicker({
 		changeMonth : true,
@@ -234,7 +234,7 @@ $(document)
 									})
 
 				})
-
+*/
 // 회원가입 유효성검사
 function Validation(ugrade) {
 

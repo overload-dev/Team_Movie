@@ -8,21 +8,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <%@ include file="../top.jsp" %>
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/moviePageStyle.css' />">
 
-<script type="text/javascript">
-function movie_description(io,mnum){	
-	if(io == '0'){
-		$("span." + mnum).show();		
-	}else{
-		$("span." + mnum).hide();		
-	}
-}
-</script>
 </head>
 <body>
 <c:forEach items="${ genreList}" var="genre">
-
+<c:set var="pg" value="${pg + 1 }" />
 	<!-- 멤버별 영상 -->
 	<div class="container">
 		<div class="panel panel-info">
@@ -48,23 +38,34 @@ function movie_description(io,mnum){
 								<c:if test="${fn:contains(movie.mgenre,genre.gname ) }">
 								<c:if test="${not more}">
 									<c:set var="col" value="${col + 1 }" />
-									<div class="col-md-3">
+									<div class="col-md-3" align="center">
 										<div style="position: relative; cursor: pointer;"
 											onmouseover="movie_description(0,${movie.mnum})"
 											onmouseout="movie_description(1,${movie.mnum})">
-											<a href="movieContent.tm?mnum=${movie.mnum}" >
-							<img	src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="80%"> <span id="desc" class="${movie.mnum}">
-											<b class="display-4" style="color: white;">
-														${movie.mname } </b> <br>
-												<br>
-												<br> <b style="color: white;"> ${movie.msynop} </b> <br>
-												<br>
-												<br> <b style="color: white;"> 상영 시간:
-														${movie.mruntime} </b>
-											</span>
-											</a>
+											<a class="contents-link" href="#" onclick=
+														
+													<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
+													<c:if test="${sessionScope.ugrade==null }">	
+														special(null,${movie.mnum},${movie.mwcon })
+													</c:if>>
+												
+													<div class="contents-portrait" onmouseover="movie_description(0,'${pg}-${col}-${movie.mnum}')" onmouseout="movie_description(1,'${pg}-${col}-${movie.mnum}')">
+														<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="100%" >
+														<div class="contents-desc-frame ${pg}-${col}-${movie.mnum}" >
+																<h3>${movie.mname }</h3><hr>
+															<div class="contents-desc">
+																${movie.msynop }
+															</div>
+														</div>
+													</div>
+													<h4 class="text-primary">
+														<c:if test="${movie.mwcon==2 }">
+															<img alt="멤버전용" src="resources/img/sub/mbs.png" class="memIcon">
+														</c:if> ${movie.mname }
+													</h4>
+												</a>
 										</div>
-										<br> <b class="text-info"> ${movie.mname }</b>
+										
 									</div>
 									<c:if test="${col%4 == 0 }">
 										 
