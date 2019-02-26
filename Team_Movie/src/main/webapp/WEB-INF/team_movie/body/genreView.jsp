@@ -15,7 +15,7 @@
 <body>
 
 
-	<div class="container">
+	<div class="container wrap">
 	<h2 class="text-primary"> ${gname }</h2>	
 	<c:choose>
 		<c:when test="${movielist.size() == 0}">
@@ -59,6 +59,6 @@
 	</div>
 	
 	
-
+<%@include file="../footer.jsp"%>
 </body>
 </html>

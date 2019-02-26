@@ -32,7 +32,7 @@
 <script src="http://vjs.zencdn.net/c/video.js"></script>
 
 
-<title>Palnet Ark</title>
+<title>Planet Ark</title>
 </head>
 <body>
 	<nav class="navbar navbar-inverse">

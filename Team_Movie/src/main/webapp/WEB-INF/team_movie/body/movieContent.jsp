@@ -377,5 +377,6 @@ function movie_description(io,mnum){
 			</div>
 		</div>
 	</div>
+<%@include file="../footer.jsp"%>
 </body>
 </html>

@@ -9,7 +9,7 @@
 <%@include file="../../top.jsp"%>
 
 <body>
-<div class="container">
+<div class="container wrap">
 	<h2></h2>
 	
 	<input type="button" class="btn btn-secondary" value="목록으로" onclick="history.go(-1)">
@@ -145,7 +145,7 @@
 			</div>
 		</div>
 	</div>
-	
 </div>
+<%@include file="../../footer.jsp"%>
 </body>
 </html>

@@ -9,7 +9,7 @@
 <%@include file="../../top.jsp"%>
 <script src="<c:url value='/resources/js/commonScript.js'/>"></script>
 <body>
-	<div class="container">
+	<div class="container wrap">
 		<h2 class="text-primary" ><font color="black">회원정보 관리</font></h2>
 		<div class="row">
 			<div class="col-sm-3" >
@@ -25,5 +25,6 @@
 			</div>
 		</div>
 	</div>
+<%@include file="../../footer.jsp"%>
 </body>
 </html>

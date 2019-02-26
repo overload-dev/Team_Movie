@@ -9,7 +9,7 @@
 <%@include file="../../top.jsp"%>
 
 <body>
-	<div class="container">
+	<div class="container wrap">
 		<h2 class="text-primary">컨텐츠 관리</h2>
 		<div class="row">
 			<div class="col-sm-3" >
@@ -25,5 +25,6 @@
 			</div>
 		</div>
 	</div>
+<%@include file="../../footer.jsp"%>
 </body>
 </html>

@@ -12,7 +12,7 @@
 <body>
 	
 
-<div class="container">
+<div class="container wrap">
     <div class="row vertical-offset-100">
     	<div class="col-md-4 col-md-offset-4">
     		<div class="panel panel-default">
@@ -52,5 +52,6 @@
 		</div>
 	</div>
 </div>
+<%@include file="../../footer.jsp"%>
 </body>
 </html>

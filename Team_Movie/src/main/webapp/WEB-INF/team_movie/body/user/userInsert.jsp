@@ -15,7 +15,7 @@
 
 </head> 
 <body>
-	<div class="container">
+	<div class="container wrap">
 		<div class="d-flex justify-content-center h-100">
       		<div class="card">
       			<div class="card-header">
@@ -89,5 +89,6 @@
 		</div>
 	</div>
 	<!-- ./container -->
+<%@include file="../../footer.jsp"%>
 </body>
 </html>

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import team_movie.model.BoardBean;
 import team_movie.model.BoardDao;
+import team_movie.model.GenreBean;
+import team_movie.model.GenreDao;
 
 @Controller
 public class BoardNoticeViewController {
@@ -22,11 +24,21 @@ public class BoardNoticeViewController {
 	@Qualifier("myBoard")
 	BoardDao boardDao;
 	
+	@Autowired
+	@Qualifier("myGenreDao")
+	GenreDao genreDao;	
+	
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public String doActionGet(Model model){
 		List<BoardBean> noticeList = null;
 		noticeList = boardDao.GetAllNoticeList();
 		model.addAttribute("noticeList",noticeList);
+		
+		//GenreData Get
+		List<GenreBean> genreList = null;
+		genreList = genreDao.getGenreList();
+		model.addAttribute("genreList", genreList);
+		model.addAttribute("Selpage","adminEditContents");
 		return gotoPage;
 	}
 }

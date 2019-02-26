@@ -16,7 +16,7 @@
 </script>
 
 <body>
-<div class="container">
+<div class="container wrap">
 	<h2 class="text-primary">New Contents</h2>
 	<input type="button" class="btn btn-secondary" value="목록으로">
 	<form method="post" action="addContentsEdit.tm" enctype="multipart/form-data" onsubmit="return addMovieDataChk()">

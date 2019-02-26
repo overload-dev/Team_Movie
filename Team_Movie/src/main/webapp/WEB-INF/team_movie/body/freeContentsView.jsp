@@ -83,5 +83,6 @@ function movie_description(io,mnum){
 		</div>
 	</div>
 </c:forEach>
+<%@include file="../footer.jsp"%>
 </body>
 </html>

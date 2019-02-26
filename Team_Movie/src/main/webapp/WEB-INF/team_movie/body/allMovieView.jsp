@@ -113,5 +113,6 @@ function special(ugrade,mnum,mwcon){
 			</div>
 		</div>
 	</div>
+<%@include file="../footer.jsp"%>
 </body>
 </html>

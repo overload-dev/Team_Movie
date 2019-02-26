@@ -133,6 +133,6 @@ function special(ugrade,mnum,mwcon){
 		</div>
 	</div>
 	</c:forEach>
-	
+<%@include file="../footer.jsp"%>
 </body>
 </html>
