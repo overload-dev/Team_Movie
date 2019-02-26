@@ -206,12 +206,7 @@
 													<img alt="멤버전용" src="resources/img/sub/mbs.png" class="memIcon">
 												</c:if> ${movie.mname }
 											</h4>
-												
 										</a>
-											
-
-										<br>
-										<b class="text-info"> ${movie.mname }</b>
 									</div>
 									<c:choose>
 										<c:when test="${col%4 == 0 }">
