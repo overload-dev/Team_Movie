@@ -64,10 +64,10 @@
 				</ul>
 		</li>
 		<li class="dropdown">
-			<a href="freeContents.tm">무료 전용관</a>
+			<a href="freeContents.tm">무료 컨텐츠</a>
 		</li>
 		<li class="dropdown">
-			<a href="memberContents.tm">멤버 전용관</a>
+			<a href="memberContents.tm">멤버쉽 컨텐츠</a>
 		</li>
 	</ul>
 	
@@ -99,7 +99,7 @@
 			<li>
 				<a href="adminUserEdit.tm">
 					<font style="color: white; font-weight: bold; font-size: medium;">
-						환영합니다. ${sessionScope.usid} (${sessionScope.uname}) 님
+						환영합니다. ${sessionScope.usid} (${sessionScope.uname}) 님 
 					</font>
 				</a>
 			</li>
