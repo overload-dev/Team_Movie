@@ -61,18 +61,15 @@ public class AdminContentsUpdateController {
 		System.out.println("##############################################");
 		System.out.println("thumbnail" + thumbnail.getName());
 		System.out.println("thumbnail" + thumbnail.getOriginalFilename());
-
 		System.out.println("name :" + movieBean.getMname());
 		System.out.println("genre :" + movieBean.getMgenre());
 		System.out.println("dir :" + movieBean.getMdir());
 		System.out.println("pro :" + movieBean.getMpro());
 		System.out.println("actor :" + movieBean.getMactor());
 		System.out.println("sup :" + movieBean.getMsup());
-
 		System.out.println("age :" + movieBean.getMage());
 		System.out.println("rdate :" + movieBean.getMrdate());
 		System.out.println("wcon :" + movieBean.getMwcon());
-
 		System.out.println("##########################################");
 
 		boolean newthum = false;
@@ -114,7 +111,12 @@ public class AdminContentsUpdateController {
 
 		// 占쏙옙占쎌삢 占쎌맄燁삼옙
 		String root_path = session.getServletContext().getRealPath("/resources/saveMovieDB/" + movieBean.getMnum());
-
+		
+		File root_file = new File(root_path);
+		if(!root_file.exists()){
+			root_file.mkdir();
+		}
+		
 		// delete file case by new uri
 		if (f_mrepo == null) {
 			deloldfile(root_path, del_fname);
@@ -133,11 +135,6 @@ public class AdminContentsUpdateController {
 
 	private void deloldfile(String root_path, String del_fname) {
 		System.out.println(root_path + "/" + del_fname);
-		System.out.println(root_path + "/" + del_fname);
-		System.out.println(root_path + "/" + del_fname);
-		System.out.println(root_path + "/" + del_fname);
-		System.out.println(root_path + "/" + del_fname);
-
 		
 		File del_old_f = new File(root_path + "/" + del_fname);
 		if (del_old_f.exists() && !del_old_f.isDirectory()) {
