@@ -6,39 +6,35 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>LOGINFORM</title>
 <%@include file="../../top.jsp"%>
-</head>
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/userPageStyle.css' />">
+
+</head> 
 <body>
-	<div class="container">
-		<div class="d-flex justify-content-center h-100">
-			<div class="card">
-				<div class="card-header">
-					<h2>로그인</h2>
-				</div>
-				<div class="card-body">
-					<form method="POST" action="userLogin.tm">
-						<!-- 아이디 비밀번호가 일치한다면 로그인controller로 이동  -->
-						<!-- ID 입력 부분  -->
-						<div class="input-group form-group">
-							<label class="col-sm-12">아이디</label>
-							<div class="col-sm-12">
-								<input type="text" name="usid" class="form-control"	placeholder="ID">
-							</div>
-						</div>
-						<!-- PW 입력부분  -->
-						<div class="input-group form-group">
-							<label class="col-sm-12">비밀번호</label>
-							<div class="col-sm-12">
-								<input type="password" name="upw" class="form-control" placeholder="PASSWORD">
-							</div>
-						</div>
-						<!-- login 버튼 부분  -->
-						<div class="form-group" align="center">
-							<input type="submit" value="로그인" class="btn login_btn">
-						</div>
-					</form>
-				</div>
-				<!-- 회원가입 및 ID , PW 찾기  -->
-				<div class="card-footer">
+	
+
+<div class="container">
+    <div class="row vertical-offset-100">
+    	<div class="col-md-4 col-md-offset-4">
+    		<div class="panel panel-default">
+			  	<div class="panel-heading">
+			    	<h3 class="panel-title">LOGIN</h3>
+			 	</div>
+			  	<div class="panel-body">
+			    	<form accept-charset="UTF-8" role="form" action="userLogin.tm" method="POST">
+                    <fieldset>
+			    	  	<div class="form-group">
+			    		    <input class="form-control" placeholder="ID" name="usid" type="text">
+			    		</div>
+			    		<div class="form-group">
+			    			<input class="form-control" placeholder="PASSWORD" name="upw" type="password" value="">
+			    		</div>
+			    		
+			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
+			    	</fieldset>
+			      	</form>
+			    </div>
+			    <!-- 회원가입 및 ID , PW 찾기  -->
+				<div class="panel-footer">
 					<div class="d-flex">
 						<a href="userInsert.tm">회원가입을 아직 안하셨나요?</a>
 						<!--ID찾기 폼으로 이동  -->
@@ -48,12 +44,13 @@
 						<!--ID찾기 폼으로 이동  -->
 					</div>
 					<div class="d-flex">
-						<a href="#">PASSWORD를 잊으셨나요?</a>
+						<a href="findPw.tm">PASSWORD를 잊으셨나요?</a>
 						<!--PASSWORD찾기 폼으로 이동  -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 </body>
 </html>

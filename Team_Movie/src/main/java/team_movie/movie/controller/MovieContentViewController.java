@@ -53,7 +53,7 @@ public class MovieContentViewController {
 		
 		String usid = (String)session.getAttribute("usid");
 		
-		System.out.println("·Î±×ÀÎ usid : " + usid);
+		System.out.println(" usid : " + usid);
 		
 		MovieBean movie = movieDao.GetMovieByNum(mnum);
 		model.addAttribute("movie", movie);

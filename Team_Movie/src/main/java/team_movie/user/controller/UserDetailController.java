@@ -24,7 +24,7 @@ public class UserDetailController {
 	UserDao userDao;
 	@Autowired
 	GenreDao genreDao;
-
+ 
 	//user 한명의 정보를 담는메서드
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public ModelAndView doActionGet(

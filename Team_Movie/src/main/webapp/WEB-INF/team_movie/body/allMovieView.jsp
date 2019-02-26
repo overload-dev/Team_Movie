@@ -9,7 +9,12 @@
 <title>Insert title here</title>
 <%@ include file="../top.jsp" %>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/moviePageStyle.css' />">
-
+<style type="text/css">
+ .memIcon{
+	
+		width: 30px;
+}
+</style>
 <script type="text/javascript">
 function movie_description(io,mnum){	
 	if(io == '0'){
@@ -49,7 +54,7 @@ function special(ugrade,mnum,mwcon){
 	<div class="container">
 		<div class="panel panel-info">
 			<div class="panel-heading">
-				<font style="font-size: 20px;">무료 전용관</font>
+				<font style="font-size: 20px;">모든 영화</font>
 			</div>
 			<div class="panel-body">
 				<c:if test="${totalCount == 0 }">
@@ -88,7 +93,11 @@ function special(ugrade,mnum,mwcon){
 											</span>
 											</a>
 										</div>
-										<br> <b class="text-info"> ${movie.mname }</b>
+										<br> 
+							<h4 class="text-primary">
+							<c:if test="${movie.mwcon==2 }">
+								<img alt="멤버전용" src="resources/img/sub/mbs.png" class="memIcon">
+							</c:if> ${movie.mname }</h4>
 									</div>
 									<c:if test="${col%4 == 0 }">
 										 
@@ -96,9 +105,8 @@ function special(ugrade,mnum,mwcon){
 										
 									</c:if> 
 								</c:if>
-							</c:forEach>
+							</c:forEach> 
 						</div>
-
 
 					</div>
 				</div>

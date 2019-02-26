@@ -21,14 +21,13 @@ function movie_description(io,mnum){
 </script>
 </head>
 <body>
-	freeContenView.jsp
+<c:forEach items="${ genreList}" var="genre">
 
 	<!-- 멤버별 영상 -->
-
 	<div class="container">
 		<div class="panel panel-info">
 			<div class="panel-heading">
-				<font style="font-size: 20px;">무료 전용관</font>
+				<font style="font-size: 20px;">${genre.gname } 컨텐츠</font>
 			</div>
 			<div class="panel-body">
 				<c:if test="${totalCount == 0 }">
@@ -44,9 +43,9 @@ function movie_description(io,mnum){
 						<div class="row" style="text-align: center;">
 							<c:set var="col" value="0" />
 							<c:set var="more" value="false" />
-
+							
 							<c:forEach items="${freeMovie }" var="movie" varStatus="status">
-
+								<c:if test="${fn:contains(movie.mgenre,genre.gname ) }">
 								<c:if test="${not more}">
 									<c:set var="col" value="${col + 1 }" />
 									<div class="col-md-3">
@@ -75,6 +74,7 @@ function movie_description(io,mnum){
 										
 									</c:if> 
 								</c:if>
+								</c:if>
 							</c:forEach>
 						</div>
 
@@ -84,5 +84,6 @@ function movie_description(io,mnum){
 			</div>
 		</div>
 	</div>
+</c:forEach>
 </body>
 </html>

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import team_movie.model.GenreBean;
@@ -23,7 +24,7 @@ import team_movie.model.UserDao;
 public class UserFindPwController {
 
 	private final String command = "findPw.tm";
-	private final String getPage = "body/user/findPw";
+	private final String getPage = "body/user/findIdPw";
 	private final String gotoPage = "body/user/findPwCheck";
 
 
@@ -40,21 +41,27 @@ public class UserFindPwController {
 	//findPw.jsp에서 비밀 번호 찾기 버튼을 클릭 했을 때
 	@RequestMapping(value=command , method= RequestMethod.POST)
 	public ModelAndView doActionPost(
-			UserBean userBean,
+			@RequestParam(value="usid") String usid,
+			@RequestParam(value="uname") String uname,
+			@RequestParam(value="ubirth" ,required =false) String ubirth,
 			HttpServletResponse response,
 			HttpServletRequest request) throws IOException{
 		System.out.println("findPw.jsp에서 비밀 번호 찾기 버튼을 클릭");
 
-		String yy= request.getParameter("yy");
-		String mm=request.getParameter("mm");
-		String dd=request.getParameter("dd");
-		String date = yy+"-"+mm+"-"+dd;
-		Date ubirth = Date.valueOf(date);
-		userBean.setUbirth(ubirth);
+		UserBean userBean = new UserBean();
+		
+		
+		userBean.setUname(uname);
+		userBean.setUsid(usid);
+		
+		Date ub = null;
+		
+		if(ubirth != ""){
+			ub = Date.valueOf(ubirth);
+			userBean.setUbirth(ub);
+		}
 
-		System.out.println("userBean.getUsid() :"+userBean.getUsid());
-		System.out.println("userBean.getUname() :"+userBean.getUname());
-		System.out.println("userBean.getUbirth() :"+userBean.getUbirth());
+	
 
 		ModelAndView mav = new ModelAndView();
 		//genre데이터
@@ -70,7 +77,7 @@ public class UserFindPwController {
 
 		if( findPw == null ){
 			writer.println("<script type='text/javascript'>");
-			writer.println("alert('입력하신 ID의 회원정보가 존재하지 않습니다.');");
+			writer.println("alert('ID가 잘못되었습니다.');");
 			writer.println("history.back();"); 
 			writer.println("</script>");
 			writer.flush(); 
@@ -88,7 +95,7 @@ public class UserFindPwController {
 			}else if(!userBean.getUname().equals(findPw.getUname())){
 
 				writer.println("<script type='text/javascript'>");
-				writer.println("alert('입력하신 이름이 잘못되었습니다.');");
+				writer.println("alert('이름이 잘못되었습니다.');");
 				writer.println("history.back();"); 
 				writer.println("</script>");
 				writer.flush();
@@ -97,7 +104,7 @@ public class UserFindPwController {
 			}else if(!userBean.getUbirth().equals(findPw.getUbirth())){
 
 				writer.println("<script type='text/javascript'>");
-				writer.println("alert('입력하신 생년월일이 잘못되었습니다.');");
+				writer.println("alert('생년월일이 잘못되었습니다.');");
 				writer.println("history.back();"); 
 				writer.println("</script>");
 				writer.flush();
