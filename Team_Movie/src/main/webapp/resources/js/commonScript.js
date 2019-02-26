@@ -508,3 +508,23 @@ function deleteUser(unum){
 		}
 	});
 }
+
+//공지사항 삭제
+function deleteNotice(bnum){
+	
+	$.ajax({
+		url: 'deleteNoticeEdit.tm',
+		type:'GET',
+		data:{"bnum" : bnum},
+		success : function(result){
+			if(result){
+				alert("공지글이 삭제 되었습니다.");
+				location.reload();
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert("Error \n" + textStatus + " : " + errorThrown);
+			self.close();
+		}
+	});
+}

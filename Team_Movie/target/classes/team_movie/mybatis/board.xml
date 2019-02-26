@@ -91,6 +91,16 @@
 		from mboard
 		where bref = #{bnum}
 	</select>
+	
+	<delete id="DeleteNotice">
+		delete from mboard
+		where bnum =#{bnum}
+	</delete>
+	<select id="GetNoticeForMain" resultType="MyBoard">
+		select bnum, bsubject,bcon, bdate, rank() over (order by bnum desc) rk from(
+		select bnum, bsubject,bcon, bdate, rank() over (order by bnum desc) rk from mboard)
+		where rk between 1 and 3
+	</select>
 </mapper>
 
  

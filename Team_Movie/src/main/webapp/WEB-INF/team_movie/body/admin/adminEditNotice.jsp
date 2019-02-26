@@ -3,7 +3,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <div class="panel panel-info">
 	<div class="panel-heading">
 		<div class="row">
@@ -46,7 +45,7 @@
 			<c:when test="${noticeList.size() == 0 }">
 				<div class="jumbotron jumbotron-fluid" style="background-color: #DCDDE2;">
 					<h1 class="display-3 text-primary">No Contents</h1>
-					<p class="lead">해당 장르의 컨텐츠가 없습니다.</p>
+					<p class="lead">공지사항이 없습니다.</p>
 				</div>
 			</c:when>
 			<c:otherwise>
@@ -56,8 +55,11 @@
 							<div class="col-sm-6" style="padding-left: 50px">
 								<font class="text-secondary" style="font-weight: bold;">제목</font>
 							</div>
-							<div class="col-sm-6" align="right" style="padding-right: 50px">
+							<div class="col-sm-4" align="right" style="padding-right: 50px">
 								<font class="text-secondary" style="font-weight: bold;">등록일</font>
+							</div>
+							<div class="col-sm-2" align="right" style="padding-right: 50px">
+								<font class="text-secondary" style="font-weight: bold;">Edit</font>
 							</div>
 						</div>
 
@@ -71,7 +73,7 @@
 											No. ${count}
 										</a>
 									</div>
-									<div class="col-sm-6">
+									<div class="col-sm-4">
 										<a data-toggle="collapse" data-parent="#accordion" href="#collapse${notice.bnum}">
 											 ${notice.bsubject }
 										</a>
@@ -81,11 +83,14 @@
 											<fmt:formatDate value="${notice.bdate}" pattern="yyyy-MM-dd"/>
 										</a>
 									</div>
+									<div class="col-sm-2" align="right">
+										<input type="button" class="btn btn-danger" value="Del" onclick="deleteNotice(${notice.bnum})">
+									</div>
 								</div>
 							</div>
 							<div id="collapse${notice.bnum}" class="panel-collapse collapse">
 								<div class="panel-body">
-									${notice.bcon }
+									<pre>${notice.bcon }</pre>
 								</div>
 			    			</div>
 			  			</div>

@@ -1,6 +1,5 @@
 package team_movie.movie.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import team_movie.model.BoardBean;
+import team_movie.model.BoardDao;
 import team_movie.model.GenreBean;
 import team_movie.model.GenreDao;
 import team_movie.model.MovieBean;
@@ -26,6 +27,10 @@ public class MovieListController {
 	@Autowired
 	@Qualifier("MyMovieDao")
 	MovieDao movieDao;
+	
+	@Autowired
+	@Qualifier("myBoard")
+	BoardDao boardDao;
 	
 	
 	// for get GenreData
@@ -98,6 +103,13 @@ public class MovieListController {
 		mav.addObject("movie", movie);
 		mav.addObject("map", map);
 		mav.setViewName(getPage);
+		
+		
+		//NoticeData Get
+		List<BoardBean> noticeMainList = null;
+		noticeMainList = boardDao.GetNoticeForMain();
+		mav.addObject("noticeMainList", noticeMainList);
+		
 		
 		//GenreData Get
 		List<GenreBean> genreList = null;
