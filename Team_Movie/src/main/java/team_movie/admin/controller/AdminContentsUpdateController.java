@@ -77,29 +77,29 @@ public class AdminContentsUpdateController {
 
 		boolean newthum = false;
 		boolean newrepo = false;
-		// �뾽�뜲�씠�듃 �맂 �꽟�꽕�씪 �젙蹂� 寃��궗
+		// 占쎈씜占쎈쑓占쎌뵠占쎈뱜 占쎈쭆 占쎄퐶占쎄퐬占쎌뵬 占쎌젟癰귨옙 野껓옙占쎄텢
 
 		String del_fname = mrepo;
 
 		String del_imgname = mimg;
 		System.out.println(thumbnail.getOriginalFilename());
 		if (thumbnail.getOriginalFilename() != "") {
-			newthum = true; // �깉濡쒖슫 �씠誘몄�媛� �뱾�뼱�샂
-			System.out.println("�씠誘몄� �젙蹂� 媛깆떊");
-			movieBean.setMimg(thumbnail.getOriginalFilename()); // �깉濡� �뱾�뼱�삩
-																// �뙆�씪 �씠由꾩쓣
-																// ���옣
+			newthum = true; // 占쎄퉱嚥≪뮇�뒲 占쎌뵠沃섎챷占썲첎占� 占쎈굶占쎈선占쎌긾
+			System.out.println("占쎌뵠沃섎챷占� 占쎌젟癰귨옙 揶쏄퉮�뻿");
+			movieBean.setMimg(thumbnail.getOriginalFilename()); // 占쎄퉱嚥∽옙 占쎈굶占쎈선占쎌궔
+																// 占쎈솁占쎌뵬 占쎌뵠�뵳袁⑹뱽
+																// 占쏙옙占쎌삢
 		} else {
-			System.out.println("�씠誘몄� �젙蹂� 媛깆떊 �븞�맖");
+			System.out.println("占쎌뵠沃섎챷占� 占쎌젟癰귨옙 揶쏄퉮�뻿 占쎈툧占쎈쭡");
 			System.out.println(movieBean.getMimg());
 		}
 
-		// �깉濡� �삱�씪�삩 �뙆�씪�씠 �엳�뒗吏� 寃��궗(url�씠 �븘�땶 �뙆�씪�씠 �뱾�뼱�샂)
+		// 占쎄퉱嚥∽옙 占쎌궞占쎌뵬占쎌궔 占쎈솁占쎌뵬占쎌뵠 占쎌뿳占쎈뮉筌욑옙 野껓옙占쎄텢(url占쎌뵠 占쎈툡占쎈빒 占쎈솁占쎌뵬占쎌뵠 占쎈굶占쎈선占쎌긾)
 		if (f_mrepo != null && movieBean.getMrepo() != null) {
 			newrepo = true;
-			movieBean.setMrepo(f_mrepo.getOriginalFilename()); // �깉濡� �뱾�뼱�삩
-																// �뙆�씪�쓽 �씠由꾩쓣
-																// ���옣
+			movieBean.setMrepo(f_mrepo.getOriginalFilename()); // 占쎄퉱嚥∽옙 占쎈굶占쎈선占쎌궔
+																// 占쎈솁占쎌뵬占쎌벥 占쎌뵠�뵳袁⑹뱽
+																// 占쏙옙占쎌삢
 			movieBean.setMurl("");
 		}
 
@@ -112,7 +112,7 @@ public class AdminContentsUpdateController {
 
 		// db update===================
 
-		// ���옣 �쐞移�
+		// 占쏙옙占쎌삢 占쎌맄燁삼옙
 		String root_path = session.getServletContext().getRealPath("/resources/saveMovieDB/" + movieBean.getMnum());
 
 		// delete file case by new uri
@@ -120,11 +120,11 @@ public class AdminContentsUpdateController {
 			deloldfile(root_path, del_fname);
 		}
 
-		// �꽟�꽕�씪�씠 媛깆떊 �릺�뿀�떎硫�
+		// 占쎄퐶占쎄퐬占쎌뵬占쎌뵠 揶쏄퉮�뻿 占쎈┷占쎈�占쎈뼄筌롳옙
 		if (newthum == true) {
 			renewThumbnail(root_path, del_imgname, thumbnail);
 		}
-		// �뙆�씪�씠 媛깆떊 �릺�뿀�떎硫�
+		// 占쎈솁占쎌뵬占쎌뵠 揶쏄퉮�뻿 占쎈┷占쎈�占쎈뼄筌롳옙
 		if (newrepo == true) {
 			renwFile(root_path, del_fname, f_mrepo);
 		}
@@ -140,7 +140,7 @@ public class AdminContentsUpdateController {
 
 		
 		File del_old_f = new File(root_path + "/" + del_fname);
-		if (del_old_f.exists()) {
+		if (del_old_f.exists() && !del_old_f.isDirectory()) {
 			if (del_old_f.delete()) {
 				System.out.println("old file deleted");
 			} else {
@@ -153,31 +153,29 @@ public class AdminContentsUpdateController {
 
 	private void renwFile(String root_path, String del_fname, MultipartFile f_mrepo) {
 		OutputStream out = null;
-		System.out.println(del_fname);
-		System.out.println(del_fname);
-		System.out.println(del_fname);
-		System.out.println(del_fname);
-
-		System.out.println(root_path + "/" + del_fname);
-		System.out.println(root_path + "/" + del_fname);
-		// 湲곗〈 �젙蹂� �궘�젣
+		
+		File cf = new File(root_path);
+		if(!cf.exists()){
+			cf.mkdir();
+		}
+		// 疫꿸퀣�� 占쎌젟癰귨옙 占쎄텣占쎌젫
 		File del_thum_f = new File(root_path + "/" + del_fname);
 		if (del_thum_f.exists()) {
 			System.out.println(root_path + "/" + del_fname);
-			System.out.println("�쐞 寃쎈줈�뿉 �뙆�씪 議댁옱");
+			System.out.println("占쎌맄 野껋럥以덌옙肉� 占쎈솁占쎌뵬 鈺곕똻�삺");
 			if (del_thum_f.delete()) {
-				System.out.println("湲곗〈 �뙆�씪 �궘�젣");
+				System.out.println("疫꿸퀣�� 占쎈솁占쎌뵬 占쎄텣占쎌젫");
 			} else {
-				System.out.println("�궘�젣 �떎�뙣");
+				System.out.println("占쎄텣占쎌젫 占쎈뼄占쎈솭");
 			}
 
 		}
 
-		// �뙆�씪 �궫�엯
+		// 占쎈솁占쎌뵬 占쎄땜占쎌뿯
 		File new_movie_f = new File(root_path + "/" + f_mrepo.getOriginalFilename());
 		try {
 			out = new FileOutputStream(new_movie_f);
-			byte[] bytes = f_mrepo.getBytes(); // 諛붿씠�듃 �젙蹂�
+			byte[] bytes = f_mrepo.getBytes(); // 獄쏅뗄�뵠占쎈뱜 占쎌젟癰귨옙
 			out.write(bytes);
 
 		} catch (FileNotFoundException e) {
@@ -203,18 +201,18 @@ public class AdminContentsUpdateController {
 
 		OutputStream out = null;
 
-		// 湲곗〈 �젙蹂� �궘�젣
+		// 疫꿸퀣�� 占쎌젟癰귨옙 占쎄텣占쎌젫
 		File del_thum_f = new File(root_path + "/" + del_imgname);
 		if (del_thum_f.exists()) {
 			del_thum_f.delete();
-			System.out.println("湲곗〈 �꽟�꽕�씪 �궘�젣");
+			System.out.println("疫꿸퀣�� 占쎄퐶占쎄퐬占쎌뵬 占쎄텣占쎌젫");
 		}
 
-		// �꽟�꽕�씪 �궫�엯
+		// 占쎄퐶占쎄퐬占쎌뵬 占쎄땜占쎌뿯
 		File new_thum_f = new File(root_path + "/" + thumbnail.getOriginalFilename());
 		try {
 			out = new FileOutputStream(new_thum_f);
-			byte[] bytes = thumbnail.getBytes(); // 諛붿씠�듃 �젙蹂�
+			byte[] bytes = thumbnail.getBytes(); // 獄쏅뗄�뵠占쎈뱜 占쎌젟癰귨옙
 			out.write(bytes);
 
 		} catch (FileNotFoundException e) {
