@@ -12,11 +12,11 @@
 		<div class="form-group row" align="center">
 			<div class="col-xs-4">
 				<select id="searchAt" class="form-control">
-					<option value="1">고유번호</option>
-					<option value="2">아이디</option>
-					<option value="3">닉네임</option>
-					<option value="6">선호 장르</option>
-					<option value="7">멤버십</option>
+					<option value="0">고유번호</option>
+					<option value="1">아이디</option>
+					<option value="2">닉네임</option>
+					<option value="5">선호 장르</option>
+					<option value="6">멤버십</option>
 				</select>
 			</div>
 			<div class="col-xs-6">
@@ -28,7 +28,6 @@
 		<table id="myTable" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
 			<thead class="thead-dark">
 				<tr class="header">
-					<th class="th-sm" align="center"><input type="checkbox"></th>
 					<th class="th-sm" align="center">고유번호</th>
 					<th class="th-sm" align="center">아이디</th>
 					<th class="th-sm" align="center">닉네임</th>
@@ -42,7 +41,6 @@
 			</thead>
 			<c:forEach var ="user" items="${userList}">
 			<tr>
-				<td><input type="checkbox" value="${user.unum }"></td>
 				<td align="center">${user.unum }</td>
 				<td align="center">${user.usid }</td>
 				<td align="center">${user.uname }</td>
