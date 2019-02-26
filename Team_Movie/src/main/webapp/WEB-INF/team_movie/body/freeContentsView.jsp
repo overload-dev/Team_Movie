@@ -53,10 +53,8 @@ function movie_description(io,mnum){
 											onmouseover="movie_description(0,${movie.mnum})"
 											onmouseout="movie_description(1,${movie.mnum})">
 											<a href="movieContent.tm?mnum=${movie.mnum}" >
-												<img
-												src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>"
-												width="80%"> <span id="desc" class="${movie.mnum}">
-													<b class="display-4" style="color: white;">
+							<img	src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="80%"> <span id="desc" class="${movie.mnum}">
+											<b class="display-4" style="color: white;">
 														${movie.mname } </b> <br>
 												<br>
 												<br> <b style="color: white;"> ${movie.msynop} </b> <br>

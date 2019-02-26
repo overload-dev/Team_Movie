@@ -12,4 +12,4 @@
 	response.sendRedirect(viewPage) ;
 %>
 </body>
-</html>  
+</html>    
