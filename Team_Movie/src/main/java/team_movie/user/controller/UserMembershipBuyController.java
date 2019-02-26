@@ -99,7 +99,7 @@ public class UserMembershipBuyController {
 
 			writer.println("<script type='text/javascript'>");
 			writer.println("alert('구매 완료 되었습니다.');");
-			writer.println("history.back();"); 
+			writer.println("history.back();");
 			writer.println("</script>");
 			writer.flush(); 
 

@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 <%@include file="../top.jsp"%>
 
-
 <script type="text/javascript">
 	function movie_description(io,mnum){	
 		if(io == '0'){
@@ -17,39 +16,7 @@
 		}
 	}
 
-	
-	function special(ugrade,mnum,mwcon){	
-		alert("ugrade :"+ugrade)
-		if(ugrade==1 && mwcon==2 ){
-			var con=confirm("멤버등록한 회원만 시청가능합니다. 멤버 등록하시겠습니까?");
-					
-				if(con==false){
-					
-					return false;
-				}else{
-					location.href="mShipBuyForm.tm";
-				}
-			   
-		} 
-		if(ugrade == 2 || ugrade == 0 || mwcon==1){  
-			alert("mnum:"+mnum);
-			location.href="movieContent.tm?mnum="+mnum;
-		}
-		
-		if(ugrade==null && mwcon==2){
-			alert("로그인 후 이용하세요.");
-			location.href="userLogin.tm";
-			
-		}
-		
-	}
 </script>
-<style type="text/css">
-#slide{
-	size: cover;
-}
-
-</style>
 </head>
 <body>
 	<div class="container">
@@ -148,8 +115,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- 멤버별 영상 -->
-	
+	<!-- 멤버전용 영상 -->
 		<div class="container">
 			<div class="panel panel-info">
 				<div class="panel-heading">
@@ -212,9 +178,9 @@
 										<c:when test="${col%4 == 0 }">
 											<c:set var="more" value="true" />
 											<div class="row">
+											</div>
 										</c:when>
 										<c:otherwise>
-											</div>
 										</c:otherwise>
 									</c:choose>
 									

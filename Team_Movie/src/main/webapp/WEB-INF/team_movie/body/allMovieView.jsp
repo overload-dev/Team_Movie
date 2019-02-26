@@ -23,31 +23,10 @@ function movie_description(io,mnum){
 		$("span." + mnum).hide();		
 	}
 }
-function special(ugrade,mnum,mwcon){	
-	alert("mwcon :"+mwcon)
-	alert("ugrade :"+ugrade)
-	
-	if(ugrade==1 && mwcon==2 ){
-		var con=confirm("멤버등록한 회원만 시청가능합니다. 멤버 등록하시겠습니까?");
-				
-			if(con==false){
-				
-				return false;
-			}else{
-				location.href="mShipBuyForm.tm";
-			}
-		   
-	} 
-	if(ugrade == 2 || ugrade == 0 ||mwcon==1){  
-		location.href="movieContent.tm?mnum="+mnum;
-	}
-	
-	
-}
 </script>
+
 </head>
 <body>
-	freeContenView.jsp
 
 	<!-- 멤버별 영상 -->
 
@@ -79,7 +58,12 @@ function special(ugrade,mnum,mwcon){
 										<div style="position: relative; cursor: pointer;"
 											onmouseover="movie_description(0,${movie.mnum})"
 											onmouseout="movie_description(1,${movie.mnum})">
-											<a href="#" onclick="special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })">
+											<a href="#" onclick=
+										
+											<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
+											<c:if test="${sessionScope.ugrade==null }">	
+													special(null,${movie.mnum},${movie.mwcon })
+											</c:if>>
 												<img
 												src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>"
 												width="80%"> <span id="desc" class="${movie.mnum}">

@@ -159,82 +159,7 @@ function searchUserData() {
 	}
 }
 
-/*// 회원가입 달력
-$(function() {
-	$("#testDatepicker").datepicker({
-		changeMonth : true,
-		changeYear : true,
-		nextText : '다음 달',
-		prevText : '이전 달',
-		dateFormat : 'yy-mm-dd'
-	});
-});
-var isCheck = false;
-var isChange = false;
-// 중복체크
-$(document)
-		.ready(
-				function() {
 
-					var use;
-					var isBlank = false;
-
-					$("input[name=usid]").keydown(function() {// 키보드가 눌렸을 때
-																// span영역 을 다시
-																// 안보이게끔
-						isChange = true;
-						use = "";
-						$("#idmessage").css("display", "none");
-					})
-					$("input[name=id_check]")
-							.click(
-									function() {
-										isCheck = true;
-										isChange = false;
-										isBlank = false;
-
-										if ($('input[name=usid]').val() == "") {
-											alert("사용 할 아이디를 입력하세요.");
-											isBlank = true;
-											return false;
-										}
-
-										$
-												.ajax({
-													url : "idCheck.tm",
-													data : ({
-														"usid" : $(
-																"input[name=usid]")
-																.val()
-													}),
-													success : function(data) {
-														if (jQuery.trim(data) == 'YES') {
-															$('#idmessage')
-																	.html(
-																			"<font color=blue>사용 가능합니다.</font>");
-															$('#idmessage')
-																	.show();// display:none인걸
-																			// 보이게끔
-																			// 바꾸어줌
-															// alert("아이디
-															// 사용가능합니다.");
-															use = "possible";
-														} else {
-															$('#idmessage')
-																	.html(
-																			"<font color=red>이미 사용중인 아이디 입니다.</font>");
-															$('#idmessage')
-																	.show();
-															// alert("아이디가
-															// 중복되었습니다.");
-															use = "impossible";
-														}
-													}
-												});// ajax()의 끝
-									})
-
-				})
-*/
 // 회원가입 유효성검사
 function Validation(ugrade) {
 
@@ -914,4 +839,30 @@ function special(ugrade,mnum,mwcon){
 		
 	}
 	
+//스페셜회원 일반회원 로그인하지않은 회원 구분
+	function special(ugrade,mnum,mwcon){	
+		
+		if(ugrade==1 && mwcon==2 ){
+			var con=confirm("멤버등록한 회원만 시청가능합니다. 멤버 등록하시겠습니까?");
+					
+				if(con==false){
+					
+					return false;
+				}else{
+					location.href="mShipBuyForm.tm";
+				}
+			   
+		} 
+		if(ugrade == 2 || ugrade == 0 || mwcon==1){  
+			alert("mnum:"+mnum);
+			location.href="movieContent.tm?mnum="+mnum;
+		}
+		
+		if(ugrade==null && mwcon==2){
+			alert("로그인 후 이용하세요.");
+			location.href="userLogin.tm";
+			
+		}
+		
+	}
 }

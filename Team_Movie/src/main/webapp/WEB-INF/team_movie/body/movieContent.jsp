@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <script type="text/javascript">
 /*
  * 댓글 등록하기(Ajax)
  */
-
 
 function movie_description(io,mnum){	
 	if(io == '0'){
@@ -20,9 +20,9 @@ function movie_description(io,mnum){
 }
 </script>
 <style type="text/css">
-				.movie-detail-desc{
-					margin-bottom: 10px;
-				}
+	.movie-detail-desc{
+			margin-bottom: 10px;
+			}
 </style>
 			
 <title>Insert title here</title>
@@ -166,7 +166,12 @@ function movie_description(io,mnum){
 										<c:set var="col" value="${col + 1 }" />
 											<div class="col-md-3">
 												<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${movie.mnum})" onmouseout="movie_description(1,${movie.mnum})">
-													<a href="movieContent.tm?mnum=${movie.mnum}">
+													<a href="#" onclick=
+														
+													<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
+													<c:if test="${sessionScope.ugrade==null }">	
+														special(null,${movie.mnum},${movie.mwcon })
+													</c:if>>
 														<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="80%" >
 														<span id="desc" class="${movie.mnum}" >
 															<b class="display-4" style="color: white;">

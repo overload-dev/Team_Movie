@@ -6,15 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <%@include file="../top.jsp"%>
-
-<script type="text/javascript">
-	
-</script>
-
 </head>
-<body>
+<body> 
 	<div class="container wrap">
-		<div class="panel panel-info">
+		<div class="panel panel-info"> 
 			<div class="panel-heading"><h2>${gname }</h2></div>
 			<div class="panel-body">
 				<c:choose>

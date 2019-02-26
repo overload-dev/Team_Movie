@@ -12,7 +12,44 @@
 
 <%@include file="../../top.jsp"%>
 <script src="<c:url value='/resources/js/commonScript.js'/>"></script>
+<script type="text/javascript">
+var isCheck = false;
+var isChange = false;
+// 중복체크
+$(document).ready(function() {
+	var use;
+	var isBlank = false;
+	$("input[name=usid]").keydown(function() {
+		isChange = true;
+		use = "";
+		$("#idmessage").css("display", "none");
+	})
+	$("input[name=id_check]").click(function() {
+		isCheck = true;
+		isChange = false;
+		isBlank = false;
 
+		if ($('input[name=usid]').val() == "") {
+			alert("사용 할 아이디를 입력하세요.");
+			isBlank = true;
+			return false;
+			}
+		$.ajax({url : "idCheck.tm",
+				data : ({"usid" : $("input[name=usid]").val()}),
+				success : function(data) {
+					if (jQuery.trim(data) == 'YES') {
+						$('#idmessage').html("<font color=blue>사용 가능합니다.</font>");
+						$('#idmessage').show();
+						use = "possible";} 
+					else {$('#idmessage').html("<font color=red>이미 사용중인 아이디 입니다.</font>");
+						$('#idmessage').show();
+						use = "impossible";
+										}
+					}
+		});// ajax()의 끝
+	})
+})
+</script>
 </head> 
 <body>
 	<div class="container wrap">
@@ -59,7 +96,7 @@
 						<div class="form-group">
 							<label class="col-sm-12 control-label">생년월일</label>   
 							<div class="col-sm-12">
-								<input type="text" id="testDatepicker" name="ubirth" class="form-control"> 
+								<input type="date" id="testDatepicker" name="ubirth" class="form-control"> 
 							</div>
 						</div>  
 						<!-- 선호 장르 선택  -->     

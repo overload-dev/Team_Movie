@@ -11,7 +11,6 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/moviePageStyle.css' />">
 <style type="text/css">
  .memIcon{
-	
 		width: 30px;
 }
 </style>
