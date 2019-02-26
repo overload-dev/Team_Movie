@@ -7,7 +7,11 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/moviePageStyle.css' />">
-
+<style type="text/css">
+.favorite{
+	
+}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -46,12 +50,15 @@
 											<c:forEach var="mLists" items="${mLists}">
 												<c:set var="col" value="${col + 1 }" />
 														<div class="col-md-3">
-															<a href="movieContent.tm?mnum=${mLists.mnum }&usid=${sessionScope.usid }">
+															<a class="favorite" href="movieContent.tm?mnum=${mLists.mnum }&usid=${sessionScope.usid }">
 												<img src="<c:url value="/resources/saveMovieDB/${mLists.mnum }/${mLists.mimg}"/>" width="80%" >
 															<br>
-																${mLists.mimg }<br>
-																${mLists.mname }<br>  
-															${mLists.mgenre }<br>										
+															<h4 class="text-primary">
+												<c:if test="${mLists.mwcon==2 }">
+													<img alt="멤버전용" src="resources/img/sub/mbs.png" class="memIcon">
+												</c:if> ${mLists.mname }
+											</h4>
+																									
 										</a>
 									</div>
 										<c:if test="${col%4 == 0 }">

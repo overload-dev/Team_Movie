@@ -184,7 +184,11 @@ function movie_description(io,mnum){
 													</a>
 												</div>
 												<br>
-												<b class="text-info"> ${movie.mname }</b>
+												<h4 class="text-primary">
+												<c:if test="${movie.mwcon==2 }">
+													<img alt="멤버전용" src="resources/img/sub/mbs.png" class="memIcon">
+												</c:if> ${movie.mname }
+											</h4>
 											</div>
 										<c:if test="${col%4 == 0 }">
 										</div>

@@ -7,8 +7,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 커스텀 css & script -->
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/moviePageStyle.css' />">
+<script src="<c:url value='/resources/js/commonScript.js'/>"></script>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
@@ -51,11 +55,20 @@
 						</c:forEach>
 					</ul>
 			</li>
+			
 			<li class="dropdown">
-				<a href="freeContents.tm">무료 컨텐츠</a>
-			</li>
-			<li class="dropdown">
-				<a href="memberContents.tm">멤버쉽 컨텐츠</a>
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">컨텐츠보기<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="allMovieView.tm">모든 컨텐츠</a>
+					</li>
+					<li class="dropdown">
+						<a href="freeContents.tm">무료 컨텐츠</a>
+					</li>
+					<li class="dropdown">
+						<a href="memberContents.tm">멤버쉽 컨텐츠</a>
+					</li>
+				</ul>
 			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right" >
