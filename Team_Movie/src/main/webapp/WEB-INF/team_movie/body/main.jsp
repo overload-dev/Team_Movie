@@ -16,6 +16,7 @@
 			$("span." + mnum).hide();		
 		}
 	}
+	
 	function special(ugrade,mnum,mwcon){	
 		alert("ugrade :"+ugrade)
 		if(ugrade==1 && mwcon==2 ){
@@ -29,8 +30,15 @@
 				}
 			   
 		} 
-		if(ugrade == 2 || ugrade == 0 ||mwcon==1){  
+		if(ugrade == 2 || ugrade == 0 || mwcon==1){  
+			alert("mnum:"+mnum);
 			location.href="movieContent.tm?mnum="+mnum;
+		}
+		
+		if(ugrade==null && mwcon==2){
+			alert("로그인 후 이용하세요.");
+			location.href="userLogin.tm";
+			
 		}
 		
 	}
@@ -125,7 +133,17 @@
 									<c:set var="col" value="${col + 1 }" />
 									<div class="col-md-3">
 										<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${movie.mnum})" onmouseout="movie_description(1,${movie.mnum})">
-											<a href="#" onclick="special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })">
+											
+											
+											
+											<a href="#" onclick=
+													
+												<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
+												<c:if test="${sessionScope.ugrade==null }">	
+													special(null,${movie.mnum},${movie.mwcon })
+												</c:if>
+											>
+												
 												<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="80%" >
 												<span id="desc" class="${movie.mnum}" > 
 													<b class="display-4" style="color: white;">
@@ -140,7 +158,11 @@
 														상영 시간: ${movie.mruntime}
 													</b>
 												</span>
+												
 											</a>
+											
+											
+											
 										</div>
 										<br>
 										<b class="text-info"> ${movie.mname }</b>
@@ -188,8 +210,13 @@
 										<c:set var="col" value="${col + 1 }" />
 											<div class="col-md-3">
 												<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${movie.mnum})" onmouseout="movie_description(1,${movie.mnum})">
-													<a href="#" onclick="special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })" >
-														<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="80%" >
+											<a href="#" onclick=
+													
+												<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
+												<c:if test="${sessionScope.ugrade==null }">	
+													special(null,${movie.mnum},${movie.mwcon })
+												</c:if>
+											>														<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="80%" >
 														<span id="desc" class="${movie.mnum}" >
 															<b class="display-4" style="color: white;">
 																${movie.mname }
@@ -261,8 +288,15 @@
 									<c:set var="col" value="${col + 1 }" />
 									<div class="col-md-3">
 										<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${movie.mnum})" onmouseout="movie_description(1,${movie.mnum})">
-											<a href="movieContent.tm?mnum=${movie.mnum}">
-												<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="80%" >
+											
+											<a href="#" onclick=
+													
+												<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
+												
+												<c:if test="${sessionScope.ugrade==null }">	
+													special(null,${movie.mnum},${movie.mwcon })
+												</c:if>
+											>												<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="80%" >
 												<span id="desc" class="${movie.mnum}" >
 													<b class="display-4" style="color: white;">
 														${movie.mname }
