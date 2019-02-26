@@ -6,8 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <%@include file="../top.jsp"%>
-<%@include file="./../../common/common.jsp"%>
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/moviePageStyle.css' />">
+
+
 <script type="text/javascript">
 	function movie_description(io,mnum){	
 		if(io == '0'){
@@ -192,9 +192,9 @@
 												special(null,${movie.mnum},${movie.mwcon })
 											</c:if>>
 											
-											<div class="contents-portrait" onmouseover="movie_description(0,${movie.mnum})" onmouseout="movie_description(1,${movie.mnum})">
-												<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="80%" >
-												<div class="contents-desc-frame ${movie.mnum}" >
+											<div class="contents-portrait" onmouseover="movie_description(0,'s${movie.mnum}')" onmouseout="movie_description(1,'s${movie.mnum}')">
+												<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="100%" >
+												<div class="contents-desc-frame s${movie.mnum}" >
 														<h3>${movie.mname }</h3><hr>
 													<div class="contents-desc">
 														${movie.msynop }
@@ -221,15 +221,11 @@
 								</c:if>
 							</c:forEach>
 							</div>
-							
-							
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
-	
 	<!-- 랜덤으로 나온 인기장르 for carousel1-->
 	<c:forEach items="${map }" var="map" varStatus="status">
 		<div class="container">
@@ -254,32 +250,28 @@
 										<div class="row">
 										<c:forEach items="${map.value }" var="movie" varStatus="status">
 										<c:set var="col" value="${col + 1 }" />
-											<div class="col-md-3">
+											<div class="col-md-3" align="center">
 												<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${movie.mnum})" onmouseout="movie_description(1,${movie.mnum})">
-											<a href="#" onclick=
+											<a class="contents-link" href="#" onclick=
 													
 												<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
 												<c:if test="${sessionScope.ugrade==null }">	
 													special(null,${movie.mnum},${movie.mwcon })
-												</c:if>
-											>														<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="80%" >
-														<span id="desc" class="${movie.mnum}" >
-															<b class="display-4" style="color: white;">
-																${movie.mname }
-															</b>
-															<br><br><br>
-															<b style="color: white;">
-																${movie.msynop}
-															</b>
-															<br><br><br>
-															<b style="color: white;">
-																상영 시간: ${movie.mruntime}
-															</b>
-														</span>
-													</a>
+												</c:if>>
+											
+												<div class="contents-portrait" onmouseover="movie_description(0,'${pg}-${col}-${movie.mnum}')" onmouseout="movie_description(1,'${pg}-${col}-${movie.mnum}')">
+													<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="100%" >
+													<div class="contents-desc-frame ${pg}-${col}-${movie.mnum}" >
+															<h3>${movie.mname }</h3><hr>
+														<div class="contents-desc">
+															${movie.msynop }
+														</div>
+													</div>
 												</div>
 												<br>
 												<b class="text-info"> ${movie.mname }</b>
+											</a>
+												</div>
 											</div>
 										<c:if test="${col%4 == 0 }">
 									<div class="item">
@@ -301,80 +293,6 @@
 				</div>
 			</div>
 		</div>
-	</c:forEach>
-
-	<div class="container">
-		<div class="panel panel-info">
-			<div class="panel-heading">
-				<font style="font-size: 20px;">전체 영화</font>
-			</div>
-			<div class="panel-body">
-				<c:if test="${totalCount == 0 }">
-					<div class="jumbotron jumbotron-fluid" style="background-color: #DCDDE2;">
-         				<h1 class="display-3 text-primary">No Contents</h1>
-        		    	<p class="lead">컨텐츠가 없습니다.</p>
-        			</div>
-				</c:if>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="row" style="text-align: right;">
-							<div class="col-md-12">
-							<a href="allMovieView.tm"> <font
-									style="font-weight: bold; font-size: large;">전체보기</font>
-							</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12">
-						<div class="row" style="text-align: center;">
-							<c:set var="col" value="0" />
-							<c:set var="more" value="false" />
-							<c:forEach items="${movie }" var="movie" varStatus="status">
-								<c:if test="${not more}">
-									<c:set var="col" value="${col + 1 }" />
-									<div class="col-md-3">
-										<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${movie.mnum})" onmouseout="movie_description(1,${movie.mnum})">
-											
-											<a href="#" onclick=
-													
-												<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
-												
-												<c:if test="${sessionScope.ugrade==null }">	
-													special(null,${movie.mnum},${movie.mwcon })
-												</c:if>
-											>												<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="80%" >
-												<span id="desc" class="${movie.mnum}" >
-													<b class="display-4" style="color: white;">
-														${movie.mname }
-													</b>
-													<br><br><br>
-													<b style="color: white;">
-														${movie.msynop}
-													</b>
-													<br><br><br>
-													<b style="color: white;">
-														상영 시간: ${movie.mruntime}
-													</b>
-												</span>
-											</a>
-										</div>
-										<br>
-										<b class="text-info"> ${movie.mname }</b>
-									</div>
-									<c:if test="${col%4 == 0 }">
-										<c:set var="more" value="true" />
-									<div class="row">
-									</div>
-									</c:if>
-								</c:if>
-							</c:forEach>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	
+	</c:forEach>	
 </body>
 </html>
