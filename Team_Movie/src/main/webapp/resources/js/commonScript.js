@@ -84,7 +84,6 @@ function deleteMembershipEdit(mbsnum, mbsname) {
 	}
 }
 
-
 function addMembershipEdit() {
 	var n_mbsname, n_mbsperiod, n_mbsprice;
 	n_mbsname = $('input[name = n_mbsname]').val();
@@ -123,8 +122,8 @@ function addMembershipEdit() {
 			"n_mbsprice" : n_mbsprice
 		},
 		success : function(result) {
-				alert("등록 성공");
-				location.reload();
+			alert("등록 성공");
+			location.reload();
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert("Error \n" + textStatus + " : " + errorThrown);
@@ -136,236 +135,252 @@ function addMembershipEdit() {
 }
 
 function searchUserData() {
-	  var input, filter, table, tr, td, i, txtValue, searchAt;
-	  input = document.getElementById("myInput");
-	  filter = input.value.toUpperCase();
-	  
-	  searchAt = document.getElementById("searchAt");
-	  
-	  table = document.getElementById("myTable");
-	  tr = table.getElementsByTagName("tr");
-	  
-	  for (i = 0; i < tr.length; i++) {
-	    td = tr[i].getElementsByTagName("td")[searchAt.value];
-	    
-	    if (td) {
-	      txtValue = td.textContent || td.innerText;
+	var input, filter, table, tr, td, i, txtValue, searchAt;
+	input = document.getElementById("myInput");
+	filter = input.value.toUpperCase();
 
-	      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-	        tr[i].style.display = "";
-	      } else {
-	        tr[i].style.display = "none";
-	      }
-	    }       
-	  }
+	searchAt = document.getElementById("searchAt");
+
+	table = document.getElementById("myTable");
+	tr = table.getElementsByTagName("tr");
+
+	for (i = 0; i < tr.length; i++) {
+		td = tr[i].getElementsByTagName("td")[searchAt.value];
+
+		if (td) {
+			txtValue = td.textContent || td.innerText;
+
+			if (txtValue.toUpperCase().indexOf(filter) > -1) {
+				tr[i].style.display = "";
+			} else {
+				tr[i].style.display = "none";
+			}
+		}
 	}
+}
 
 // 회원가입 달력
 $(function() {
-    $( "#testDatepicker" ).datepicker({
-    	changeMonth: true, 
-        changeYear: true,
-        nextText: '다음 달',
-        prevText: '이전 달',
-        dateFormat: 'yy-mm-dd'
-    });
+	$("#testDatepicker").datepicker({
+		changeMonth : true,
+		changeYear : true,
+		nextText : '다음 달',
+		prevText : '이전 달',
+		dateFormat : 'yy-mm-dd'
+	});
 });
-var isCheck=false;
-var isChange=false;
-//중복체크
-$(document).ready(function(){
-	
-	var use;
-	var isBlank=false;
-	
-	$("input[name=usid]").keydown(function(){//키보드가 눌렸을 때 span영역 을 다시 안보이게끔
-		isChange=true;
-		use="";
-		$("#idmessage").css("display","none");
-	})
-	$("input[name=id_check]").click(function(){
-		isCheck=true;
-		isChange =false;
-		isBlank =false;
-		
-		if($('input[name=usid]').val()==""){
-			alert("사용 할 아이디를 입력하세요.");
-			isBlank=true;
-			return false;
-		}
-		
-		$.ajax({
-			url:"idCheck.tm",
-			data :({
-				"usid":$("input[name=usid]").val()
-			}),
-			success:function(data){		
-				if(jQuery.trim(data)=='YES'){
-					 $('#idmessage').html("<font color=blue>사용 가능합니다.</font>");
-					$('#idmessage').show();//display:none인걸 보이게끔 바꾸어줌 
-					//alert("아이디 사용가능합니다.");
-					use="possible";
-				}else{
-					 $('#idmessage').html("<font color=red>이미 사용중인 아이디 입니다.</font>");
-					$('#idmessage').show();
-					//alert("아이디가 중복되었습니다.");
-					use="impossible";
-				} 
-			}
-		});//ajax()의 끝
-	})
-	
-	
-})
+var isCheck = false;
+var isChange = false;
+// 중복체크
+$(document)
+		.ready(
+				function() {
 
-//회원가입 유효성검사 
-function Validation(ugrade){
-	
-	
+					var use;
+					var isBlank = false;
+
+					$("input[name=usid]").keydown(function() {// 키보드가 눌렸을 때
+																// span영역 을 다시
+																// 안보이게끔
+						isChange = true;
+						use = "";
+						$("#idmessage").css("display", "none");
+					})
+					$("input[name=id_check]")
+							.click(
+									function() {
+										isCheck = true;
+										isChange = false;
+										isBlank = false;
+
+										if ($('input[name=usid]').val() == "") {
+											alert("사용 할 아이디를 입력하세요.");
+											isBlank = true;
+											return false;
+										}
+
+										$
+												.ajax({
+													url : "idCheck.tm",
+													data : ({
+														"usid" : $(
+																"input[name=usid]")
+																.val()
+													}),
+													success : function(data) {
+														if (jQuery.trim(data) == 'YES') {
+															$('#idmessage')
+																	.html(
+																			"<font color=blue>사용 가능합니다.</font>");
+															$('#idmessage')
+																	.show();// display:none인걸
+																			// 보이게끔
+																			// 바꾸어줌
+															// alert("아이디
+															// 사용가능합니다.");
+															use = "possible";
+														} else {
+															$('#idmessage')
+																	.html(
+																			"<font color=red>이미 사용중인 아이디 입니다.</font>");
+															$('#idmessage')
+																	.show();
+															// alert("아이디가
+															// 중복되었습니다.");
+															use = "impossible";
+														}
+													}
+												});// ajax()의 끝
+									})
+
+				})
+
+// 회원가입 유효성검사
+function Validation(ugrade) {
+
 	var usid = $('input[name=usid]');
 	var uname = $('input[name=uname]');
 	var upw = $('input[name=upw]');
-	var upwCheck = $('input[name=upwCheck]');	
-	var ubirth = $('input[name=ubirth]');	
-	var ugenre = $('input[name=ugenre]');	
-	
-	if(usid.val()=="") {
+	var upwCheck = $('input[name=upwCheck]');
+	var ubirth = $('input[name=ubirth]');
+	var ugenre = $('input[name=ugenre]');
+
+	if (usid.val() == "") {
 		alert("사용 할 아이디를 입력하세요.");
-		usid.focus();	
+		usid.focus();
 		return false;
-	} 
-	
-	if(isCheck==false|| isChange==true){
+	}
+
+	if (isCheck == false || isChange == true) {
 		alert("중복체크를 하세요.");
 		return false;
 	}
-	
-	else if(uname.val() == "") {
+
+	else if (uname.val() == "") {
 		alert("사용 할 닉네임을 입력하세요.");
-		
+
 		uname.focus();
-		return false; 
-	}
-	else if(upw.val()=="") {
+		return false;
+	} else if (upw.val() == "") {
 		alert("사용 할 비밀번호를 입력하세요.");
-		
+
 		upw.focus();
 		return false;
 	}
-	
-	else if (upwCheck.val()=="") {
+
+	else if (upwCheck.val() == "") {
 		alert("사용 할 비밀번호를 한 번 더 입력하세요.");
-		
+
 		upwCheck.focus();
 		return false;
 	}
-	
-	else if(upw.val()!=upwCheck.val()){
+
+	else if (upw.val() != upwCheck.val()) {
 		alert("입력한 비밀번호와 다릅니다.");
 		upwCheck.focus();
 		return false;
 	}
-	
-	else if(ubirth.val()=="") {
+
+	else if (ubirth.val() == "") {
 		alert("생년월일을 입력하세요.");
-		
+
 		ubirth.focus();
 		return false;
 	}
-	 
-	else if(!ugenre.is(':checked')){
-		 
-		alert("선호 장르 한가지 이상 선택하세요.");	
-		
+
+	else if (!ugenre.is(':checked')) {
+
+		alert("선호 장르 한가지 이상 선택하세요.");
+
 		return false;
-	}else{
+	} else {
 		var ugenres = "";
-		
-		for(i=0;i<ugenre.length;i++) {
-			
-			if (ugenre[i].checked){
-		    	ugenres += ugenre[i].value+"/";
-		    } 
+
+		for (i = 0; i < ugenre.length; i++) {
+
+			if (ugenre[i].checked) {
+				ugenres += ugenre[i].value + "/";
+			}
 		}
-		
+
 		alert(ugenres);
-		
+
 		$.ajax({
-        url :"userInsert.tm",
-        type:'POST',
-        data:
-        	{
-        	"ugrade" :ugrade,
-        	"usid" : usid.val(),
-        	"uname":uname.val(),
-        	"upw":upw.val(),
-        	"ubirth":ubirth.val(),
-        	"ugenre":ugenres 
-        	},
-        success : function(result) {
-        	if (result > -1) {
-	        	alert("회원 가입되었습니다.");
-	        	
-	        	location.href="userLogin.tm";
-        	}
-        },
-        error : function(jqXHR, textStatus, errorThrown) {
-			alert("Error \n" + textStatus + " : " + errorThrown);
-			self.close();
-		}
-    })
+			url : "userInsert.tm",
+			type : 'POST',
+			data : {
+				"ugrade" : ugrade,
+				"usid" : usid.val(),
+				"uname" : uname.val(),
+				"upw" : upw.val(),
+				"ubirth" : ubirth.val(),
+				"ugenre" : ugenres
+			},
+			success : function(result) {
+				if (result > -1) {
+					alert("회원 가입되었습니다.");
+
+					location.href = "userLogin.tm";
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert("Error \n" + textStatus + " : " + errorThrown);
+				self.close();
+			}
+		})
 	}
 }
-//영화 추가 시, 이미지 미리보기
-function handleImgFileSelect(e){
-	var files= e.target.files;
+// 영화 추가 시, 이미지 미리보기
+function handleImgFileSelect(e) {
+	var files = e.target.files;
 	var filesArr = Array.prototype.slice.call(files);
-	
-	filesArr.forEach(function(f){
-		if(!f.type.match("image.*")){
+
+	filesArr.forEach(function(f) {
+		if (!f.type.match("image.*")) {
 			alert(f.type);
 			alert("이미지 파일만 올려주세요.");
 
-			if($.browser.msie){    //IE version
-				$('input[name=thumbnail]').replaceWith($('input[name=thumbnail]').clone(true) );
-			}else{    //other browser
+			if ($.browser.msie) { // IE version
+				$('input[name=thumbnail]').replaceWith(
+						$('input[name=thumbnail]').clone(true));
+			} else { // other browser
 				$('input[name=thumbnail]').val("");
 			}
-			
+
 			return;
 		}
-		
+
 		var reader = new FileReader();
-		reader.onload = function(e){
-			$('img[name=preview_img]').attr("src",e.target.result);
+		reader.onload = function(e) {
+			$('img[name=preview_img]').attr("src", e.target.result);
 		}
 		reader.readAsDataURL(f);
 	});
 }
 
-//영화 업로드 형태 체크(URL, FILE)
-function uploadChk(sel){
-	//url
-	if(sel == 0){
+// 영화 업로드 형태 체크(URL, FILE)
+function uploadChk(sel) {
+	// url
+	if (sel == 0) {
 		$('span[id="url"]').show();
 		$('input[name=murl]').prop('disabled', false);
 
 		$('span[id="file"]').hide();
 		$('input[name=f_mrepo]').prop('disabled', true);
-	//file
-	}else{
+		// file
+	} else {
 		$('span[id="file"]').show();
 		$('input[name=f_mrepo]').prop('disabled', false);
-		
+
 		$('span[id="url"]').hide();
-		$('input[name=murl]').prop('disabled', true);			
+		$('input[name=murl]').prop('disabled', true);
 	}
 }
 
-function addMovieDataChk(){
+function addMovieDataChk() {
 
 	var mname = $('input[name=mname]').val();
-	var mrdate= $('input[name=mrdate]').val();
+	var mrdate = $('input[name=mrdate]').val();
 	var mgenrelen = $('input[name=mgenre]:checked').length;
 	var mdir = $('input[name=mdir]').val();
 	var mpro = $('input[name=mpro]').val();
@@ -375,56 +390,56 @@ function addMovieDataChk(){
 	var thumbnail = $('input[name=thumbnail]').val();
 	var murl = $('input[name=mur]').val();
 	var mrepo = $('input[name=f_mrepo]').val();
-	
-	if(mname ==''){
+
+	if (mname == '') {
 		alert("영화 이름 누락");
 		return false;
 	}
-	if(mrdate ==''){
+	if (mrdate == '') {
 		alert("개봉일 누락");
 		return false;
 	}
-	if(mgenrelen <=0){
+	if (mgenrelen <= 0) {
 		alert("1개 이상의 장르를 선택하세요.");
 		return false;
 	}
-	if(mdir ==''){
+	if (mdir == '') {
 		alert("영화의 감독을 입력하세요.");
 		return false;
 	}
-	if(mactor ==''){
+	if (mactor == '') {
 		alert("출연 배우를 입력하세요.");
 		return false;
 	}
-	if(msup ==''){
+	if (msup == '') {
 		alert("조연 배우를 입력하세요.");
 		return false;
 	}
-	if(msynop ==''){
+	if (msynop == '') {
 		alert("시놉시스를 입력하세요.");
 		return false;
 	}
-	
-	if(thumbnail == ''){
+
+	if (thumbnail == '') {
 		alert("섬네일 이미지를 삽입하세요.");
 		return false;
 	}
 
-	if(murl == '' && mrepo ==''){
+	if (murl == '' && mrepo == '') {
 		alert("영상 URL 혹은 파일을 삽입하세요.");
 		return false;
 	}
-	
-	if(murl == ''){
+
+	if (murl == '') {
 		murl.val(null);
 	}
 
 }
 
-function updateMovieDataChk(){
+function updateMovieDataChk() {
 
 	var mname = $('input[name=mname]').val();
-	var mrdate= $('input[name=mrdate]').val();
+	var mrdate = $('input[name=mrdate]').val();
 	var mgenrelen = $('input[name=mgenre]:checked').length;
 	var mdir = $('input[name=mdir]').val();
 	var mpro = $('input[name=mpro]').val();
@@ -434,52 +449,73 @@ function updateMovieDataChk(){
 	var thumbnail = $('input[name=thumbnail]').val();
 	var murl = $('input[name=mur]').val();
 	var mrepo = $('input[name=f_mrepo]').val();
-	
-	if(mname ==''){alert("영화 이름 누락"); return false;}
-	if(mrdate ==''){alert("개봉일 누락"); return false;}
-	if(mgenrelen <=0){alert("1개 이상의 장르를 선택하세요."); return false;}
-	if(mdir ==''){alert("영화의 감독을 입력하세요.");return false;}
-	if(mactor ==''){alert("출연 배우를 입력하세요."); return false;}
-	if(msup ==''){ alert("조연 배우를 입력하세요."); return false;}
-	if(msynop ==''){alert("시놉시스를 입력하세요."); return false; }
-	
-	if(murl == ''){
+
+	if (mname == '') {
+		alert("영화 이름 누락");
+		return false;
+	}
+	if (mrdate == '') {
+		alert("개봉일 누락");
+		return false;
+	}
+	if (mgenrelen <= 0) {
+		alert("1개 이상의 장르를 선택하세요.");
+		return false;
+	}
+	if (mdir == '') {
+		alert("영화의 감독을 입력하세요.");
+		return false;
+	}
+	if (mactor == '') {
+		alert("출연 배우를 입력하세요.");
+		return false;
+	}
+	if (msup == '') {
+		alert("조연 배우를 입력하세요.");
+		return false;
+	}
+	if (msynop == '') {
+		alert("시놉시스를 입력하세요.");
+		return false;
+	}
+
+	if (murl == '') {
 		murl.val(null);
 	}
 }
 
-function addNewNotice(){
-	
+function addNewNotice() {
+
 	var bsubject = $('input[name=bsubject]').val();
 	var bcon = $('textarea[name=bcon]').val();
-	
+
 	alert(bsubject);
 	alert(bcon);
-	
-	if(bsubject ==''){
+
+	if (bsubject == '') {
 		alert("제목을 입력하세요.");
 		return false;
 	}
-	
-	if(bcon ==''){
+
+	if (bcon == '') {
 		alert("내용을 입력하세요.");
 		return false;
 	}
-	
+
 	$.ajax({
 		url : 'addNoticeEdit.tm',
 		type : "GET",
-		data: {
+		data : {
 			"bsubject" : bsubject,
 			"bcon" : bcon
-			},
-		success : function(result){
-			if(result){
+		},
+		success : function(result) {
+			if (result) {
 				alert("작성되었습니다.");
 				location.reload();
 			}
 		},
-		
+
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert("Error \n" + textStatus + " : " + errorThrown);
 			self.close();
@@ -487,21 +523,21 @@ function addNewNotice(){
 	});
 }
 
-function deleteUser(unum){
+function deleteUser(unum) {
 	alert(unum);
 	$.ajax({
 		url : 'adminUserDel.tm',
 		type : "GET",
-		data: {
+		data : {
 			"unum" : unum
-			},
-		success : function(result){
-			if(result){
+		},
+		success : function(result) {
+			if (result) {
 				alert("해당 유저가 탈퇴 되었습니다.");
 				location.reload();
 			}
 		},
-		
+
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert("Error \n" + textStatus + " : " + errorThrown);
 			self.close();
@@ -509,15 +545,17 @@ function deleteUser(unum){
 	});
 }
 
-//공지사항 삭제
-function deleteNotice(bnum){
-	
+// 공지사항 삭제
+function deleteNotice(bnum) {
+
 	$.ajax({
-		url: 'deleteNoticeEdit.tm',
-		type:'GET',
-		data:{"bnum" : bnum},
-		success : function(result){
-			if(result){
+		url : 'deleteNoticeEdit.tm',
+		type : 'GET',
+		data : {
+			"bnum" : bnum
+		},
+		success : function(result) {
+			if (result) {
 				alert("공지글이 삭제 되었습니다.");
 				location.reload();
 			}
@@ -528,3 +566,320 @@ function deleteNotice(bnum){
 		}
 	});
 }
+
+// 각 컨텐츠 댓글
+// -------------------------------------------------------------
+function fn_insertComment() {
+
+	mnum = $('#mnum').val();
+	unum = $('#unum').val();
+	bcon = $('#bcon').val();
+	bsubject = $('#bsubject').val();
+
+	var allData = {
+		"mnum" : mnum,
+		"unum" : unum,
+		"bcon" : bcon,
+		"bsubject" : bsubject
+	};
+
+	if ($("input[name=bsubject]").val() == "") {
+		alert("제목을 입력하세요.");
+		$("input[name=bsubject]").val().focus();
+		return false;
+	} else if ($("input[name=bcon]").val() == "") {
+		alert("내용을 입력하세요.");
+		$("input[name=bcon]").val().focus();
+		return false;
+	} else {
+		$.ajax({
+			url : "commentInsert.tm",
+			type : 'GET',
+			data : allData,
+			success : function(result) {
+				if (result > -1) {
+					alert("댓글 작성 완료");
+					location.reload();
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert("Error \n" + textStatus + " : " + errorThrown);
+				self.close();
+			}
+		})
+	}
+}
+
+function fn_UpdateCommentForm(bnum) {
+	alert(bnum);
+	var allData = {
+		"bnum" : bnum
+	}
+	$
+			.ajax({
+				url : "commentUpdate.tm",
+				type : 'GET',
+				data : allData,
+				success : function(result) {
+					if (result != null) {
+						document.getElementById("sub" + bnum).style.display = "none";
+						document.getElementById("upSub" + bnum).style.display = "";
+						document.getElementById("con" + bnum).style.display = "none";
+						document.getElementById("upCon" + bnum).style.display = "";
+						document.getElementById("replyShowBtn" + bnum).style.display = "none";
+						document.getElementById("deleteBtn" + bnum).style.display = "";
+						document.getElementById("comfirmBtn" + bnum).style.display = "";
+						document.getElementById("updateBtn" + bnum).style.display = "none";
+					}
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					alert("Error \n" + textStatus + " : " + errorThrown);
+					self.close();
+				}
+			})
+}
+
+function fn_UpdateComment(bnum) {
+	upSubText = $('#upSubText' + bnum).val();
+	upConText = $('#upConText' + bnum).val();
+
+	var allData = {
+		"bnum" : bnum,
+		"upSubText" : upSubText,
+		"upConText" : upConText
+	};
+
+	if ($("#upSubText").val() == "") {
+		alert("제목을 입력하세요.");
+		$("#upSubText").val().focus();
+		return false;
+	} else if ($("#upConText").val() == "") {
+		alert("내용을 입력하세요.");
+		$("#upConText").val().focus();
+		return false;
+	} else {
+		$.ajax({
+			url : "commentUpdate.tm",
+			type : 'POST',
+			data : allData,
+			success : function(result) {
+				if (result > -1) {
+					alert("댓글 수정 완료");
+					location.reload();
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert("Error \n" + textStatus + " : " + errorThrown);
+				self.close();
+			}
+		})
+	}
+}
+
+function fn_ReplyCommentFormShow(bnum) {
+	document.getElementById("replyForm" + bnum).style.display = "";
+	document.getElementById("replyShowBtn" + bnum).style.display = "none";
+	document.getElementById("replyHideBtn" + bnum).style.display = "";
+}
+
+function fn_ReplyCommentFormHide(bnum) {
+	document.getElementById("replyForm" + bnum).style.display = "none";
+	document.getElementById("replyShowBtn" + bnum).style.display = "";
+	document.getElementById("replyHideBtn" + bnum).style.display = "none";
+}
+
+function fn_insertReply(bref) {
+	replyUnum = $('#replyUnum' + bref).val();
+	replyMnum = $('#replyMnum' + bref).val();
+	replySub = $('#replySub' + bref).val();
+	replyCon = $('#replyCon' + bref).val();
+
+	var allData = {
+		"bref" : bref,
+		"replyUnum" : replyUnum,
+		"replyMnum" : replyMnum,
+		"replySub" : replySub,
+		"replyCon" : replyCon
+	};
+
+	if ($("#replySub").val() == "") {
+		alert("제목을 입력하세요.");
+		$("#replySub").val().focus();
+		return false;
+	} else if ($("#replyCon").val() == "") {
+		alert("내용을 입력하세요.");
+		$("#replyCon").val().focus();
+		return false;
+	} else {
+		$.ajax({
+			url : "commentInsert.tm",
+			type : 'POST',
+			data : allData,
+			success : function(result) {
+				if (result > -1) {
+					alert("댓글의 답글 삽입 완료");
+					location.reload();
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert("Error \n" + textStatus + " : " + errorThrown);
+				self.close();
+			}
+		})
+	}
+}
+function fn_DeleteComment(bnum, brelevel) {
+
+	alert("brelevel : " + brelevel);
+	if (brelevel == 1) {
+		var allData = {
+			"bnum" : bnum
+		}
+		$.ajax({
+			url : "commentDelete.tm",
+			type : 'GET',
+			data : allData,
+			success : function(result) {
+				if (result > -1) {
+					alert("댓글 삭제 완료");
+					location.reload();
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert("Error \n" + textStatus + " : " + errorThrown);
+				self.close();
+			}
+		})
+	}
+	if (brelevel == 0) {
+		var allData = {
+			"bnum" : bnum
+		}
+		$.ajax({
+			url : "commentDelete.tm",
+			type : 'POST',
+			data : allData,
+			success : function(result) {
+				if (result > -1) {
+					alert("댓글 삭제 완료");
+					location.reload();
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert("Error \n" + textStatus + " : " + errorThrown);
+				self.close();
+			}
+		})
+	}
+}
+
+function movieLike(mnum, unum) {
+
+	var allData = {
+		"mnum" : mnum,
+		"unum" : unum
+	};
+
+	if (unum == null) {
+		alert("로그인 후 이용 가능합니다.");
+	} else {
+		$.ajax({
+			url : "movieLike.tm",
+			type : 'GET',
+			data : allData,
+			success : function(result) {
+				if (result > -1) {
+					alert("좋아요 성공");
+					document.getElementById("like").style.display = "none";
+					document.getElementById("unLike").style.display = "";
+					location.reload();
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert("Error \n" + textStatus + " : " + errorThrown);
+				self.close();
+			}
+		})
+	}
+}
+
+function movieUnLike(mnum, unum) {
+
+	var allData = {
+		"mnum" : mnum,
+		"unum" : unum
+	};
+	$.ajax({
+		url : "movieLike.tm",
+		type : 'POST',
+		data : allData,
+		success : function(result) {
+			if (result > -1) {
+				alert("좋아요 취소");
+				document.getElementById("like").style.display = "";
+				document.getElementById("unLike").style.display = "none";
+				location.reload();
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert("Error \n" + textStatus + " : " + errorThrown);
+			self.close();
+		}
+	})
+}
+
+function movieBookmark(mnum, unum) {
+
+	var allData = {
+		"mnum" : mnum,
+		"unum" : unum
+	};
+
+	if (unum == null) {
+		alert("로그인 후 이용 가능합니다.");
+	} else {
+		$.ajax({
+			url : "movieBookmark.tm",
+			type : 'GET',
+			data : allData,
+			success : function(result) {
+				if (result > -1) {
+					alert("즐겨찾기 성공");
+					document.getElementById("bookmark").style.display = "none";
+					document.getElementById("unBookmark").style.display = "";
+					location.reload();
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert("Error \n" + textStatus + " : " + errorThrown);
+				self.close();
+			}
+		})
+	}
+}
+
+function movieUnBookmark(mnum, unum) {
+
+	var allData = {
+		"mnum" : mnum,
+		"unum" : unum
+	};
+	$.ajax({
+		url : "movieBookmark.tm",
+		type : 'POST',
+		data : allData,
+		success : function(result) {
+			if (result > -1) {
+				alert("즐겨찾기 취소");
+				document.getElementById("bookmark").style.display = "";
+				document.getElementById("unBookmark").style.display = "none";
+				location.reload();
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert("Error \n" + textStatus + " : " + errorThrown);
+			self.close();
+		}
+	})
+}
+// -------------------------------------------------------------

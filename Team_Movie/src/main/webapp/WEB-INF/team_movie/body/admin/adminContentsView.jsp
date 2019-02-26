@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <%@include file="../../top.jsp"%>
-<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet" />
-<script src="http://vjs.zencdn.net/c/video.js"></script>
 
 <body>
 <div class="container">
@@ -22,13 +20,7 @@
 		<div class="card-body">
 			<div class="row">
 				<div class="col-sm-6" align="center">
-				<img src="<c:url value="/resources/saveMovieDB/${movieBean.mnum }/${movieBean.mimg}"/>" width="75%">
-				<!-- 동영상 처리 로직 -->
-				<%-- <video poster="<c:url value="/resources/saveMovieDB/${movieBean.mnum }/${movieBean.mimg}"/>" class="video-js vjs-default-skin" width="640" height="360" src="<c:url value="/resources/saveMovieDB/${movieBean.mnum }/${movieBean.mrepo}"/>"  controls="controls">
-               <source src="<c:url value="/resources/saveMovieDB/${movieBean.mnum }/${movieBean.mrepo}"/>" type="video/mp4" />
-               <p>지원하지 않는 브라우저입니다.</p>
-            </video> --%>
-				
+					<img src="<c:url value="/resources/saveMovieDB/${movieBean.mnum }/${movieBean.mimg}"/>" width="75%">
 				</div>
 				<div class="col-sm-6">
 					<h2 class="text-primary">${movieBean.mname }</h2>

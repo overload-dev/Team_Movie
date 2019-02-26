@@ -72,7 +72,7 @@
 							<div class="contents-portrait" onmouseover="movie_description(0,${mlist.mnum})" onmouseout="movie_description(1,${mlist.mnum})">
 							    <img src="<c:url value="/resources/saveMovieDB/${mlist.mnum }/${mlist.mimg}"/>" width="100%" >
 								<div class="contents-desc-frame ${mlist.mnum}" >
-										<h3 >${mlist.mname }</h3><hr>
+										<h3>${mlist.mname }</h3><hr>
 									<div class="contents-desc">
 										${mlist.msynop }
 									</div>
@@ -82,26 +82,7 @@
 							<c:if test="${mlist.mwcon==2 }">
 								<img alt="멤버전용" src="resources/img/sub/mbs.png" class="memIcon">
 							</c:if> ${mlist.mname }</h4>
-							
 						</a>
-						
-		
-						
-				<%-- 		<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${mlist.mnum})" onmouseout="movie_description(1,${mlist.mnum})">
-							<img src="<c:url value="/resources/saveMovieDB/${mlist.mnum }/${mlist.mimg}"/>" width="80%" >
-							 	<div id="desc" class="${mlist.mnum}" class="display-4" style="color: white;">
-							 		<p style="float: inherit;;">
-							 			${mlist.mname }
-							 			${mlist.msynop}
-							 		</p>
-								</div>
-								<div>
-								${mlist.mname }
-							 			${mlist.msynop}
-								</div>
-							</div> --%>
-						
-							<br>
 						</div>
 					</c:forEach>
 					

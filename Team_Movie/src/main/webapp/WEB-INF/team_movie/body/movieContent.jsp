@@ -4,330 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <script type="text/javascript">
 /*
  * 댓글 등록하기(Ajax)
  */
-function fn_insertComment(){
-	
-	mnum = $('#mnum').val();
-	unum = $('#unum').val();
-	bcon = $('#bcon').val();
-	bsubject = $('#bsubject').val();
-	
-	var allData = { 
-			"mnum": mnum, 
-			"unum": unum, 
-			"bcon": bcon,
-			"bsubject": bsubject 
-			};
-	
-	if($("input[name=bsubject]").val() == ""){
-		alert("제목을 입력하세요.");
-		$("input[name=bsubject]").val().focus();
-		return false;
-	}
-	else if($("input[name=bcon]").val() == ""){
-		alert("내용을 입력하세요.");
-		$("input[name=bcon]").val().focus();
-		return false;
-	} 
-	else {
-	    $.ajax({
-	        url :"commentInsert.tm",
-	        type:'GET',
-	        data:allData,
-	        success : function(result) {
-	        	if (result > -1) {
-		        	alert("댓글 작성 완료");
-		        	location.reload();
-	        	}
-	        },
-	        error : function(jqXHR, textStatus, errorThrown) {
-				alert("Error \n" + textStatus + " : " + errorThrown);
-				self.close();
-			}
-	    })
-	}
-}
 
-function fn_UpdateCommentForm(bnum) {
-	alert(bnum);
-	var allData = { 
-			"bnum": bnum 
-		}
-	$.ajax({
-        url : "commentUpdate.tm",
-        type: 'GET',
-        data: allData,
-        success : function(result) {
-        	if (result != null) {
-	        	document.getElementById("sub" + bnum).style.display = "none";
-	        	document.getElementById("upSub" + bnum).style.display = "";
-	        	document.getElementById("con" + bnum).style.display = "none";
-	        	document.getElementById("upCon" + bnum).style.display = "";
-	        	document.getElementById("replyShowBtn" + bnum).style.display = "none";
-	        	document.getElementById("deleteBtn" + bnum).style.display = "";
-	        	document.getElementById("comfirmBtn" + bnum).style.display = "";
-	        	document.getElementById("updateBtn" + bnum).style.display = "none";
-        	}
-        },
-        error : function(jqXHR, textStatus, errorThrown) {
-			alert("Error \n" + textStatus + " : " + errorThrown);
-			self.close();
-		}
-    })
-}
-
-function fn_UpdateComment(bnum) {
-	upSubText = $('#upSubText' + bnum).val();
-	upConText = $('#upConText' + bnum).val();
-	
-	var allData = { 
-			"bnum": bnum,
-			"upSubText": upSubText, 
-			"upConText": upConText 
-			};
-	
-	if($("#upSubText").val() == ""){
-		alert("제목을 입력하세요.");
-		$("#upSubText").val().focus();
-		return false;
-	}
-	else if($("#upConText").val() == ""){
-		alert("내용을 입력하세요.");
-		$("#upConText").val().focus();
-		return false;
-	} 
-	else {
-	   $.ajax({
-	        url :"commentUpdate.tm",
-	        type:'POST',
-	        data:allData,
-	        success : function(result) {
-	        	if (result > -1) {
-		        	alert("댓글 수정 완료");
-		        	location.reload();
-	        	}
-	        },
-	        error : function(jqXHR, textStatus, errorThrown) {
-				alert("Error \n" + textStatus + " : " + errorThrown);
-				self.close();
-			}
-	    })
-	}
-}
-
-function fn_ReplyCommentFormShow(bnum) {
-	document.getElementById("replyForm" + bnum).style.display = "";
-	document.getElementById("replyShowBtn" + bnum).style.display = "none";
-	document.getElementById("replyHideBtn" + bnum).style.display = "";
-}
-
-function fn_ReplyCommentFormHide(bnum) {
-	document.getElementById("replyForm" + bnum).style.display = "none";
-	document.getElementById("replyShowBtn" + bnum).style.display = "";
-	document.getElementById("replyHideBtn" + bnum).style.display = "none";
-}
-
-function fn_insertReply(bref) {
-	replyUnum = $('#replyUnum' + bref).val();
-	replyMnum = $('#replyMnum' + bref).val();
-	replySub = $('#replySub' + bref).val();
-	replyCon = $('#replyCon' + bref).val();
-	
-	var allData = { 
-			"bref" : bref,
-			"replyUnum" : replyUnum, 
-			"replyMnum" : replyMnum, 
-			"replySub" : replySub, 
-			"replyCon" : replyCon 
-			};
-	
-	if($("#replySub").val() == ""){
-		alert("제목을 입력하세요.");
-		$("#replySub").val().focus();
-		return false;
-	}
-	else if($("#replyCon").val() == ""){
-		alert("내용을 입력하세요.");
-		$("#replyCon").val().focus();
-		return false;
-	} 
- 	else {
-	   $.ajax({
-	        url :"commentInsert.tm",
-	        type:'POST',
-	        data:allData,
-	        success : function(result) {
-	        	if (result > -1) {
-		        	alert("댓글의 답글 삽입 완료");
-		        	location.reload();
-	        	}
-	        },
-	        error : function(jqXHR, textStatus, errorThrown) {
-				alert("Error \n" + textStatus + " : " + errorThrown);
-				self.close();
-			}
-	    })
-	}
-}
-function fn_DeleteComment(bnum, brelevel) {
-	
-	alert("brelevel : " + brelevel);
-	if(brelevel == 1) {
-		var allData = { 
-				"bnum": bnum 
-			} 
-		$.ajax({
-	        url : "commentDelete.tm",
-	        type: 'GET',
-	        data: allData,
-	        success : function(result) {
-	        	if (result > -1) {
-		        	alert("댓글 삭제 완료");
-		        	location.reload();
-	        	}
-	        },
-	        error : function(jqXHR, textStatus, errorThrown) {
-				alert("Error \n" + textStatus + " : " + errorThrown);
-				self.close();
-			}
-	    })
-	}
-	if (brelevel == 0) {
-		var allData = { 
-				"bnum": bnum 
-			} 
-		$.ajax({
-	        url : "commentDelete.tm",
-	        type: 'POST',
-	        data: allData,
-	        success : function(result) {
-	        	if (result > -1) {
-		        	alert("댓글 삭제 완료");
-		        	location.reload();
-	        	}
-	        },
-	        error : function(jqXHR, textStatus, errorThrown) {
-				alert("Error \n" + textStatus + " : " + errorThrown);
-				self.close();
-			}
-	    })
-	}
-}
-
-function movieLike(mnum, unum) {
-	
-	var allData = {
-			"mnum": mnum,
-			"unum": unum
-		};
-	
-	if (unum == null) {
-		alert("로그인 후 이용 가능합니다.");
-	}
- 	else {
-		$.ajax({
-			url : "movieLike.tm",
-			type: 'GET',
-			data: allData,
-			success : function(result) {
-			if (result > -1) {
-				alert("좋아요 성공");
-				document.getElementById("like").style.display = "none";
-				document.getElementById("unLike").style.display = "";
-				location.reload();
-				}
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				alert("Error \n" + textStatus + " : " + errorThrown);
-				self.close();
-			}
-		})
- 	}
-}
-
-function movieUnLike(mnum, unum) {
-	
-	var allData = {
-			"mnum": mnum,
-			"unum": unum
-		};
-	$.ajax({
-		url : "movieLike.tm",
-		type: 'POST',
-		data: allData,
-		success : function(result) {
-		if (result > -1) {
-			alert("좋아요 취소");
-			document.getElementById("like").style.display = "";
-			document.getElementById("unLike").style.display = "none";
-			location.reload();
-			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			alert("Error \n" + textStatus + " : " + errorThrown);
-			self.close();
-		}
-	})
-}
-
-function movieBookmark(mnum, unum) {
-	
-	var allData = {
-			"mnum": mnum,
-			"unum": unum
-		};
-	
-	if (unum == null) {
-		alert("로그인 후 이용 가능합니다.");
-	}
- 	else {
-		$.ajax({
-			url : "movieBookmark.tm",
-			type: 'GET',
-			data: allData,
-			success : function(result) {
-			if (result > -1) {
-				alert("즐겨찾기 성공");
-				document.getElementById("bookmark").style.display = "none";
-				document.getElementById("unBookmark").style.display = "";
-				location.reload();
-				}
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				alert("Error \n" + textStatus + " : " + errorThrown);
-				self.close();
-			}
-		})
- 	}
-}
-
-function movieUnBookmark(mnum, unum) {
-	
-	var allData = {
-			"mnum": mnum,
-			"unum": unum
-		};
-	$.ajax({
-		url : "movieBookmark.tm",
-		type: 'POST',
-		data: allData,
-		success : function(result) {
-		if (result > -1) {
-			alert("즐겨찾기 취소");
-			document.getElementById("bookmark").style.display = "";
-			document.getElementById("unBookmark").style.display = "none";
-			location.reload();
-			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			alert("Error \n" + textStatus + " : " + errorThrown);
-			self.close();
-		}
-	})
-}
 
 function movie_description(io,mnum){	
 	if(io == '0'){
@@ -337,9 +19,14 @@ function movie_description(io,mnum){
 	}
 }
 </script>
+<style type="text/css">
+				.movie-detail-desc{
+					margin-bottom: 10px;
+				}
+</style>
+			
 <title>Insert title here</title>
 <%@include file="../top.jsp"%>
-<%@include file="./../../common/common.jsp"%>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/moviePageStyle.css' />">
 
 </head>
@@ -352,17 +39,15 @@ function movie_description(io,mnum){
 			<div class="panel-body">
 				<c:if test="${movie.mrepo == null }">
 					<div style="position:relative;height:0;padding-bottom:56.25%">
-						<iframe src="${movie.murl}" style="position:absolute;width:100%;height:100%;left:0" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+						<iframe src="${movie.murl}" style="position:absolute; width:100%; height:100%;" frameborder="0" allowfullscreen></iframe>
 					</div>
-					${movie.murl }
 				</c:if>
 				<c:if test="${movie.murl == null }">
-					<video width="100%" controls autoplay="autoplay">
-						<!-- C:\Spring_beom2\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\Team_Movie\resources\saveMovieDB\3 -->
-					  <source src="../resources/saveMovieDB/${movie.mnum }/${movie.mrepo }" type="video/${extension }">
-					</video>
-					${movie.mrepo }<br><br>
-					/resources/saveMovieDB/${movie.mnum }/${movie.mrepo }
+					<!-- 동영상 처리 로직 -->
+					<video poster="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" class="video-js vjs-default-skin" width="100%" height="100%" src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mrepo}"/>"  controls="controls">
+               			<source src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mrepo}"/>" type="video/mp4" />
+               			<p>지원하지 않는 브라우저입니다.</p>
+            		</video>
 				</c:if>
 			</div>
 		</div>
@@ -410,72 +95,55 @@ function movie_description(io,mnum){
 		        	</c:if>
 				</div>
 			</div>
+			
 			<div class="panel-body">
-				<div class="col-md-12">
-					<div class="row">
-						<div class="col-md-3">
-							${movie.mgenre }
-						</div>
-						<div class="col-md-3">
-							분
-						</div>
-						<div class="col-md-3">
-							<c:if test="${movie.mage == 0}">
-								전체 관람가
-							</c:if>
-							<c:if test="${movie.mage != 0}">
-								${movie.mage }세 이상 관람가
-							</c:if>
-						</div>
-						<div class="col-md-3">
-							<b>개봉일</b> ${movie.mrdate }
-						</div>
+				<!-- desc -->
+				<div class="row movie-detail-desc">
+					<div class="col-sm-3">장르</div>
+					<div class="col-sm-3">${movie.mgenre }</div>
+					<div class="col-sm-3">개봉일</div>
+					<div class="col-sm-3">${movie.mrdate }</div>
+				</div>
+				<div class="row movie-detail-desc">
+					<div class="col-sm-3">관람 연령</div>					
+					<div class="col-sm-9">
+						<c:choose>
+							<c:when test="${movie.mage == 0}">전체 관람가</c:when>
+							<c:otherwise>
+								<c:choose>
+									<c:when test="${movie.mage ==1}">12세 이상 관람가</c:when>
+									<c:when test="${movie.mage ==2}">15세 이상 관람가</c:when>
+									<c:when test="${movie.mage ==2}">18세 이상 관람가</c:when>
+								</c:choose>
+							</c:otherwise>
+						</c:choose>
+						<img src="<c:url value="/resources/img/classification/${movie.mage}.png"/>" width="40px" height="40px"/>
 					</div>
 				</div>
-				<div class="col-md-12">
-					<div class="row">
-						<div class="col-md-1">
-							<b>감독</b>
-						</div>
-						<div class="col-md-5">
-							${movie.mdir }
-						</div>
-						<div class="col-md-1">
-							<b>연출</b>
-						</div>
-						<div class="col-md-5">
-							${movie.mpro }
-						</div>
-					</div>
+				<div class="row movie-detail-desc">
+					<div class="col-sm-3">감독</div>
+					<div class="col-sm-3">${movie.mdir }</div>
+					<div class="col-sm-3">연출</div>
+					<div class="col-sm-3">${movie.mpro }</div>
 				</div>
-				<div class="col-md-12">
-					<div class="row">
-						<div class="col-md-1">
-							<b>배우</b>
-						</div>
-						<div class="col-md-11">
-							${movie.mactor }, ${movie.msup }
-						</div>
-					</div>
+				<div class="row movie-detail-desc">
+					<div class="col-sm-3">배우</div>
+					<div class="col-sm-9">${movie.mactor }, ${movie.msup }</div>
 				</div>
-				<div class="col-md-12">
-					<div class="row">
-						<div class="col-md-1">
-							<b>줄거리</b>
-						</div>
-						<div class="col-md-11">
-							${movie.msynop }
-						</div>
-					</div>
+				<hr>
+				<div class="row movie-detail-desc">
+					<div class="col-sm-3">줄거리</div>
+					<div class="col-sm-9">${movie.msynop }</div>
 				</div>
+				<!-- desc -->			
 			</div>
-		</div>
-	</div>
+		</div>  
+  </div>
 	
 	<!-- 랜덤으로 나온 인기장르 for carousel1-->
 	<c:forEach items="${map }" var="map" varStatus="status">
 		<div class="container">
-		<c:set var="pg" value="${pg + 1 }" />
+			<c:set var="pg" value="${pg + 1 }" />
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<font style="font-size: 20px;">${map.key } 인기 영화</font>
@@ -528,8 +196,8 @@ function movie_description(io,mnum){
 										</div>
 									</div>
 									<!--.carousel-inner-->
-									<a data-slide="prev" href="#Carousel${pg }" class="left carousel-control"><i class="glyphicon glyphicon-chevron-left"></i></a> 
-									<a data-slide="next" href="#Carousel${pg }" class="right carousel-control"><i class="glyphicon glyphicon-chevron-right"></i></a>
+										<a data-slide="prev" href="#Carousel${pg }" class="left carousel-control"><i class="glyphicon glyphicon-chevron-left"></i></a> 
+										<a data-slide="next" href="#Carousel${pg }" class="right carousel-control"><i class="glyphicon glyphicon-chevron-right"></i></a>
 								</div>
 								<!--.Carousel-->
 							</div>
@@ -538,6 +206,7 @@ function movie_description(io,mnum){
 				</div>
 			</div>
 		</div>
+		
 	</c:forEach>
 	
 	<div class="container" id="comment">

@@ -78,7 +78,7 @@ public class AdminContentsAddController{
 		
 		
 		if(f_mrepo != null){
-			System.out.println("url :" + f_mrepo.getName());
+			System.out.println("repo :" + f_mrepo.getName());
 		}else{
 			movieBean.setMrepo("");
 			System.out.println("url :" +movieBean.getMurl());
@@ -87,19 +87,20 @@ public class AdminContentsAddController{
 		
 		System.out.println("##############################################");
 
-		// ������
+		// 占쏙옙占쏙옙占쏙옙
 		movieBean.setMimg(thumbnail.getOriginalFilename());
-		// ���� �̸�
+		// 占쏙옙占쏙옙 占싱몌옙
 		if(f_mrepo != null){
 			movieBean.setMrepo(f_mrepo.getOriginalFilename());
+			movieBean.setMurl("");
 		}
 
-		// DB �Է� ���� ������ �� ���
+		// DB 占쌉뤄옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙 占쏙옙占�
 		int getIndex = movieDao.AddMovie(movieBean);
 
 		System.out.println("getIndex : " + getIndex);
 
-		// C����̺꿡 1�� ���� ����
+		// C占쏙옙占쏙옙遣轅� 1占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 		;
 		
 		
@@ -108,12 +109,12 @@ public class AdminContentsAddController{
 		File file_f = new File(root_path);
 		File file_s = new File(root_path + "/" + getIndex);
 		
-		// 1차 경로
-		if (!file_f.exists()) {// 기존 폴더가 없을 경우
-			file_f.mkdir(); //새로 만든다
-			file_s.mkdir(); //기존 경로가 있다면 2차 경로를 생성
+		// 1李� 寃쎈줈
+		if (!file_f.exists()) {// 湲곗〈 �뤃�뜑媛� �뾾�쓣 寃쎌슦
+			file_f.mkdir(); //�깉濡� 留뚮뱺�떎
+			file_s.mkdir(); //湲곗〈 寃쎈줈媛� �엳�떎硫� 2李� 寃쎈줈瑜� �깮�꽦
 		}else{
-			file_s.mkdir(); //기존 경로가 있다면 2차 경로를 생성
+			file_s.mkdir(); //湲곗〈 寃쎈줈媛� �엳�떎硫� 2李� 寃쎈줈瑜� �깮�꽦
 		}
 		
 		File thumbnail_f = new File(file_s.getPath()+ "/" + thumbnail.getOriginalFilename());
@@ -125,11 +126,11 @@ public class AdminContentsAddController{
 		
 		try {
 			OutputStream out = new FileOutputStream(thumbnail_f);
-			byte[] bytes = thumbnail.getBytes(); //바이트 정보
+			byte[] bytes = thumbnail.getBytes(); //諛붿씠�듃 �젙蹂�
 			out.write(bytes);
 			if(f_mrepo != null){
 				out = new FileOutputStream(f_mrepo_f);
-				bytes = f_mrepo.getBytes(); //바이트 정보
+				bytes = f_mrepo.getBytes(); //諛붿씠�듃 �젙蹂�
 				out.write(bytes);
 			}
 			out.close();
@@ -146,7 +147,7 @@ public class AdminContentsAddController{
 	}
 	
 	public void deleteFile(File file_s){
-		// 폴더 내부를 순회하며 모든 파일을 지운다.
+		// �뤃�뜑 �궡遺�瑜� �닚�쉶�븯硫� 紐⑤뱺 �뙆�씪�쓣 吏��슫�떎.
 		File[] del_f = file_s.listFiles();
 		if(del_f != null){
 			for (int i = 0; i < del_f.length; i++) {

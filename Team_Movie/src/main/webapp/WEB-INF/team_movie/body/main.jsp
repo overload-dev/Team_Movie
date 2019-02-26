@@ -11,11 +11,12 @@
 <script type="text/javascript">
 	function movie_description(io,mnum){	
 		if(io == '0'){
-			$("span." + mnum).show();		
+			$("div." + mnum).show();		
 		}else{
-			$("span." + mnum).hide();		
+			$("div." + mnum).hide();		
 		}
 	}
+
 	
 	function special(ugrade,mnum,mwcon){	
 		alert("ugrade :"+ugrade)
@@ -180,39 +181,35 @@
 								
 								<c:if test="${not more}">
 									<c:set var="col" value="${col + 1 }" />
-									<div class="col-md-3">
-										<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${movie.mnum})" onmouseout="movie_description(1,${movie.mnum})">
-											
-											
-											
-											<a href="#" onclick=
-													
-												<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
-												<c:if test="${sessionScope.ugrade==null }">	
-													special(null,${movie.mnum},${movie.mwcon })
-												</c:if>
-											>
+									<div class="col-md-3" align="center">
+									
+										<a class="contents-link" href="#" onclick=
+											<c:if test="${sessionScope.ugrade!=null }">
+												"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"
+											</c:if>
 												
+											<c:if test="${sessionScope.ugrade==null }">	
+												special(null,${movie.mnum},${movie.mwcon })
+											</c:if>>
+											
+											<div class="contents-portrait" onmouseover="movie_description(0,${movie.mnum})" onmouseout="movie_description(1,${movie.mnum})">
 												<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="80%" >
-												<span id="desc" class="${movie.mnum}" > 
-													<b class="display-4" style="color: white;">
-														${movie.mname }
-													</b>
-													<br><br><br>
-													<b style="color: white;">
-														${movie.msynop}
-													</b>
-													<br><br><br>
-													<b style="color: white;">
-														상영 시간: ${movie.mruntime}
-													</b>
-												</span>
+												<div class="contents-desc-frame ${movie.mnum}" >
+														<h3>${movie.mname }</h3><hr>
+													<div class="contents-desc">
+														${movie.msynop }
+													</div>
+												</div>
+											</div>	
+											<h4 class="text-primary">
+												<c:if test="${movie.mwcon==2 }">
+													<img alt="멤버전용" src="resources/img/sub/mbs.png" class="memIcon">
+												</c:if> ${movie.mname }
+											</h4>
 												
-											</a>
+										</a>
 											
-											
-											
-										</div>
+
 										<br>
 										<b class="text-info"> ${movie.mname }</b>
 									</div>
