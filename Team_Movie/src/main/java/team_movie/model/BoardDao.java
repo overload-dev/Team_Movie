@@ -61,7 +61,7 @@ public class BoardDao {
 	public int AddNotice(BoardBean boardBean){
 		int chk = -1;
 		chk = sqlSessionTemplate.insert(namespace + ".AddNotice", boardBean);
-		return 1;
+		return chk;
 	}
 	
 	public int DeleteFirstComment(int mnum) {
@@ -72,5 +72,23 @@ public class BoardDao {
 	public int totalCommentByNum(int mnum) {
 		int cnt = sqlSessionTemplate.selectOne(namespace + ".totalCommentByNum", mnum);
 		return cnt;
+	}
+	
+	public int UpdateNotice(int bnum){
+		int chk = -1;
+		chk = sqlSessionTemplate.update(namespace + ".UpdateNotice");
+		return chk;
+	}
+	
+	public int DeleteNotice(int bnum){
+		int chk = -1;
+		chk = sqlSessionTemplate.delete(namespace +".DeleteNotice", bnum);
+		return chk;
+	}
+	
+	public List<BoardBean> GetNoticeForMain(){
+		List<BoardBean> noticeMainList = null;
+		noticeMainList = sqlSessionTemplate.selectList(namespace + ".GetNoticeForMain");
+		return noticeMainList; 
 	}
 }

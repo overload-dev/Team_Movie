@@ -81,20 +81,62 @@
 				<font style="font-size: 20px;">공지사항</font>
 			</div>
 			<div class="panel-body">
-				<table class="table">
-					<tr align="right">
-						<td colspan="2"><a href="#"> <font
-								style="font-weight: bold; font-size: large;">+</font>
-						</a></td>
-					</tr>
-					<tr>
-						<td width="10%" align="center"><font class="text-primary"
-							style="font-weight: bold;">번호</font> <!-- 공지사항인 게시글 타입의 칼럼만 순차적으로 count -->
-						</td>
-						<td width="90%" align="center"><font class="text-primary"
-							style="font-weight: bold;">내용</font></td>
-					</tr>
-				</table>
+				<c:choose>
+					<c:when test="${noticeMainList.size() == 0 }">
+						<div class="jumbotron jumbotron-fluid" style="background-color: #DCDDE2;">
+							<h1 class="display-3 text-primary">No Contents</h1>
+							<p class="lead">공지사항이 없습니다.</p>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<c:set var ="count" value="${noticeMainList.size()}"/>
+								<div align="right">
+								<a href="noticeView.tm"> 
+									<font style="font-weight: bold; font-size:large;">전체보기</font>
+									</a>
+								</div>
+								<div class="row">
+									<div class="col-sm-6" style="padding-left: 50px">
+										<font class="text-secondary" style="font-weight: bold;">제목</font>
+									</div>
+									<div class="col-sm-4" align="right" style="padding-right: 50px">
+										<font class="text-secondary" style="font-weight: bold;">등록일</font>
+									</div>
+								</div>
+		
+						<div class="panel-group" id="accordion">					
+							<c:forEach var ="notice" items="${noticeMainList}">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<div class="row">
+											<div class="col-sm-2">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapse${notice.bnum}">
+													No. ${count}
+												</a>
+											</div>
+											<div class="col-sm-4">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapse${notice.bnum}">
+													 ${notice.bsubject }
+												</a>
+											</div>
+											<div class="col-sm-6" align="right">
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapse${notice.bnum}">
+													<fmt:formatDate value="${notice.bdate}" pattern="yyyy-MM-dd"/>
+												</a>
+											</div>
+										</div>
+									</div>
+									<div id="collapse${notice.bnum}" class="panel-collapse collapse">
+										<div class="panel-body">
+											<pre>${notice.bcon }</pre>
+										</div>
+					    			</div>
+					  			</div>
+					  			<c:set var="count" value="${count - 1 }"/>
+				  			</c:forEach>
+						</div>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>

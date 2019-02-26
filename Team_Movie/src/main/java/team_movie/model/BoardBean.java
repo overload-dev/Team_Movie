@@ -1,5 +1,6 @@
 package team_movie.model;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class BoardBean {
@@ -15,7 +16,7 @@ public class BoardBean {
 	private int bref;
 	private int brestep;
 	private int brelevel;
-	private Timestamp bdate;
+	private Date bdate;
 	
 	public BoardBean(){
 		
@@ -38,7 +39,7 @@ public class BoardBean {
 	}
 
 	public BoardBean(int bnum, int btype, int bmnum, int bunum, String bsubject, String bcon, int bref, int brestep,
-			int brelevel, Timestamp bdate) {
+			int brelevel, Date bdate) {
 		super();
 		this.bnum = bnum;
 		this.btype = btype;
@@ -105,10 +106,10 @@ public class BoardBean {
 	public void setBrelevel(int brelevel) {
 		this.brelevel = brelevel;
 	}
-	public Timestamp getBdate() {
+	public Date getBdate() {
 		return bdate;
 	}
-	public void setBdate(Timestamp bdate) {
+	public void setBdate(Date bdate) {
 		this.bdate = bdate;
 	}
 	
