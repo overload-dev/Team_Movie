@@ -43,23 +43,30 @@
 		
 	}
 </script>
+<style type="text/css">
+#slide{
+	size: cover;
+}
+
+</style>
 </head>
 <body>
 	<div class="container">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 
 			<!-- Wrapper for slides -->
-			<div class="carousel-inner">
+			<div class="carousel-inner" id="slide">
 				<div class="item active">
-					<img src="http://placehold.it/1170x400" alt="이미지1">
+				
+					<img src="resources/img/sliderImg/1.jpg" alt="이미지1">
 				</div>
 
 				<div class="item">
-					<img src="http://placehold.it/1170x400" alt="이미지2">
+					<img src="resources/img/sliderImg/2.jpg" alt="이미지2">
 				</div>
 
 				<div class="item">
-					<img src="http://placehold.it/1170x400" alt="이미지3">
+					<img src="resources/img/sliderImg/3.jpg" alt="이미지3">
 				</div>
 			</div>
 			

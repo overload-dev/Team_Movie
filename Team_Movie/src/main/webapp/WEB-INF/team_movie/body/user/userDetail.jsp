@@ -7,9 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body> 
 
-<div class="container">    
+<div class="container">
+	<div class="col-md-9"> 
 	<div class="row">
 		<div class="panel panel-default">
 			<div class="panel-heading"> <h4 >회원개인정보</h4></div>
@@ -43,12 +44,13 @@
                     </table>
                   
 					<hr> 
-						<div class="col-sm-5 col-xs-6 tital " ><p>Date Of Joining  : ${userInfo.udate}</p></div><br>
+						<div class="col-sm-12 col-xs-6 tital " ><p>Date Of Joining  : ${userInfo.udate}</p></div><br>
 					<hr>
 						<center><button class="btn" type="button" onclick="location.href='userUpdate.tm'" >회원 정보 수정</button></center>
 					</div>
                 </div>
 		</div>
+	</div>
 	</div>
 </div>
 	

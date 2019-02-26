@@ -11,14 +11,15 @@
 </head>
 <body> 
 	<div class="container">
+	<div class="col-sm-9">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<div class="row">
-					<div class="col-sm-10">
+				<div class="row"> 
+					<div class="col-sm-9">
 						<font style="font-size: 20px;">즐겨 찾기
 					</font>
 					</div>
-					<div class="col-sm-2">
+					<div class="col-sm-3">
 						<a href="main.tm" > 
 							<font style="font-weight: bold; color:black; font-size: large; text-align:right;">다른 영화 보기</font>
 						</a>
@@ -62,6 +63,7 @@
 				</c:if>
 			</div>
 		</div>
+	</div>
 	</div>
 </body>
 </html>

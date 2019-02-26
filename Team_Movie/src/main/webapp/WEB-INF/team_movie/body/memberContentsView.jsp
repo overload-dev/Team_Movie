@@ -53,7 +53,7 @@ function special(ugrade,mnum,mwcon){
 </head>
 <body>
 
-
+ 
 			
 <c:forEach items="${genreList }" var="genre">
 	
