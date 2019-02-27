@@ -18,8 +18,7 @@ create table tmovie(
    murl varchar2(4000), --영상 링크
    mrepo varchar2(4000), --영상 저장소 링크
    mimg varchar2(4000) not null, --섬네일 이미지
-   msynop varchar2(4000) not null, --줄거리
-   mruntime varchar2(4000) not null-- 런닝타임  
+   msynop varchar2(4000) not null --줄거리
 );
 
 drop sequence tmovie_seq;
@@ -132,9 +131,17 @@ create sequence mmembership_seq
   
 
 --tmovie 삽입예제
-insert into tmovie values(tmovie_seq.nextval,'극한직업','코미디','이병헌','이병헌','류승룡,이하늬','진선규,이동휘',2,'2019-01-23',sysdate,0,0,1,'a',null,'c','d','0:0:0');
-insert into tmovie values(tmovie_seq.nextval,'뺑반','범죄,액션','한준희','한준희','공효진,류준렬,조정석','염정아,전혜진',2,'2019-01-30',sysdate,0,0,1,'a',null,'c','d','0:0:0');
-insert into tmovie values(tmovie_seq.nextval,'말모이','드라마','엄유나','엄유나','유해진,윤계상,김홍파','우현,김태훈',2,'2019-01-30',sysdate,0,0,1,'a',null,'c','d','0:0:0');
+insert into tmovie values(tmovie_seq.nextval,'가버나움 (Capernaum, 2018)','드라마','감독','연출','주연','조연',2,'19/01/24',sysdate,0,0,1,null,'sam1.mp4','가비나움.jpg','시놉시스');
+insert into tmovie values(tmovie_seq.nextval,'그레이브 하우스 (Graves and Bones, 2016)','스릴러,공포,드라마','감독','연출','주연','조연',2,'16/01/01',sysdate,0,0,1,null,'sam3.mp4','그레이브하우스.jpg','시놉시스');
+insert into tmovie values(tmovie_seq.nextval,'극한직업 (Extreme Job)','코미디','감독','연출','주연','조연',2,'19/01/23',sysdate,0,0,1,null,'sam2_576.mp4','극한직업.jpg','시놉시스');
+insert into tmovie values(tmovie_seq.nextval,'우리가족: 라멘샵 (Ramen Teh)','드라마','감독','연출','주연','조연',1,'19/01/31',sysdate,0,0,1,null,'sam2_1080.mp4','라멘샵.jpg','시놉시스');
+insert into tmovie values(tmovie_seq.nextval,'보헤미안 랩소디 (Bohemian Rhapsody)','드라마','감독','연출','주연','조연',1,'18/10/31',sysdate,0,0,1,null,'sam1.mp4','보헤미안랩소디.jpg','시놉시스');
+insert into tmovie values(tmovie_seq.nextval,'뺑반 (Hit-and-Run Squad)','액션,범죄','감독','연출','주연','조연',2,'19/01/30',sysdate,0,0,1,null,'sam2_720P.mp4','뺑반.jpg','시놉시스');
+insert into tmovie values(tmovie_seq.nextval,'마약왕','범죄,드라마','감독','연출','주연','조연',3,'18/12/19',sysdate,0,0,2,'https://www.youtube.com/embed/A4ewtUIqt88',null,'마약왕.jpg','시놉시스');
+insert into tmovie values(tmovie_seq.nextval,'알리타: 배틀 엔젤 (Alita: Battle Angel)','액션,스릴러,멜로','감독','연출','주연','조연',3,'19/02/05',sysdate,0,0,2,'https://www.youtube.com/embed/yTE7vwwcC7s',null,'알리타_배틀엔젤.jpg','시놉시스');
+insert into tmovie values(tmovie_seq.nextval,'말모이','드라마','감독','연출','주연','조연',3,'19/01/09',sysdate,0,0,2,'https://www.youtube.com/embed/lHjy3OK2eqk',null,'말모이.jpg','시놉시스');
+insert into tmovie values(tmovie_seq.nextval,'아쿠아맨','액션','감독','연출','주연','조연',1,'18/12/19',sysdate,0,0,2,'https://www.youtube.com/embed/OfIQW6s1-ew',null,'아쿠아맨.jpg','시놉시스');
+
 
 --tuser 삽입예제
 insert into tuser values(tuser_seq.nextval,'admin','admin','1234',sysdate,'2019-01-01',0,null,null,'a');
