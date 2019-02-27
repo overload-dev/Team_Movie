@@ -98,8 +98,11 @@ public class MovieListController {
 		
 		int totalCount = movieDao.GetTotalCount();
 		
+		int memTotal = movieDao.GetMemCount();
 		mav.addObject("memMovie",memMovie);
 		mav.addObject("totalCount", totalCount);
+		mav.addObject("memTotal", memTotal);
+		
 		mav.addObject("movie", movie);
 		mav.addObject("map", map);
 		mav.setViewName(getPage);
