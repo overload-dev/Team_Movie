@@ -10,14 +10,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-		<div class="col-sm-9">
-				<div class="panel panel-info">
+<div class="row">
+			<div class="panel panel-info">
 					<div class="panel-heading">Membership List</div>
 					<div class="panel-body" align="center">
 						<table class="table" cellspacing="0" width="100%">
-							<thead>
+							<thead> 
 								<tr>
 									<th>고유번호</th>
 									<th>멤버십명</th>
@@ -41,7 +39,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+		
 </body>
 </html>

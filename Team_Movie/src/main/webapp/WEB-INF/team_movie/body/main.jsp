@@ -114,7 +114,7 @@
 				<font style="font-size: 20px;">멤버 전용관</font>
 				</div>
 			<div class="panel-body">
-				<c:if test="${totalCount == 0 }">
+				<c:if test="${memTotal == 0 }">
 					<div class="jumbotron jumbotron-fluid" style="background-color: #DCDDE2;">
          				<h1 class="display-3 text-primary">No Contents</h1>
         		    	<p class="lead">컨텐츠가 없습니다.</p>

@@ -10,8 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body> 
-	<div class="container">
-	<div class="col-sm-9">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div class="row"> 
@@ -67,7 +65,6 @@
 				</c:if>
 			</div>
 		</div>
-	</div>
-	</div>
+	
 </body>
 </html>

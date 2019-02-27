@@ -8,17 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body> 
-
-<div class="container">
-	<div class="col-md-9"> 
 	<div class="row">
 		<div class="panel panel-default">
 			<div class="panel-heading"> <h4 >회원개인정보</h4></div>
 				<div class="panel-body">
                     <div class="col-md-8 col-xs-8 col-sm-6 col-lg-10" >
-						<div class="container" > 
 							<h3><b>${sessionScope.uname}</b> 님의 정보</h3>  
-                    	</div>
                     <br>
                     <table class="table">
                     	<tr>
@@ -42,7 +37,6 @@
                     		<td>${userInfo.ugrade}</td>
                     	</tr>
                     </table>
-                  
 					<hr> 
 						<div class="col-sm-12 col-xs-6 tital " ><p>Date Of Joining  : ${userInfo.udate}</p></div><br>
 					<hr>
@@ -51,8 +45,6 @@
                 </div>
 		</div>
 	</div>
-	</div>
-</div>
 	
 </body>
 </html>
