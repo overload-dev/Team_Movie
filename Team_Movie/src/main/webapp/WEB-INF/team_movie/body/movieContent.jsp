@@ -164,36 +164,31 @@ function movie_description(io,mnum){
 										<div class="row">
 										<c:forEach items="${map.value }" var="movie" varStatus="status">
 										<c:set var="col" value="${col + 1 }" />
-											<div class="col-md-3">
+											<div class="col-md-3" align="center">
 												<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${movie.mnum})" onmouseout="movie_description(1,${movie.mnum})">
-													<a href="#" onclick=
+													<a class="contents-link" href="#" onclick=
 														
 													<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
 													<c:if test="${sessionScope.ugrade==null }">	
 														special(null,${movie.mnum},${movie.mwcon })
 													</c:if>>
-														<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="80%" >
-														<span id="desc" class="${movie.mnum}" >
-															<b class="display-4" style="color: white;">
-																${movie.mname }
-															</b>
-															<br><br><br>
-															<b style="color: white;">
-																${movie.msynop}
-															</b>
-															<br><br><br>
-															<b style="color: white;">
-																상영 시간: ${movie.mruntime}
-															</b>
-														</span>
-													</a>
+												
+													<div class="contents-portrait" onmouseover="movie_description(0,'${pg}-${col}-${movie.mnum}')" onmouseout="movie_description(1,'${pg}-${col}-${movie.mnum}')">
+														<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="100%" >
+														<div class="contents-desc-frame ${pg}-${col}-${movie.mnum}" >
+																<h3>${movie.mname }</h3><hr>
+															<div class="contents-desc">
+																${movie.msynop }
+															</div>
+														</div>
+													</div>
+													<h4 class="text-primary">
+														<c:if test="${movie.mwcon==2 }">
+															<img alt="멤버전용" src="resources/img/sub/mbs.png" class="memIcon">
+														</c:if> ${movie.mname }
+													</h4>
+												</a>
 												</div>
-												<br>
-												<h4 class="text-primary">
-												<c:if test="${movie.mwcon==2 }">
-													<img alt="멤버전용" src="resources/img/sub/mbs.png" class="memIcon">
-												</c:if> ${movie.mname }
-											</h4>
 											</div>
 										<c:if test="${col%4 == 0 }">
 										</div>
