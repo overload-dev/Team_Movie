@@ -114,5 +114,15 @@ public class MovieDao {
 		return freeMovie;
 	}
 
+	public int GetFreeCount() {
+		int cnt = sqlSessionTemplate.selectOne(namespace + ".GetFreeCount");
+		return cnt;
+	}
+
+	public int GetMemCount() {
+		int cnt = sqlSessionTemplate.selectOne(namespace + ".GetMemCount");
+		return cnt;
+	}
+
 	
 }

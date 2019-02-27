@@ -29,12 +29,12 @@ public class MovieAllContentViewController {
 		ModelAndView mav = new ModelAndView();
 		
 		List<MovieBean> allMovie=movieDao.GetMovieList();
-		
+		int totalCount = movieDao.GetTotalCount();
 		//genreµ•¿Ã≈Õ
 		List<GenreBean> genreList = null;
 		genreList = genreDao.getGenreList();
 		mav.addObject("genreList", genreList);
-		
+		mav.addObject("totalCount",totalCount);
 		mav.addObject("allMovie",allMovie);
 		mav.setViewName(getPage);
 		

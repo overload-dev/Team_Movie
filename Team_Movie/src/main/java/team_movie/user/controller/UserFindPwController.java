@@ -34,9 +34,14 @@ public class UserFindPwController {
 	GenreDao genreDao;
 	//login에서 비밀번호 찾기 클릭했을때
 	@RequestMapping(value=command, method = RequestMethod.GET)
-	public String doActionGet(){
-		return getPage;
-	}
+	public ModelAndView doActionGet(){
+		ModelAndView mav = new ModelAndView();
+		List<GenreBean> genreList = null;
+		genreList = genreDao.getGenreList();
+		mav.addObject("genreList", genreList);
+		mav.setViewName(getPage);
+		return mav;
+	} 
 
 	//findPw.jsp에서 비밀 번호 찾기 버튼을 클릭 했을 때
 	@RequestMapping(value=command , method= RequestMethod.POST)

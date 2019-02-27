@@ -31,12 +31,14 @@ public class MovieFreeContentController {
 		System.out.println("MovieFreeContentController");
 		
 		ModelAndView mav =new ModelAndView();
-		
+		int totalCount = movieDao.GetFreeCount();
 		List<MovieBean> freeMovie=movieDao.GetFreeMovie();
 		System.out.println("freeMovie :" +freeMovie.size());
 		
 		List<GenreBean> genreList = null;
 		genreList = genreDao.getGenreList();
+		
+		mav.addObject("totalCount", totalCount);
 		mav.addObject("genreList", genreList);
 		mav.addObject("freeMovie",freeMovie);
 		

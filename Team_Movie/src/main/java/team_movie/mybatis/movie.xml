@@ -120,4 +120,10 @@
 	
 		select * from tmovie where  mwcon=1
 	</select>
+	<select id="GetFreeCount" resultType="int">
+		select count(*) from tmovie where mwcon=1
+	</select>
+	<select id="GetMemCount" resultType="int">
+		select count(*) from tmovie where mwcon=2
+	</select>
 </mapper>

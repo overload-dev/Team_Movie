@@ -46,7 +46,7 @@ public class UserFindIdController {
 		return mav;
 	} 
 	
-	//findId.jsp에서 아이디찾기 버튼을 클릭 했을 때
+	//findIdPw.jsp에서 아이디찾기 버튼을 클릭 했을 때
 	@RequestMapping(value=command , method= RequestMethod.POST)
 	public ModelAndView doActionPost(
 						@RequestParam(value="uname") String uname,

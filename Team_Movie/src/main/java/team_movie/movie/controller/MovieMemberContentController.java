@@ -34,7 +34,12 @@ public class MovieMemberContentController {
 		List<MovieBean> memberMovie=movieDao.GetMemberMovieList(2);
 		
 		System.out.println("memberMovie :" +memberMovie.size());
+		
 		List<GenreBean> genreList = null;
+		int totalCount =movieDao.GetMemCount();
+		
+		mav.addObject("totalCount",totalCount);
+		
 		genreList = genreDao.getGenreList();
 		mav.addObject("genreList", genreList);
 		
