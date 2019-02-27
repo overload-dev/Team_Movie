@@ -54,9 +54,15 @@ public class AdminContentsUpdateController {
 	}
 
 	@RequestMapping(value = command, method = RequestMethod.POST)
-	public String doActionPost(HttpServletRequest request, MovieBean movieBean, @RequestParam("mrepo") String mrepo,
-			@RequestParam("mimg") String mimg, @RequestParam("thumbnail") MultipartFile thumbnail,
-			@RequestParam(value = "f_mrepo", required = false) MultipartFile f_mrepo, HttpSession session) {
+	public String doActionPost(
+			HttpServletRequest request,
+			MovieBean movieBean,
+			@RequestParam("mrepo") String mrepo,
+			@RequestParam("mimg") String mimg,
+			@RequestParam("old_murl") String old_murl,
+			@RequestParam("thumbnail") MultipartFile thumbnail,
+			@RequestParam(value = "f_mrepo", required = false) MultipartFile f_mrepo,
+			HttpSession session) {
 
 		System.out.println("##############################################");
 		System.out.println("thumbnail" + thumbnail.getName());
@@ -88,32 +94,25 @@ public class AdminContentsUpdateController {
 			newthum = true; // 占쎄퉱嚥≪뮇�뒲 占쎌뵠沃섎챷占썲첎占� 占쎈굶占쎈선占쎌긾
 			System.out.println("占쎌뵠沃섎챷占� 占쎌젟癰귨옙 揶쏄퉮�뻿");
 			movieBean.setMimg(thumbnail.getOriginalFilename()); // 占쎄퉱嚥∽옙 占쎈굶占쎈선占쎌궔
-																// 占쎈솁占쎌뵬 占쎌뵠�뵳袁⑹뱽
-																// 占쏙옙占쎌삢
+																// 占쎈솁占쎌뵬 占쎌뵠�뵳袁⑹뱽// 占쏙옙占쎌삢
 		} else {
 			System.out.println("占쎌뵠沃섎챷占� 占쎌젟癰귨옙 揶쏄퉮�뻿 占쎈툧占쎈쭡");
 			System.out.println(movieBean.getMimg());
 		}
 		
-		System.out.println("movieBean.getMrepo():" + movieBean.getMrepo());
-		System.out.println("movieBean.getMrepo():" + movieBean.getMrepo());
-		System.out.println("movieBean.getMrepo():" + movieBean.getMrepo());
-		System.out.println("movieBean.getMrepo():" + movieBean.getMrepo());
-		System.out.println("movieBean.getMrepo():" + movieBean.getMrepo());
-		System.out.println("f_mrepo.getOriginalFilename():" + f_mrepo.getOriginalFilename());
-		System.out.println("f_mrepo.getOriginalFilename():" + f_mrepo.getOriginalFilename());
-		System.out.println("f_mrepo.getOriginalFilename():" + f_mrepo.getOriginalFilename());
-		System.out.println("f_mrepo.getOriginalFilename():" + f_mrepo.getOriginalFilename().equals(""));
-		System.out.println("f_mrepo.getOriginalFilename():" + f_mrepo.getOriginalFilename() == "");
 		// 占쎄퉱嚥∽옙 占쎌궞占쎌뵬占쎌궔 占쎈솁占쎌뵬占쎌뵠 占쎌뿳占쎈뮉筌욑옙 野껓옙占쎄텢(url占쎌뵠 占쎈툡占쎈빒 占쎈솁占쎌뵬占쎌뵠 占쎈굶占쎈선占쎌긾)
-		if (!f_mrepo.getOriginalFilename().equals("") && movieBean.getMrepo() != null) {
+		if (f_mrepo !=null && movieBean.getMrepo() != null) {
 			newrepo = true;
 			movieBean.setMrepo(f_mrepo.getOriginalFilename()); // 占쎄퉱嚥∽옙 占쎈굶占쎈선占쎌궔
 		}
 
-		if (f_mrepo.getOriginalFilename().equals("")) {
+		if (f_mrepo == null) {
 			movieBean.setMrepo(mrepo);
 			newrepo= false;
+		}
+		
+		if(movieBean.getMurl() == null){
+			movieBean.setMurl(old_murl);
 		}
 		// db update===================
 

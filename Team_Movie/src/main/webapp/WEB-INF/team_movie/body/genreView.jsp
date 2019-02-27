@@ -25,8 +25,6 @@
 							<div class="col-md-12">
 						<div class="row" style="text-align: center;">
 							<c:set var="col" value="0" />
-							<c:set var="more" value="false" />
-							
 							<c:forEach var="mlist" items="${movielist}">
 								<c:if test="${not more}">
 									<c:set var="col" value="${col + 1 }" />
@@ -57,10 +55,8 @@
 										</c:if> ${mlist.mname }</h4>
 									</div>
 									<c:if test="${col%4 == 0 }">
-										 
-										<p style="width:400px;">&nbsp;</p>
-										
-									</c:if> 
+										<div class="col-sm-12" style="height: 1px; border-bottom: 12px; border-bottom-color: black;"></div>
+									</c:if>
 								</c:if>
 							</c:forEach>
 								</div>

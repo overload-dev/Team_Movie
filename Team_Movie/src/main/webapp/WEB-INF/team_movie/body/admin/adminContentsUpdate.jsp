@@ -37,7 +37,7 @@
 						<hr color="lightgrey" style="height: 1px">
 						<h3 class="text-primary">Other Data</h3>
 						
-						<%-- <input type="hidden" name="murl" value=${movieBean.murl }> --%>
+						<input type="hidden" name="old_murl" value=${movieBean.murl }>
 						<input type="hidden" name="mrepo" value=${movieBean.mrepo }>
 						
 						
