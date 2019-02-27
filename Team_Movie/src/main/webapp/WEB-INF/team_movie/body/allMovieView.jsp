@@ -55,8 +55,7 @@
 												<br>
 												<br> <b style="color: white;"> ${movie.msynop} </b> <br>
 												<br>
-												<br> <b style="color: white;"> 상영 시간:
-														${movie.mruntime} </b>
+												<br> 
 											</span>
 											</a>
 										</div>
