@@ -72,6 +72,10 @@ public class AdminContentsUpdateController {
 		System.out.println("wcon :" + movieBean.getMwcon());
 		System.out.println("##########################################");
 
+		if(movieBean.getMurl() == null){
+			movieBean.setMurl("");
+		}
+		
 		boolean newthum = false;
 		boolean newrepo = false;
 		// 占쎈씜占쎈쑓占쎌뵠占쎈뱜 占쎈쭆 占쎄퐶占쎄퐬占쎌뵬 占쎌젟癰귨옙 野껓옙占쎄텢
@@ -90,18 +94,26 @@ public class AdminContentsUpdateController {
 			System.out.println("占쎌뵠沃섎챷占� 占쎌젟癰귨옙 揶쏄퉮�뻿 占쎈툧占쎈쭡");
 			System.out.println(movieBean.getMimg());
 		}
-
+		
+		System.out.println("movieBean.getMrepo():" + movieBean.getMrepo());
+		System.out.println("movieBean.getMrepo():" + movieBean.getMrepo());
+		System.out.println("movieBean.getMrepo():" + movieBean.getMrepo());
+		System.out.println("movieBean.getMrepo():" + movieBean.getMrepo());
+		System.out.println("movieBean.getMrepo():" + movieBean.getMrepo());
+		System.out.println("f_mrepo.getOriginalFilename():" + f_mrepo.getOriginalFilename());
+		System.out.println("f_mrepo.getOriginalFilename():" + f_mrepo.getOriginalFilename());
+		System.out.println("f_mrepo.getOriginalFilename():" + f_mrepo.getOriginalFilename());
+		System.out.println("f_mrepo.getOriginalFilename():" + f_mrepo.getOriginalFilename().equals(""));
+		System.out.println("f_mrepo.getOriginalFilename():" + f_mrepo.getOriginalFilename() == "");
 		// 占쎄퉱嚥∽옙 占쎌궞占쎌뵬占쎌궔 占쎈솁占쎌뵬占쎌뵠 占쎌뿳占쎈뮉筌욑옙 野껓옙占쎄텢(url占쎌뵠 占쎈툡占쎈빒 占쎈솁占쎌뵬占쎌뵠 占쎈굶占쎈선占쎌긾)
-		if (f_mrepo != null && movieBean.getMrepo() != null) {
+		if (!f_mrepo.getOriginalFilename().equals("") && movieBean.getMrepo() != null) {
 			newrepo = true;
 			movieBean.setMrepo(f_mrepo.getOriginalFilename()); // 占쎄퉱嚥∽옙 占쎈굶占쎈선占쎌궔
-																// 占쎈솁占쎌뵬占쎌벥 占쎌뵠�뵳袁⑹뱽
-																// 占쏙옙占쎌삢
-			movieBean.setMurl("");
 		}
 
-		if (f_mrepo == null) {
-			movieBean.setMrepo("");
+		if (f_mrepo.getOriginalFilename().equals("")) {
+			movieBean.setMrepo(mrepo);
+			newrepo= false;
 		}
 		// db update===================
 

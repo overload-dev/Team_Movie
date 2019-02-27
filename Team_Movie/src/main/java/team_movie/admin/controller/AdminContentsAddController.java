@@ -93,6 +93,8 @@ public class AdminContentsAddController{
 		if(f_mrepo != null){
 			movieBean.setMrepo(f_mrepo.getOriginalFilename());
 			movieBean.setMurl("");
+		}else{
+			movieBean.setMrepo("");
 		}
 
 		// DB 占쌉뤄옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙 占쏙옙占�
