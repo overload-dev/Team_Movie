@@ -48,8 +48,7 @@
 							murl,
 							mrepo,
 							mimg,
-							msynop,
-							mruntime
+							msynop
 		)
 		values(tmovie_seq.nextval,
 				#{mname},
@@ -67,8 +66,7 @@
 				#{murl},
 				#{mrepo},
 				#{mimg},
-				#{msynop},
-				'0:0:0'
+				#{msynop}
 		)
 	</insert>
 	
@@ -100,8 +98,7 @@
 			murl =#{murl},
 			mrepo =#{mrepo},
 			mimg =#{mimg},
-			msynop =#{msynop},
-			mruntime ='0:0:0'
+			msynop =#{msynop}
 		where mnum=#{mnum}
 	</update>
 	<delete id="DeleteContents">

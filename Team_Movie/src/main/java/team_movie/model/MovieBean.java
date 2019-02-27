@@ -22,7 +22,6 @@ public class MovieBean {
 	private int mwcon; // 관람 회원 등급
 	private String mimg; // 섬네일 이미지
 	private String msynop; // 시놉시스
-	private String mruntime; //러닝타임
 	
 	public MovieBean() {
 
@@ -32,7 +31,7 @@ public class MovieBean {
 
 	public MovieBean(int mnum, String mname, String mgenre, String mdir, String mpro, String mactor, String msup,
 			int mage, String mele, Date mrdate, Date midate, int mrcount, String murl, String mrepo,
-			int mwcon, String mimg, String msynop, String mruntime) {
+			int mwcon, String mimg, String msynop) {
 		super();
 		this.mnum = mnum;
 		this.mname = mname;
@@ -51,7 +50,6 @@ public class MovieBean {
 		this.mwcon = mwcon;
 		this.mimg = mimg;
 		this.msynop = msynop;
-		this.mruntime = mruntime;
 	}
 
 
@@ -190,18 +188,6 @@ public class MovieBean {
 
 	public void setMsynop(String msynop) {
 		this.msynop = msynop;
-	}
-
-
-
-	public String getMruntime() {
-		return mruntime;
-	}
-
-
-
-	public void setMruntime(String mruntime) {
-		this.mruntime = mruntime;
 	}
 
 	
