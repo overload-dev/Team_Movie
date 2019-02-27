@@ -18,6 +18,8 @@
 			<div class="panel-heading">
 				<font style="font-size: 20px;">${genre.gname } 컨텐츠</font>
 			</div>
+			
+			
 			<div class="panel-body">
 				<c:if test="${totalCount == 0 }">
 					<div class="jumbotron jumbotron-fluid"
@@ -26,16 +28,19 @@
 						<p class="lead">컨텐츠가 없습니다.</p>
 					</div>
 				</c:if>
+				
+				
+				
 				<div class="row">
 					
 					<div class="col-md-12">
 						<div class="row" style="text-align: center;">
 							<c:set var="col" value="0" />
-							<c:set var="more" value="false" />
+							
 							
 							<c:forEach items="${freeMovie }" var="movie" varStatus="status">
 								<c:if test="${fn:contains(movie.mgenre,genre.gname ) }">
-								<c:if test="${not more}">
+							
 									<c:set var="col" value="${col + 1 }" />
 									<div class="col-md-3" align="center">
 										<div style="position: relative; cursor: pointer;"
@@ -72,7 +77,7 @@
 										
 									</c:if> 
 								</c:if>
-								</c:if>
+							
 							</c:forEach>
 						</div>
 

@@ -30,11 +30,9 @@
 					<div class="col-md-12">
 						<div class="row" style="text-align: center;">
 							<c:set var="col" value="0" />
-							<c:set var="more" value="false" />
 
 							<c:forEach items="${memberMovie }" var="movie" varStatus="status">
 								<c:if test="${fn:contains(movie.mgenre,genre.gname )}">
-								<c:if test="${not more}">
 									<c:set var="col" value="${col + 1 }" />
 									<div class="col-md-3" align="center">
 				 						<div style="position: relative; cursor: pointer;"
@@ -70,7 +68,6 @@
 										
 									</c:if> 
 								</c:if> 
-								</c:if>
 							</c:forEach> 
 						</div>
 

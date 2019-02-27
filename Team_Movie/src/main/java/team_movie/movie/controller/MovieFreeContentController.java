@@ -38,6 +38,11 @@ public class MovieFreeContentController {
 		List<GenreBean> genreList = null;
 		genreList = genreDao.getGenreList();
 		
+		
+		
+		
+		
+		
 		mav.addObject("totalCount", totalCount);
 		mav.addObject("genreList", genreList);
 		mav.addObject("freeMovie",freeMovie);

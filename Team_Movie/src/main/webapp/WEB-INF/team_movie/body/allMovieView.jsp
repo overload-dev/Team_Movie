@@ -53,7 +53,7 @@
 										</a>
 									</div>
 									<c:if test="${col%4 == 0 }">
-											 <div class="col-sm-12" style="height: 1px; border-bottom: 12px; border-bottom-color: black;"></div>
+										 <div class="col-sm-12" style="height: 1px; border-bottom: 12px; border-bottom-color: black;"></div>
 									</c:if>
 							</c:forEach>
 							</div>
