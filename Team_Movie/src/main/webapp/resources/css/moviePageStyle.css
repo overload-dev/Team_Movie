@@ -90,3 +90,9 @@ span#desc{
 		width: 30px;
 	}
 	
+.movie-view-desc{
+	font-size: medium;
+	font-weight: bold;
+	color: #3B3C43;
+}
+	
