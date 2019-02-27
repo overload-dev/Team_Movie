@@ -21,8 +21,18 @@
 					</c:when>
 					<c:otherwise>
 						<div class="row">
+							
+							<div class="col-md-12">
+						<div class="row" style="text-align: center;">
+							<c:set var="col" value="0" />
+							<c:set var="more" value="false" />
+							
 							<c:forEach var="mlist" items="${movielist}">
+								<c:if test="${not more}">
+									<c:set var="col" value="${col + 1 }" />
+								
 								<div class="col-sm-3" align="center">
+									
 									<a class="contents-link" href="#"
 									onclick=
 										<c:if test="${sessionScope.ugrade!=null }">
@@ -40,13 +50,21 @@
 												</div>
 											</div>							
 										</div>
+									</a>
 										<h4 class="text-primary">
 										<c:if test="${mlist.mwcon==2 }">
 											<img alt="멤버전용" src="resources/img/sub/mbs.png" class="memIcon">
 										</c:if> ${mlist.mname }</h4>
-									</a>
-								</div>
+									</div>
+									<c:if test="${col%4 == 0 }">
+										 
+										<p style="width:400px;">&nbsp;</p>
+										
+									</c:if> 
+								</c:if>
 							</c:forEach>
+								</div>
+							</div>
 						</div>
 					</c:otherwise>
 				</c:choose>
