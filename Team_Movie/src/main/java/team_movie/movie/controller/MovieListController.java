@@ -59,19 +59,19 @@ public class MovieListController {
 		
 		for (int i=0; i<3; i++) {
 			switch (num[i]) {
-			case 1 : genres = genres + "ÄÚ¹Ìµð/";
+			case 1 : genres = genres + "ì½”ë¯¸ë””/";
 				break;
-			case 2 : genres = genres + "¾×¼Ç/";
+			case 2 : genres = genres + "ì•¡ì…˜/";
 				break;
-			case 3 : genres = genres + "¹üÁË/";
+			case 3 : genres = genres + "ë²”ì£„/";
 				break;
-			case 4 : genres = genres + "½º¸±·¯/";
+			case 4 : genres = genres + "ìŠ¤ë¦´ëŸ¬/";
 				break;
-			case 5 : genres = genres + "°øÆ÷/";
+			case 5 : genres = genres + "ê³µí¬/";
 				break;
-			case 6 : genres = genres + "µå¶ó¸¶/";
+			case 6 : genres = genres + "ë“œë¼ë§ˆ/";
 				break;
-			case 7 : genres = genres + "¸á·Î/";
+			case 7 : genres = genres + "ë©œë¡œ/";
 				break;
 			}
 		}

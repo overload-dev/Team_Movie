@@ -32,6 +32,21 @@ public class MovieDao {
 		return movieByGenre;
 	}
 
+	public List<MovieBean> GetMovieListByGenreForMember(String genre, int mwcon) {
+		Map<String, String> map = null;
+		map = new HashMap<String,String>();
+		
+		map.put("genre", genre);
+		map.put("mwcon",String.valueOf(mwcon));
+		
+		List<MovieBean> movieByGenre = new ArrayList<MovieBean>();
+		movieByGenre = sqlSessionTemplate.selectList(namespace + ".GetMovieListByGenreForMember", map);
+		return movieByGenre;
+	}
+	
+	
+	
+
 	public int GetTotalCount() {
 		int cnt = sqlSessionTemplate.selectOne(namespace + ".GetTotalCount");
 		return cnt;

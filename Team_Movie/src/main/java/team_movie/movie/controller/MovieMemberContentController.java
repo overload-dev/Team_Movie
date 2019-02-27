@@ -1,9 +1,14 @@
 package team_movie.movie.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,32 +26,48 @@ public class MovieMemberContentController {
 	
 	
 	@Autowired
+	@Qualifier("MyMovieDao")
 	MovieDao movieDao;
+	
 	@Autowired
+	@Qualifier("myGenreDao")
 	GenreDao genreDao;
 	
 	@RequestMapping(value=command, method=RequestMethod.GET)
-	public ModelAndView doActionGet(){
-		System.out.println("MovieFreeContentController");
+	public String doActionGet(Model model){
 		
-		ModelAndView mav =new ModelAndView();
+		//Get All Genre
+		List<GenreBean> genreList = null;
+		genreList = genreDao.getGenreList();
+		
+		//Map------------------------
+		Map <String, List<MovieBean>> map = null;
+		map = new HashMap<String, List<MovieBean>>();
+		//Map------------------------
+
+		for(int i = 0 ; i < genreList.size() ; i++){
+			
+			//Look At this Genre
+			String genreIs = genreList.get(i).getGname();
+			
+			//select List By Genre
+			List<MovieBean> movieListByGenreforMember =  movieDao.GetMovieListByGenreForMember(genreIs,2);
+			
+			// input by Genre Key and Bean
+			map.put(genreIs, movieListByGenreforMember);			
+		}
+		
+		
 		
 		List<MovieBean> memberMovie=movieDao.GetMemberMovieList(2);
 		
 		System.out.println("memberMovie :" +memberMovie.size());
 		
-		List<GenreBean> genreList = null;
-		int totalCount =movieDao.GetMemCount();
-		
-		mav.addObject("totalCount",totalCount);
-		
-		genreList = genreDao.getGenreList();
-		mav.addObject("genreList", genreList);
-		
-		mav.addObject("memberMovie",memberMovie);
-		mav.setViewName(getPage);
+		//sending data
+		model.addAttribute("genreList", genreList);
+		model.addAttribute("map", map);
 		 
-		return mav; 
+		return getPage; 
 	}
 	
 }

@@ -10,74 +10,56 @@
 <%@ include file="../top.jsp" %>
 </head>
 <body>
-<c:forEach items="${genreList }" var="genre">
-	<div class="container">
-	<c:set var="pg" value="${pg + 1 }" />
-		<div class="panel panel-info">
-			<div class="panel-heading">
-				<font style="font-size: 20px;">${genre.gname } 컨텐츠 </font>
-			</div>
-			<div class="panel-body">
-				<c:if test="${totalCount == 0 }">
-					<div class="jumbotron jumbotron-fluid"
-						style="background-color: #DCDDE2;">
-						<h1 class="display-3 text-primary">No Contents</h1>
-						<p class="lead">컨텐츠가 없습니다.</p>
-					</div>
-				</c:if>
-				<div class="row">
-					
-					<div class="col-md-12">
-						<div class="row" style="text-align: center;">
-							<c:set var="col" value="0" />
-
-							<c:forEach items="${memberMovie }" var="movie" varStatus="status">
-								<c:if test="${fn:contains(movie.mgenre,genre.gname )}">
-									<c:set var="col" value="${col + 1 }" />
-									<div class="col-md-3" align="center">
-				 						<div style="position: relative; cursor: pointer;"
-											onmouseover="movie_description(0,${movie.mnum})"
-											onmouseout="movie_description(1,${movie.mnum})">
-											<a class="contents-link" href="#"
-												onclick=
-													<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
-													<c:if test="${sessionScope.ugrade==null }">	
-														special(null,${movie.mnum},${movie.mwcon })
-													</c:if>>
+<div class="container">
+	<h2 class="text-primary">Membership Contents</h2>
+	<c:forEach var ="map" items="${map }">
+		<c:set var="pg" value="${pg + 1 }" />
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<font style="font-size: 20px;">${map.key } 컨텐츠 </font>
+				</div>
+				<div class="panel-body">
+					<c:if test="${fn:length(map.value) == 0 }">
+						<div class="jumbotron jumbotron-fluid" style="background-color: #DCDDE2;">
+		         			<h1 class="display-3 text-primary">No Contents</h1>
+		        		   	<p class="lead">${map.key } 장르의 멤버십 전용 컨텐츠가 없습니다.</p>
+		        		</div>
+					</c:if>
+					<div class="row" style="text-align: center;">
+						<c:set var="col" value="0" />
+						<c:forEach items="${map.value }" var="movie" varStatus="status">
+							<c:set var="col" value="${col + 1 }" />
+							<div class="col-md-3" align="center">
+								<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${movie.mnum})" onmouseout="movie_description(1,${movie.mnum})">
+									<a class="contents-link" href="#" onclick=
+										<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
+										<c:if test="${sessionScope.ugrade==null }">	
+											special(null,${movie.mnum},${movie.mwcon })
+										</c:if>>
 												
-													<div class="contents-portrait" onmouseover="movie_description(0,'${pg}-${col}-${movie.mnum}')" onmouseout="movie_description(1,'${pg}-${col}-${movie.mnum}')">
-														<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="100%" >
-														<div class="contents-desc-frame ${pg}-${col}-${movie.mnum}" >
-																<h3>${movie.mname }</h3><hr>
-															<div class="contents-desc">
-																${movie.msynop }
-															</div>
-														</div>
-													</div>
-													<h4 class="text-primary">
-														<c:if test="${movie.mwcon==2 }">
-															<img alt="멤버전용" src="resources/img/sub/mbs.png" class="memIcon">
-														</c:if> ${movie.mname }
-													</h4>
-												</a>
+										<div class="contents-portrait" onmouseover="movie_description(0,'${pg}-${col}-${movie.mnum}')" onmouseout="movie_description(1,'${pg}-${col}-${movie.mnum}')">
+											<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="100%" >
+											<div class="contents-desc-frame ${pg}-${col}-${movie.mnum}" >
+												<h3>${movie.mname }</h3><hr>
+												<div class="contents-desc">
+													${movie.msynop }
+												</div>
+											</div>
 										</div>
-									</div>
-									<c:if test="${col%4 == 0 }">
-										 
-										<p style="width:400px;">&nbsp;</p>
-										
-									</c:if> 
-								</c:if> 
-							</c:forEach> 
-						</div>
-
-
+										<h4 class="text-primary">
+											<c:if test="${movie.mwcon==2 }">
+												<img alt="멤버전용" src="resources/img/sub/mbs.png" class="memIcon">
+											</c:if> ${movie.mname }
+										</h4>
+									</a>
+								</div>
+							</div>
+						</c:forEach>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
 	</c:forEach>
+</div>
 <%@include file="../footer.jsp"%>
 </body>
 </html>
