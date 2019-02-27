@@ -10,7 +10,7 @@
 <body> 
 	<div class="container wrap">
 		<div class="panel panel-info"> 
-			<div class="panel-heading"><h2>${gname }</h2></div>
+			<div class="panel-heading"><font style="font-size: 20px;">${gname }</font></div>
 			<div class="panel-body">
 				<c:choose>
 					<c:when test="${movielist.size() == 0}">

@@ -9,14 +9,11 @@
 <%@include file="../../top.jsp"%>
 <body>
 <div class="container wrap">
-	<h2></h2>
-	
-	<input type="button" class="btn btn-secondary" value="목록으로" onclick="history.go(-1)">
-	<div class="card">
-	 	<div class="card-header bg-dark text-white">
+	<div class="panel panel-info">
+	 	<div class="panel-heading">
 	 		Movie Profile
 	 	</div>
-		<div class="card-body">
+		<div class="panel-body">
 			<div class="row">
 				<div class="col-sm-6" align="center">
 					<img src="<c:url value="/resources/saveMovieDB/${movieBean.mnum }/${movieBean.mimg}"/>" width="75%">
@@ -82,7 +79,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="card-footer">
+		<div class="panel-footer">
 			<div class="row">
 				<div class="col-sm-6">
 					<h4 class="text-primary">운영 정보</h4>
@@ -124,19 +121,24 @@
 				<!-- <div class="col-sm-1" style="border-left: 0px solid lightgrey;"></div> -->
 				<div class="col-sm-6" style="border-left: 0px solid lightgrey;" align="center">
 					<ul class="list-group" width="100%" >
-						<li class="list-group-item">
-							<a href="">
-								상영 페이지
+						<li class="list-group-item list-group-item-info">
+							<a href="movieContent.tm?mnum=${movieBean.mnum }">
+								<b>상영 페이지</b>
 							</a>
 						</li>
-						<li class="list-group-item">
+						<li class="list-group-item list-group-item-info">
 							<a href="updateContentsEdit.tm?mnum=${movieBean.mnum }">
-								정보 수정
+								<b>정보 수정</b>
 							</a>
 						</li>
-						<li class="list-group-item">
+						<li class="list-group-item list-group-item-info">
 							<a href="deleteContentsEdit.tm?mnum=${movieBean.mnum }">
-								삭제
+								<b>삭제</b>
+							</a>
+						</li>
+						<li class="list-group-item list-group-item-info">
+							<a href="javascript:history.go(-1)">
+								<b>목록으로</b>
 							</a>
 						</li>
 					</ul>
