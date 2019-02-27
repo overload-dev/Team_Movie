@@ -8,7 +8,7 @@
 <%@include file="../top.jsp"%>
 </head>
 <body>
-	<div class="container">
+	<div class="container wrap">
 		<h2 class="text-primary">Notice</h2>
 		<div class="panel panel-info">
 			<div class="panel-heading">All Notice</div>
@@ -23,6 +23,10 @@
 					<c:otherwise>
 						<c:set var ="count" value="${noticeList.size()}"/>
 							<div class="row">
+								<div class="col-sm-2"align="center">
+									
+									<font class="text-secondary" style="font-weight: bold;">No.</font>
+								</div>
 								<div class="col-sm-6" style="padding-left: 50px">
 									<font class="text-secondary" style="font-weight: bold;">제목</font>
 								</div>

@@ -52,10 +52,13 @@
 				<c:set var ="count" value="${noticeList.size()}"/>
 
 						<div class="row">
-							<div class="col-sm-6" style="padding-left: 50px">
+							<div class="col-sm-2">
+								<font class="text-secondary" style="font-weight: bold;">No.</font>			
+							</div>
+							<div class="col-sm-5" style="padding-left: 50px">
 								<font class="text-secondary" style="font-weight: bold;">제목</font>
 							</div>
-							<div class="col-sm-4" align="right" style="padding-right: 50px">
+							<div class="col-sm-3" align="right" style="padding-right: 50px">
 								<font class="text-secondary" style="font-weight: bold;">등록일</font>
 							</div>
 							<div class="col-sm-2" align="right" style="padding-right: 50px">

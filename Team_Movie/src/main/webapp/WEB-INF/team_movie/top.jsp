@@ -90,10 +90,10 @@
 				<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">내 정보<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a class="dropitem" href="#">공지사항</a></li>
 						<li><a class="dropitem" href="adminUserEdit.tm">회원 관리</a></li>
-						<li><a class="dropitem" href="adminContentsEdit.tm">작품 관리</a></li>
-						<li><a class="dropitem" href="#">이벤트</a></li>
+						<li><a class="dropitem" href="adminContentsEdit.tm">컨텐츠 관리</a></li>
+						<li><a class="dropitem" href="adminNoticeEdit.tm">공지사항</a></li>
+						<li><a class="dropitem" href="adminMembershipEdit.tm">멤버십 관리</a></li>
 					</ul>
 				</li>
 				<li><a href="userLogout.tm">Logout</a></li>
