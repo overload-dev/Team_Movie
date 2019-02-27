@@ -102,10 +102,6 @@
 							</td>
 						</tr>
 						<tr>
-							<th>조회수</th>
-							<td>${movieBean.mrcount }</td>
-						</tr>
-						<tr>
 							<th>URL</th>
 							<td>${movieBean.murl}</td>
 						</tr>
@@ -113,8 +109,6 @@
 							<th>저장소</th>
 							<td>${movieBean.mrepo }</td>						
 						</tr>
-						
-						
 					</table>
 				</div>
 				<!-- 세로 구분선 -->
