@@ -20,6 +20,7 @@
 		where mgenre like '%'||#{genre}||'%' and mwcon = #{mwcon}
 		order by mlike
 	</select>
+	
 	 
 	<select id="GetTotalCount" resultType="int">
 		select count(*) from tmovie

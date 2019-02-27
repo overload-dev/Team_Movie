@@ -1,6 +1,9 @@
 package team_movie.movie.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,21 +34,25 @@ public class MovieFreeContentController {
 		System.out.println("MovieFreeContentController");
 		
 		ModelAndView mav =new ModelAndView();
-		int totalCount = movieDao.GetFreeCount();
-		List<MovieBean> freeMovie=movieDao.GetFreeMovie();
-		System.out.println("freeMovie :" +freeMovie.size());
 		
 		List<GenreBean> genreList = null;
 		genreList = genreDao.getGenreList();
 		
+		Map<String, List<MovieBean>> map = null;
+		map =new HashMap<String, List<MovieBean>>();
 		
-		
-		
-		
-		
-		mav.addObject("totalCount", totalCount);
+	      for(int i = 0 ; i < genreList.size();i++){
+	          
+	         String genreIs= genreList.get(i).getGname(); 
+	         
+	          List<MovieBean> movieListByGenreforFree = movieDao.GetMovieListByGenreForMember(genreIs,1);
+	          
+	          map.put(genreIs,movieListByGenreforFree);
+	       }
+	       
+		 
 		mav.addObject("genreList", genreList);
-		mav.addObject("freeMovie",freeMovie);
+		mav.addObject("map", map);
 		
 		mav.setViewName(getPage);
 		

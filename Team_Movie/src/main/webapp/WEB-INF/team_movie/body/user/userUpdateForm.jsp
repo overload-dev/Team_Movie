@@ -9,14 +9,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			
-	<form action="userUpdate.tm" method="POST">
+<div class="row">
 		<div class="panel panel-default">
 			<div class="panel-heading"> <h4 >회원개인정보수정하기</h4></div>
 				<div class="panel-body">
-                    <div class="col-md-12 col-xs-12 col-sm-6 col-lg-10" >
+                    <div class="col-sd-12" >
+					<form action="userUpdate.tm" method="POST">
 						<div class="container" > 
 							<h3><b>${sessionScope.uname}</b> 님의 정보</h3>  
 							<input type="hidden" value="${userInfo.unum }" name="unum">
@@ -65,12 +63,11 @@
 						<div class="col-sm-5 col-xs-6 tital " ><p>Date Of Joining  : ${userInfo.udate}</p></div><br> 
 				
 						<center><input class="btn" type="submit" value="수정완료"/></center>
+            		 </form>
 					</div>
                 </div>
 		</div>
-             </form>
 		</div>
-	</div>
 </body>
 </html>
 

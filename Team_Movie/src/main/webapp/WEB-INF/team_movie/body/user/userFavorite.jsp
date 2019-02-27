@@ -9,62 +9,57 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body> 
+<body>
+	<div class="row">
 		<div class="panel panel-default">
-			<div class="panel-heading">
-				<div class="row"> 
-					<div class="col-sm-9">
-						<font style="font-size: 20px;">즐겨 찾기
-					</font>
-					</div>
-					<div class="col-sm-3">
-						<a href="main.tm" > 
-							<font style="font-weight: bold; color:black; font-size: large; text-align:right;">다른 영화 보기</font>
-						</a>
-					</div>
-				</div>
-			</div>
-		<div class="panel-body">
+			<div class="panel-heading"><h4>즐겨 찾기</h4></div>
+		
 			<c:if test="${ fn:length(mLists)==0}">
-				<div class="jumbotron jumbotron-fluid" style="background-color: #DCDDE2;">
-					<h1 class="display-3 text-primary">No Contents</h1>
-					<p class="lead">즐겨 찾기한 컨텐츠가 없습니다.</p>
-				</div>
-			</c:if>
-				<c:if test="${fn:length(mLists)!=0 }">
-					<div class="panel-body">
-						<div class="col-md-12">
-							
-							<!-- 즐겨찾기 목록 시작-->
-								<div class="row" style="text-align: center;">
-									<c:set var="col" value="0" />
-										<c:set var="more" value="false" />
-											<c:forEach var="mLists" items="${mLists}">
-												<c:set var="col" value="${col + 1 }" />
-														<div class="col-md-3">
-															<a class="favorite" href="movieContent.tm?mnum=${mLists.mnum }&usid=${sessionScope.usid }">
-												<img src="<c:url value="/resources/saveMovieDB/${mLists.mnum }/${mLists.mimg}"/>" width="80%" >
-															<br>
-															<h4 class="text-primary">
-												<c:if test="${mLists.mwcon==2 }">
-													<img alt="멤버전용" src="resources/img/sub/mbs.png" class="memIcon">
-												</c:if> ${mLists.mname }
-											</h4>
-																									
-										</a>
-									</div>
-										<c:if test="${col%4 == 0 }">
-											<c:set var="more" value="true" />
-										</c:if>
-										</c:forEach>
-									</div>
-							
-							
+				<div class="panel-body">
+					<div class="col-sm-12">
+						<div class="jumbotron jumbotron-fluid"
+							style="background-color: #DCDDE2;">
+							<h1 class="display-3 text-primary">No Contents</h1>
+							<p class="lead">즐겨 찾기한 컨텐츠가 없습니다.</p>
 						</div>
 					</div>
-				</c:if>
-			</div>
+				</div>
+			</c:if>
+			<c:if test="${fn:length(mLists)!=0 }">
+				<div class="panel-body">
+					<div class="col-sm-12">
+
+						<!-- 즐겨찾기 목록 시작-->
+						<div class="row" style="text-align: center;">
+							<c:set var="col" value="0" />
+							<c:set var="more" value="false" />
+							<c:forEach var="mLists" items="${mLists}">
+								<c:set var="col" value="${col + 1 }" />
+								<div class="col-md-3">
+									<a class="favorite"
+										href="movieContent.tm?mnum=${mLists.mnum }&usid=${sessionScope.usid }">
+										<img
+										src="<c:url value="/resources/saveMovieDB/${mLists.mnum }/${mLists.mimg}"/>"
+										width="80%"> <br>
+										<h4 class="text-primary">
+											<c:if test="${mLists.mwcon==2 }">
+												<img alt="멤버전용" src="resources/img/sub/mbs.png"
+													class="memIcon">
+											</c:if>
+											${mLists.mname }
+										</h4>
+
+									</a>
+								</div>
+								<c:if test="${col%4 == 0 }">
+									<c:set var="more" value="true" />
+								</c:if>
+							</c:forEach>
+						</div>
+					</div>
+				</div>
+			</c:if>
+			</div> 
 		</div>
-	
 </body>
 </html>

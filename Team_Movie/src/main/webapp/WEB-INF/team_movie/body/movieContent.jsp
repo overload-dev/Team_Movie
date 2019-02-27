@@ -10,6 +10,7 @@
 </head>
 <body>
 	<div class="container">
+	
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<font style="font-size: 40px;">${movie.mname }</font>

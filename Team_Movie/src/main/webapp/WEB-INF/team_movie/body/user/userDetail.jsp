@@ -11,8 +11,10 @@
 	<div class="row">
 		<div class="panel panel-default">
 			<div class="panel-heading"> <h4 >회원개인정보</h4></div>
+				
+				
 				<div class="panel-body">
-                    <div class="col-md-8 col-xs-8 col-sm-6 col-lg-10" >
+                    <div class="col-sm-12" >
 							<h3><b>${sessionScope.uname}</b> 님의 정보</h3>  
                     <br>
                     <table class="table">

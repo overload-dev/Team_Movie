@@ -10,22 +10,22 @@
 <%@ include file="../top.jsp" %>
 </head>
 <body>
-<c:forEach items="${ genreList}" var="genre">
-<c:set var="pg" value="${pg + 1 }" />
-	<!-- 멤버별 영상 -->
-	<div class="container">
-		<div class="panel panel-info">
-			<div class="panel-heading">
-				<font style="font-size: 20px;">${genre.gname } 컨텐츠</font>
-			</div>
+<div class="container">
+<h2 class="text-primary">Free Contents</h2>
+	<c:forEach items="${ map}" var="map">
+		<c:set var="pg" value="${pg + 1 }" />
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<font style="font-size: 20px;">${map.key } 컨텐츠</font>
+				</div>
 			
 			
 			<div class="panel-body">
-				<c:if test="${totalCount == 0 }">
+				<c:if test="${fn:length(map.value) == 0 }">
 					<div class="jumbotron jumbotron-fluid"
 						style="background-color: #DCDDE2;">
 						<h1 class="display-3 text-primary">No Contents</h1>
-						<p class="lead">컨텐츠가 없습니다.</p>
+						<p class="lead">${map.key } 장르의 컨텐츠가 없습니다.</p>
 					</div>
 				</c:if>
 				
@@ -38,8 +38,8 @@
 							<c:set var="col" value="0" />
 							
 							
-							<c:forEach items="${freeMovie }" var="movie" varStatus="status">
-								<c:if test="${fn:contains(movie.mgenre,genre.gname ) }">
+							<c:forEach items="${map.value }" var="movie" varStatus="status">
+								
 							
 									<c:set var="col" value="${col + 1 }" />
 									<div class="col-md-3" align="center">
@@ -76,7 +76,7 @@
 										<p style="width:400px;">&nbsp;</p>
 										
 									</c:if> 
-								</c:if>
+								
 							
 							</c:forEach>
 						</div>
@@ -86,8 +86,8 @@
 				</div>
 			</div>
 		</div>
-	</div>
 </c:forEach>
+	</div>
 <%@include file="../footer.jsp"%>
 </body>
 </html>

@@ -11,8 +11,8 @@
 </head>
 <body>
 <div class="row">
-			<div class="panel panel-info">
-					<div class="panel-heading">Membership List</div>
+			<div class="panel panel-default">
+					<div class="panel-heading"><h4>멤버십 구매하기</h4></div>
 					<div class="panel-body" align="center">
 						<table class="table" cellspacing="0" width="100%">
 							<thead> 

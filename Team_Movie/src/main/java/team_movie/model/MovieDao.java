@@ -45,6 +45,8 @@ public class MovieDao {
 	}
 	
 	
+
+	
 	
 
 	public int GetTotalCount() {
@@ -138,6 +140,7 @@ public class MovieDao {
 		int cnt = sqlSessionTemplate.selectOne(namespace + ".GetMemCount");
 		return cnt;
 	}
+
 
 	
 }
