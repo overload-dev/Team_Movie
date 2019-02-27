@@ -53,7 +53,7 @@
 					<jsp:useBean id="toDay" class="java.util.Date" />
 					<fmt:formatDate value="${toDay}" pattern="MM-dd" var ="todays"/>
 					<fmt:formatDate value="${user.ubirth}" pattern="MM-dd" var="userbirth"/>
-						<c:if test="${userbirth == '01-01' }">
+						<c:if test="${userbirth == toDay }">
 						<span class="badge badge-primary">ToDay</span>
 					</c:if>
 				</td>
@@ -74,7 +74,9 @@
 				<td align="center">
 					<c:choose>
 						<c:when test="${user.ugrade =='2'}">
-							<td>${user.uupstart } ~ ${user.uupend }</td>
+							<fmt:formatDate value="${user.uupstart }" pattern="MM-dd"/> ~ 
+							<fmt:formatDate value="${user.uupend }" pattern="MM-dd"/>
+							
 						</c:when>
 						<c:otherwise>
 							해당 없음
