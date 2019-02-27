@@ -10,7 +10,7 @@
 
 <body>
 	<div class="container wrap">
-		<h2 class="text-primary">컨텐츠 관리</h2>
+		<h2 class="text-primary">Admin Tool</h2>
 		<div class="row">
 			<div class="col-sm-3" >
 				<div class="panel panel-info">

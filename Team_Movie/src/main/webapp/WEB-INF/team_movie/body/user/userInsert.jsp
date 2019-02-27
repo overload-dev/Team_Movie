@@ -11,7 +11,6 @@
 <title>Insert title here</title>
 
 <%@include file="../../top.jsp"%>
-<script src="<c:url value='/resources/js/commonScript.js'/>"></script>
 <script type="text/javascript">
 var isCheck = false;
 var isChange = false;

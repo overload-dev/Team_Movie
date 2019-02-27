@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 <%@include file="../../top.jsp"%>
 </head>
-<script src="<c:url value='/resources/js/commonScript.js'/>"></script>
 
 <script type="text/javascript">
 	$(document).ready(function(){

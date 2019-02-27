@@ -8,45 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <%@ include file="../top.jsp" %>
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/moviePageStyle.css' />">
-<style type="text/css">
- .memIcon{
-		width: 30px;
-}
-</style>
-<script type="text/javascript">
-
-function special(ugrade,mnum,mwcon){	
-	alert("ugrade :"+ugrade)
-	if(ugrade==1 && mwcon==2 ){
-		var con=confirm("멤버등록한 회원만 시청가능합니다. 멤버 등록하시겠습니까?");
-				
-			if(con==false){
-				
-				return false;
-			}else{
-				location.href="mShipBuyForm.tm";
-			}
-		   
-	} 
-	if(ugrade == 2 || ugrade == 0 || mwcon==1){  
-		alert("mnum:"+mnum);
-		location.href="movieContent.tm?mnum="+mnum;
-	}
-	
-	if(ugrade==null && mwcon==2){
-		alert("로그인 후 이용하세요.");
-		location.href="userLogin.tm";
-		
-	}
-	
-}
-</script>
 </head>
 <body>
-
- 
-			
 <c:forEach items="${genreList }" var="genre">
 	<div class="container">
 	<c:set var="pg" value="${pg + 1 }" />

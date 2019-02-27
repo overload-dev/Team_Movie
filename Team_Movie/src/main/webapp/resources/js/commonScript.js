@@ -228,8 +228,6 @@ function Validation(ugrade) {
 			}
 		}
 
-		alert(ugenres);
-
 		$.ajax({
 			url : "userInsert.tm",
 			type : 'POST',
@@ -262,7 +260,6 @@ function handleImgFileSelect(e) {
 
 	filesArr.forEach(function(f) {
 		if (!f.type.match("image.*")) {
-			alert(f.type);
 			alert("이미지 파일만 올려주세요.");
 
 			if ($.browser.msie) { // IE version
@@ -414,9 +411,6 @@ function addNewNotice() {
 	var bsubject = $('input[name=bsubject]').val();
 	var bcon = $('textarea[name=bcon]').val();
 
-	alert(bsubject);
-	alert(bcon);
-
 	if (bsubject == '') {
 		alert("제목을 입력하세요.");
 		return false;
@@ -449,7 +443,6 @@ function addNewNotice() {
 }
 
 function deleteUser(unum) {
-	alert(unum);
 	$.ajax({
 		url : 'adminUserDel.tm',
 		type : "GET",
@@ -536,7 +529,6 @@ function fn_insertComment() {
 }
 
 function fn_UpdateCommentForm(bnum) {
-	alert(bnum);
 	var allData = {
 		"bnum" : bnum
 	}
@@ -655,7 +647,6 @@ function fn_insertReply(bref) {
 }
 function fn_DeleteComment(bnum, brelevel) {
 
-	alert("brelevel : " + brelevel);
 	if (brelevel == 1) {
 		var allData = {
 			"bnum" : bnum
@@ -815,8 +806,8 @@ function movie_description(io,mnum){
 		$("div." + mnum).hide();		
 	}
 }
-function special(ugrade,mnum,mwcon){	
-	alert("ugrade :"+ugrade)
+//스페셜회원 일반회원 로그인하지않은 회원 구분
+function special(ugrade,mnum,mwcon){
 	if(ugrade==1 && mwcon==2 ){
 		var con=confirm("멤버등록한 회원만 시청가능합니다. 멤버 등록하시겠습니까?");
 				
@@ -829,7 +820,6 @@ function special(ugrade,mnum,mwcon){
 		   
 	} 
 	if(ugrade == 2 || ugrade == 0 || mwcon==1){  
-		alert("mnum:"+mnum);
 		location.href="movieContent.tm?mnum="+mnum;
 	}
 	
@@ -838,31 +828,29 @@ function special(ugrade,mnum,mwcon){
 		location.href="userLogin.tm";
 		
 	}
-	
-//스페셜회원 일반회원 로그인하지않은 회원 구분
-	function special(ugrade,mnum,mwcon){	
-		
-		if(ugrade==1 && mwcon==2 ){
-			var con=confirm("멤버등록한 회원만 시청가능합니다. 멤버 등록하시겠습니까?");
-					
-				if(con==false){
-					
-					return false;
-				}else{
-					location.href="mShipBuyForm.tm";
-				}
-			   
-		} 
-		if(ugrade == 2 || ugrade == 0 || mwcon==1){  
-			alert("mnum:"+mnum);
-			location.href="movieContent.tm?mnum="+mnum;
-		}
-		
-		if(ugrade==null && mwcon==2){
-			alert("로그인 후 이용하세요.");
-			location.href="userLogin.tm";
-			
-		}
-		
+}
+
+//User membership 결재
+function membershipBuy(mbsnum){
+	var cf = confirm( '정말 구매 하시겠습니까?' );
+    
+	if(cf==true){
+		location.href="mShipBuy.tm?mbsnum="+mbsnum
+	}else{
+		alert("구매취소되었습니다.");
+		location.href="mShipBuyForm.tm"
+	}
+}
+
+// 회원 탈퇴
+function UserDelete(unum){
+	var cf = confirm( '정말 회원 탈퇴 하시겠습니까?' );
+    
+	if(cf==true){
+		alert("회원 탈퇴되었습니다.");
+		location.href="userDelete.tm?unum="+unum
+	}else{
+		alert("탈퇴 취소하였습니다.");
+		location.href="userDetail.tm"
 	}
 }

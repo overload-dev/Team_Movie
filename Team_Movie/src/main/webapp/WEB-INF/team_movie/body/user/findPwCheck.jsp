@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<center><h2>цёю╦╫ц╢б ╨Я╧п╧Ьхё╢б " ${findPw} " ют╢о╢ы.</h2>
-	<h3><a href="userLogin.tm?">╧ы╥н ╥н╠вюн го╫ц╟з╫ю╢о╠Н?</a></h3></center>
+	<center><h2>Л╟╬Л°╪Л▀°К┼■ К╧└К╟─К╡┬М≤╦К┼■ " ${findPw} " Л·┘К▀┬К▀╓.</h2>
+	<h3><a href="userLogin.tm?">К╟■К║° К║°Й╥╦Л²╦ М∙≤Л▀°Й╡═Л┼╣К▀┬Й╧▄?</a></h3></center>
 </body>
 </html>

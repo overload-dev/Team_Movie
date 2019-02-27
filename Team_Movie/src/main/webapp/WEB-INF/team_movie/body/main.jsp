@@ -6,17 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <%@include file="../top.jsp"%>
-
-<script type="text/javascript">
-	function movie_description(io,mnum){	
-		if(io == '0'){
-			$("div." + mnum).show();		
-		}else{
-			$("div." + mnum).hide();		
-		}
-	}
-
-</script>
 </head>
 <body>
 	<div class="container">

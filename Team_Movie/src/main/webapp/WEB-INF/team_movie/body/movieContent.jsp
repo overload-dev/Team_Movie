@@ -3,28 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<script type="text/javascript">
-/*
- * 댓글 등록하기(Ajax)
- */
-
-function movie_description(io,mnum){	
-	if(io == '0'){
-		$("span." + mnum).show();		
-	}else{
-		$("span." + mnum).hide();		
-	}
-}
-</script>
-<style type="text/css">
-	.movie-detail-desc{
-			margin-bottom: 10px;
-			}
-</style>
-			
 <title>Insert title here</title>
 <%@include file="../top.jsp"%>
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/moviePageStyle.css' />">

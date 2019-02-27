@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <%@include file="../../top.jsp"%>
-
 <body>
 <div class="container wrap">
 	<h2></h2>

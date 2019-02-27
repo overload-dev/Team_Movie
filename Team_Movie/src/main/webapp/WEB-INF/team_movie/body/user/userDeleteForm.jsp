@@ -5,20 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-
-	function UserDelete(unum){
-		var cf = confirm( '정말 회원 탈퇴 하시겠습니까?' );
-	    
-		if(cf==true){
-			alert("회원 탈퇴되었습니다.");
-			location.href="userDelete.tm?unum="+unum
-		}else{
-			alert("탈퇴 취소하였습니다.");
-			location.href="userDetail.tm"
-		}
-	}
-</script>
 </head>
 <body>
 <div class="container">

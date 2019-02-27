@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <%@include file="../../top.jsp"%>
-<script src="<c:url value='/resources/js/commonScript.js'/>"></script>
 <body>
 	<div class="container wrap">
 		<h2 class="text-primary" ><font color="black">회원정보 관리</font></h2>

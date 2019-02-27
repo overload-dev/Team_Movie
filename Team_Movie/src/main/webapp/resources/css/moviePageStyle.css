@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+.movie-detail-desc{
+			margin-bottom: 10px;
+	}
+
 /* Previous button  */
 .media-carousel .carousel-control.left 
 {
@@ -48,13 +52,6 @@ span#desc{
 	
 		width: 30px;
 }
-
-
-
-
-
-
-
 
 .contents-link, .contents-link:hover, .contents-link:focus, .contents-link:active{
       text-decoration: none;
