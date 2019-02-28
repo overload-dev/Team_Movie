@@ -39,10 +39,10 @@
 		<div class="container">
 			<div class="navbar-header">
 				<c:if test="${usid == null }">
-					<a class="navbar-brand" href="main.tm">Palnet Ark</a>
+					<a class="navbar-brand" href="main.tm">Planet Ark</a>
 				</c:if>
 				<c:if test="${usid != null }">
-					<a class="navbar-brand" href="main.tm?usid=${usid }">Palnet Ark</a>
+					<a class="navbar-brand" href="main.tm?usid=${usid }">Planet Ark</a>
 				</c:if>
 			</div>
 				 
