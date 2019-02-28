@@ -92,7 +92,7 @@
 								<c:choose>
 									<c:when test="${movie.mage ==1}">12세 이상 관람가</c:when>
 									<c:when test="${movie.mage ==2}">15세 이상 관람가</c:when>
-									<c:when test="${movie.mage ==2}">18세 이상 관람가</c:when>
+									<c:when test="${movie.mage ==3}">18세 이상 관람가</c:when>
 								</c:choose>
 							</c:otherwise>
 						</c:choose>
