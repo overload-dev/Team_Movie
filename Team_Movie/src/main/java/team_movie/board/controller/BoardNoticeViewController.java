@@ -1,6 +1,11 @@
 package team_movie.board.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Scanner;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -29,9 +34,40 @@ public class BoardNoticeViewController {
 	GenreDao genreDao;	
 	
 	@RequestMapping(value=command, method=RequestMethod.GET)
-	public String doActionGet(Model model){
+	public String doActionGet(HttpSession session, Model model){
 		List<BoardBean> noticeList = null;
 		noticeList = boardDao.GetAllNoticeList();
+		
+		
+		String root_path = session.getServletContext().getRealPath("/resources/upload");
+		Scanner scan = null;
+		for (int i = 0; i < noticeList.size(); i++) {
+			File file = new File(root_path + "/" + noticeList.get(i).getBcon());
+
+			try {
+				scan = new Scanner(file);
+
+				String strBuffer = "";
+				while (scan.hasNextLine()) {
+					strBuffer += scan.nextLine();
+					System.out.println("strBuffer" + strBuffer);
+				}
+				noticeList.get(i).setBcon(strBuffer);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		if(scan != null){
+			scan.close();
+		}
+		
+		
+		
+		
+		
+		
 		model.addAttribute("noticeList",noticeList);
 		
 		//GenreData Get

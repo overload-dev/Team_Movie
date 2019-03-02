@@ -70,6 +70,9 @@
 					</li>
 				</ul>
 			</li>
+			<li>
+				<a href="noticeView.tm">공지사항</a>
+			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right" >
 		<c:choose>

@@ -96,11 +96,25 @@
 		delete from mboard
 		where bnum =#{bnum}
 	</delete>
+	<!-- 메인 화면에서 출력되는 공지사항 리스트 -->
 	<select id="GetNoticeForMain" resultType="MyBoard">
 		select bnum, bsubject,bcon, bdate, rank() over (order by bnum desc) rk from(
 		select bnum, bsubject,bcon, bdate, rank() over (order by bnum desc) rk from mboard  where btype=0)
 		where rk between 1 and 3
 	</select>
+	
+	<!-- 특정 번호의 공지사항 요청 -->
+	<select id="GetNoticeByNum" resultType="MyBoard">
+		select * from mboard where bnum = #{bnum}
+	</select>
+	<update id="UpdateNotice">
+		update mboard
+		set bsubject = #{bsubject}, bcon = #{bcon}
+		where bnum = #{bnum}
+		
+	</update>
+	
+	
 </mapper>
 
  

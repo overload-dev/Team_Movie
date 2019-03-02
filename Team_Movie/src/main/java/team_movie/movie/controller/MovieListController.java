@@ -1,8 +1,13 @@
 package team_movie.movie.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -40,41 +45,38 @@ public class MovieListController {
 	
 	
 	@RequestMapping(value=command, method=RequestMethod.GET)
-	public ModelAndView doActionGet(){
+	public ModelAndView doActionGet(HttpSession session){
+		ModelAndView mav = new ModelAndView();
 		
 		System.out.println("MainController doGet");
 		
+		//GenreData Get
+		List<GenreBean> genreList = null;
+		genreList = genreDao.getGenreList();
+		mav.addObject("genreList", genreList);
 		
 		int[] num = new int[3]; 
+		
 		for(int i = 0; i < num.length ; i++){
-			num[i] = (int)(Math.random() * 7) + 1;
+			num[i] = (int)(Math.random() * (genreList.size()-1)) + 1; 
+			
 		    for(int j = 0; j < i; j ++){
 		        if(num[i] == num[j]){
-		            i--;
+		            i--; 
 		            break;
 		        }
 		    }
 		}
+
 		String genres = "";
-		
-		for (int i=0; i<3; i++) {
-			switch (num[i]) {
-	         case 1 : genres = genres + "코미디/";
-	            break;
-	         case 2 : genres = genres + "액션/";
-	            break;
-	         case 3 : genres = genres + "범죄/";
-	            break;
-	         case 4 : genres = genres + "스릴러/";
-	            break;
-	         case 5 : genres = genres + "공포/";
-	            break;
-	         case 6 : genres = genres + "드라마/";
-	            break;
-	         case 7 : genres = genres + "멜로/";
-	            break;
-	         }
+		for(int i = 0 ; i < num.length ; i ++){
+			System.out.println(num[i]);
+			System.out.println(genreList.get(num[i]).getGname());
+			
+			genres += genreList.get(num[i]).getGname() + "/";
 		}
+		
+		System.out.println(genres);
 		
 		System.out.println("genres : " + genres);
 		
@@ -89,8 +91,6 @@ public class MovieListController {
 			map.put(genre[i], movieByGenre);
 		}
 		
-		ModelAndView mav = new ModelAndView();
-
 		
 		List<MovieBean> movie = movieDao.GetMovieList();	
 		int mwcon =2;
@@ -111,13 +111,38 @@ public class MovieListController {
 		//NoticeData Get
 		List<BoardBean> noticeMainList = null;
 		noticeMainList = boardDao.GetNoticeForMain();
+		
+		String root_path = session.getServletContext().getRealPath("/resources/upload");	
+		
+		for(int i = 0 ; i < noticeMainList.size(); i++){
+			File file = new File(root_path + "/" + noticeMainList.get(i).getBcon());
+			
+			noticeMainList.get(i).getBcon();
+			
+			Scanner scan = null;
+			if (file.exists()) {
+				try {
+					scan = new Scanner(file);
+					String strBuffer = "";
+
+					while (scan.hasNextLine()) {
+						strBuffer += scan.nextLine();
+						System.out.println("strBuffer" + strBuffer);
+					}
+										
+					noticeMainList.get(i).setBcon(strBuffer);
+				
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		}
+		
 		mav.addObject("noticeMainList", noticeMainList);
 		
 		
-		//GenreData Get
-		List<GenreBean> genreList = null;
-		genreList = genreDao.getGenreList();
-		mav.addObject("genreList", genreList);
 		
 		return mav;
 	}

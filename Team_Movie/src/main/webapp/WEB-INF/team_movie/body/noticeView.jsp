@@ -59,7 +59,9 @@
 										</div>
 										<div id="collapse${notice.bnum}" class="panel-collapse collapse">
 											<div class="panel-body">
-												<pre>${notice.bcon }</pre>
+												${notice.bcon }
+											</div>
+											<div class="panel-footer">
 											</div>
 						    			</div>
 						  			</div>
