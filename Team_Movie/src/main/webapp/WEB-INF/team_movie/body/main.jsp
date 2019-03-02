@@ -14,16 +14,21 @@
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner" id="slide">
 				<div class="item active">
-				
+					<a href="#">
 					<img src="resources/img/sliderImg/1.jpg" alt="이미지1">
+					</a>
 				</div>
 
 				<div class="item">
+					<a href="#">
 					<img src="resources/img/sliderImg/2.jpg" alt="이미지2">
+					</a>
 				</div>
 
 				<div class="item">
+					<a href="#">
 					<img src="resources/img/sliderImg/3.jpg" alt="이미지3">
+					</a>
 				</div>
 			</div>
 			

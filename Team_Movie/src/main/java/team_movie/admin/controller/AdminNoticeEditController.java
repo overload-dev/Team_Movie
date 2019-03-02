@@ -73,7 +73,6 @@ public class AdminNoticeEditController {
 			scan.close();
 		}
 		
-		scan.close();
 		
 		model.addAttribute("noticeList", noticeList);
 		model.addAttribute("Selpage", "adminEditNotice");
