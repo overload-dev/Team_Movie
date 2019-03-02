@@ -17,13 +17,12 @@
 <body>
 <div class="container wrap">
 	<h2 class="text-primary">New Contents</h2>
-	<input type="button" class="btn btn-secondary" value="목록으로">
 	<form method="post" action="addContentsEdit.tm" enctype="multipart/form-data" onsubmit="return addMovieDataChk()">
-		<div class="card">
-			<div class="card-header bg-dark text-white">
+		<div class="panel panel-info">
+			<div class="panel-heading">
 				New Contents
 			</div>
-			<div class="card-body">
+			<div class="panel-body">
 				<div class="row">
 					<div class="col-sm-5">
 						<div align="center">
@@ -154,12 +153,13 @@
 					</div>
 				</div>
 			</div>
-			<div class="card-footer">
-				<input type="submit" class="btn btn-primary btn-lg btn-block" value="등록하기">
+			<div class="panel-footer" align="center">
+				<input type="submit" class="btn btn-primary btn-lg" value="등록하기">
+				<input type="button" class="btn btn-secondary btn-lg" value="목록으로" onclick="location.href='adminContentsEdit.tm'">
 			</div>
 		</div>
 	</form>
 </div>
-
+<%@include file="../../footer.jsp"%>
 </body>
 </html>

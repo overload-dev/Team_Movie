@@ -131,7 +131,7 @@
 							</a>
 						</li>
 						<li class="list-group-item list-group-item-info">
-							<a href="javascript:history.go(-1)">
+							<a href="adminContentsEdit.tm">
 								<b>목록으로</b>
 							</a>
 						</li>

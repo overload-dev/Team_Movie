@@ -6,7 +6,7 @@
 <mapper namespace="team_movie.model.MovieBean">
  	<select id="GetMovieList" resultType="MyMovie">
 		select * from tmovie
-		order by mlike
+		order by mnum desc
 	</select>
 	
 	<select id="GetMovieListByGenre" resultType="MyMovie">

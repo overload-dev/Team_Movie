@@ -30,12 +30,10 @@
 <!-- 동영상 재생 -->
 <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet" />
 <script src="http://vjs.zencdn.net/c/video.js"></script>
-
-
 <title>Planet Ark</title>
 </head>
 <body>
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-inverse navbar-fixed-top" >
 		<div class="container">
 			<div class="navbar-header">
 				<c:if test="${usid == null }">
@@ -127,6 +125,7 @@
 		</ul>
 		</div>
 	</nav>
+	<div style="margin-bottom: 55px"></div>
 </body>
 </html>
 

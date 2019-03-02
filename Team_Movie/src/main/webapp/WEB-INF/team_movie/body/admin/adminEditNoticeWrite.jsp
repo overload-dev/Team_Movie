@@ -10,18 +10,22 @@
 <%@include file="../../top.jsp"%>
 <body>
 
-<div class="container">
-
+<div class="container wrap">
+<h2 class="text-primary">신규 공지사항 작성</h2>
 <script type="text/javascript" src="<c:url value='/resources/smarteditor/js/HuskyEZCreator.js'/>" charset="utf-8"></script>
 
 <form action="updateNoticeEdit.tm" method="post" id="frm">
 	<div class="input-group">
-    	<span class="input-group-addon">Text</span>
+    	<span class="input-group-addon">공지사항 제목</span>
     	<input type="text" class="form-control" name="bsubject" placeholder="Title">
   	</div>
   	<hr>
     <textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:100%; height:412px;"></textarea>
-    <input type="button" id="savebutton" value="서버전송" />
+    <hr>
+    <div align="center">
+	    <input type="button" class="btn btn-primary" id="savebutton" value="작성" />
+	    <input type="button" class="btn btn-secondary"  value="취소" onclick="location.href='adminNoticeEdit.tm'" />
+    </div>
 </form>
 
 

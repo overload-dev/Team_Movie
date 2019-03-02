@@ -10,20 +10,25 @@
 <script type="text/javascript" src="<c:url value='/resources/smarteditor/js/HuskyEZCreator.js'/>" charset="utf-8"></script>
 
 <body>
-	<div class="container">
+	<div class="container wrap">
+		<h2 class="text-primary">공지사항 수정</h2>
 		<form action="updateNoticeEdit.tm" method="post" id="frm">
 			<input type="hidden" name="bnum" value="${boardBean.bnum }">
 			<input type="hidden" name="textFileName" value="${textFileName }">
 		
 			<div class="input-group">
-		    	<span class="input-group-addon">제목</span>
+		    	<span class="input-group-addon">공지사항 제목</span>
 		    	<input type="text" class="form-control" name="bsubject" placeholder="Title" value=${boardBean.bsubject}>
 		  	</div>
 		  	<hr>
 		    <textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:100%; height:412px;">
 		    	${boardBean.bcon }
 		    </textarea>
-		    <input type="button" id="savebutton" value="서버전송" />
+		    <hr>
+		    <div align="center">
+		    	<input type="button" class="btn btn-primary" id="savebutton" value="작성" />
+	    <input type="button" class="btn btn-secondary"  value="취소" onclick="location.href='adminNoticeEdit.tm'" />
+		    </div>
 		</form>
 		
 		
