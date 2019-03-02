@@ -184,6 +184,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<!-- 랜덤으로 나온 인기장르 for carousel1-->
 	<c:forEach items="${map }" var="map" varStatus="status">
 		<div class="container">
