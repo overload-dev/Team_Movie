@@ -101,5 +101,12 @@ public class UserDao {
 		}
 		return flag;
 	}
+
+	public String GetUserNum(String usid) {
+		String unum=null;
+		unum=sqlSessionTemplate.selectOne(namespace+".GetUserNum" ,usid);
+		System.out.println("unum : "+ unum);
+		return unum;
+	}
 }
  

@@ -47,10 +47,10 @@ public class MovieFreeContentController {
 	         
 	          List<MovieBean> movieListByGenreforFree = movieDao.GetMovieListByGenreForMember(genreIs,1);
 	          
-	          map.put(genreIs,movieListByGenreforFree);
+	          map.put(genreIs,movieListByGenreforFree); 
 	       }
 	       
-		 
+		System.out.println("map.size() : "+map.size()); 
 		mav.addObject("genreList", genreList);
 		mav.addObject("map", map);
 		

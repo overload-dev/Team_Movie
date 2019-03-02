@@ -5,8 +5,6 @@ package team_movie.user.controller;
 import java.sql.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import team_movie.model.GenreBean;
 import team_movie.model.GenreDao;
+import team_movie.model.LatestviewDao;
 import team_movie.model.UserBean;
 import team_movie.model.UserDao;
 
@@ -36,6 +35,9 @@ public class UserInsertController {
 	@Qualifier("myUserDao")
 	UserDao userDao;
 	
+	@Autowired
+	@Qualifier("myLatestviewDao")
+	LatestviewDao latestviewDao;
 	//main���� login ��ư�� Ŭ�� ���� ��
 	@RequestMapping(value=command, method = RequestMethod.GET)
 	public String doActionGet(Model model){
@@ -77,9 +79,11 @@ public class UserInsertController {
 			userBean.setUgenre(ugenre);
 		
 		
-		
 		int cnt =-1;
 		cnt = userDao.userInsert(userBean);
+		 
+	
+		
 		return cnt;
 	}
 	

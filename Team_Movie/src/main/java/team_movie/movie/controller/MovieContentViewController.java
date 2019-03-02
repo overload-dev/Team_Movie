@@ -7,7 +7,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -21,6 +20,8 @@ import team_movie.model.FavoriteBean;
 import team_movie.model.FavoriteDao;
 import team_movie.model.GenreBean;
 import team_movie.model.GenreDao;
+import team_movie.model.LatestviewBean;
+import team_movie.model.LatestviewDao;
 import team_movie.model.MovieBean;
 import team_movie.model.MovieDao;
 
@@ -38,11 +39,15 @@ public class MovieContentViewController {
 	GenreDao genreDao;
 	
 	@Autowired
-	BoardDao boardDao;
+	BoardDao boardDao; 
 	
 	@Autowired
 	@Qualifier("MyFavorite")
 	FavoriteDao favoriteDao;
+	
+	@Autowired
+	@Qualifier("myLatestviewDao")
+	LatestviewDao latestviewDao;
 	
 	@RequestMapping(value=command)
 	public String doAcitionGet(	
@@ -120,6 +125,27 @@ public class MovieContentViewController {
 			    model.addAttribute("extension", extension);
 			}
 		}
+		
+		//최근시청목록관련
+		int unum = 0;
+		if(usid==null){
+			unum=0;	
+		}else{
+			unum = (Integer)session.getAttribute("unum");	
+		}
+		
+		System.out.println("무비컨텐츠 클릭했을 때 ");
+		System.out.println("mnum : "+ mnum);
+		System.out.println("unum : "+ unum);
+		System.out.println("-----------------------");
+		
+		List<LatestviewBean> viewList=latestviewDao.GetLatestViewMovieNum(mnum,unum);
+		 
+		
+		latestviewDao.InsertViewChart(mnum,unum);
+		 
+		
+		
 		return getPage;
 	}
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="team_movie.model.LatestviewBean">
+	<select id="GetLatestView" resultType="MyLatestview">
+	
+		select * from latestview where vunum=#{vunum} order by vcount desc
+	
+	</select> 
+	<select id="InsertViewChart" resultType="int">
+	
+		insert into latestview values(latestview_seq.nextval,1,#{vmnum},#{vunum})
+	 
+	</select>  
+	
+	<select id="GetLatestViewMovieNum" resultType="MyLatestview">
+		select * from latestview where vmnum=#{vmnum} and vunum= #{vunum}
+	</select>
+	
+	
+	<update id="SumViewCount">
+		update latestview set vcount=1 where  vunum=#{vunum} and vmnum=#{vmnum}
+	</update>
+	
+</mapper>

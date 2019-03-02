@@ -11,8 +11,10 @@
 		<typeAlias alias="MyBoard" type="team_movie.model.BoardBean"/>
 		<typeAlias alias="MyMembership" type="team_movie.model.MembershipBean"/>
 		<typeAlias alias="MyFavorite" type="team_movie.model.FavoriteBean"/>
-	</typeAliases>
+		<typeAlias alias="MyLatestview" type="team_movie.model.LatestviewBean"/>
 	
+	</typeAliases>
+	 
 	<mappers>
 		<mapper resource="team_movie/mybatis/movie.xml" />
 		<mapper resource="team_movie/mybatis/genre.xml" />
@@ -20,6 +22,7 @@
 		<mapper resource="team_movie/mybatis/board.xml" />
 		<mapper resource="team_movie/mybatis/membership.xml" />
 		<mapper resource="team_movie/mybatis/favorite.xml" />
+		<mapper resource="team_movie/mybatis/latestview.xml" />
 	</mappers>
 
 </configuration>

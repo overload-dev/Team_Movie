@@ -82,7 +82,7 @@ public class UserLoginContoller {
 		}else{
 			if(userBean.getUsid().equals(login.getUsid())&& userBean.getUpw().equals(login.getUpw()))
 			{
-					System.out.println("unum : "+login.getUnum());
+				System.out.println("unum : "+login.getUnum());
 				session.setAttribute("unum", login.getUnum());
 				session.setAttribute("usid", login.getUsid());
 				session.setAttribute("uname", login.getUname());
