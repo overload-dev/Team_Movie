@@ -33,9 +33,8 @@
 				</a>
 			</div>
 		</c:if>
-	</div>
 	<hr>
-	<div class="container">
+
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<font style="font-size: 20px;">공지사항</font>
@@ -101,9 +100,8 @@
 				</c:choose>
 			</div>
 		</div>
-	</div>
+	
 	<!-- 멤버전용 영상 -->
-	<div class="container">
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<font style="font-size: 20px;">멤버 전용관</font>
@@ -182,66 +180,64 @@
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="container">
+
+
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<font style="font-size: 20px;">최근 시청 목록</font>
 			</div>
 			
 			<div class="panel-body">
-						<c:if test="${fn:length(viewList) == 0 }">
-							<div class="jumbotron jumbotron-fluid"
-								style="background-color: #DCDDE2;">
-								<h1 class="display-3 text-primary">No Contents</h1>
-								<p class="lead">컨텐츠가 없습니다.</p>
-							</div>
-						</c:if>
+				<c:if test="${fn:length(viewList) == 0 }">
+					<div class="jumbotron jumbotron-fluid"
+						style="background-color: #DCDDE2;">
+						<h1 class="display-3 text-primary">No Contents</h1>
+						<p class="lead">컨텐츠가 없습니다.</p>
+					</div>
+				</c:if>
 				 
-			 <div class="row" style="text-align: center;">
-				<c:set var="col" value="0" />
+			 	<div class="row" style="text-align: center;">
+					<c:set var="col" value="0" />
 					<div class="col-md-12">
-					<c:set var="more" value="false" />
- 
-				<c:forEach items="${ viewList}" var="movie" varStatus="status">
-				<c:if test="${not more}">
-					<c:set var="col" value="${col + 1 }" />
-						<div class="col-md-3" align="center">
-							<div style="position: relative; cursor: pointer;"
-								onmouseover="movie_description(0,${movie.mnum})"
-								onmouseout="movie_description(1,${movie.mnum})">
-								<a class="contents-link" href="#"
-								onclick=<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
-								<c:if test="${sessionScope.ugrade==null }">	
-								special(null,${movie.mnum},${movie.mwcon })
-								</c:if>>
+						<c:set var="more" value="false" />
+						<c:forEach items="${ viewList}" var="movie" varStatus="status">
+							<c:if test="${not more}">
+								<c:set var="col" value="${col + 1 }" />
+								<div class="col-md-3" align="center">
+								<div style="position: relative; cursor: pointer;"
+									onmouseover="movie_description(0,${movie.mnum})"
+									onmouseout="movie_description(1,${movie.mnum})">
+									<a class="contents-link" href="#"
+										onclick=<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
+										<c:if test="${sessionScope.ugrade==null }">	
+											special(null,${movie.mnum},${movie.mwcon })
+									</c:if>>
 
-								<div class="contents-portrait"
-										onmouseover="movie_description(0,'${pg}-${col}-${movie.mnum}')"
-										onmouseout="movie_description(1,'${pg}-${col}-${movie.mnum}')">
-									<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="100%">
-											<div class="contents-desc-frame ${pg}-${col}-${movie.mnum}">
-												<h3>${movie.mname }</h3>
-													<hr>
-												<div class="contents-desc">${movie.msynop }</div>
-											</div>
-								</div>
+									<div class="contents-portrait"
+											onmouseover="movie_description(0,'${pg}-${col}-${movie.mnum}')"
+											onmouseout="movie_description(1,'${pg}-${col}-${movie.mnum}')">
+										<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="100%">
+										<div class="contents-desc-frame ${pg}-${col}-${movie.mnum}">
+											<h3>${movie.mname }</h3>
+											<hr>
+											<div class="contents-desc">${movie.msynop }</div>
+										</div>
+									</div>
 								
 									<h4 class="text-primary">
 										<c:if test="${movie.mwcon==2 }">
-											<img alt="멤버전용" src="resources/img/sub/mbs.png"
-												class="memIcon">
+											<img alt="멤버전용" src="resources/img/sub/mbs.png" class="memIcon">
 										</c:if>
 									${movie.mname }
-							</h4>
-						</a>
-					</div>
+									</h4>
+									</a>
+							</div>
 					<c:choose>
 						<c:when test="${col%4 == 0 }">
 							<c:set var="more" value="true" />
 								<div class="row"></div>
-									</c:when>
+						</c:when>
 						<c:otherwise>
 					</c:otherwise>
 					</c:choose>
@@ -251,10 +247,10 @@
 			</div>
 		</div>
 	</div>
-
+</div>
 	<!-- 랜덤으로 나온 인기장르 for carousel1-->
 	<c:forEach items="${map }" var="map" varStatus="status">
-		<div class="container">
+		
 			<c:set var="pg" value="${pg + 1 }" />
 			<div class="panel panel-info">
 				<div class="panel-heading">
@@ -278,8 +274,7 @@
 
 
 										<div class="row">
-											<c:forEach items="${map.value }" var="movie"
-												varStatus="status">
+											<c:forEach items="${map.value }" var="movie" varStatus="status">
 												<c:set var="col" value="${col + 1 }" />
 												<div class="col-md-3" align="center">
 													<div style="position: relative; cursor: pointer;"
@@ -288,17 +283,14 @@
 														<a class="contents-link" href="#"
 															onclick=<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
 															<c:if test="${sessionScope.ugrade==null }">	
-														special(null,${movie.mnum},${movie.mwcon })
-													</c:if>>
+																special(null,${movie.mnum},${movie.mwcon })
+															</c:if>>
 
 															<div class="contents-portrait"
 																onmouseover="movie_description(0,'${pg}-${col}-${movie.mnum}')"
 																onmouseout="movie_description(1,'${pg}-${col}-${movie.mnum}')">
-																<img
-																	src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>"
-																	width="100%">
-																<div
-																	class="contents-desc-frame ${pg}-${col}-${movie.mnum}">
+																<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="100%">
+																<div class="contents-desc-frame ${pg}-${col}-${movie.mnum}">
 																	<h3>${movie.mname }</h3>
 																	<hr>
 																	<div class="contents-desc">${movie.msynop }</div>
@@ -315,30 +307,31 @@
 													</div>
 												</div>
 												<c:if test="${col%4 == 0 }">
+														</div>
+													</div>
+													<div class="item">
+													<div class="row">
+												</c:if>
+											</c:forEach>
 										</div>
 									</div>
-									<div class="item">
-										<div class="row">
-											</c:if>
+								<!--.carousel-inner-->
+								<a data-slide="prev" href="#Carousel${pg }"
+									class="left carousel-control"><i
+									class="glyphicon glyphicon-chevron-left"></i></a>
+								<a data-slide="next" href="#Carousel${pg }"
+									class="right carousel-control"><i
+									class="glyphicon glyphicon-chevron-right"></i></a>
+								</div>
+								<!--.Carousel-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 	</c:forEach>
 	</div>
-	</div>
-	<!--.carousel-inner-->
-	<a data-slide="prev" href="#Carousel${pg }"
-		class="left carousel-control"><i
-		class="glyphicon glyphicon-chevron-left"></i></a>
-	<a data-slide="next" href="#Carousel${pg }"
-		class="right carousel-control"><i
-		class="glyphicon glyphicon-chevron-right"></i></a>
-	</div>
-	<!--.Carousel-->
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	</c:forEach>
+</div>
 </body>
 <%@include file="../footer.jsp"%>
 </html>
