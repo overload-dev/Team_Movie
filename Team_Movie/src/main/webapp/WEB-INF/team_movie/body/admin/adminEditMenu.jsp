@@ -7,6 +7,6 @@
 		<a id="adminEditContents" href="adminContentsEdit.tm" class="list-group-item list-group-item-action">컨텐츠 관리</a>
 		<a id="adminEditNotice" href="adminNoticeEdit.tm" class="list-group-item list-group-item-action">공지사항</a>
 		<a href="adminEditMembership.tm" class="list-group-item list-group-item-action">멤버십 관리</a>
-		<a href="adminEditEvent.tm" class="list-group-item list-group-item-action">간판 컨텐츠 설정</a>
+		<a href="adminEditEvent.tm" class="list-group-item list-group-item-action">이벤트 컨텐츠 설정</a>
 	</div>
 </div>
