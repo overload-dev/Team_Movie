@@ -288,10 +288,11 @@ function changeEventMovie(){
 	
 
 	if(movieNum =="" || movieImgName ==""){
-		$('img[name=preview_img]').attr("src","<c:url value='/resources/img/sub/no-image.gif'/>");
+		$('img[name=movieThumb]').attr("src","resources/img/sub/no-image.gif");
 		$('.mwcon h4').text('');
 		$('.mage h4').text('');
 		$('.movieTitles h2').text('');
+		
 		
 	}else{
 		$('.movieTitles h2').text($('input[name=movieName' + movieNum+ ']').val());
