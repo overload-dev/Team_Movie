@@ -44,5 +44,12 @@ public class LatestviewDao {
 		int cnt = sqlSessionTemplate.delete(namespace + ".ViewContentRefresh",vunum);
 	}
 
+
+
+	public void DeleteLatestview() {
+		
+		int cnt = sqlSessionTemplate.delete(namespace + ".DeleteLatestview");
+	}
+
 }
   

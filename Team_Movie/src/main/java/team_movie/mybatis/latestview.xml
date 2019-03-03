@@ -21,5 +21,11 @@
 		delete from (SELECT B.vnum, B.vmnum ,A.*  FROM tmovie A inner JOIN latestview B ON A.mnum = B.vmnum AND B.vunum=#{vunum}  order by vnum desc) 
 where vnum not in(select * from (select max(vnum) from (SELECT B.vnum, B.vmnum ,A.*  FROM tmovie A inner JOIN latestview B ON A.mnum = B.vmnum AND B.vunum=#{vunum}  order by vnum desc)  group by mname )  )
 	</delete>
-
+	<delete id="DeleteLatestview">
+		delete from latestview where vunum=0
+	</delete>
 </mapper>
+
+
+
+

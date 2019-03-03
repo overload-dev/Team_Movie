@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import team_movie.model.GenreBean;
 import team_movie.model.GenreDao;
+import team_movie.model.LatestviewDao;
 import team_movie.model.UserBean;
 import team_movie.model.UserDao;
 
@@ -31,10 +32,13 @@ public class UserLoginContoller {
 	@Autowired
 	@Qualifier("myGenreDao")
 	GenreDao genreDao;
-	
+	 
 	@Autowired
 	@Qualifier("myUserDao")
 	UserDao userDao;
+	
+	@Autowired
+	LatestviewDao latestviewDao;
 	
 	//main에서 login 버튼을 클릭 했을 때
 	@RequestMapping(value=command, method = RequestMethod.GET)
@@ -87,6 +91,8 @@ public class UserLoginContoller {
 				session.setAttribute("usid", login.getUsid());
 				session.setAttribute("uname", login.getUname());
 				session.setAttribute("ugrade", login.getUgrade());
+				
+				latestviewDao.DeleteLatestview();
 				
 				mav.setViewName(gotoPage);// 로그인 성공 메인페이지
 				

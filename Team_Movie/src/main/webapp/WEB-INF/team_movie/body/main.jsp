@@ -185,50 +185,69 @@
 	</div>
 
 	<div class="container">
-		<c:set var="pg" value="${pg + 1 }" />
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<font style="font-size: 20px;">최근 시청 목록</font>
 			</div>
+			
 			<div class="panel-body">
-				<c:if test="${fn:length(viewList) == 0 }">
-					<div class="jumbotron jumbotron-fluid"
-						style="background-color: #DCDDE2;">
-						<h1 class="display-3 text-primary">No Contents</h1>
-						<p class="lead">컨텐츠가 없습니다.</p>
-					</div>
-				</c:if>
-				<c:forEach items="${ viewList}" var="movie">
-					<div class="col-md-3" align="center">
-							<a class="contents-link" href="#"
-									onclick=<c:if test="${sessionScope.ugrade!=null }">
-											"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"
-										</c:if>
-										<c:if test="${sessionScope.ugrade==null }">	
-											special(null,${movie.mnum},${movie.mwcon })
-										</c:if>>
+						<c:if test="${fn:length(viewList) == 0 }">
+							<div class="jumbotron jumbotron-fluid"
+								style="background-color: #DCDDE2;">
+								<h1 class="display-3 text-primary">No Contents</h1>
+								<p class="lead">컨텐츠가 없습니다.</p>
+							</div>
+						</c:if>
+				 
+			 <div class="row" style="text-align: center;">
+				<c:set var="col" value="0" />
+					<div class="col-md-12">
+					<c:set var="more" value="false" />
+ 
+				<c:forEach items="${ viewList}" var="movie" varStatus="status">
+				<c:if test="${not more}">
+					<c:set var="col" value="${col + 1 }" />
+						<div class="col-md-3" align="center">
+							<div style="position: relative; cursor: pointer;"
+								onmouseover="movie_description(0,${movie.mnum})"
+								onmouseout="movie_description(1,${movie.mnum})">
+								<a class="contents-link" href="#"
+								onclick=<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
+								<c:if test="${sessionScope.ugrade==null }">	
+								special(null,${movie.mnum},${movie.mwcon })
+								</c:if>>
 
-										<div class="contents-portrait"
-											onmouseover="movie_description(0,'s${movie.mnum}')"
-											onmouseout="movie_description(1,'s${movie.mnum}')">
-											<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>"
-													width="100%">
-												<div class="contents-desc-frame s${movie.mnum}">
-													<h3>${movie.mname }</h3>
+								<div class="contents-portrait"
+										onmouseover="movie_description(0,'${pg}-${col}-${movie.mnum}')"
+										onmouseout="movie_description(1,'${pg}-${col}-${movie.mnum}')">
+									<img src="<c:url value="/resources/saveMovieDB/${movie.mnum }/${movie.mimg}"/>" width="100%">
+											<div class="contents-desc-frame ${pg}-${col}-${movie.mnum}">
+												<h3>${movie.mname }</h3>
 													<hr>
-													<div class="contents-desc">${movie.msynop }</div>
-										</div>
-								 	</div>
+												<div class="contents-desc">${movie.msynop }</div>
+											</div>
+								</div>
+								
 									<h4 class="text-primary">
 										<c:if test="${movie.mwcon==2 }">
 											<img alt="멤버전용" src="resources/img/sub/mbs.png"
 												class="memIcon">
 										</c:if>
-								${movie.mname }
+									${movie.mname }
 							</h4>
 						</a>
 					</div>
-				</c:forEach>
+					<c:choose>
+						<c:when test="${col%4 == 0 }">
+							<c:set var="more" value="true" />
+								<div class="row"></div>
+									</c:when>
+						<c:otherwise>
+					</c:otherwise>
+					</c:choose>
+					</div>
+					</c:if>
+				</c:forEach>	
 			</div>
 		</div>
 	</div>
