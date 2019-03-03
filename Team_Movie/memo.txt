@@ -148,6 +148,7 @@ create sequence latestview_seq
   nocache; 
 
   
+--이벤트 설정
 drop table tevent;
 create table tevent(
 	eenum number primary key,
@@ -162,24 +163,6 @@ create sequence tevent_seq
 	minvalue 1
 	maxvalue 100000
 	nocache;
-
--- 최근 시청 목록 테이블 
-drop table latestview;
-
-create table latestview(
-    vnum number primary key, --고유번호
-    vcount number default 0, -- 시청시 1 , 아니면 0
-    vmnum number not null, -- 영화 고유 번호
-    vunum number not null -- 회원 고유 번호
-);
-
-drop sequence latestview_seq;
-create sequence latestview_seq
-  increment by 1
-  start with 1
-  minvalue 1 
-  maxvalue 100000
-  nocache; 
 
 
 --tmovie 삽입예제
