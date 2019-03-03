@@ -134,11 +134,11 @@ drop table latestview;
 
 create table latestview(
     vnum number primary key, --고유번호
-    vcount number default 0, -- 시청시 1 , 아니면 0
+    vviewcnt number default 0, -- 시청시 1 , 아니면 0
     vmnum number not null, -- 영화 고유 번호
     vunum number not null -- 회원 고유 번호
 );
-
+ 
 drop sequence latestview_seq;
 create sequence latestview_seq
   increment by 1
