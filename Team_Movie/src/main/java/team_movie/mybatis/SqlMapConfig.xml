@@ -14,7 +14,6 @@
 		<typeAlias alias="MyLatestview" type="team_movie.model.LatestviewBean"/>
 		<typeAlias alias="MyEvent" type="team_movie.model.EventBean"/>
 	</typeAliases>
-	</typeAliases>
 	 
 	<mappers>
 		<mapper resource="team_movie/mybatis/movie.xml" />
