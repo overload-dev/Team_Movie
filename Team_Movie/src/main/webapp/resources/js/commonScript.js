@@ -300,25 +300,25 @@ function changeEventMovie(){
 		
 		switch(movieAge){
 		case '0':
-			$('.mwcon h4').text('전체 이용가');
+			$('.mage h4').text('전체 이용가');
 			break;
 		case '1':
-			$('.mwcon h4').text('12세 이용가');
+			$('.mage h4').text('12세 이용가');
 			break;
 		case '2':
-			$('.mwcon h4').text('15세 이용가');
+			$('.mage h4').text('15세 이용가');
 			break;
 		case '3':
-			$('.mwcon h4').text('18세 이용가');
+			$('.mage h4').text('18세 이용가');
 			break;
 		}
 		
 		switch(movieMwcon){
 		case '1':
-			$('.mage h4').text('모든 회원');
+			$('.mwcon h4').text('모든 회원');
 			break;
 		case '2':
-			$('.mage h4').text('스페셜 한정');
+			$('.mwcon h4').text('스페셜 한정');
 			break;
 		}
 	}
@@ -336,6 +336,14 @@ function addEventDataChk(){
 	if(thumbnail ==''){
 		alert('이벤트용 사진을 선택하세요.');
 		return false;
+	}
+	
+	if($('input[name="eenum"').val() != ""){
+		var answer = confirm("기존의 이미지는 삭제됩니다. 수정 하시겠습니까?");
+		
+		if(!answer){
+			return false;
+		}
 	}
 }
 

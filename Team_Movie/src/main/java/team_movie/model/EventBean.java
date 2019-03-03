@@ -6,7 +6,6 @@ public class EventBean {
 	private String eimg;
 	private String emname; //no use on table
 	
-	
 	public EventBean(){
 		
 	}

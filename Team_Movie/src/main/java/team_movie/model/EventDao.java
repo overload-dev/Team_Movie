@@ -26,4 +26,18 @@ public class EventDao {
 		ckh = sqlSessionTemplate.insert(namespace + ".AddEvent",eventBean);
 		return ckh;
 	}
+	
+	public EventBean GetEventByNum(int eenum){
+		EventBean eventBean = null;
+		eventBean = sqlSessionTemplate.selectOne(namespace +".GetEventByNum", eenum);
+		return eventBean;
+	}
+	
+	public int UpdateEvent(EventBean eventBean){
+		int chk= -1;
+		chk = sqlSessionTemplate.update(namespace+".UpdateEvent", eventBean);
+		
+		
+		return chk;
+	}
 }

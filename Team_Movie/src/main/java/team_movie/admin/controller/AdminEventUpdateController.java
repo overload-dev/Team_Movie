@@ -26,10 +26,11 @@ import team_movie.model.MovieBean;
 import team_movie.model.MovieDao;
 
 @Controller
-public class AdminEventAddController {
-	private static final String command ="addEventEdit.tm";
-	private static final String gotoPage ="body/admin/adminEventAdd";
-	private static final String getPage = "redirect:/adminEditEvent.tm";
+public class AdminEventUpdateController {
+	
+	private static final String command = "updateEventEdit.tm";
+	private static final String gotoPage="body/admin/adminEventUpdate";
+	private static final String getPage="redirect:/adminEditEvent.tm";
 	
 	@Autowired
 	@Qualifier("myGenreDao")
@@ -43,26 +44,41 @@ public class AdminEventAddController {
 	@Qualifier("myEventDao")
 	EventDao eventDao;
 	
-	@RequestMapping(value=command, method= RequestMethod.GET)
-	public String doActionGet(Model model){
-		System.out.println("get");
-		
+	@RequestMapping(value=command, method=RequestMethod.GET)
+	public String doActionGet(
+			@RequestParam("eenum") int eenum,
+			Model model
+			){
 		//event List Get
 		List<EventBean> eventList = eventDao.GetEventList();
 		
 		//MovieList Get
 		List<MovieBean> movieList = movieDao.GetMovieList();
 		
+		MovieBean selMovieBean = new MovieBean();
+		
 		//이미 이벤트 설정된 항목은 리스트에서 제외한다.
 		for(int i = 0 ; i < movieList.size(); i++){
 			for(int j = 0 ; j < eventList.size(); j++){
 				if(movieList.get(i).getMnum() == eventList.get(j).getEmnum()){
-					movieList.remove(i);
+					if(eventList.get(j).getEenum() != eenum){
+						System.out.println(movieList.get(i).getMnum()+" 제거");
+						movieList.remove(i);
+					}else{
+						selMovieBean.setMnum(eventList.get(j).getEmnum());
+						System.out.println(eventList.get(j).getEmnum());
+						selMovieBean.setMimg(movieList.get(i).getMimg());
+						selMovieBean.setMwcon(movieList.get(i).getMwcon());
+						selMovieBean.setMage(movieList.get(i).getMage());
+						
+						model.addAttribute("selMovieBean",selMovieBean);
+						model.addAttribute("eventimg",eventList.get(j).getEimg());
+					}
 				}
 			}
 		}
-		
 		model.addAttribute("movieList",movieList);
+		model.addAttribute("eenum",eenum);
 		
 		//GenreData Get
 		List<GenreBean> genreList = null;
@@ -74,21 +90,41 @@ public class AdminEventAddController {
 	
 	@RequestMapping(value=command, method=RequestMethod.POST)
 	public String doActionPost(
-			@RequestParam("emnum") int emnum,
 			@RequestParam("thumbnail") MultipartFile thumbnail,
+			@RequestParam("eenum") int eenum,
+			@RequestParam("emnum") int emnum,
 			HttpSession session
 			){
 		
+		System.out.println(eenum);
+		System.out.println(eenum);
+		System.out.println(eenum);
+		System.out.println(eenum);
+		System.out.println(eenum);
+		System.out.println(eenum);
+		System.out.println(eenum);
+		System.out.println(eenum);
+
+		EventBean eventBean = null;
+		eventBean = eventDao.GetEventByNum(eenum);
 		String root_path = session.getServletContext().getRealPath("/resources/saveMovieDB");
 		
-		File root_folder = new File(root_path +"/" + emnum);
-		if(root_folder.exists()){			
-
+		//기존 파일 삭제
+		File old_root_folder = new File(root_path +"/" + eventBean.getEmnum());
+		File oldFile = new File(old_root_folder + "/" + eventBean.getEimg());
+		if(oldFile.exists()){
+			oldFile.delete();
+		}
+		//신규 추가 
+		
+		File new_root_folder = new File(root_path +"/" + emnum);
+		
+		if(new_root_folder.exists()){
 			OutputStream out = null;
 			try {
-				File newFile = new File(root_folder + "/" + thumbnail.getOriginalFilename());
-				out = new FileOutputStream(newFile);
+				File newFile = new File(new_root_folder + "/" + thumbnail.getOriginalFilename());
 				
+				out = new FileOutputStream(newFile);
 				byte[] bytes = thumbnail.getBytes(); //바이트 정보
 				out.write(bytes);
 				
@@ -109,17 +145,14 @@ public class AdminEventAddController {
 				}
 			}
 		}
-		EventBean eventBean = new EventBean();
-		
+		eventBean.setEenum(eenum);
 		eventBean.setEmnum(emnum);
 		eventBean.setEimg(thumbnail.getOriginalFilename());
 		
-		eventDao.AddEvent(eventBean);
-		
-		
-		
+		eventDao.UpdateEvent(eventBean);
 		
 		
 		return getPage;
 	}
+	
 }

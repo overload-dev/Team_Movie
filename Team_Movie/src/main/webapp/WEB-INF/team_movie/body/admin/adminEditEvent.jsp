@@ -38,8 +38,8 @@
 							<td width="30%"><img  width="70%" src="<c:url value='/resources/saveMovieDB/${event.emnum }/${event.eimg }'/>"/></td>
 							<td>${event.emname }</td>
 							<td>
-								<input type="button" class="btn btn-info" value="수정">
-								<input type="button" class="btn btn-danger" value="삭제">
+								<input type="button" class="btn btn-info" value="수정" onclick="location.href='updateEventEdit.tm?eenum=${event.eenum }'">
+								<input type="button" class="btn btn-danger" value="삭제" onclick="location.href='deleteEventEdit.tm?eenum=${event.eenum }'">
 							</td>
 						</tr>
 					</c:forEach>
