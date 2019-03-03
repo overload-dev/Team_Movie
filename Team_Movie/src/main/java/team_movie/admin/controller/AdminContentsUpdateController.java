@@ -107,7 +107,7 @@ public class AdminContentsUpdateController {
 		}
 
 		if (f_mrepo == null) {
-			movieBean.setMrepo(mrepo);
+			movieBean.setMrepo("");
 			newrepo= false;
 		}
 		
@@ -129,7 +129,7 @@ public class AdminContentsUpdateController {
 		}
 		
 		// delete file case by new uri
-		if (f_mrepo == null) {
+		if (newrepo == false) {
 			deloldfile(root_path, del_fname);
 		}
 
