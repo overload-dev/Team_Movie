@@ -159,7 +159,7 @@ create table tevent(
 drop sequence tevent_seq;
 create sequence tevent_seq
 	increment by 1
-	start width 1
+	start with 1
 	minvalue 1
 	maxvalue 100000
 	nocache;
