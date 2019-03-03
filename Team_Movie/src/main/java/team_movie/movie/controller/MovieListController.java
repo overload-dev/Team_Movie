@@ -18,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import team_movie.model.BoardBean;
 import team_movie.model.BoardDao;
+import team_movie.model.EventBean;
+import team_movie.model.EventDao;
 import team_movie.model.GenreBean;
 import team_movie.model.GenreDao;
 import team_movie.model.LatestviewBean;
@@ -51,6 +53,10 @@ public class MovieListController {
 	@Qualifier("myLatestviewDao")
 	LatestviewDao latestviewDao;
 	
+	//for Event img
+	@Autowired
+	@Qualifier("myEventDao")
+	EventDao eventDao;
 	
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public ModelAndView doActionGet(HttpSession session){
@@ -114,6 +120,11 @@ public class MovieListController {
 		mav.addObject("movie", movie);
 		mav.addObject("map", map);
 		
+		//eventList Get
+		List<EventBean> eventList = null;
+		eventList = eventDao.GetEventList();
+		mav.addObject("eventList",eventList);
+		
 		
 		//NoticeData Get
 		List<BoardBean> noticeMainList = null;
@@ -148,7 +159,7 @@ public class MovieListController {
 		}
 		mav.addObject("noticeMainList", noticeMainList);
 		
-		//ÃÖ±Ù½ÃÃ» ¸ñ·Ï
+		//ï¿½Ö±Ù½ï¿½Ã» ï¿½ï¿½ï¿½
 		
 		String usid=(String)session.getAttribute("usid");
 		System.out.println("usid: "+ usid);

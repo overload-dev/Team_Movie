@@ -9,42 +9,32 @@
 </head>
 <body>
 	<div class="container">
-		<div id="myCarousel" class="carousel slide" data-ride="carousel">
-
-			<!-- Wrapper for slides -->
-			<div class="carousel-inner" id="slide">
-				<div class="item active">
-					<a href="#"> <img src="resources/img/sliderImg/1.jpg"
-						alt="이미지1">
-					</a>
+		<c:if test="${fn:length(eventList) > 0 }">
+			<div id="myCarousel" class="carousel slide" data-ride="carousel">
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner" id="slide" style="height: 400px">
+					<c:forEach var="event" items="${eventList }"  varStatus="status">
+						<div class="item <c:if test="${status.index == 0}">active</c:if>">
+							
+							<a href="<c:url value="movieContent.tm?mnum=${event.emnum }"/>">
+								<img width="100%" src="<c:url value="/resources/saveMovieDB/${event.emnum }/${event.eimg}"/>">
+							</a>
+						</div>
+					</c:forEach>
 				</div>
-
-				<div class="item">
-					<a href="#"> <img src="resources/img/sliderImg/2.jpg"
-						alt="이미지2">
-					</a>
-				</div>
-
-				<div class="item">
-					<a href="#"> <img src="resources/img/sliderImg/3.jpg"
-						alt="이미지3">
-					</a>
-				</div>
+				<!-- Left and right controls -->
+				<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left"></span> <span
+					class="sr-only">Previous</span>
+				</a> <a class="right carousel-control" href="#myCarousel"
+					data-slide="next"> <span
+					class="glyphicon glyphicon-chevron-right"></span> <span
+					class="sr-only">Next</span>
+				</a>
 			</div>
-
-			<!-- Left and right controls -->
-			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-				<span class="glyphicon glyphicon-chevron-left"></span> <span
-				class="sr-only">Previous</span>
-			</a> <a class="right carousel-control" href="#myCarousel"
-				data-slide="next"> <span
-				class="glyphicon glyphicon-chevron-right"></span> <span
-				class="sr-only">Next</span>
-			</a>
-		</div>
+		</c:if>
 	</div>
-	<br>
-	<br>
+	<hr>
 	<div class="container">
 		<div class="panel panel-info">
 			<div class="panel-heading">
