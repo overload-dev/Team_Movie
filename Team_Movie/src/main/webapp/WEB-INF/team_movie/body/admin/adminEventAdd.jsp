@@ -26,7 +26,7 @@ $(document).ready(function(){
 		<h2 class="text-primary">New Event</h2>
 		<form action="addEventEdit.tm" method="post" enctype="multipart/form-data" onsubmit="return addEventDataChk()">
 			<div class="panel panel-info">
-				<div class="panel-heading">New Event</div>
+				<div class="panel-heading">신규 이벤트</div>
 				
 				<div class="panel-body">
 					<div class="row">

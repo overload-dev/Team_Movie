@@ -26,7 +26,7 @@ $(document).ready(function(){
 		<form action="updateEventEdit.tm" method="post" enctype="multipart/form-data" onsubmit="return addEventDataChk()">
 			<input type="hidden" name="eenum" value="${eenum }">
 			<div class="panel panel-info">
-				<div class="panel-heading">New Event</div>
+				<div class="panel-heading">이벤트 설정 수정</div>
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-sm-5">

@@ -17,5 +17,7 @@
 	<update id="UpdateEvent">
 		update tevent set emnum=#{emnum}, eimg=#{eimg} where eenum =#{eenum}
 	</update>
-	
+	<delete id="DeleteEvent">
+		delete from tevent where eenum = #{eenum}
+	</delete>
 </mapper>

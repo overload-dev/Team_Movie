@@ -96,15 +96,6 @@ public class AdminEventUpdateController {
 			HttpSession session
 			){
 		
-		System.out.println(eenum);
-		System.out.println(eenum);
-		System.out.println(eenum);
-		System.out.println(eenum);
-		System.out.println(eenum);
-		System.out.println(eenum);
-		System.out.println(eenum);
-		System.out.println(eenum);
-
 		EventBean eventBean = null;
 		eventBean = eventDao.GetEventByNum(eenum);
 		String root_path = session.getServletContext().getRealPath("/resources/saveMovieDB");

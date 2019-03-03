@@ -474,42 +474,6 @@ function updateMovieDataChk() {
 	}
 }
 
-function addNewNotice() {
-
-	var bsubject = $('input[name=bsubject]').val();
-	var bcon = $('textarea[name=bcon]').val();
-
-	if (bsubject == '') {
-		alert("제목을 입력하세요.");
-		return false;
-	}
-
-	if (bcon == '') {
-		alert("내용을 입력하세요.");
-		return false;
-	}
-
-	$.ajax({
-		url : 'addNoticeEdit.tm',
-		type : "GET",
-		data : {
-			"bsubject" : bsubject,
-			"bcon" : bcon
-		},
-		success : function(result) {
-			if (result) {
-				alert("작성되었습니다.");
-				location.reload();
-			}
-		},
-
-		error : function(jqXHR, textStatus, errorThrown) {
-			alert("Error \n" + textStatus + " : " + errorThrown);
-			self.close();
-		}
-	});
-}
-
 function deleteUser(unum) {
 	$.ajax({
 		url : 'adminUserDel.tm',
@@ -922,3 +886,27 @@ function UserDelete(unum){
 		location.href="userDetail.tm"
 	}
 }
+
+//deleteEvent
+function deleteEvent(eenum){
+	alert(eenum);
+	$.ajax({
+		url : "deleteEvent.tm",
+		type : 'GET',
+		data : {"eenum" : eenum},
+		success : function(result) {
+			alert("이벤트가 삭제되었습니다.")
+				location.reload();
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert("Error \n" + textStatus + " : " + errorThrown);
+			self.close();
+		}
+	});
+	
+}
+
+
+
+
+

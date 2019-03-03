@@ -39,7 +39,8 @@
 							<td>${event.emname }</td>
 							<td>
 								<input type="button" class="btn btn-info" value="수정" onclick="location.href='updateEventEdit.tm?eenum=${event.eenum }'">
-								<input type="button" class="btn btn-danger" value="삭제" onclick="location.href='deleteEventEdit.tm?eenum=${event.eenum }'">
+								<input type="button" class="btn btn-danger" value="삭제" onclick="deleteEvent(${event.eenum })">
+								
 							</td>
 						</tr>
 					</c:forEach>
