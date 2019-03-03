@@ -152,7 +152,7 @@ create sequence latestview_seq
 drop table tevent;
 create table tevent(
 	eenum number primary key,
-	emnum number number not null,
+	emnum number not null,
 	eimg varchar2(4000)
 );
 
