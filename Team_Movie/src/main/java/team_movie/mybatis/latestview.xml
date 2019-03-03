@@ -4,24 +4,22 @@
 
 
 <mapper namespace="team_movie.model.LatestviewBean">
-	<select id="GetLatestView" resultType="MyLatestview">
 	
-		select * from latestview where vunum=#{vunum} order by vcount desc
-	
-	</select> 
-	<select id="InsertViewChart" resultType="int">
+	<insert id="InsertViewChart" >
 	
 		insert into latestview values(latestview_seq.nextval,1,#{vmnum},#{vunum})
 	 
+	</insert>  
+	
+	<select id="ViewContentList" resultType="MyLatestview">
+	
+		select * from latestview where vmnum=#{vmnum} and  vunum=#{vunum}
+	 
 	</select>  
 	
-	<select id="GetLatestViewMovieNum" resultType="MyLatestview">
-		select * from latestview where vmnum=#{vmnum} and vunum= #{vunum}
-	</select>
-	
-	
-	<update id="SumViewCount">
-		update latestview set vcount=1 where  vunum=#{vunum} and vmnum=#{vmnum}
-	</update>
-	
+	<delete id="ViewContentRefresh">
+		delete from (SELECT B.vnum, B.vmnum ,A.*  FROM tmovie A inner JOIN latestview B ON A.mnum = B.vmnum AND B.vunum=#{vunum}  order by vnum desc) 
+where vnum not in(select * from (select max(vnum) from (SELECT B.vnum, B.vmnum ,A.*  FROM tmovie A inner JOIN latestview B ON A.mnum = B.vmnum AND B.vunum=#{vunum}  order by vnum desc)  group by mname )  )
+	</delete>
+
 </mapper>

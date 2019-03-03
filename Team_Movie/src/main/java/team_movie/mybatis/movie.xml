@@ -132,9 +132,9 @@
 	</select>
 	 
 	<select id="GetViewList" resultType="MyMovie">
-		select * from tmovie a where a.mnum IN (select b.vmnum from latestview b where  vunum=#{unum})
+		select B.vnum, B.vmnum ,A.*  from tmovie A inner join latestview B on A.mnum = B.vmnum and B.vunum=#{vunum}  order by vnum desc
+
 	</select>
-	
-	 
+
 	
 </mapper>

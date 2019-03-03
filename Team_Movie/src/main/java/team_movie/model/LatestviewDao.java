@@ -1,6 +1,5 @@
 package team_movie.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -15,20 +14,7 @@ public class LatestviewDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
-	public List<LatestviewBean>  GetLatestView(int vunum) {
-		System.out.println("vunum :"+vunum);
-		
-		List<LatestviewBean> viewList=new ArrayList<LatestviewBean>();
-		
-		viewList =sqlSessionTemplate.selectList(namespace+".GetLatestView",vunum);
-		
-		System.out.println("시청한 목록 갯수:" + viewList.size());
-		
-		return viewList;
-	}
-
-
-
+	 
 
 	public void InsertViewChart(int vmnum, int vunum) {
 		
@@ -36,28 +22,27 @@ public class LatestviewDao {
 		
 		sqlSessionTemplate.update(namespace+".InsertViewChart",bean);
 		
-		
 	}
 
-	
 
-	public List<LatestviewBean> GetLatestViewMovieNum(int vmnum,int vunum) {
+
+	public List<LatestviewBean> ViewContentList(int vmnum , int vunum) {
 		
-		List<LatestviewBean> viewList =null; 
-		
+		System.out.println("중복되는데이찾기 다오");
 		LatestviewBean bean = new LatestviewBean(0,0,vmnum,vunum);
 		
-		viewList =sqlSessionTemplate.selectList(namespace+".GetLatestViewMovieNum",bean);
-		
-		return viewList;
+		List<LatestviewBean> list=sqlSessionTemplate.selectList(namespace+".ViewContentList" , bean);
+		System.out.println("중복되는데이찾기 다오 완료");
+
+		return list;
 	}
 
 
 
+	public void ViewContentRefresh(int vunum) {
+		
+		int cnt = sqlSessionTemplate.delete(namespace + ".ViewContentRefresh",vunum);
+	}
 
-
-
-
-	
 }
- 
+  
