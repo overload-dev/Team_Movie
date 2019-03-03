@@ -279,6 +279,65 @@ function handleImgFileSelect(e) {
 		reader.readAsDataURL(f);
 	});
 }
+//이벤트 설정 시 이미지 변경
+function changeEventMovie(){
+	var movieNum = $('select[name=emnum]').val();
+	var movieImgName = $('input[name=movieNum'+ movieNum +']').val();
+	var movieAge = $('input[name = movieAge'+ movieNum +']').val();
+	var movieMwcon = $('input[name = movieMwcon'+ movieNum +']').val();
+	
+
+	if(movieNum =="" || movieImgName ==""){
+		$('img[name=preview_img]').attr("src","<c:url value='/resources/img/sub/no-image.gif'/>");
+		$('.mwcon h4').text('');
+		$('.mage h4').text('');
+		$('.movieTitles h2').text('');
+		
+	}else{
+		$('.movieTitles h2').text($('input[name=movieName' + movieNum+ ']').val());
+		$('img[name=movieThumb]').attr("src","resources/saveMovieDB/" + movieNum + "/" + movieImgName);
+		
+		switch(movieAge){
+		case '0':
+			$('.mwcon h4').text('전체 이용가');
+			break;
+		case '1':
+			$('.mwcon h4').text('12세 이용가');
+			break;
+		case '2':
+			$('.mwcon h4').text('15세 이용가');
+			break;
+		case '3':
+			$('.mwcon h4').text('18세 이용가');
+			break;
+		}
+		
+		switch(movieMwcon){
+		case '1':
+			$('.mage h4').text('모든 회원');
+			break;
+		case '2':
+			$('.mage h4').text('스페셜 한정');
+			break;
+		}
+	}
+}
+
+
+function addEventDataChk(){
+	var emnum = $('select[name=emnum]').val();
+	var thumbnail = $('input[name=thumbnail]').val();
+	
+	if(emnum == ''){
+		alert('이벤트로 설정할 영화를 선택하세요.');
+		return false;
+	}
+	if(thumbnail ==''){
+		alert('이벤트용 사진을 선택하세요.');
+		return false;
+	}
+}
+
 
 // 영화 업로드 형태 체크(URL, FILE)
 function uploadChk(sel) {
