@@ -159,13 +159,16 @@ public class MovieListController {
 		}
 		mav.addObject("noticeMainList", noticeMainList);
 		
-		//ï¿½Ö±Ù½ï¿½Ã» ï¿½ï¿½ï¿½
-		
+		//½ÃÃ»¸ñ·Ï°ü·Ã
 		String usid=(String)session.getAttribute("usid");
+		
 		System.out.println("usid: "+ usid);
+		
 		int unum = 0;
+		//ºñ·Î±×ÀÎ½Ã 
 		if(usid==null){
 			unum=0;	
+		//·Î±×ÀÎ½Ã
 		}else{
 			unum = (Integer)session.getAttribute("unum");	
 		}

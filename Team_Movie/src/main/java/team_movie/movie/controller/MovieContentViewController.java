@@ -133,16 +133,25 @@ public class MovieContentViewController {
 		}else{
 			unum = (Integer)session.getAttribute("unum");	
 		}
-		
+		   
 		System.out.println("무비컨텐츠 클릭했을 때 ");
 		System.out.println("mnum : "+ mnum);
 		System.out.println("unum : "+ unum);
 		System.out.println("-----------------------");
 		
-		List<LatestviewBean> viewList=latestviewDao.GetLatestViewMovieNum(mnum,unum);
-		 
-		
 		latestviewDao.InsertViewChart(mnum,unum);
+		System.out.println("삽입완료");
+		
+		List<LatestviewBean> list=latestviewDao.ViewContentList(mnum,unum);
+		
+		System.out.println("중복되는데이터있는지 찾기완료");
+		
+		System.out.println("list.size() :"+list.size());
+		if(list.size()>0){
+			
+			latestviewDao.ViewContentRefresh(unum);
+		}
+		
 		 
 		
 		
