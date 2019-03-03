@@ -20,6 +20,8 @@ import team_movie.model.BoardBean;
 import team_movie.model.BoardDao;
 import team_movie.model.GenreBean;
 import team_movie.model.GenreDao;
+import team_movie.model.LatestviewBean;
+import team_movie.model.LatestviewDao;
 import team_movie.model.MovieBean;
 import team_movie.model.MovieDao;
 
@@ -42,6 +44,12 @@ public class MovieListController {
 	@Autowired
 	@Qualifier("myGenreDao")
 	GenreDao genreDao;
+	
+	
+	//latestview  
+	@Autowired
+	@Qualifier("myLatestviewDao")
+	LatestviewDao latestviewDao;
 	
 	
 	@RequestMapping(value=command, method=RequestMethod.GET)
@@ -88,16 +96,16 @@ public class MovieListController {
 		for (int i=0; i<genre.length; i++) {
 			System.out.println("genre["+i+"]" + genre[i]);
 			List<MovieBean> movieByGenre = movieDao.GetMovieListByGenre(genre[i]);
+			
 			map.put(genre[i], movieByGenre);
 		}
-		
 		
 		List<MovieBean> movie = movieDao.GetMovieList();	
 		int mwcon =2;
 		List<MovieBean> memMovie = movieDao.GetMemberMovieList(mwcon);	
 		
 		int totalCount = movieDao.GetTotalCount();
-		
+		 
 		int memTotal = movieDao.GetMemCount();
 		mav.addObject("memMovie",memMovie);
 		mav.addObject("totalCount", totalCount);
@@ -105,7 +113,6 @@ public class MovieListController {
 		
 		mav.addObject("movie", movie);
 		mav.addObject("map", map);
-		mav.setViewName(getPage);
 		
 		
 		//NoticeData Get
@@ -139,11 +146,26 @@ public class MovieListController {
 			}
 			
 		}
-		
 		mav.addObject("noticeMainList", noticeMainList);
 		
+		//최근시청 목록
+		
+		String usid=(String)session.getAttribute("usid");
+		System.out.println("usid: "+ usid);
+		int unum = 0;
+		if(usid==null){
+			unum=0;	
+		}else{
+			unum = (Integer)session.getAttribute("unum");	
+		}
 		
 		
+		List<MovieBean> viewList = movieDao.GetViewList(unum);
+		
+		mav.addObject("viewList",viewList);
+		mav.setViewName(getPage);
+		 
+		 
 		return mav;
 	}
 

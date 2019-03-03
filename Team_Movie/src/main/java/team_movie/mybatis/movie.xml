@@ -130,4 +130,11 @@
 	<select id="GetMemCount" resultType="int">
 		select count(*) from tmovie where mwcon=2
 	</select>
+	 
+	<select id="GetViewList" resultType="MyMovie">
+		select * from tmovie a where a.mnum IN (select b.vmnum from latestview b where  vunum=#{unum})
+	</select>
+	
+	 
+	
 </mapper>

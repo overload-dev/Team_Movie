@@ -16,6 +16,7 @@ public class FavoriteDao {
 	
 	public int MovieLikeInsert(FavoriteBean favor) {
 		int cnt = sqlSessionTemplate.insert(namespace + ".MovieLikeInsert", favor);
+			
 		return cnt;
 	}
 	

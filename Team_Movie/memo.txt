@@ -147,6 +147,7 @@ create sequence latestview_seq
   maxvalue 100000
   nocache; 
   
+<<<<<<< HEAD
   
 drop table tevent;
 create table tevent(
@@ -162,6 +163,25 @@ create sequence tevent_seq
 	minvalue 1
 	maxvalue 100000
 	nocache;
+=======
+-- 최근 시청 목록 테이블 
+drop table latestview;
+
+create table latestview(
+    vnum number primary key, --고유번호
+    vcount number default 0, -- 시청시 1 , 아니면 0
+    vmnum number not null, -- 영화 고유 번호
+    vunum number not null -- 회원 고유 번호
+);
+
+drop sequence latestview_seq;
+create sequence latestview_seq
+  increment by 1
+  start with 1
+  minvalue 1 
+  maxvalue 100000
+  nocache; 
+>>>>>>> branch 'master' of https://github.com/leekanghyo/Team_Movie.git
 
 --tmovie 삽입예제
 insert into tmovie values(tmovie_seq.nextval,'가버나움 (Capernaum, 2018)','드라마','감독','연출','주연','조연',2,'19/01/24',sysdate,0,0,1,null,'sam1.mp4','가비나움.jpg','시놉시스');

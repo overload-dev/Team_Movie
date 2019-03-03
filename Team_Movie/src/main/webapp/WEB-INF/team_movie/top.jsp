@@ -75,9 +75,10 @@
 		<ul class="nav navbar-nav navbar-right" >
 		<c:choose>
 			<c:when test="${sessionScope.ugrade == null}"><!-- none acount -->
+			
 				<li><a href="userLogin.tm"><span class="glyphicon glyphicon-log-in"></span> Login </a></li>
 				<li><a href="userInsert.tm"><span class="glyphicon glyphicon-user"></span> Sign Up </a></li>
-			</c:when>
+			</c:when> 
 			
 			<c:when test="${sessionScope.ugrade == '0'}"><!-- admin acount -->
 			

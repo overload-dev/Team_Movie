@@ -41,6 +41,7 @@
 	<select id="SearchID" resultType="MyUser">
 		select usid from tuser where usid=#{usid}
 	</select>
+	
 </mapper>
 
  

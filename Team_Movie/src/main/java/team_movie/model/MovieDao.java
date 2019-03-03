@@ -53,7 +53,7 @@ public class MovieDao {
 		int cnt = sqlSessionTemplate.selectOne(namespace + ".GetTotalCount");
 		return cnt;
 	}
-
+ 
 	public MovieBean GetMovieByNum(int mnum) {
 		MovieBean movie = new MovieBean();
 		movie = sqlSessionTemplate.selectOne(namespace + ".GetMovieByNum", mnum);
@@ -141,6 +141,18 @@ public class MovieDao {
 		return cnt;
 	}
 
+	public List<MovieBean> GetViewList(int unum) {
+		List<MovieBean> list = null;
+		
+		list = sqlSessionTemplate.selectList(namespace+".GetViewList",unum);
+		return list;
+	}
+
+	
+
+
+
+	
 
 	
 }
