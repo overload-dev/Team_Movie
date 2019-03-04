@@ -777,7 +777,7 @@ function movieUnLike(mnum, unum) {
 }
 
 function movieBookmark(mnum, unum) {
-
+	
 	var allData = {
 		"mnum" : mnum,
 		"unum" : unum
@@ -786,6 +786,7 @@ function movieBookmark(mnum, unum) {
 	if (unum == null) {
 		alert("로그인 후 이용 가능합니다.");
 	} else {
+		
 		$.ajax({
 			url : "movieBookmark.tm",
 			type : 'GET',
@@ -829,6 +830,32 @@ function movieUnBookmark(mnum, unum) {
 			self.close();
 		}
 	})
+}
+
+function memberUnBookmark(mnum, unum){
+	
+	
+	var allData = {
+			"mnum" : mnum,
+			"unum" : unum
+		}; 
+		$.ajax({
+			url : "movieBookmark.tm",
+			type : 'POST',
+			data : allData,
+			success : function(result) {
+				if (result > -1) {
+					alert("즐겨찾기 취소");
+					
+					location.reload();
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert("Error \n" + textStatus + " : " + errorThrown);
+				self.close();
+			}
+		})
+	
 }
 // -------------------------------------------------------------
 function movie_description(io,mnum){	

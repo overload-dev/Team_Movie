@@ -48,8 +48,11 @@
 											</c:if>
 											${mLists.mname }
 										</h4>
-
 									</a>
+									<c:set var="flag" value="true"/>
+									<button type="button" class="btn btn-default" onclick="memberUnBookmark(${mLists.mnum }, ${sessionScope.unum })" >
+											<span class="glyphicon glyphicon-trash"></span>
+									</button>
 								</div>
 								<c:if test="${col%4 == 0 }">
 									<c:set var="more" value="true" />

@@ -36,6 +36,7 @@ public class FavoriteBookmarkController {
 		
 		int cnt = -1;
 		cnt = favoriteDao.MovieBookmarkInsert(favor);
+		System.out.println("cnt : "+cnt);
 		return cnt;
 	}
 	
@@ -44,7 +45,8 @@ public class FavoriteBookmarkController {
 	public int doActionPost(
 			@RequestParam(value="mnum", required=true) int mnum,
 			@RequestParam(value="unum", required=true) int unum
-			) {
+			
+			) { 
 		System.out.println("like Post controller");
 		
 		FavoriteBean favor = new FavoriteBean();
@@ -54,6 +56,8 @@ public class FavoriteBookmarkController {
 		
 		int cnt = -1;
 		cnt = favoriteDao.MovieBookmarkDelete(favor);
+		
+		
 		return cnt;
 	}
 	
