@@ -91,7 +91,9 @@ public class UserLoginContoller {
 				session.setAttribute("usid", login.getUsid());
 				session.setAttribute("uname", login.getUname());
 				session.setAttribute("ugrade", login.getUgrade());
+				session.setAttribute("ubirth", login.getUbirth());
 				
+			
 				latestviewDao.DeleteLatestview();
 				
 				mav.setViewName(gotoPage);// 로그인 성공 메인페이지
