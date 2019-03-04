@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+    <!-- DBCP를 이용한 DataSource설정 -->
+	<bean id ="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value ="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value ="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="jspid"/>
+		<property name="password" value="jsppw"/>
+	</bean>
+	  
+	<!-- Mybatis 설정 -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:/team_movie/mybatis/SqlMapConfig.xml"/>
+	</bean>
+	<!--  
+	dataSource:
+		데이터 베이스의 출처, 데이터 소스
+	configLocation :
+		Mybatis의 설정 파일(xml 파일)의 위치를 저장한다.
+	mapperLocations :
+		맵 설정 파일 (Mapping 되는 SQL 문을 저장하고 있는 xml 파일)의 위치를 지정한다.
+	-->
+	
+	<bean id ="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+	 	<constructor-arg ref="sqlSessionFactoryBean"/>
+	</bean>	
+	
+    
+    <context:component-scan base-package="team_movie" />
+ 
+    <task:scheduler id="cronScheduler" pool-size="10" />
+    <task:annotation-driven scheduler="cronScheduler" />
+ 
+</beans>

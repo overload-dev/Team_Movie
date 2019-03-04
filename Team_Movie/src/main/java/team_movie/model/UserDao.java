@@ -6,45 +6,49 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 @Component("myUserDao")
+@Repository
 public class UserDao {
 	public static final String namespace="team_movie.model.UserBean";
 	
 	@Autowired
-	SqlSessionTemplate sqlSessionTemplate;
-	//È¸¿ø°¡ÀÔ
+	private SqlSessionTemplate sqlSessionTemplate;
+	
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public int userInsert(UserBean userBean) {
 		
 		int cnt = sqlSessionTemplate.insert(namespace+".userInsert",userBean);
 		return cnt;
 	}
 
-	//·Î±×ÀÎÁ¤º¸ °¡Á®¿À±â ¼¼¼Ç
+	//ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public UserBean GetData(String usid) {
 		UserBean login = null;
-		System.out.println("·Î±×ÀÎ idÁ¤º¸");
+		System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ idï¿½ï¿½ï¿½ï¿½");
 		login = sqlSessionTemplate.selectOne(namespace +".GetData",usid);
 		return login;
 	}
 	
-	//IDÃ£±â
+	//IDÃ£ï¿½ï¿½
 	public UserBean GetIdData(UserBean userBean) {
 		UserBean findId=null; 
-		System.out.println("ID Ã£±â");
+		System.out.println("ID Ã£ï¿½ï¿½");
 		findId = sqlSessionTemplate.selectOne(namespace+".GetIdData",userBean);
 		return findId;
 	}
 	
 	public UserBean GetPwData(UserBean userBean) {
 		UserBean findPw=null; 
-		System.out.println("PW Ã£±â");
+		System.out.println("PW Ã£ï¿½ï¿½");
 		findPw = sqlSessionTemplate.selectOne(namespace+".GetPwData",userBean);
 		
 		return findPw;
 	}
 	
 	public List<UserBean> GetAllUserList(){
+		sqlSessionTemplate.getClass();
 		System.out.println("GetAllUserList");
 		List<UserBean> userList = new ArrayList<UserBean>();
 		userList = sqlSessionTemplate.selectList(namespace + ".GetAllUserData");
@@ -82,7 +86,7 @@ public class UserDao {
 		return user;
 	}
 
-	//Áßº¹Ã¼Å©
+	//ï¿½ßºï¿½Ã¼Å©
 	public boolean SearchID(String usid) {
 		boolean flag =false;
 		int cnt = -1;
@@ -91,12 +95,12 @@ public class UserDao {
 		array= sqlSessionTemplate.selectList(namespace+".SearchID",usid);
 		System.out.println("array.size():"+array.size());
 		if(array.size()==0 && usid!=null){
-			flag =true;//¾ÆÀÌµğ»ı¼º°¡´É
+			flag =true;//ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			System.out.println("flag="+flag);
 		
 		}else{
 			
-			flag=false;//¾ÆÀÌµğÁßº¹
+			flag=false;//ï¿½ï¿½ï¿½Ìµï¿½ï¿½ßºï¿½
 			System.out.println("flag="+flag);
 		}
 		return flag;
@@ -108,5 +112,14 @@ public class UserDao {
 		System.out.println("unum : "+ unum);
 		return unum;
 	}
+	
+	//ë§´ë²„ì‹­ ìë™ ê°±ì‹ (ìŠ¤ìºì¥´ëŸ¬ì— ì˜í•´ ì‹¤í–‰ë˜ëŠ” ê¸°ëŠ¥ìœ¼ë¡œ íƒ€ ê¸°ëŠ¥ì—ì„œ ì‚¬ìš©ì„ ì œí•œí•¨)
+	public int RefreshMembershipForUser(UserBean userBean){
+		int chk = -1;
+		chk = sqlSessionTemplate.update(namespace + ".RefreshMembershipForUser", userBean);
+		return chk;
+	}
+	
+	
 }
  

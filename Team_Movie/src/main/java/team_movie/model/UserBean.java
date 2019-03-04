@@ -5,22 +5,22 @@ import java.sql.Timestamp;
 
 public class UserBean { 
 
-	private int unum; // °íÀ¯¹øÈ£
-	private String usid; // È¸¿ø ¾ÆÀÌµð
-	private String uname; // È¸¿ø ´Ð³×ÀÓ
-	private String upw; // È¸¿ø ºñ¹Ð¹øÈ£
-	private Timestamp udate; // °¡ÀÔÀÏ
-	private Date ubirth; // »ý³â ¿ùÀÏ
-	private String ugrade; // È¸¿ø µî±Þ 0: °ü¸®ÀÚ / 1: ÀÏ¹Ý È¸¿ø /2:½ºÆä¼È
-	private Timestamp uupstart; // ½ºÆä¼ÈÀÌ ¾Æ´Ñ°æ¿ì null
-	private Timestamp uupend; // ½ºÆä¼ÈÀÌ ¾Æ´Ñ°æ¿ì null
-	private String ugenre;// À¯Àú ¼±È£ Àå¸£
+	private int unum; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	private String usid; // È¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
+	private String uname; // È¸ï¿½ï¿½ ï¿½Ð³ï¿½ï¿½ï¿½
+	private String upw; // È¸ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£
+	private Timestamp udate; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Date ubirth; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	private int ugrade; // È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ 0: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ / 1: ï¿½Ï¹ï¿½ È¸ï¿½ï¿½ /2:ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Timestamp uupstart; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ñ°ï¿½ï¿½ null
+	private Timestamp uupend; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ñ°ï¿½ï¿½ null
+	private String ugenre;// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ ï¿½å¸£
 
 	public UserBean() {
 
 	}
 
-	public UserBean(int unum, String usid, String uname, String upw, Timestamp udate, Date ubirth, String ugrade,
+	public UserBean(int unum, String usid, String uname, String upw, Timestamp udate, Date ubirth, int ugrade,
 			Timestamp uupstart, Timestamp uupend, String ugenre) {
 		super();
 		this.unum = unum;
@@ -85,11 +85,11 @@ public class UserBean {
 		this.ubirth = ubirth;
 	}
 
-	public String getUgrade() {
+	public int getUgrade() {
 		return ugrade;
 	}
 
-	public void setUgrade(String ugrade) {
+	public void setUgrade(int ugrade) {
 		this.ugrade = ugrade;
 	}
 

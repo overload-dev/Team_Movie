@@ -53,14 +53,14 @@ public class UserInsertController {
 	@RequestMapping(value=command , method= RequestMethod.POST)
 	@ResponseBody
 	public int doActionPost(
-			@RequestParam(value="ugrade", required=true) String ugrade,
+			@RequestParam(value="ugrade", required=true) int ugrade,
 			@RequestParam(value="usid", required=true) String usid,
 			@RequestParam(value="uname", required=true) String uname,
 			@RequestParam(value="upw", required=true) String upw,
 			@RequestParam(value="ugenre", required=true) String ugenre,
 			@RequestParam(value="ubirth", required=true) String insertubirth
 			){ 
-			System.out.println("À¯ÀúÀÎ¼­Æ®");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Î¼ï¿½Æ®");
 			UserBean userBean= new UserBean();	
 			Date ubirth = Date.valueOf(insertubirth);
 			

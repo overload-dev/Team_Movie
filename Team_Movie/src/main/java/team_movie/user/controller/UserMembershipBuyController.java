@@ -42,12 +42,12 @@ public class UserMembershipBuyController {
 	@RequestMapping(value=command ,method=RequestMethod.GET)
 	public ModelAndView doActionGet(HttpSession session){
 		ModelAndView mav = new ModelAndView();
-		//genreµ¥ÀÌÅÍ
+		//genreï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		List<GenreBean> genreList = null;
 		genreList = genreDao.getGenreList();
 		mav.addObject("genreList", genreList);
 
-		System.out.println("¸â¹ö½±Æû");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		List<MembershipBean> membershipList = new ArrayList<MembershipBean>();
 		membershipList = membershipDao.GetMemberShipList();
 
@@ -64,7 +64,7 @@ public class UserMembershipBuyController {
 			HttpServletResponse response
 			) throws IOException{
 		ModelAndView mav =new ModelAndView();
-		//genreµ¥ÀÌÅÍ
+		//genreï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		List<GenreBean> genreList = null;
 		genreList = genreDao.getGenreList();
 		mav.addObject("genreList", genreList);
@@ -90,7 +90,7 @@ public class UserMembershipBuyController {
 			System.out.println("usid 123 :"+ usid);
 
 			userBean.setUsid(usid);
-			userBean.setUgrade("2");
+			userBean.setUgrade(2);
 			userBean.setUupend(afterTime);
 			userBean.setUupstart(nowTime);
 
@@ -98,7 +98,7 @@ public class UserMembershipBuyController {
 			cnt =userDao.UpdateMembership(userBean);
 
 			writer.println("<script type='text/javascript'>");
-			writer.println("alert('±¸¸Å ¿Ï·á µÇ¾ú½À´Ï´Ù.');");
+			writer.println("alert('ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.');");
 			writer.println("history.back();");
 			writer.println("</script>");
 			writer.flush(); 
