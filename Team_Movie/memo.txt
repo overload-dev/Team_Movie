@@ -164,7 +164,25 @@ create sequence tevent_seq
 	maxvalue 100000
 	nocache;
 
+--멤버십 로그
+create table mmembershiplog(
+    mlnum number primary key,
+    mlunum number not null,
+    mlmbsname varchar2(4000) not null,
+    mlmbsprice number not null,
+    mlmbsperiod number not null,
+    mlupstart date,
+    mlupend date
+);
 
+drop sequence mmembershiplog_seq;
+create sequence mmembershiplog_seq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 100000
+  nocache;
+  
 --tmovie 삽입예제
 insert into tmovie values(tmovie_seq.nextval,'가버나움 (Capernaum, 2018)','드라마','감독','연출','주연','조연',2,'19/01/24',sysdate,0,0,1,null,'sam1.mp4','가비나움.jpg','시놉시스');
 insert into tmovie values(tmovie_seq.nextval,'그레이브 하우스 (Graves and Bones, 2016)','스릴러,공포,드라마','감독','연출','주연','조연',2,'16/01/01',sysdate,0,0,1,null,'sam3.mp4','그레이브하우스.jpg','시놉시스');
