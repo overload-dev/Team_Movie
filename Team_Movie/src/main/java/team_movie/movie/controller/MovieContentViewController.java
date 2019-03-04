@@ -1,5 +1,7 @@
 package team_movie.movie.controller;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -127,33 +129,40 @@ public class MovieContentViewController {
 		}
 		
 		//최근시청목록관련
-		int unum = 0;
+		int unum = 0; 
 		if(usid==null){
 			unum=0;	
 		}else{
 			unum = (Integer)session.getAttribute("unum");	
 		}
-		   
-		System.out.println("무비컨텐츠 클릭했을 때 ");
-		System.out.println("mnum : "+ mnum);
-		System.out.println("unum : "+ unum);
-		System.out.println("-----------------------");
+		
 		
 		latestviewDao.InsertViewChart(mnum,unum);
-		System.out.println("삽입완료");
 		
 		List<LatestviewBean> list=latestviewDao.ViewContentList(mnum,unum);
-		
-		System.out.println("중복되는데이터있는지 찾기완료");
-		
-		System.out.println("list.size() :"+list.size());
+				
 		if(list.size()>0){
 			
 			latestviewDao.ViewContentRefresh(unum);
 		}
 		
-		 
+		//시청연령관련
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy"); 
 		
+		System.out.println("ubirth:"+ session.getAttribute("ubirth"));
+		Date day =(Date)session.getAttribute("ubirth");
+		
+	   
+		//회원 년생
+		String year=sdf.format(day); 
+		    
+		System.out.println("year : "+year);
+				
+		//현재 년도	
+		String nowYear = sdf.format (System.currentTimeMillis());
+		
+		System.out.println("nowYear :"+nowYear);
+		 
 		
 		return getPage;
 	}

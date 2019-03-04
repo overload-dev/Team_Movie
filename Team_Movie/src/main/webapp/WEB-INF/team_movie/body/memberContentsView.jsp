@@ -30,6 +30,7 @@
 						<c:forEach items="${map.value }" var="movie" varStatus="status">
 							<c:set var="col" value="${col + 1 }" />
 							<div class="col-md-3" align="center">
+							
 								<div style="position: relative; cursor:pointer;" onmouseover="movie_description(0,${movie.mnum})" onmouseout="movie_description(1,${movie.mnum})">
 									<a class="contents-link" href="#" onclick=
 										<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
@@ -42,7 +43,7 @@
 											<div class="contents-desc-frame ${pg}-${col}-${movie.mnum}" >
 												<h3>${movie.mname }</h3><hr>
 												<div class="contents-desc">
-													${movie.msynop }
+													${movie.msynop } 
 												</div>
 											</div>
 										</div>

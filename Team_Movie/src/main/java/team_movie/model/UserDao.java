@@ -16,32 +16,32 @@ public class UserDao {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	//ȸ������
+	//회占쏙옙占쏙옙占쏙옙
 	public int userInsert(UserBean userBean) {
 		
 		int cnt = sqlSessionTemplate.insert(namespace+".userInsert",userBean);
 		return cnt;
 	}
 
-	//�α������� �������� ����
+	//占싸깍옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
 	public UserBean GetData(String usid) {
 		UserBean login = null;
-		System.out.println("�α��� id����");
+		System.out.println("占싸깍옙占쏙옙 id占쏙옙占쏙옙");
 		login = sqlSessionTemplate.selectOne(namespace +".GetData",usid);
 		return login;
 	}
 	
-	//IDã��
+	//ID찾占쏙옙
 	public UserBean GetIdData(UserBean userBean) {
 		UserBean findId=null; 
-		System.out.println("ID ã��");
+		System.out.println("ID 찾占쏙옙");
 		findId = sqlSessionTemplate.selectOne(namespace+".GetIdData",userBean);
 		return findId;
 	}
 	
 	public UserBean GetPwData(UserBean userBean) {
 		UserBean findPw=null; 
-		System.out.println("PW ã��");
+		System.out.println("PW 찾占쏙옙");
 		findPw = sqlSessionTemplate.selectOne(namespace+".GetPwData",userBean);
 		
 		return findPw;
@@ -86,7 +86,7 @@ public class UserDao {
 		return user;
 	}
 
-	//�ߺ�üũ
+	//占쌩븝옙체크
 	public boolean SearchID(String usid) {
 		boolean flag =false;
 		int cnt = -1;
@@ -95,25 +95,20 @@ public class UserDao {
 		array= sqlSessionTemplate.selectList(namespace+".SearchID",usid);
 		System.out.println("array.size():"+array.size());
 		if(array.size()==0 && usid!=null){
-			flag =true;//���̵��������
+			flag =true;//占쏙옙占싱듸옙占쏙옙占쏙옙占쏙옙占�
 			System.out.println("flag="+flag);
 		
 		}else{
 			
-			flag=false;//���̵��ߺ�
+			flag=false;//占쏙옙占싱듸옙占쌩븝옙
 			System.out.println("flag="+flag);
 		}
-		return flag;
+		return flag; 
 	}
-
-	public String GetUserNum(String usid) {
-		String unum=null;
-		unum=sqlSessionTemplate.selectOne(namespace+".GetUserNum" ,usid);
-		System.out.println("unum : "+ unum);
-		return unum;
-	}
+ 
+	   
 	
-	//맴버십 자동 갱신(스캐쥴러에 의해 실행되는 기능으로 타 기능에서 사용을 제한함)
+	//留대쾭�떗 �옄�룞 媛깆떊(�뒪罹먯Ⅴ�윭�뿉 �쓽�빐 �떎�뻾�릺�뒗 湲곕뒫�쑝濡� �� 湲곕뒫�뿉�꽌 �궗�슜�쓣 �젣�븳�븿)
 	public int RefreshMembershipForUser(UserBean userBean){
 		int chk = -1;
 		chk = sqlSessionTemplate.update(namespace + ".RefreshMembershipForUser", userBean);
