@@ -137,10 +137,11 @@ public class UserMembershipBuyController {
 			mbslog.setMlmbsprice(msBean.getMbsprice()); //가격
 			mbslog.setMlmbsperiod(msBean.getMbsperiod()); //명시된 기간
 			
-			Date at = new Date(afterTime.getTime()); //시작
-			mbslog.setMlupstart(at);
-			Date nt = new Date(nowTime.getTime()); //끝
-			mbslog.setMlupend(nt);
+			
+			Date st = new Date(myInfo.getUupend().getTime() + (24 * 60 * 60 * 1000)); //시작
+			mbslog.setMlupstart(st);
+			Date et = new Date(addTimeSet.getTime() + (24 * 60 * 60 * 1000)); //끝
+			mbslog.setMlupend(et);
 			
 			membership_logDao.InsertLog(mbslog);
 			
@@ -161,10 +162,10 @@ public class UserMembershipBuyController {
 			mbslog.setMlmbsprice(msBean.getMbsprice()); //가격
 			mbslog.setMlmbsperiod(msBean.getMbsperiod()); //명시된 기간
 			
-			Date at = new Date(afterTime.getTime()); //시작
-			mbslog.setMlupstart(at);
-			Date nt = new Date(nowTime.getTime()); //끝
-			mbslog.setMlupend(nt);
+			Date nt = new Date(nowTime.getTime()); //시작
+			mbslog.setMlupstart(nt);
+			Date at = new Date(afterTime.getTime()); //끝
+			mbslog.setMlupend(at);
 			
 			membership_logDao.InsertLog(mbslog);
 			

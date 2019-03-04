@@ -1,19 +1,13 @@
 package team_movie.scheduler;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
-import team_movie.admin.controller.AdminEventEditController;
 import team_movie.model.UserBean;
 import team_movie.model.UserDao;
 
@@ -57,6 +51,6 @@ public class MembershipRefresh {
 				}//end of if
 			}//end of if
 		}//end of for
-
+		
 	}
 }

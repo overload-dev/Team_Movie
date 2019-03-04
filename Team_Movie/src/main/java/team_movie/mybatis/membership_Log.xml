@@ -15,5 +15,8 @@
 				#{mlupend}
 				)
 	</insert>
-
+	
+	<select id="GetLogByNum" resultType="MyMembership_Log">
+		select * from mmembershiplog where mlunum =#{unum} order by mlnum desc
+	</select>
 </mapper>
