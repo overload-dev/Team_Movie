@@ -128,9 +128,7 @@ public class MovieContentViewController {
 		
 		//최근시청목록관련
 		int unum = 0;
-		if(usid==null){
-			unum=0;	
-		}else{
+		if(usid !=null){
 			unum = (Integer)session.getAttribute("unum");	
 		}
 		   

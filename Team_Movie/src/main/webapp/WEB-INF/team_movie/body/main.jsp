@@ -182,7 +182,7 @@
 		</div>
 
 
-
+<c:if test="${ sessionScope.usid != null}">
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<font style="font-size: 20px;">최근 시청 목록</font>
@@ -248,6 +248,9 @@
 		</div>
 	</div>
 </div>
+</c:if>
+
+
 	<!-- 랜덤으로 나온 인기장르 for carousel1-->
 	<c:forEach items="${map }" var="map" varStatus="status">
 		

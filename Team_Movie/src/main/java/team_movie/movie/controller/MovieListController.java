@@ -165,12 +165,11 @@ public class MovieListController {
 		System.out.println("usid: "+ usid);
 		
 		int unum = 0;
-		//비로그인시 
-		if(usid==null){
-			unum=0;	
-		//로그인시
-		}else{
+		
+		//로그인을 했을 때 
+		if(usid !=null){
 			unum = (Integer)session.getAttribute("unum");	
+
 		}
 		
 		
