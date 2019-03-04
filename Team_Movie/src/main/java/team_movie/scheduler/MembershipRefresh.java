@@ -17,7 +17,7 @@ public class MembershipRefresh {
 	@Autowired
 	UserDao userDao;
 
-	@Scheduled(fixedDelay = 1000 * 60) // 60초마다 갱신
+	@Scheduled(fixedDelay = 1000 * 60 * 60) // 1시간마다 갱신
 	public void membershipGradeRefresh() {
 
 		List<UserBean> userList = userDao.GetAllUserList();
