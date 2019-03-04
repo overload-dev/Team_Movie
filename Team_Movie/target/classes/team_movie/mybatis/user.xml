@@ -42,6 +42,20 @@
 		select usid from tuser where usid=#{usid}
 	</select>
 	
+	<select id="GetMyInfo" resultType="MyUser">
+		select * from tuser where unum=#{unum}
+	</select>
+	
+	<!-- 이미 스페셜인경우 -->
+	<update id="UpdateMembershipForAlreadySpecial">
+		update tuser set uupend = #{uupend} where unum = #{unum}
+	</update>
+	
+	<!-- 신규 스페셜인 경우 -->
+	<update id="UpdateMembershipForFirst">
+		update tuser set ugrade=#{ugrade}, uupstart=#{uupstart}, uupend = #{uupend} where unum = #{unum}
+	</update>
+	
 </mapper>
 
  

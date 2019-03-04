@@ -2,6 +2,7 @@ package team_movie.user.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,6 +23,8 @@ import team_movie.model.GenreBean;
 import team_movie.model.GenreDao;
 import team_movie.model.MembershipBean;
 import team_movie.model.MembershipDao;
+import team_movie.model.Membership_LogBean;
+import team_movie.model.Membership_LogDao;
 import team_movie.model.UserBean;
 import team_movie.model.UserDao;
 
@@ -38,7 +41,11 @@ public class UserMembershipBuyController {
 	GenreDao genreDao;
 	@Autowired
 	UserDao userDao;
-
+	
+	@Autowired
+	@Qualifier("myMembership_LogDao")
+	Membership_LogDao membership_logDao;
+	
 	@RequestMapping(value=command ,method=RequestMethod.GET)
 	public ModelAndView doActionGet(HttpSession session){
 		ModelAndView mav = new ModelAndView();
@@ -63,50 +70,116 @@ public class UserMembershipBuyController {
 			HttpSession session,
 			HttpServletResponse response
 			) throws IOException{
+		
 		ModelAndView mav =new ModelAndView();
+		
 		//genre������
 		List<GenreBean> genreList = null;
 		genreList = genreDao.getGenreList();
 		mav.addObject("genreList", genreList);
 		String usid =(String)session.getAttribute("usid");
-
+		
+		
+		//멤버십에 해당하는 정보
 		MembershipBean msBean= membershipDao.GetMemberShip(mbsnum);
-
-		UserBean userBean = new UserBean();
+		
+		
+		//현재 시간
 		Timestamp nowTime = new Timestamp(System.currentTimeMillis()); 
+		
+		//추기 될 시간
 		Calendar cal = Calendar.getInstance(); 
 		cal.setTimeInMillis(nowTime.getTime()); 
 		cal.add(Calendar.DATE, msBean.getMbsperiod()); 
 		Timestamp afterTime = new Timestamp(cal.getTime().getTime());
-
 		System.out.println("nowTime :" +nowTime);
 		System.out.println("afterTime :"+afterTime);
+		//---------------------------------
+		
+		//출력??
 		PrintWriter writer;
 		response.setContentType("text/html;charset=UTF-8"); 
 		writer = response.getWriter();
-
-		if(msBean.getMbsnum()!=0){
-			System.out.println("msBean.getMbsnum()!=0");
-			System.out.println("usid 123 :"+ usid);
-
-			userBean.setUsid(usid);
-			userBean.setUgrade(2);
-			userBean.setUupend(afterTime);
-			userBean.setUupstart(nowTime);
-
-			int cnt =0;
-			cnt =userDao.UpdateMembership(userBean);
-
-			writer.println("<script type='text/javascript'>");
-			writer.println("alert('���� �Ϸ� �Ǿ����ϴ�.');");
-			writer.println("history.back();");
-			writer.println("</script>");
-			writer.flush(); 
-
-			session.setAttribute("ugrade", "2");
-			mav.addObject("page","MShipBuyForm");
-			mav.setViewName(getPage);
+		//---------------------------------
+		
+		
+		
+		UserBean userBean = new UserBean();
+		int unum = (Integer) session.getAttribute("unum");
+		
+		UserBean myInfo = null;
+		
+		myInfo = userDao.GetMyInfo(unum);
+		
+		
+		//로그 기록용
+		Membership_LogBean mbslog = new Membership_LogBean();
+		if(myInfo.getUgrade() >= 2){
+			//이미 스페셜인경우
+			userBean.setUnum(unum);
+			
+			Calendar addTime = Calendar.getInstance();
+			
+			addTime.setTimeInMillis(myInfo.getUupend().getTime());
+			addTime.add(Calendar.DATE, msBean.getMbsperiod());
+			
+			Timestamp addTimeSet = new Timestamp(addTime.getTime().getTime());
+			
+			userBean.setUupend(addTimeSet); //끝나는 날만 연장한다.
+			int chk = userDao.UpdateMembershipForAlreadySpecial(userBean);
+			if(chk >-1){
+				System.out.println("special reflash");
+			}
+			
+			//로그 기록----------------------------------------------
+			mbslog.setMlunum(unum); //유저 번호
+			mbslog.setMlmbsname(msBean.getMbsname()); //멤버십 이름
+			mbslog.setMlmbsprice(msBean.getMbsprice()); //가격
+			mbslog.setMlmbsperiod(msBean.getMbsperiod()); //명시된 기간
+			
+			Date at = new Date(afterTime.getTime()); //시작
+			mbslog.setMlupstart(at);
+			Date nt = new Date(nowTime.getTime()); //끝
+			mbslog.setMlupend(nt);
+			
+			membership_logDao.InsertLog(mbslog);
+			
+		}else{
+			//신규 스페셜 등록일 경우
+			userBean.setUnum(unum);
+			userBean.setUgrade(2); //승격
+			userBean.setUupstart(nowTime); //시작일
+			userBean.setUupend(afterTime); //끝나는 날
+			int chk = userDao.UpdateMembershipForFirst(userBean);
+			if(chk >-1){
+				System.out.println("special reflash2");
+			}
+			
+			//로그 기록----------------------------------------------
+			mbslog.setMlunum(unum); //유저 번호
+			mbslog.setMlmbsname(msBean.getMbsname()); //멤버십 이름
+			mbslog.setMlmbsprice(msBean.getMbsprice()); //가격
+			mbslog.setMlmbsperiod(msBean.getMbsperiod()); //명시된 기간
+			
+			Date at = new Date(afterTime.getTime()); //시작
+			mbslog.setMlupstart(at);
+			Date nt = new Date(nowTime.getTime()); //끝
+			mbslog.setMlupend(nt);
+			
+			membership_logDao.InsertLog(mbslog);
+			
 		}
+		
+		writer.println("<script type='text/javascript'>");
+		writer.println("alert('���� �Ϸ� �Ǿ����ϴ�.');");
+		writer.println("history.back();");
+		writer.println("</script>");
+		writer.flush(); 
+		
+		session.setAttribute("ugrade", "2");
+		mav.addObject("page","MShipBuyForm");
+		mav.setViewName(getPage);
+		
 		return mav;
 	}
 }

@@ -105,13 +105,6 @@ public class UserDao {
 		}
 		return flag;
 	}
-
-	public String GetUserNum(String usid) {
-		String unum=null;
-		unum=sqlSessionTemplate.selectOne(namespace+".GetUserNum" ,usid);
-		System.out.println("unum : "+ unum);
-		return unum;
-	}
 	
 	//맴버십 자동 갱신(스캐쥴러에 의해 실행되는 기능으로 타 기능에서 사용을 제한함)
 	public int RefreshMembershipForUser(UserBean userBean){
@@ -119,6 +112,30 @@ public class UserDao {
 		chk = sqlSessionTemplate.update(namespace + ".RefreshMembershipForUser", userBean);
 		return chk;
 	}
+	
+	public UserBean GetMyInfo(int unum){
+		UserBean myInfo = null;
+		myInfo = sqlSessionTemplate.selectOne(namespace + ".GetMyInfo", unum);
+		return myInfo;
+	}
+	
+	//이미 스페셜인 유저가 스페셜을 추가 구매했을 경우
+	public int UpdateMembershipForAlreadySpecial(UserBean userBean){
+		int chk = - 1;
+		chk = sqlSessionTemplate.update(namespace+".UpdateMembershipForAlreadySpecial", userBean);
+		
+		return chk;
+	}
+	//처음 스페셜 구매인경우
+	public int UpdateMembershipForFirst(UserBean userBean){
+		int chk = -1;
+		chk = sqlSessionTemplate.update(namespace +".UpdateMembershipForFirst", userBean);
+		return chk;
+	}
+	
+	
+	
+	
 	
 	
 }

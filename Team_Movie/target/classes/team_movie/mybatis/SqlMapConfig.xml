@@ -13,6 +13,7 @@
 		<typeAlias alias="MyFavorite" type="team_movie.model.FavoriteBean"/>
 		<typeAlias alias="MyLatestview" type="team_movie.model.LatestviewBean"/>
 		<typeAlias alias="MyEvent" type="team_movie.model.EventBean"/>
+		<typeAlias alias="MyMembership_Log" type="team_movie.model.Membership_LogBean"/>
 	</typeAliases>
 	 
 	<mappers>
@@ -24,6 +25,7 @@
 		<mapper resource="team_movie/mybatis/favorite.xml" />
 		<mapper resource="team_movie/mybatis/latestview.xml" />
 		<mapper resource="team_movie/mybatis/event.xml" />		
+		<mapper resource="team_movie/mybatis/membership_Log.xml" />		
 	</mappers>
 
 </configuration>
