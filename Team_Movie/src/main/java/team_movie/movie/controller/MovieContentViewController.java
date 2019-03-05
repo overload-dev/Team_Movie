@@ -126,7 +126,7 @@ public class MovieContentViewController {
 			    System.out.println("title : " + title);
 			    model.addAttribute("extension", extension);
 			}
-		}
+		} 
 		
 		//최근시청목록관련
 		int unum = 0; 
@@ -146,22 +146,7 @@ public class MovieContentViewController {
 			latestviewDao.ViewContentRefresh(unum);
 		}
 		
-		//시청연령관련
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy"); 
 		
-		System.out.println("ubirth:"+ session.getAttribute("ubirth"));
-		Date day =(Date)session.getAttribute("ubirth");
-		
-	   
-		//회원 년생
-		String year=sdf.format(day); 
-		    
-		System.out.println("year : "+year);
-				
-		//현재 년도	
-		String nowYear = sdf.format (System.currentTimeMillis());
-		
-		System.out.println("nowYear :"+nowYear);
 		 
 		
 		return getPage;

@@ -130,18 +130,20 @@
 							<c:set var="more" value="false" />
 
 							<c:forEach items="${memMovie }" var="movie" varStatus="status">
-
+								
 								<c:if test="${not more}">
 									<c:set var="col" value="${col + 1 }" />
 									<div class="col-md-3" align="center">
-
+									
 										<a class="contents-link" href="#"
 											onclick=<c:if test="${sessionScope.ugrade!=null }">
-												"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"
+												"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon },${movie.mage})"
 											</c:if>
 											<c:if test="${sessionScope.ugrade==null }">	
-												special(null,${movie.mnum},${movie.mwcon })
-											</c:if>>
+												special(null,${movie.mnum},${movie.mwcon},${movie.mage})
+											</c:if>
+											
+											>
 
 											<div class="contents-portrait"
 												onmouseover="movie_description(0,'s${movie.mnum}')"
@@ -209,9 +211,9 @@
 									onmouseover="movie_description(0,${movie.mnum})"
 									onmouseout="movie_description(1,${movie.mnum})">
 									<a class="contents-link" href="#"
-										onclick=<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
+										onclick=<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon },${movie.mage})"</c:if>
 										<c:if test="${sessionScope.ugrade==null }">	
-											special(null,${movie.mnum},${movie.mwcon })
+											special(null,${movie.mnum},${movie.mwcon },${movie.mage})
 									</c:if>>
 
 									<div class="contents-portrait"
@@ -284,9 +286,9 @@
 														onmouseover="movie_description(0,${movie.mnum})"
 														onmouseout="movie_description(1,${movie.mnum})">
 														<a class="contents-link" href="#"
-															onclick=<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
+															onclick=<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon },${movie.mage})"</c:if>
 															<c:if test="${sessionScope.ugrade==null }">	
-																special(null,${movie.mnum},${movie.mwcon })
+																special(null,${movie.mnum},${movie.mwcon },${movie.mage})
 															</c:if>>
 
 															<div class="contents-portrait"

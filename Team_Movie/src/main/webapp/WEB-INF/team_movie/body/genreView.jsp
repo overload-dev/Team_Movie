@@ -34,10 +34,10 @@
 									<a class="contents-link" href="#"
 									onclick=
 										<c:if test="${sessionScope.ugrade!=null }">
-												special(${sessionScope.ugrade},${mlist.mnum},${mlist.mwcon })
+												special(${sessionScope.ugrade},${mlist.mnum},${mlist.mwcon },${mlist.mage })
 										</c:if>
 										<c:if test="${sessionScope.ugrade==null }">	
-												special(null,${mlist.mnum},${mlist.mwcon })
+												special(null,${mlist.mnum},${mlist.mwcon },${mlist.mage})
 										</c:if>>
 										<div class="contents-portrait" onmouseover="movie_description(0,${mlist.mnum})" onmouseout="movie_description(1,${mlist.mnum})">
 										    <img src="<c:url value="/resources/saveMovieDB/${mlist.mnum }/${mlist.mimg}"/>" width="100%" >

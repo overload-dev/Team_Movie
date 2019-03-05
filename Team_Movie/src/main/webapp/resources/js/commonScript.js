@@ -1,7 +1,7 @@
 /**
  * 
  */
-// 멤버십변경 스크립트
+//멤버십변경 스크립트
 function changeMembershipEdit(mbsnum) {
 
 	// 변경할 이름
@@ -37,10 +37,10 @@ function changeMembershipEdit(mbsnum) {
 	}
 
 	var allData = {
-		"mbsnum" : mbsnum,
-		"c_mbsname" : c_mbsname,
-		"c_mbsperiod" : c_mbsperiod,
-		"c_mbsprice" : c_mbsprice
+			"mbsnum" : mbsnum,
+			"c_mbsname" : c_mbsname,
+			"c_mbsperiod" : c_mbsperiod,
+			"c_mbsprice" : c_mbsprice
 	}
 
 	$.ajax({
@@ -160,7 +160,7 @@ function searchUserData() {
 }
 
 
-// 회원가입 유효성검사
+//회원가입 유효성검사
 function Validation(ugrade) {
 
 	var usid = $('input[name=usid]');
@@ -253,7 +253,7 @@ function Validation(ugrade) {
 		})
 	}
 }
-// 영화 추가 시, 이미지 미리보기
+//영화 추가 시, 이미지 미리보기
 function handleImgFileSelect(e) {
 	var files = e.target.files;
 	var filesArr = Array.prototype.slice.call(files);
@@ -285,19 +285,19 @@ function changeEventMovie(){
 	var movieImgName = $('input[name=movieNum'+ movieNum +']').val();
 	var movieAge = $('input[name = movieAge'+ movieNum +']').val();
 	var movieMwcon = $('input[name = movieMwcon'+ movieNum +']').val();
-	
+
 
 	if(movieNum =="" || movieImgName ==""){
 		$('img[name=movieThumb]').attr("src","resources/img/sub/no-image.gif");
 		$('.mwcon h4').text('');
 		$('.mage h4').text('');
 		$('.movieTitles h2').text('');
-		
-		
+
+
 	}else{
 		$('.movieTitles h2').text($('input[name=movieName' + movieNum+ ']').val());
 		$('img[name=movieThumb]').attr("src","resources/saveMovieDB/" + movieNum + "/" + movieImgName);
-		
+
 		switch(movieAge){
 		case '0':
 			$('.mage h4').text('전체 이용가');
@@ -312,7 +312,7 @@ function changeEventMovie(){
 			$('.mage h4').text('18세 이용가');
 			break;
 		}
-		
+
 		switch(movieMwcon){
 		case '1':
 			$('.mwcon h4').text('모든 회원');
@@ -328,7 +328,7 @@ function changeEventMovie(){
 function addEventDataChk(){
 	var emnum = $('select[name=emnum]').val();
 	var thumbnail = $('input[name=thumbnail]').val();
-	
+
 	if(emnum == ''){
 		alert('이벤트로 설정할 영화를 선택하세요.');
 		return false;
@@ -337,10 +337,10 @@ function addEventDataChk(){
 		alert('이벤트용 사진을 선택하세요.');
 		return false;
 	}
-	
+
 	if($('input[name="eenum"').val() != ""){
 		var answer = confirm("기존의 이미지는 삭제됩니다. 수정 하시겠습니까?");
-		
+
 		if(!answer){
 			return false;
 		}
@@ -348,7 +348,7 @@ function addEventDataChk(){
 }
 
 
-// 영화 업로드 형태 체크(URL, FILE)
+//영화 업로드 형태 체크(URL, FILE)
 function uploadChk(sel) {
 	// url
 	if (sel == 0) {
@@ -495,7 +495,7 @@ function deleteUser(unum) {
 	});
 }
 
-// 공지사항 삭제
+//공지사항 삭제
 function deleteNotice(bnum) {
 
 	$.ajax({
@@ -517,8 +517,8 @@ function deleteNotice(bnum) {
 	});
 }
 
-// 각 컨텐츠 댓글
-// -------------------------------------------------------------
+//각 컨텐츠 댓글
+//-------------------------------------------------------------
 function fn_insertComment() {
 
 	mnum = $('#mnum').val();
@@ -527,10 +527,10 @@ function fn_insertComment() {
 	bsubject = $('#bsubject').val();
 
 	var allData = {
-		"mnum" : mnum,
-		"unum" : unum,
-		"bcon" : bcon,
-		"bsubject" : bsubject
+			"mnum" : mnum,
+			"unum" : unum,
+			"bcon" : bcon,
+			"bsubject" : bsubject
 	};
 
 	if ($("input[name=bsubject]").val() == "") {
@@ -562,30 +562,30 @@ function fn_insertComment() {
 
 function fn_UpdateCommentForm(bnum) {
 	var allData = {
-		"bnum" : bnum
+			"bnum" : bnum
 	}
 	$
-			.ajax({
-				url : "commentUpdate.tm",
-				type : 'GET',
-				data : allData,
-				success : function(result) {
-					if (result != null) {
-						document.getElementById("sub" + bnum).style.display = "none";
-						document.getElementById("upSub" + bnum).style.display = "";
-						document.getElementById("con" + bnum).style.display = "none";
-						document.getElementById("upCon" + bnum).style.display = "";
-						document.getElementById("replyShowBtn" + bnum).style.display = "none";
-						document.getElementById("deleteBtn" + bnum).style.display = "";
-						document.getElementById("comfirmBtn" + bnum).style.display = "";
-						document.getElementById("updateBtn" + bnum).style.display = "none";
-					}
-				},
-				error : function(jqXHR, textStatus, errorThrown) {
-					alert("Error \n" + textStatus + " : " + errorThrown);
-					self.close();
-				}
-			})
+	.ajax({
+		url : "commentUpdate.tm",
+		type : 'GET',
+		data : allData,
+		success : function(result) {
+			if (result != null) {
+				document.getElementById("sub" + bnum).style.display = "none";
+				document.getElementById("upSub" + bnum).style.display = "";
+				document.getElementById("con" + bnum).style.display = "none";
+				document.getElementById("upCon" + bnum).style.display = "";
+				document.getElementById("replyShowBtn" + bnum).style.display = "none";
+				document.getElementById("deleteBtn" + bnum).style.display = "";
+				document.getElementById("comfirmBtn" + bnum).style.display = "";
+				document.getElementById("updateBtn" + bnum).style.display = "none";
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert("Error \n" + textStatus + " : " + errorThrown);
+			self.close();
+		}
+	})
 }
 
 function fn_UpdateComment(bnum) {
@@ -593,9 +593,9 @@ function fn_UpdateComment(bnum) {
 	upConText = $('#upConText' + bnum).val();
 
 	var allData = {
-		"bnum" : bnum,
-		"upSubText" : upSubText,
-		"upConText" : upConText
+			"bnum" : bnum,
+			"upSubText" : upSubText,
+			"upConText" : upConText
 	};
 
 	if ($("#upSubText").val() == "") {
@@ -644,11 +644,11 @@ function fn_insertReply(bref) {
 	replyCon = $('#replyCon' + bref).val();
 
 	var allData = {
-		"bref" : bref,
-		"replyUnum" : replyUnum,
-		"replyMnum" : replyMnum,
-		"replySub" : replySub,
-		"replyCon" : replyCon
+			"bref" : bref,
+			"replyUnum" : replyUnum,
+			"replyMnum" : replyMnum,
+			"replySub" : replySub,
+			"replyCon" : replyCon
 	};
 
 	if ($("#replySub").val() == "") {
@@ -681,7 +681,7 @@ function fn_DeleteComment(bnum, brelevel) {
 
 	if (brelevel == 1) {
 		var allData = {
-			"bnum" : bnum
+				"bnum" : bnum
 		}
 		$.ajax({
 			url : "commentDelete.tm",
@@ -701,7 +701,7 @@ function fn_DeleteComment(bnum, brelevel) {
 	}
 	if (brelevel == 0) {
 		var allData = {
-			"bnum" : bnum
+				"bnum" : bnum
 		}
 		$.ajax({
 			url : "commentDelete.tm",
@@ -724,8 +724,8 @@ function fn_DeleteComment(bnum, brelevel) {
 function movieLike(mnum, unum) {
 
 	var allData = {
-		"mnum" : mnum,
-		"unum" : unum
+			"mnum" : mnum,
+			"unum" : unum
 	};
 
 	if (unum == null) {
@@ -754,8 +754,8 @@ function movieLike(mnum, unum) {
 function movieUnLike(mnum, unum) {
 
 	var allData = {
-		"mnum" : mnum,
-		"unum" : unum
+			"mnum" : mnum,
+			"unum" : unum
 	};
 	$.ajax({
 		url : "movieLike.tm",
@@ -777,16 +777,16 @@ function movieUnLike(mnum, unum) {
 }
 
 function movieBookmark(mnum, unum) {
-	
+
 	var allData = {
-		"mnum" : mnum,
-		"unum" : unum
+			"mnum" : mnum,
+			"unum" : unum
 	};
 
 	if (unum == null) {
 		alert("로그인 후 이용 가능합니다.");
 	} else {
-		
+
 		$.ajax({
 			url : "movieBookmark.tm",
 			type : 'GET',
@@ -810,8 +810,8 @@ function movieBookmark(mnum, unum) {
 function movieUnBookmark(mnum, unum) {
 
 	var allData = {
-		"mnum" : mnum,
-		"unum" : unum
+			"mnum" : mnum,
+			"unum" : unum
 	};
 	$.ajax({
 		url : "movieBookmark.tm",
@@ -833,31 +833,31 @@ function movieUnBookmark(mnum, unum) {
 }
 
 function memberUnBookmark(mnum, unum){
-	
-	
+
+
 	var allData = {
 			"mnum" : mnum,
 			"unum" : unum
-		}; 
-		$.ajax({
-			url : "movieBookmark.tm",
-			type : 'POST',
-			data : allData,
-			success : function(result) {
-				if (result > -1) {
-					alert("즐겨찾기 취소");
-					
-					location.reload();
-				}
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				alert("Error \n" + textStatus + " : " + errorThrown);
-				self.close();
+	}; 
+	$.ajax({
+		url : "movieBookmark.tm",
+		type : 'POST',
+		data : allData,
+		success : function(result) {
+			if (result > -1) {
+				alert("즐겨찾기 취소");
+
+				location.reload();
 			}
-		})
-	
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert("Error \n" + textStatus + " : " + errorThrown);
+			self.close();
+		}
+	})
+
 }
-// -------------------------------------------------------------
+//-------------------------------------------------------------
 function movie_description(io,mnum){	
 	if(io == '0'){
 		$("div." + mnum).show();		
@@ -866,33 +866,88 @@ function movie_description(io,mnum){
 	}
 }
 //스페셜회원 일반회원 로그인하지않은 회원 구분
-function special(ugrade,mnum,mwcon){
-	if(ugrade==1 && mwcon==2 ){
-		var con=confirm("멤버등록한 회원만 시청가능합니다. 멤버 등록하시겠습니까?");
+function special(ugrade,mnum,mwcon,mage){
+
+
+	if(mage==3){
+		
+		$.ajax({
+			url : "userAgeLimit.tm",
+			type : 'GET',
+			data : {"mnum" : mnum},
+			success : function(result) { 
+				if(result>0 && result <18){
+					alert(result)
+					alert("청소년 관람 불가 영화입니다.");
+					location.reload();
+				}
 				
+				if(result>18){
+					if(ugrade==1 && mwcon==2 ){
+						var con=confirm("멤버등록한 회원만 시청가능합니다. 멤버 등록하시겠습니까?");
+
+						if(con==false){
+
+							return false;
+						}else{
+							location.href="mShipBuyForm.tm";
+						}
+
+					} 
+					if(ugrade == 2 || ugrade == 0 || mwcon==1){  
+						location.href="movieContent.tm?mnum="+mnum;
+					}
+
+					if(ugrade==null && mwcon==2){
+						alert("로그인 후 이용하세요.");
+						location.href="userLogin.tm";
+
+					}
+					
+				}
+				
+				if(result == -1){
+					
+					alert("로그인 후 이용 가능합니다.");
+					location.href="userLogin.tm"
+					}
+				
+				},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert("Error \n" + textStatus + " : " + errorThrown);
+				self.close();
+			}
+		});
+		
+		
+	}else{
+		if(ugrade==1 && mwcon==2 ){
+			var con=confirm("멤버등록한 회원만 시청가능합니다. 멤버 등록하시겠습니까?");
+
 			if(con==false){
-				
+
 				return false;
 			}else{
 				location.href="mShipBuyForm.tm";
 			}
-		   
-	} 
-	if(ugrade == 2 || ugrade == 0 || mwcon==1){  
-		location.href="movieContent.tm?mnum="+mnum;
-	}
-	
-	if(ugrade==null && mwcon==2){
-		alert("로그인 후 이용하세요.");
-		location.href="userLogin.tm";
-		
+
+		} 
+		if(ugrade == 2 || ugrade == 0 || mwcon==1){  
+			location.href="movieContent.tm?mnum="+mnum;
+		}
+
+		if(ugrade==null && mwcon==2){
+			alert("로그인 후 이용하세요.");
+			location.href="userLogin.tm";
+
+		}
 	}
 }
 
 //User membership 결재
 function membershipBuy(mbsnum){
 	var cf = confirm( '정말 구매 하시겠습니까?' );
-    
+
 	if(cf==true){
 		location.href="mShipBuy.tm?mbsnum="+mbsnum
 	}else{
@@ -901,10 +956,10 @@ function membershipBuy(mbsnum){
 	}
 }
 
-// 회원 탈퇴
+//회원 탈퇴
 function UserDelete(unum){
 	var cf = confirm( '정말 회원 탈퇴 하시겠습니까?' );
-    
+
 	if(cf==true){
 		alert("회원 탈퇴되었습니다.");
 		location.href="userDelete.tm?unum="+unum
@@ -923,14 +978,14 @@ function deleteEvent(eenum){
 		data : {"eenum" : eenum},
 		success : function(result) {
 			alert("이벤트가 삭제되었습니다.")
-				location.reload();
+			location.reload();
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert("Error \n" + textStatus + " : " + errorThrown);
 			self.close();
 		}
 	});
-	
+
 }
 
 

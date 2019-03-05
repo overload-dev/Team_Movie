@@ -13,12 +13,12 @@
 		<mvc:resources mapping="/saveMovieDB/**" location="/resources/"/>
 		<mvc:resources mapping="/resources/**" location="/resources/"/>
 		<mvc:resources mapping="/resources/img/**" location="/resources/"/>
-
+	
 		<context:component-scan base-package="team_movie" />
 		<task:scheduler id="cronScheduler" pool-size="10" />
 			    <task:annotation-driven scheduler="cronScheduler" />
 		
-		
+			
 		
 			<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
 				<property name="prefix" value="/WEB-INF/team_movie/" />

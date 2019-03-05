@@ -48,9 +48,9 @@
 											onmouseout="movie_description(1,${movie.mnum})">
 											<a class="contents-link" href="#" onclick=
 														
-													<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon })"</c:if>
+													<c:if test="${sessionScope.ugrade!=null }">"special(${sessionScope.ugrade},${movie.mnum},${movie.mwcon },${movie.mage })"</c:if>
 													<c:if test="${sessionScope.ugrade==null }">	
-														special(null,${movie.mnum},${movie.mwcon })
+														special(null,${movie.mnum},${movie.mwcon },${movie.mage })
 													</c:if>>
 												
 													<div class="contents-portrait" onmouseover="movie_description(0,'${pg}-${col}-${movie.mnum}')" onmouseout="movie_description(1,'${pg}-${col}-${movie.mnum}')">

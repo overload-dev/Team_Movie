@@ -185,7 +185,7 @@ create sequence mmembershiplog_seq
   
 --tmovie 삽입예제
 insert into tmovie values(tmovie_seq.nextval,'가버나움 (Capernaum, 2018)','드라마','감독','연출','주연','조연',2,'19/01/24',sysdate,0,0,1,null,'sam1.mp4','가비나움.jpg','시놉시스');
-insert into tmovie values(tmovie_seq.nextval,'그레이브 하우스 (Graves and Bones, 2016)','스릴러,공포,드라마','감독','연출','주연','조연',2,'16/01/01',sysdate,0,0,1,null,'sam3.mp4','그레이브하우스.jpg','시놉시스');
+insert into tmovie values(tmovie_seq.nextval,'그레이브 하우스 (Graves and Bones, 2016)','스릴러,공포,드라마','감독','연출','주연','조연',3,'16/01/01',sysdate,0,0,1,null,'sam3.mp4','그레이브하우스.jpg','시놉시스');
 insert into tmovie values(tmovie_seq.nextval,'극한직업 (Extreme Job)','코미디','감독','연출','주연','조연',2,'19/01/23',sysdate,0,0,1,null,'sam2_576.mp4','극한직업.jpg','시놉시스');
 insert into tmovie values(tmovie_seq.nextval,'우리가족: 라멘샵 (Ramen Teh)','드라마','감독','연출','주연','조연',1,'19/01/31',sysdate,0,0,1,null,'sam2_1080.mp4','라멘샵.jpg','시놉시스');
 insert into tmovie values(tmovie_seq.nextval,'보헤미안 랩소디 (Bohemian Rhapsody)','드라마','감독','연출','주연','조연',1,'18/10/31',sysdate,0,0,1,null,'sam1.mp4','보헤미안랩소디.jpg','시놉시스');
@@ -197,8 +197,9 @@ insert into tmovie values(tmovie_seq.nextval,'아쿠아맨','액션','감독','�
 
 
 --tuser 삽입예제
-insert into tuser values(tuser_seq.nextval,'admin','admin','1234',sysdate,'2019-01-01',0,null,null,'a');
-insert into tuser values(tuser_seq.nextval,'a1234','aaa','1234',sysdate,'2019-01-01',1,null,null,'코미디');
+insert into tuser values(tuser_seq.nextval,'admin','admin','1234',sysdate,'1900-01-01',0,null,null,'a');
+insert into tuser values(tuser_seq.nextval,'a1234','aaa','1234',sysdate,'1994-02-16',1,null,null,'코미디');
+insert into tuser values(tuser_seq.nextval,'b1234','aaa','1234',sysdate,'2002-02-15',1,null,null,'코미디');
 
 --genre 삽입예제
 insert into genre values(genre_seq.nextval,'코미디');
