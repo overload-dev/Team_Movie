@@ -43,14 +43,12 @@ public class BoardDeleteCommentController {
 		
 		if(totalCommentByNum == 1) {
 			cnt =  boardDao.DeleteComment(bnum);
-			
-			
-			
 		}
 		else {
-			cnt =  boardDao.DeleteFirstComment(bnum);
+			//cnt =  boardDao.DeleteFirstComment(bnum);
+			cnt =  boardDao.DeleteAllComment(bnum);
 		}
-		
 		return cnt;
+		
 	}
 }

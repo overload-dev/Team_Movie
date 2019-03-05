@@ -75,14 +75,19 @@ public class BoardDao {
 		chk = sqlSessionTemplate.update(namespace + ".UpdateNotice", boardBean);
 		return chk;
 	}
-
+	
+	public int DeleteAllComment(int bnum) {
+		int cnt = sqlSessionTemplate.delete(namespace + ".DeleteAllComment", bnum);
+		return cnt;
+	}
 	
 	
 	
+/*	
 	public int DeleteFirstComment(int mnum) {
 		int cnt = sqlSessionTemplate.update(namespace + ".DeleteFirstComment", mnum);
 		return cnt;
-	}
+	}*/
 	
 	public int totalCommentByNum(int mnum) {
 		int cnt = sqlSessionTemplate.selectOne(namespace + ".totalCommentByNum", mnum);

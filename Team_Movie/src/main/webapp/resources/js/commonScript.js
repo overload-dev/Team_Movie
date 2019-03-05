@@ -560,9 +560,10 @@ function fn_insertComment() {
 	}
 }
 
-function fn_UpdateCommentForm(bnum) {
+function fn_UpdateCommentForm(bnum, brelevel) {
 	var allData = {
-			"bnum" : bnum
+			"bnum" : bnum,
+			"brelevel" : brelevel
 	}
 	$
 	.ajax({
@@ -575,10 +576,12 @@ function fn_UpdateCommentForm(bnum) {
 				document.getElementById("upSub" + bnum).style.display = "";
 				document.getElementById("con" + bnum).style.display = "none";
 				document.getElementById("upCon" + bnum).style.display = "";
-				document.getElementById("replyShowBtn" + bnum).style.display = "none";
 				document.getElementById("deleteBtn" + bnum).style.display = "";
 				document.getElementById("comfirmBtn" + bnum).style.display = "";
 				document.getElementById("updateBtn" + bnum).style.display = "none";
+				if (brelevel == 0) {
+					document.getElementById("replyShowBtn" + bnum).style.display = "none";
+				}
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {

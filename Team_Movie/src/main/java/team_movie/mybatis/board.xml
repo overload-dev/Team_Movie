@@ -59,6 +59,11 @@
 		where bnum = #{bnum}
 	</delete>
 	
+	<delete id="DeleteAllComment">
+		delete from mboard
+		where bref = #{bnum}
+	</delete>
+	
 	<update id="UpdateReplyComment">
 		update mboard
 		set brestep = brestep + 1 
