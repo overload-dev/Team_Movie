@@ -930,7 +930,7 @@ function special(ugrade,mnum,mwcon,mage){
 		}
 
 		if(ugrade==null && mwcon==2){
-			alert("로그인 후 이용하세요.");
+			alert("멤버십 회원 컨텐츠입니다. 로그인 후 이용하세요.");
 			location.href="userLogin.tm";
 
 		}
