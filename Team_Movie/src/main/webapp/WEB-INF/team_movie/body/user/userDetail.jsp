@@ -36,7 +36,13 @@
                     	</tr>
                     	<tr>
                     		<td>등급</td>
-                    		<td>${userInfo.ugrade}</td>
+                    		<td><c:if test="${userInfo.ugrade==1}">
+                    			일반회원 
+                    		</c:if>
+                    		<c:if test="${userInfo.ugrade==2}">
+                    			멤버십회원
+                    		</c:if>
+                    		</td>
                     	</tr>
                     </table>
 					<hr> 

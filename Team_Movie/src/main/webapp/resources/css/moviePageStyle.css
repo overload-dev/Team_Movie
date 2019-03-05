@@ -94,5 +94,14 @@ span#desc{
 	font-size: medium;
 	font-weight: bold;
 	color: #3B3C43;
+} 
+  
+.badge {  
+  height: 20px; 
+  width: 30px; 
+  display: table-cell;
+  vertical-align: middle; 
+  text-align: center;
+  border-radius: 0%; /* may require vendor prefixes */
+ 
 }
-	
