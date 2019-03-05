@@ -51,6 +51,10 @@
 											<c:if test="${movie.mwcon==2 }">
 												<img alt="멤버전용" src="resources/img/sub/mbs.png" class="memIcon">
 											</c:if> ${movie.mname }
+										<c:if test="${movie.mage==3 }">
+												<div class="badge" style=" background-color: red; font-size: medium; text-align: center;">19</div> 
+										</c:if> 									
+									
 										</h4>
 									</a>
 								</div>

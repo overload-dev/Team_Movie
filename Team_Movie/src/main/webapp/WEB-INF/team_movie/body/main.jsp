@@ -6,6 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <%@include file="../top.jsp"%>
+<style type="text/css">
+
+</style>
 </head>
 <body>
 	<div class="container">
@@ -163,9 +166,13 @@
 														class="memIcon">
 												</c:if>
 												${movie.mname }
-											</h4>
+												<c:if test="${movie.mage==3 }">
+													<div class="badge" style=" background-color: red; font-size: medium; text-align: center;">19</div> 
+												</c:if>   
+											</h4> 
 										</a>
-									</div>
+									</div> 
+
 									<c:choose>
 										<c:when test="${col%4 == 0 }">
 											<c:set var="more" value="true" />
@@ -233,6 +240,9 @@
 										</c:if>
 									${movie.mname }
 									</h4>
+										<c:if test="${movie.mage==3 }">
+												<div class="badge" style=" background-color: red; font-size: medium; text-align: center;">19</div> 
+										</c:if> 
 									</a>
 							</div>
 					<c:choose>
@@ -307,6 +317,9 @@
 																		class="memIcon">
 																</c:if>
 																${movie.mname }
+										<c:if test="${movie.mage==3 }">
+												<div class="badge" style=" background-color: red; font-size: medium; text-align: center;">19</div> 
+										</c:if> 																
 															</h4>
 														</a>
 													</div>

@@ -865,7 +865,7 @@ function movie_description(io,mnum){
 		$("div." + mnum).hide();		
 	}
 }
-//스페셜회원 일반회원 로그인하지않은 회원 구분
+//스페셜회원 일반회원 로그인하지않은 회원 구분 
 function special(ugrade,mnum,mwcon,mage){
 
 
@@ -877,7 +877,7 @@ function special(ugrade,mnum,mwcon,mage){
 			data : {"mnum" : mnum},
 			success : function(result) { 
 				if(result>0 && result <18){
-					alert(result)
+					
 					alert("청소년 관람 불가 영화입니다.");
 					location.reload();
 				}
@@ -897,18 +897,11 @@ function special(ugrade,mnum,mwcon,mage){
 					if(ugrade == 2 || ugrade == 0 || mwcon==1){  
 						location.href="movieContent.tm?mnum="+mnum;
 					}
-
-					if(ugrade==null && mwcon==2){
-						alert("로그인 후 이용하세요.");
-						location.href="userLogin.tm";
-
-					}
-					
 				}
 				
 				if(result == -1){
 					
-					alert("로그인 후 이용 가능합니다.");
+					alert("청소년 관람 불가 컨텐츠입니다. 로그인 후 이용 하세요.");
 					location.href="userLogin.tm"
 					}
 				
