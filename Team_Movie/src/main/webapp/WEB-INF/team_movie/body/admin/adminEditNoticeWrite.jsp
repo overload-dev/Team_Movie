@@ -14,7 +14,7 @@
 <h2 class="text-primary">신규 공지사항 작성</h2>
 <script type="text/javascript" src="<c:url value='/resources/smarteditor/js/HuskyEZCreator.js'/>" charset="utf-8"></script>
 
-<form action="updateNoticeEdit.tm" method="post" id="frm">
+<form action="writeNoticeEdit.tm" method="post" id="frm">
 	<div class="input-group">
     	<span class="input-group-addon">공지사항 제목</span>
     	<input type="text" class="form-control" name="bsubject" placeholder="Title">
