@@ -18,7 +18,7 @@
 		
 			<div class="input-group">
 		    	<span class="input-group-addon">공지사항 제목</span>
-		    	<input type="text" class="form-control" name="bsubject" placeholder="Title" value=${boardBean.bsubject}>
+		    	<input type="text" class="form-control" name="bsubject" placeholder="Title" value="${boardBean.bsubject}">
 		  	</div>
 		  	<hr>
 		    <textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:100%; height:412px;">
@@ -26,7 +26,7 @@
 		    </textarea>
 		    <hr>
 		    <div align="center">
-		    	<input type="button" class="btn btn-primary" id="savebutton" value="작성" />
+		    	<input type="button" class="btn btn-primary" id="savebutton" value="수정" />
 	    <input type="button" class="btn btn-secondary"  value="취소" onclick="location.href='adminNoticeEdit.tm'" />
 		    </div>
 		</form>

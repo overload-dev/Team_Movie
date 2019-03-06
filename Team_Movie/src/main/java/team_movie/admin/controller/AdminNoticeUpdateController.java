@@ -51,7 +51,7 @@ public class AdminNoticeUpdateController {
 
 				while (scan.hasNextLine()) {
 					strBuffer += scan.nextLine();
-					System.out.println("strBuffer" + strBuffer);
+					/*System.out.println("strBuffer" + strBuffer);*/
 				}
 				
 				boardBean.setBcon(strBuffer);
@@ -79,7 +79,12 @@ public class AdminNoticeUpdateController {
 		
 		String root_path = session.getServletContext().getRealPath("/resources/upload");
 		File oldFile = new File(root_path + "/" + textFileName);
-		
+		System.out.println(oldFile.getPath());
+		System.out.println(oldFile.getPath());
+		System.out.println(oldFile.getPath());
+		System.out.println(oldFile.getPath());
+		System.out.println(oldFile.getPath());
+		System.out.println(oldFile.getPath());
 		if(oldFile.exists()){
 			
 			File newFile = new File(root_path + "/" + bsubject + ".txt");
@@ -97,7 +102,9 @@ public class AdminNoticeUpdateController {
 			oldFile.renameTo(newFile);
 			
 			try {
-				BufferedWriter fw = new BufferedWriter(new FileWriter(newFile, true));
+				
+				BufferedWriter fw = new BufferedWriter(new FileWriter(newFile, false));
+				
 				fw.write(smarteditor);
 				fw.flush();
 				fw.close();
