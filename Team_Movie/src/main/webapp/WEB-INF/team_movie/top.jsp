@@ -95,7 +95,8 @@
 						<li><a class="dropitem" href="adminUserEdit.tm">회원 관리</a></li>
 						<li><a class="dropitem" href="adminContentsEdit.tm">컨텐츠 관리</a></li>
 						<li><a class="dropitem" href="adminNoticeEdit.tm">공지사항</a></li>
-						<li><a class="dropitem" href="adminMembershipEdit.tm">멤버십 관리</a></li>
+						<li><a class="dropitem" href="adminEditMembership.tm">멤버십 관리</a></li>
+						<li><a class="dropitem" href="adminEditEvent.tm">이벤트 컨텐츠 설정</a></li>
 					</ul>
 				</li>
 				<li><a href="userLogout.tm">Logout</a></li>

@@ -879,6 +879,7 @@ function special(ugrade,mnum,mwcon,mage){
 			type : 'GET',
 			data : {"mnum" : mnum},
 			success : function(result) { 
+				alert(result)
 				if(result>0 && result <18){
 					
 					alert("청소년 관람 불가 영화입니다.");
