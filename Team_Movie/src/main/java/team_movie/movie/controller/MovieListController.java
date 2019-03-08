@@ -107,6 +107,7 @@ public class MovieListController {
 					System.out.println("장르 겹침");
 					num[i] = (int)(Math.random() * (genreList.size()-1)) + 1;
 					i--;
+					
 				}
 				else {
 					genres += genreList.get(num[i]).getGname() + "/";
