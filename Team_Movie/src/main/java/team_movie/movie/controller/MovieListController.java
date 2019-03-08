@@ -26,6 +26,8 @@ import team_movie.model.LatestviewBean;
 import team_movie.model.LatestviewDao;
 import team_movie.model.MovieBean;
 import team_movie.model.MovieDao;
+import team_movie.model.UserBean;
+import team_movie.model.UserDao;
 
 @Controller
 public class MovieListController {
@@ -41,6 +43,8 @@ public class MovieListController {
 	@Qualifier("myBoard")
 	BoardDao boardDao;
 	
+	@Autowired
+	UserDao userDao;
 	
 	// for get GenreData
 	@Autowired
@@ -68,42 +72,102 @@ public class MovieListController {
 		List<GenreBean> genreList = null;
 		genreList = genreDao.getGenreList();
 		mav.addObject("genreList", genreList);
+				
+		String usid=(String)session.getAttribute("usid");
 		
-		int[] num = new int[3]; 
-		
-		for(int i = 0; i < num.length ; i++){
-			num[i] = (int)(Math.random() * (genreList.size()-1)) + 1; 
+		if (usid != null) {
+			UserBean user = userDao.GetUserById(usid);
+			System.out.println("userGenre : " + user.getUgenre());
+			String[] userGenre = user.getUgenre().split("/");
+			for(int i=0; i<userGenre.length; i++) {
+				System.out.println("userGenre[i] : " + userGenre[i]);
+			}
 			
-		    for(int j = 0; j < i; j ++){
-		        if(num[i] == num[j]){
-		            i--; 
-		            break;
-		        }
-		    }
-		}
+			int[] num = new int[3-userGenre.length]; 
+			
+			for(int i = 0; i < num.length ; i++){
+				num[i] = (int)(Math.random() * (genreList.size()-1)) + 1; 
+				
+			    for(int j = 0; j < i; j ++){
+			        if(num[i] == num[j]){
+			            i--; 
+			            break;
+			        }
+			    }
+			}
 
-		String genres = "";
-		for(int i = 0 ; i < num.length ; i ++){
-			System.out.println(num[i]);
-			System.out.println(genreList.get(num[i]).getGname());
+			String genres = user.getUgenre();
+			for(int i = 0 ; i < num.length ; i ++){
+				String rdGenre = genreList.get(num[i]).getGname();
+				System.out.println(num[i]);
+				System.out.println(genreList.get(num[i]).getGname());
+				System.out.println("genreList.size() : " + genreList.size());
+				System.out.println("genres : " + genres);
+				if(genres.contains(rdGenre)) {
+					System.out.println("장르 겹침");
+					num[i] = (int)(Math.random() * (genreList.size()-1)) + 1;
+					i--;
+				}
+				else {
+					genres += genreList.get(num[i]).getGname() + "/";
+				}
+			}
 			
-			genres += genreList.get(num[i]).getGname() + "/";
+			System.out.println("genres : " + genres);
+			
+			String[] genre = genres.split("/");
+			
+			Map<String, List<MovieBean>> map = new HashMap<String, List<MovieBean>>();
+
+			
+			for (int i=0; i<genre.length; i++) {
+				System.out.println("genre["+i+"]" + genre[i]);
+				List<MovieBean> movieByGenre = movieDao.GetMovieListByGenre(genre[i]);
+				
+				map.put(genre[i], movieByGenre);
+			}
+			
+			mav.addObject("map", map);
 		}
 		
-		System.out.println(genres);
 		
-		System.out.println("genres : " + genres);
-		
-		String[] genre = genres.split("/");
-		
-		Map<String, List<MovieBean>> map = new HashMap<String, List<MovieBean>>();
-
-		
-		for (int i=0; i<genre.length; i++) {
-			System.out.println("genre["+i+"]" + genre[i]);
-			List<MovieBean> movieByGenre = movieDao.GetMovieListByGenre(genre[i]);
+		if (usid == null) {
+			int[] num = new int[3]; 
 			
-			map.put(genre[i], movieByGenre);
+			for(int i = 0; i < num.length ; i++){
+				num[i] = (int)(Math.random() * (genreList.size()-1)) + 1; 
+				
+				for(int j = 0; j < i; j ++){
+					if(num[i] == num[j]){
+						i--; 
+						break;
+					}
+				}
+			}
+			
+			String genres = "";
+			for(int i = 0 ; i < num.length ; i ++){
+				System.out.println(num[i]);
+				System.out.println(genreList.get(num[i]).getGname());
+				
+				genres += genreList.get(num[i]).getGname() + "/";
+			}
+			
+			System.out.println("genres : " + genres);
+			
+			String[] genre = genres.split("/");
+			
+			Map<String, List<MovieBean>> map = new HashMap<String, List<MovieBean>>();
+			
+			
+			for (int i=0; i<genre.length; i++) {
+				System.out.println("genre["+i+"]" + genre[i]);
+				List<MovieBean> movieByGenre = movieDao.GetMovieListByGenre(genre[i]);
+				
+				map.put(genre[i], movieByGenre);
+			}
+			
+			mav.addObject("map", map);
 		}
 		
 		List<MovieBean> movie = movieDao.GetMovieList();	
@@ -118,7 +182,7 @@ public class MovieListController {
 		mav.addObject("memTotal", memTotal);
 		
 		mav.addObject("movie", movie);
-		mav.addObject("map", map);
+		
 		
 		//eventList Get
 		List<EventBean> eventList = null;
@@ -159,16 +223,15 @@ public class MovieListController {
 		}
 		mav.addObject("noticeMainList", noticeMainList);
 		
-		//��û��ϰ���
-		String usid=(String)session.getAttribute("usid");
+		//占쏙옙청占쏙옙構占쏙옙占�
 		
 		System.out.println("usid: "+ usid);
 		
 		int unum = 0;
-		//��α��ν� 
+		//占쏙옙慣占쏙옙館占� 
 		if(usid==null){
 			unum=0;	
-		//�α��ν�
+		//占싸깍옙占싸쏙옙
 		}else{
 			unum = (Integer)session.getAttribute("unum");	
 		}
