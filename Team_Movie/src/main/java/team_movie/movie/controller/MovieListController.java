@@ -110,7 +110,7 @@ public class MovieListController {
 					
 				}
 				else {
-					genres += genreList.get(num[i]).getGname() + "/";
+					genres += "/" + genreList.get(num[i]).getGname() + "/";
 				}
 			}
 			
